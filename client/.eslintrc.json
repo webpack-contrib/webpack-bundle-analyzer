@@ -1,0 +1,20 @@
+{
+  "extends": "../../.eslintrc.json",
+  "parserOptions": {
+    "ecmaVersion": 5,
+    "sourceType": "script"
+  },
+  "env": {
+    "browser": true,
+    "es6": false,
+    "node": false
+  },
+  "globals": {
+    "Tooltip": true,
+    "CarrotSearchFoamTree": true,
+    "filesize": true
+  },
+  "rules": {
+    "no-var": 0
+  }
+}
