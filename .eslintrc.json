@@ -129,7 +129,7 @@
     "no-restricted-syntax": [2, "WithStatement"],
     "one-var": [2, "never"],
     "object-curly-newline": 0,
-    "prefer-const": 2,
+    "prefer-const": [2, {"destructuring": "all"}],
     "prefer-numeric-literals": 2,
     "prefer-spread": 1,
     "quotes": [2, "single", "avoid-escape"],
