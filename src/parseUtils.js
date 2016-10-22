@@ -58,9 +58,10 @@ function getModulesSizesFromFunctionArgument(arg) {
     const modulesNodes = arg.properties;
 
     return _.transform(modulesNodes, (result, moduleNode) => {
+      const moduleId = moduleNode.key.name || moduleNode.key.value;
       const moduleBody = moduleNode.value.body;
 
-      result[moduleNode.key.value] = moduleBody.end - moduleBody.start;
+      result[moduleId] = moduleBody.end - moduleBody.start;
     }, {});
   } else {
     const modulesNodes = arg.elements;
