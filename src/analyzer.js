@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const fileExists = require('file-exists');
 const _ = require('lodash');
 
 const { Folder } = require('../lib/tree');
@@ -23,7 +22,7 @@ function getChartData(bundleStats, bundleDir) {
     // Checking if all assets are exist
     const bundleScriptsFound = _.every(bundleStats.assets, statAsset => {
       const assetFile = path.resolve(bundleDir, statAsset.name);
-      const assetExists = fileExists(assetFile);
+      const assetExists = fs.existsSync(assetFile);
 
       if (!assetExists) {
         console.log(
