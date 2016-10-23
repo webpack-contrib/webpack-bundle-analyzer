@@ -12,8 +12,10 @@ module.exports = {
 };
 
 function getChartData(bundleStats, bundleDir) {
-  // Picking only `*.js` assets from bundle
-  bundleStats.assets = _.filter(bundleStats.assets, asset => _.endsWith(asset.name, '.js'));
+  // Picking only `*.js` assets from bundle that has non-empty `chunks` array
+  bundleStats.assets = _.filter(bundleStats.assets, asset =>
+    _.endsWith(asset.name, '.js') && !_.isEmpty(asset.chunks)
+  );
 
   // Real module sizes got by parsing assets
   let parsedModuleSizes = null;
