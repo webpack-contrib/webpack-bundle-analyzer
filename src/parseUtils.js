@@ -22,7 +22,7 @@ function getModuleSizesFromBundle(bundlePath) {
     ast,
     walkState,
     {
-      CallExpression: (node, state, c) => {
+      CallExpression: (node, state) => {
         if (state.sizes) return;
 
         const args = node.arguments;
@@ -41,11 +41,7 @@ function getModuleSizesFromBundle(bundlePath) {
           // Main bundle with webpack loader
           // Modules are stored in first argument
           state.sizes = getModulesSizesFromFunctionArgument(args[0]);
-          return;
         }
-
-        // Continue searching
-        c(node, state);
       }
     }
   );
