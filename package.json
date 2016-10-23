@@ -1,6 +1,6 @@
 {
   "name": "webpack-bundle-analyzer",
-  "version": "1.2.1-alpha",
+  "version": "1.2.2-alpha",
   "description": "Webpack Bundle Analyzer that represents all the information in convenient interative treemap",
   "author": "Yury Grunin <grunin.ya@ya.ru>",
   "license": "MIT",
