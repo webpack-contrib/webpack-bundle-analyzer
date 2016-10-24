@@ -27,19 +27,23 @@ function getModuleSizesFromBundle(bundlePath) {
 
         const args = node.arguments;
 
+        // Additional bundle without webpack loader
+        // Modules are stored in second argument:
+        // webpackJsonp([<chunks>], <modules>)
         if (_.get(node, 'callee.name') === 'webpackJsonp') {
-          // Additional bundle without webpack loader
-          // Modules are stored in second argument
           state.sizes = getModulesSizesFromFunctionArgument(args[1]);
           return;
         }
 
+        // Main bundle with webpack loader
+        // Modules are stored in first argument:
+        // (function (...) {...})(<modules>)
         if (
+          node.callee.type === 'FunctionExpression' &&
+          !node.callee.id &&
           args.length === 1 &&
-          (args[0].type === 'ObjectExpression' || args[0].type === 'ArrayExpression')
+          isArgumentContainsModulesList(args[0])
         ) {
-          // Main bundle with webpack loader
-          // Modules are stored in first argument
           state.sizes = getModulesSizesFromFunctionArgument(args[0]);
         }
       }
@@ -47,6 +51,31 @@ function getModuleSizesFromBundle(bundlePath) {
   );
 
   return walkState.sizes;
+}
+
+function isArgumentContainsModulesList(arg) {
+  if (arg.type === 'ObjectExpression') {
+    return _(arg.properties)
+      .map('value')
+      .every(isModuleWrapper);
+  }
+
+  if (arg.type === 'ArrayExpression') {
+    // Modules are contained in array.
+    // Array indexes are module ids
+    return _.every(arg.elements, elem =>
+      // Some of array items may be skipped because there is no module with such id
+      !elem ||
+      isModuleWrapper(elem)
+    );
+  }
+
+  return false;
+}
+
+function isModuleWrapper(node) {
+  // It's an anonymous function expression
+  return (node.type === 'FunctionExpression' && !node.id);
 }
 
 function getModulesSizesFromFunctionArgument(arg) {
@@ -59,7 +88,9 @@ function getModulesSizesFromFunctionArgument(arg) {
 
       result[moduleId] = moduleBody.end - moduleBody.start;
     }, {});
-  } else {
+  }
+
+  if (arg.type === 'ArrayExpression') {
     const modulesNodes = arg.elements;
 
     return _.transform(modulesNodes, (result, moduleNode, i) => {
@@ -68,4 +99,6 @@ function getModulesSizesFromFunctionArgument(arg) {
       result[i] = moduleNode.body.end - moduleNode.body.start;
     }, {});
   }
+
+  return {};
 }
