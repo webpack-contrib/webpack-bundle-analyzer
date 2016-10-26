@@ -9,6 +9,7 @@ Just take a look at this demo:
 ![webpack bundle analyzer zoomable treemap](https://cloud.githubusercontent.com/assets/302213/19711973/908ae002-9b42-11e6-8471-bc8e9ab6dec7.gif)
 
 This module will help you:
+
 1. Realize what's *really* inside your bundle
 2. Find out what modules make up the most of it's size
 3. Find modules that got there by mistake
