@@ -3,7 +3,7 @@
 const path = require('path');
 
 const commander = require('commander');
-const { bold, magenta } = require('chalk');
+const { magenta } = require('chalk');
 
 const analyzer = require('../analyzer');
 const viewer = require('../viewer');
@@ -16,8 +16,9 @@ const program = commander
   Arguments:
   
     bundleStatsFile  Path to Webpack Stats JSON file.
-                     It can be generated with ${bold('webpack --profile --json > stats.json')}
-    bundleDir        Directory containing all generated bundles. By default a directory of stats file is used.`
+    bundleDir        Directory containing all generated bundles.
+                     You should provided it if you want analyzer to show you the real parsed module sizes.
+                     By default a directory of stats file is used.`
   )
   .option(
     '-p, --port <n>',
