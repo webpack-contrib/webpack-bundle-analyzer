@@ -16,12 +16,7 @@ class BundleAnalyzerPlugin {
     compiler.plugin('emit', (curCompiler, callback) => {
       const stats = curCompiler
         .getStats()
-        .toJson({
-          source: false,
-          warnings: false,
-          errors: false,
-          errorDetails: false
-        });
+        .toJson();
 
       if (this.opts.generateStatsFile) {
         const statsStr = JSON.stringify(stats, null, 2);
