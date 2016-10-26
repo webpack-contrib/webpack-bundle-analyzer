@@ -1,9 +1,18 @@
 {
   "name": "webpack-bundle-analyzer",
-  "version": "1.2.4",
-  "description": "Webpack Bundle Analyzer that represents all the information in convenient interative treemap",
+  "version": "1.2.5",
+  "description": "Webpack plugin and CLI utility that represents bundle content as convenient interactive zoomable treemap",
   "author": "Yury Grunin <grunin.ya@ya.ru>",
   "license": "MIT",
+  "homepage": "https://github.com/th0r/webpack-bundle-analyzer",
+  "changelog": "https://github.com/th0r/webpack-bundle-analyzer/blob/master/CHANGELOG.md",
+  "bugs": {
+    "url": "https://github.com/th0r/webpack-bundle-analyzer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/th0r/webpack-bundle-analyzer.git"
+  },
   "main": "lib/index.js",
   "bin": "lib/bin/analyzer.js",
   "engines": {
@@ -20,7 +29,7 @@
   ],
   "dependencies": {
     "acorn": "^4.0.3",
-    "babel-runtime": "^6.11.6",
+    "babel-runtime": "^6.18.0",
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
     "express": "^4.14.0",
@@ -31,12 +40,12 @@
     "stream-combiner2": "^1.1.1"
   },
   "devDependencies": {
-    "babel-core": "^6.17.0",
+    "babel-core": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-preset-es2015": "^6.16.0",
-    "babel-preset-stage-2": "^6.17.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-2": "^6.18.0",
     "del": "^2.2.2",
-    "eslint": "^3.7.1",
+    "eslint": "^3.8.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-plumber": "^1.1.0",

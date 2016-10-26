@@ -145,6 +145,7 @@
     "yoda": [2, "never"],
     "use-isnan": 2,
     "unicode-bom": 0,
-    "valid-typeof": [2, {"requireStringLiterals": true}]
+    "valid-typeof": [2, {"requireStringLiterals": true}],
+    "wrap-iife": [2, "inside"]
   }
 }
