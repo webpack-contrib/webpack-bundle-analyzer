@@ -1,5 +1,5 @@
 {
-  "extends": "../../.eslintrc.json",
+  "extends": "../.eslintrc.json",
   "parserOptions": {
     "ecmaVersion": 5,
     "sourceType": "script"

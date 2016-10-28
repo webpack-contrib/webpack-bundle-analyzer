@@ -1,3 +1,5 @@
+require('babel-polyfill');
+
 const { resolve, relative } = require('path');
 
 const gulp = require('gulp');
