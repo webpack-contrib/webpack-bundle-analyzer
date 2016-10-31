@@ -39,8 +39,7 @@
     "express": "^4.14.0",
     "filesize": "^3.3.0",
     "lodash": "^4.16.4",
-    "opener": "^1.4.2",
-    "stream-combiner2": "^1.1.1"
+    "opener": "^1.4.2"
   },
   "devDependencies": {
     "babel-core": "^6.18.0",
@@ -56,7 +55,8 @@
     "gulp-plumber": "^1.1.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.10",
-    "mocha": "^3.1.2"
+    "mocha": "^3.1.2",
+    "stream-combiner2": "^1.1.1"
   },
   "keywords": [
     "webpack",
