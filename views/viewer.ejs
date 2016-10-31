@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Webpack Bundle Visualizer</title>
+
+    <link rel="stylesheet" type="text/css" href="/viewer.css" media="all"/>
+
+    <script src="/filesize.js"></script>
+    <script src="/foamtree/carrotsearch.foamtree.asserts.js"></script>
+    <script src="/foamtree/carrotsearch.foamtree.js"></script>
+    <script src="/tooltip.js"></script>
+    <script src="/viewer.js" defer></script>
+  </head>
+
+  <body>
+    <div id="treemap" class="treemap"></div>
+    <script>
+      window.chartData = <%- chartData %>;
+    </script>
+  </body>
+</html>

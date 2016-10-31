@@ -30,7 +30,7 @@ function start(bundleStats, opts) {
 
   const app = express();
 
-  app.set('view engine', 'pug');
+  app.set('view engine', 'ejs');
   app.set('views', `${projectRoot}/views`);
   app.use(express.static(`${projectRoot}/client`));
   app.use('/filesize.js', express.static(require.resolve('filesize')));
