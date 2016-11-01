@@ -130,6 +130,7 @@
     "one-var": [2, "never"],
     "object-curly-spacing": [2, "always"],
     "object-curly-newline": 0,
+    "object-shorthand": 2,
     "prefer-const": [2, {"destructuring": "all"}],
     "prefer-numeric-literals": 2,
     "prefer-spread": 1,
