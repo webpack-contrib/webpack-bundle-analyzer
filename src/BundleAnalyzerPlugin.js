@@ -4,6 +4,7 @@ class BundleAnalyzerPlugin {
 
   constructor(opts) {
     this.opts = {
+      startAnalyzer: true,
       openAnalyzer: true,
       analyzerPort: 8888,
       generateStatsFile: false,
@@ -27,12 +28,13 @@ class BundleAnalyzerPlugin {
         };
       }
 
-      if (this.opts.openAnalyzer) {
+      if (this.opts.startAnalyzer) {
         // Making analyzer logs to be after all webpack warnings in the console
         setTimeout(() => {
           console.log('');
 
           viewer.start(stats, {
+            openBrowser: this.opts.openAnalyzer,
             port: this.opts.analyzerPort,
             bundleDir: compiler.outputPath
           });

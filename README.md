@@ -38,10 +38,14 @@ plugins: [new BundleAnalyzerPlugin()]
 
 ```js
 new BundleAnalyzerPlugin({
-  // Automatically open analyzer page in default browser
-  openAnalyzer: true,
+  // Start analyzer HTTP-server.
+  // You can use this plugin to just generate Webpack Stats JSON file by setting `startAnalyzer` to `false`
+  // and `generateStatsFile` to `true`.
+  startAnalyzer: true,
   // Analyzer HTTP-server port
   analyzerPort: 8888,
+  // Automatically open analyzer page in default browser if `startAnalyzer` is `true`
+  openAnalyzer: true,
   // If `true`, Webpack Stats JSON file will be generated in bundles output directory
   generateStatsFile: false,
   // Name of Webpack Stats JSON file that will be generated if `generateStatsFile` is `true`.
