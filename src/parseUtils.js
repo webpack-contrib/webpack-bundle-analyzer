@@ -22,7 +22,7 @@ function getModuleSizesFromBundle(bundlePath) {
     ast,
     walkState,
     {
-      CallExpression: (node, state) => {
+      CallExpression(node, state, c) {
         if (state.sizes) return;
 
         const args = node.arguments;
@@ -41,10 +41,17 @@ function getModuleSizesFromBundle(bundlePath) {
         if (
           node.callee.type === 'FunctionExpression' &&
           !node.callee.id &&
-          args.length === 1 &&
-          isArgumentContainsModulesList(args[0])
+          args.length === 1
         ) {
-          state.sizes = getModulesSizesFromFunctionArgument(args[0]);
+          const [arg] = args;
+
+          if (arg.type === 'CallExpression') {
+            // DedupePlugin and maybe some others wrap modules in additional self-invoking function expression.
+            // Walking into it.
+            return c(arg, state);
+          } else if (isArgumentContainsModulesList(arg)) {
+            state.sizes = getModulesSizesFromFunctionArgument(arg);
+          }
         }
       }
     }
@@ -74,8 +81,12 @@ function isArgumentContainsModulesList(arg) {
 }
 
 function isModuleWrapper(node) {
-  // It's an anonymous function expression
-  return (node.type === 'FunctionExpression' && !node.id);
+  return (
+    // It's an anonymous function expression that wraps module
+    (node.type === 'FunctionExpression' && !node.id) ||
+    // If `DedupePlugin` is used it can be an ID of duplicated module
+    (node.type === 'Literal' && (typeof node.value === 'number' || typeof node.value === 'string'))
+  );
 }
 
 function getModulesSizesFromFunctionArgument(arg) {
@@ -84,9 +95,8 @@ function getModulesSizesFromFunctionArgument(arg) {
 
     return _.transform(modulesNodes, (result, moduleNode) => {
       const moduleId = moduleNode.key.name || moduleNode.key.value;
-      const moduleBody = moduleNode.value.body;
 
-      result[moduleId] = moduleBody.end - moduleBody.start;
+      result[moduleId] = getModuleSize(moduleNode.value);
     }, {});
   }
 
@@ -96,9 +106,22 @@ function getModulesSizesFromFunctionArgument(arg) {
     return _.transform(modulesNodes, (result, moduleNode, i) => {
       if (!moduleNode) return;
 
-      result[i] = moduleNode.body.end - moduleNode.body.start;
+      result[i] = getModuleSize(moduleNode);
     }, {});
   }
 
   return {};
+}
+
+function getModuleSize(node) {
+  if (node.type === 'FunctionExpression') {
+    return node.body.end - node.body.start;
+  }
+
+  if (node.type === 'Literal') {
+    return node.end - node.start;
+  }
+
+  // Fallback for unknown node types
+  return 0;
 }
