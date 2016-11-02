@@ -15,6 +15,7 @@
     "filesize": true
   },
   "rules": {
-    "no-var": 0
+    "no-var": 0,
+    "object-shorthand": 0
   }
 }

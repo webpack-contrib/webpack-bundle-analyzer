@@ -2,15 +2,16 @@
 <html>
   <head>
     <meta charset="UTF-8"/>
-    <title>Webpack Bundle Visualizer</title>
+    <title>Webpack Bundle Analyzer</title>
 
-    <link rel="stylesheet" type="text/css" href="/viewer.css" media="all"/>
+    <%- include('style', { filename: 'viewer.css' }) %>
 
-    <script src="/filesize.js"></script>
-    <script src="/foamtree/carrotsearch.foamtree.asserts.js"></script>
-    <script src="/foamtree/carrotsearch.foamtree.js"></script>
-    <script src="/tooltip.js"></script>
-    <script src="/viewer.js" defer></script>
+    <%- include('script', { filename: 'node_modules/filesize' }) %>
+    <%- include('script', { filename: 'foamtree/carrotsearch.foamtree.asserts.js' }) %>
+    <%- include('script', { filename: 'foamtree/carrotsearch.foamtree.js' }) %>
+
+    <%- include('script', { filename: 'tooltip.js' }) %>
+    <%- include('script', { filename: 'viewer.js' }) %>
   </head>
 
   <body>

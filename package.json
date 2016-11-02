@@ -39,6 +39,7 @@
     "express": "^4.14.0",
     "filesize": "^3.3.0",
     "lodash": "^4.16.4",
+    "mkdirp": "^0.5.1",
     "opener": "^1.4.2"
   },
   "devDependencies": {

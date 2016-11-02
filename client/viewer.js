@@ -1,4 +1,4 @@
-(function (window) {
+window.addEventListener('load', function () {
   Tooltip.init();
 
   var zoomOutDisabled = true;
@@ -67,4 +67,4 @@
   function preventDefault(event) {
     event.preventDefault();
   }
-}(this));
+}, false);
