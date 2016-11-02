@@ -10,6 +10,11 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 1.4.0
+ 
+ * **New Feature**
+  * Add "static report" mode (closes #2)
+
 ## 1.3.0
  
  * **Improvement**
