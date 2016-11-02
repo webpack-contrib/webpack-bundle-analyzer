@@ -10,6 +10,11 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 1.4.1
+ 
+ * **Bug Fix**
+  * Add partial support for `DedupePlugin` (see #4 for more info)
+
 ## 1.4.0
  
  * **New Feature**
