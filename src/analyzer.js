@@ -23,7 +23,7 @@ function getChartData(bundleStats, bundleDir) {
   if (bundleDir) {
     // Checking if all assets are exist
     const bundleScriptsFound = _.every(bundleStats.assets, statAsset => {
-      const assetFile = path.resolve(bundleDir, statAsset.name);
+      const assetFile = path.join(bundleDir, statAsset.name);
       const assetExists = fs.existsSync(assetFile);
 
       if (!assetExists) {
@@ -40,7 +40,7 @@ function getChartData(bundleStats, bundleDir) {
       // Parsing assets and getting real module sizes
       parsedModuleSizes = _.transform(bundleStats.assets, (result, statAsset) => {
         _.assign(result,
-          getModuleSizesFromBundle(path.resolve(bundleDir, statAsset.name))
+          getModuleSizesFromBundle(path.join(bundleDir, statAsset.name))
         );
       }, {});
     }

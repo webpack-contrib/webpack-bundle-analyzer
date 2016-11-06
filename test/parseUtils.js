@@ -1,7 +1,6 @@
 const fs = require('fs');
 
 const _ = require('lodash');
-const { expect } = require('chai');
 const { getModuleSizesFromBundle } = require('../lib/parseUtils');
 
 const BUNDLES_DIR = `${__dirname}/bundles`;

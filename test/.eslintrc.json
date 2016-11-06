@@ -1,6 +1,13 @@
 {
   "extends": "../.eslintrc.json",
   "env": {
-    "mocha": true
+    "mocha": true,
+    "browser": true
+  },
+  "globals": {
+    "sinon": true,
+    "expect": true,
+    "makeWebpackConfig": true,
+    "webpackCompile": true
   }
 }
