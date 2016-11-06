@@ -10,6 +10,11 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 1.4.2
+ 
+ * **Bug Fix**
+  * Fix "Unable to find bundle asset" error when bundle name starts with `/` (fixes #3)
+
 ## 1.4.1
  
  * **Bug Fix**
