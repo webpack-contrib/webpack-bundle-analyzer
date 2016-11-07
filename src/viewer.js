@@ -49,18 +49,30 @@ function startServer(bundleStats, opts) {
     });
   });
 
-  return app.listen(opts.port, () => {
-    const url = `http://localhost:${opts.port}`;
+  function listen(port) {
+    const server = app.listen(port, () => {
+      const url = `http://localhost:${port}`;
 
-    console.log(
-      `${bold('Webpack Bundle Analyzer')} is started at ${bold(url)}\n` +
-      `Use ${bold('Ctrl+C')} to close it`
-    );
+      console.log(
+          `${bold('Webpack Bundle Analyzer')} is started at ${bold(url)}\n` +
+          `Use ${bold('Ctrl+C')} to close it`
+      );
 
-    if (opts.openBrowser) {
-      opener(url);
-    }
-  });
+      if (opts.openBrowser) {
+        opener(url);
+      }
+    });
+
+    server.once('error', (err) => {
+      const nextPort = port + 1;
+      console.warn(`Unable to listen on port ${port}`);
+      console.warn(`Error code: ${bold(err.code)}`);
+      console.log(`Trying port ${nextPort}`);
+      listen(nextPort);
+    });
+  }
+
+  listen(opts.port);
 }
 
 function generateReport(bundleStats, opts) {
