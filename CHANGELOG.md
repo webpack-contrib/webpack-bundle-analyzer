@@ -10,6 +10,11 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 1.5.0
+ 
+ * **New Feature**
+  * Add `statsOptions` option for `BundleAnalyzerPlugin`
+
 ## 1.4.2
  
  * **Bug Fix**
