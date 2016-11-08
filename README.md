@@ -43,10 +43,10 @@ new BundleAnalyzerPlugin({
   // In `static` mode single HTML file with bundle report will be generated.
   // In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`.
   analyzerMode: 'server',
-  // Port that will be used by in `server` mode to start HTTP server.
+  // Port that will be used in `server` mode to start HTTP server.
   analyzerPort: 8888,
   // Path to bundle report file that will be generated in `static` mode.
-  // If relative path is provided, it will be relative to bundles output directory
+  // Relative to bundles output directory.
   reportFilename: 'report.html',
   // Automatically open report in default browser
   openAnalyzer: true,
@@ -55,6 +55,10 @@ new BundleAnalyzerPlugin({
   // Name of Webpack Stats JSON file that will be generated if `generateStatsFile` is `true`.
   // Relative to bundles output directory.
   statsFilename: 'stats.json',
+  // Options for `stats.toJson()` method.
+  // For example you can exclude sources of your modules from stats file with `source: false` option.
+  // See more options here: https://github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21
+  statsOptions: null
 })
 ```
 

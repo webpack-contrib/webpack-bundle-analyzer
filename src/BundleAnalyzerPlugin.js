@@ -10,6 +10,7 @@ class BundleAnalyzerPlugin {
       openAnalyzer: true,
       generateStatsFile: false,
       statsFilename: 'stats.json',
+      statsOptions: null,
       // deprecated
       startAnalyzer: true,
       ...opts
@@ -22,7 +23,7 @@ class BundleAnalyzerPlugin {
     compiler.plugin('emit', (curCompiler, callback) => {
       const stats = curCompiler
         .getStats()
-        .toJson();
+        .toJson(this.opts.statsOptions);
 
       if (this.opts.generateStatsFile) {
         const statsStr = JSON.stringify(stats, null, 2);
