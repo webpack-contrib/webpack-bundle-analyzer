@@ -10,6 +10,11 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 1.5.2
+ 
+ * **Bug Fix**
+  * Support array module descriptors that can be generated if `DedupePlugin` is used (fixes #4)
+
 ## 1.5.1
  
  * **Internal**
