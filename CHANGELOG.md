@@ -10,6 +10,11 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 1.5.1
+ 
+ * **Internal**
+  * Plug analyzer to Webpack compiler `done` event instead of `emit`. Should fix #16.
+
 ## 1.5.0
  
  * **New Feature**
