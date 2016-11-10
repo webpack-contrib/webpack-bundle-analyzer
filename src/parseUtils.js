@@ -84,9 +84,15 @@ function isModuleWrapper(node) {
   return (
     // It's an anonymous function expression that wraps module
     (node.type === 'FunctionExpression' && !node.id) ||
-    // If `DedupePlugin` is used it can be an ID of duplicated module
-    (node.type === 'Literal' && (typeof node.value === 'number' || typeof node.value === 'string'))
+    // If `DedupePlugin` is used it can be an ID of duplicated module...
+    (node.type === 'Literal' && (typeof node.value === 'number' || typeof node.value === 'string')) ||
+    // or an array of shape [<module_id>, ...args]
+    (node.type === 'ArrayExpression' && node.elements.length > 1 && isModuleId(node.elements[0]))
   );
+}
+
+function isModuleId(node) {
+  return (node.type === 'Literal' && (typeof node.value === 'string' || typeof node.value === 'number'));
 }
 
 function getModulesSizesFromFunctionArgument(arg) {
@@ -118,7 +124,7 @@ function getModuleSize(node) {
     return node.body.end - node.body.start;
   }
 
-  if (node.type === 'Literal') {
+  if (_.has(node, 'start') && _.has(node, 'end')) {
     return node.end - node.start;
   }
 

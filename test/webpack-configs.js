@@ -4,6 +4,8 @@ const Nightmare = require('nightmare');
 const nightmare = Nightmare();
 
 describe('Webpack config', function () {
+  this.timeout(5000);
+
   before(function () {
     del.sync(`${__dirname}/output`);
     this.clock = sinon.useFakeTimers();
