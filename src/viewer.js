@@ -99,7 +99,7 @@ function generateReport(bundleStats, opts) {
       fs.writeFileSync(reportFilepath, reportHtml);
 
       console.log(
-        `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}\n`
+        `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`
       );
 
       if (opts.openBrowser) {

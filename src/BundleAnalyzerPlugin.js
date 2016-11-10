@@ -1,3 +1,8 @@
+const fs = require('fs');
+const path = require('path');
+const mkdir = require('mkdirp');
+const { bold } = require('chalk');
+
 const viewer = require('./viewer');
 
 class BundleAnalyzerPlugin {
@@ -20,21 +25,14 @@ class BundleAnalyzerPlugin {
   apply(compiler) {
     this.compiler = compiler;
 
-    compiler.plugin('emit', (curCompiler, callback) => {
-      const stats = curCompiler
-        .getStats()
-        .toJson(this.opts.statsOptions);
+    compiler.plugin('done', stats => {
+      stats = stats.toJson(this.opts.statsOptions);
+
+      const actions = [];
 
       if (this.opts.generateStatsFile) {
-        const statsStr = JSON.stringify(stats, null, 2);
-
-        curCompiler.assets[this.opts.statsFilename] = {
-          source: () => statsStr,
-          size: () => statsStr.length
-        };
+        actions.push(() => this.generateStatsFile(stats));
       }
-
-      let analyzeFn;
 
       // Handling deprecated `startAnalyzer` flag
       if (this.opts.analyzerMode === 'server' && !this.opts.startAnalyzer) {
@@ -42,21 +40,38 @@ class BundleAnalyzerPlugin {
       }
 
       if (this.opts.analyzerMode === 'server') {
-        analyzeFn = () => this.startAnalyzerServer(stats);
+        actions.push(() => this.startAnalyzerServer(stats));
       } else if (this.opts.analyzerMode === 'static') {
-        analyzeFn = () => this.generateStaticReport(stats);
+        actions.push(() => this.generateStaticReport(stats));
       }
 
-      if (analyzeFn) {
-        // Making analyzer logs to be after all webpack warnings in the console
+      if (actions.length) {
+        // Making analyzer logs to be after all webpack logs in the console
         setTimeout(() => {
           console.log('');
-          analyzeFn();
-        }, 500);
+          actions.forEach(action => action());
+        }, 200);
       }
-
-      callback();
     });
+  }
+
+  generateStatsFile(stats) {
+    let statsFilepath = this.opts.statsFilename;
+
+    if (!path.isAbsolute(statsFilepath)) {
+      statsFilepath = path.resolve(this.compiler.outputPath, statsFilepath);
+    }
+
+    mkdir.sync(path.dirname(statsFilepath));
+
+    fs.writeFileSync(
+      statsFilepath,
+      JSON.stringify(stats, null, 2)
+    );
+
+    console.log(
+      `${bold('Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
+    );
   }
 
   startAnalyzerServer(stats) {
