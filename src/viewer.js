@@ -37,6 +37,9 @@ function startServer(bundleStats, opts) {
 
   const app = express();
 
+  // Explicitly using our `ejs` dependency to render templates
+  // Fixes #17
+  app.engine('ejs', require('ejs').renderFile);
   app.set('view engine', 'ejs');
   app.set('views', `${projectRoot}/views`);
   app.use(express.static(`${projectRoot}/client`));
