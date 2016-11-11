@@ -10,6 +10,11 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 1.5.3
+ 
+ * **Bug Fix**
+  * Workaround `Express` bug that caused wrong `ejs` version to be used as view engine (fixes #17)
+
 ## 1.5.2
  
  * **Bug Fix**
