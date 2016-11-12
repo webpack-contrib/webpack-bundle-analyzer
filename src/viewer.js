@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 
-const _ = require('lodash');
 const express = require('express');
 const ejs = require('ejs');
 const opener = require('opener');
@@ -42,8 +41,7 @@ function startServer(bundleStats, opts) {
   app.engine('ejs', require('ejs').renderFile);
   app.set('view engine', 'ejs');
   app.set('views', `${projectRoot}/views`);
-  app.use(express.static(`${projectRoot}/client`));
-  app.use('/node_modules/filesize', express.static(require.resolve('filesize')));
+  app.use(express.static(`${projectRoot}/public`));
 
   app.use('/', (req, res) => {
     res.render('viewer', {
@@ -113,13 +111,5 @@ function generateReport(bundleStats, opts) {
 }
 
 function getAssetContent(filename) {
-  let filepath;
-
-  if (_.startsWith(filename, 'node_modules/')) {
-    filepath = require.resolve(filename.slice('node_modules/'.length));
-  } else {
-    filepath = `${projectRoot}/client/${filename}`;
-  }
-
-  return fs.readFileSync(filepath, 'utf8');
+  return fs.readFileSync(`${projectRoot}/public/${filename}`, 'utf8');
 }

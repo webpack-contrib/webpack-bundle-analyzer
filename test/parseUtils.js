@@ -19,7 +19,7 @@ describe('parseUtils', function () {
           const parsedSizes = getModuleSizesFromBundle(`${BUNDLES_DIR}/${bundleName}.js`);
           const expectedSizes = JSON.parse(fs.readFileSync(`${BUNDLES_DIR}/${bundleName}.sizes.json`));
 
-          expect(parsedSizes).to.eql(expectedSizes);
+          expect(parsedSizes).to.deep.equal(expectedSizes);
         });
       });
   });

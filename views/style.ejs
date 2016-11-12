@@ -1,8 +1,0 @@
-<% if (mode === 'static') { %>
-  <!-- <%= filename %> -->
-  <style>
-    <%- assetContent(filename) %>
-  </style>
-<% } else { %>
-  <link rel="stylesheet" type="text/css" href="/<%= filename %>" media="all"/>
-<% } %>

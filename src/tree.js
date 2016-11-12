@@ -87,10 +87,6 @@ class Folder extends Node {
       }, 0);
     }
 
-    /*if (this.name === 'bluebird') {
-      console.log(this._parsedSize);
-    }*/
-
     return this._parsedSize;
   }
 

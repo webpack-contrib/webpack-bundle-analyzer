@@ -1,0 +1,17 @@
+.container {
+  font: normal 10px Verdana;
+  position: absolute;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background: #fff;
+  border: 1px solid #aaa;
+  opacity: 0.7;
+  white-space: nowrap;
+  visibility: visible;
+  transition: opacity .2s ease, visibility .2s ease;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}

@@ -26,7 +26,7 @@
     "test-watch": "mocha --watch --reporter min --compilers js:babel-core/register -r babel-polyfill"
   },
   "files": [
-    "client",
+    "public",
     "lib",
     "src",
     "views"
@@ -38,20 +38,27 @@
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "filesize": "^3.3.0",
-    "lodash": "^4.16.4",
+    "lodash": "^4.16.6",
     "mkdirp": "^0.5.1",
     "opener": "^1.4.2"
   },
   "devDependencies": {
-    "babel-core": "6.18.0",
+    "babel-core": "6.18.2",
+    "babel-eslint": "7.1.0",
+    "babel-loader": "6.2.7",
+    "babel-plugin-transform-react-jsx": "6.8.0",
     "babel-plugin-transform-runtime": "6.15.0",
     "babel-polyfill": "6.16.0",
     "babel-preset-es2015": "6.18.0",
     "babel-preset-stage-2": "6.18.0",
     "chai": "3.5.0",
     "chai-subset": "1.3.0",
+    "classnames": "2.2.5",
+    "css-loader": "0.25.0",
     "del": "2.2.2",
-    "eslint": "3.8.1",
+    "eslint": "3.9.1",
+    "eslint-plugin-react": "6.6.0",
+    "exports-loader": "0.6.3",
     "gulp": "3.9.1",
     "gulp-babel": "6.1.2",
     "gulp-plumber": "1.1.0",
@@ -59,8 +66,10 @@
     "gulp-watch": "4.3.10",
     "mocha": "3.1.2",
     "nightmare": "2.8.1",
+    "preact": "6.4.0",
     "sinon": "1.17.6",
     "stream-combiner2": "1.1.1",
+    "style-loader": "0.13.1",
     "webpack": "1.13.3"
   },
   "keywords": [

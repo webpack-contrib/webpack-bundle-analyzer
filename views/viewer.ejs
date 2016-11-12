@@ -4,18 +4,11 @@
     <meta charset="UTF-8"/>
     <title>Webpack Bundle Analyzer</title>
 
-    <%- include('style', { filename: 'viewer.css' }) %>
-
-    <%- include('script', { filename: 'node_modules/filesize' }) %>
-    <%- include('script', { filename: 'foamtree/carrotsearch.foamtree.asserts.js' }) %>
-    <%- include('script', { filename: 'foamtree/carrotsearch.foamtree.js' }) %>
-
-    <%- include('script', { filename: 'tooltip.js' }) %>
     <%- include('script', { filename: 'viewer.js' }) %>
   </head>
 
   <body>
-    <div id="treemap" class="treemap"></div>
+    <div id="app"></div>
     <script>
       window.chartData = <%- chartData %>;
     </script>
