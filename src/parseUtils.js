@@ -4,18 +4,16 @@ const acorn = require('acorn');
 const walk = require('acorn/dist/walk');
 
 module.exports = {
-  getModuleSizesFromBundle
+  parseBundle
 };
 
-function getModuleSizesFromBundle(bundlePath) {
-  const ast = acorn.parse(
-    fs.readFileSync(bundlePath, 'utf8'), {
-      sourceType: 'script'
-    }
-  );
+function parseBundle(bundlePath) {
+  const contentBuffer = fs.readFileSync(bundlePath);
+  const contentStr = contentBuffer.toString('utf8');
+  const ast = acorn.parse(contentStr, { sourceType: 'script' });
 
   const walkState = {
-    sizes: null
+    locations: null
   };
 
   walk.recursive(
@@ -31,7 +29,7 @@ function getModuleSizesFromBundle(bundlePath) {
         // Modules are stored in second argument:
         // webpackJsonp([<chunks>], <modules>)
         if (_.get(node, 'callee.name') === 'webpackJsonp') {
-          state.sizes = getModulesSizesFromFunctionArgument(args[1]);
+          state.locations = getModulesLocationFromFunctionArgument(args[1]);
           return;
         }
 
@@ -50,14 +48,23 @@ function getModuleSizesFromBundle(bundlePath) {
             // Walking into it.
             return c(arg, state);
           } else if (isArgumentContainsModulesList(arg)) {
-            state.sizes = getModulesSizesFromFunctionArgument(arg);
+            state.locations = getModulesLocationFromFunctionArgument(arg);
           }
         }
       }
     }
   );
 
-  return walkState.sizes;
+  if (!walkState.locations) {
+    return null;
+  }
+
+  return {
+    src: contentStr,
+    modules: _.mapValues(walkState.locations,
+      loc => contentBuffer.toString('utf8', loc.start, loc.end)
+    )
+  };
 }
 
 function isArgumentContainsModulesList(arg) {
@@ -95,14 +102,14 @@ function isModuleId(node) {
   return (node.type === 'Literal' && (typeof node.value === 'string' || typeof node.value === 'number'));
 }
 
-function getModulesSizesFromFunctionArgument(arg) {
+function getModulesLocationFromFunctionArgument(arg) {
   if (arg.type === 'ObjectExpression') {
     const modulesNodes = arg.properties;
 
     return _.transform(modulesNodes, (result, moduleNode) => {
       const moduleId = moduleNode.key.name || moduleNode.key.value;
 
-      result[moduleId] = getModuleSize(moduleNode.value);
+      result[moduleId] = getModuleLocation(moduleNode.value);
     }, {});
   }
 
@@ -112,22 +119,17 @@ function getModulesSizesFromFunctionArgument(arg) {
     return _.transform(modulesNodes, (result, moduleNode, i) => {
       if (!moduleNode) return;
 
-      result[i] = getModuleSize(moduleNode);
+      result[i] = getModuleLocation(moduleNode);
     }, {});
   }
 
   return {};
 }
 
-function getModuleSize(node) {
+function getModuleLocation(node) {
   if (node.type === 'FunctionExpression') {
-    return node.body.end - node.body.start;
+    node = node.body;
   }
 
-  if (_.has(node, 'start') && _.has(node, 'end')) {
-    return node.end - node.start;
-  }
-
-  // Fallback for unknown node types
-  return 0;
+  return _.pick(node, 'start', 'end');
 }

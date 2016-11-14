@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const _ = require('lodash');
-const { getModuleSizesFromBundle } = require('../lib/parseUtils');
+const { parseBundle } = require('../lib/parseUtils');
 
 const BUNDLES_DIR = `${__dirname}/bundles`;
 

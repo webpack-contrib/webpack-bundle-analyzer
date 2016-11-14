@@ -28,7 +28,7 @@ function startServer(bundleStats, opts) {
 
   let chartData;
   try {
-    chartData = analyzer.getChartData(bundleStats, opts.bundleDir);
+    chartData = analyzer.getViewerData(bundleStats, opts.bundleDir);
   } catch (err) {
     console.error(`Could't analyze webpack bundle:\n${err}`);
     return;
@@ -74,7 +74,7 @@ function generateReport(bundleStats, opts) {
 
   let chartData;
   try {
-    chartData = analyzer.getChartData(bundleStats, opts.bundleDir);
+    chartData = analyzer.getViewerData(bundleStats, opts.bundleDir);
   } catch (err) {
     console.error(`Could't analyze webpack bundle:\n${err}`);
     return;

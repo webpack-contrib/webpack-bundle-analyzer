@@ -38,6 +38,7 @@
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "filesize": "^3.3.0",
+    "gzip-size": "^3.0.0",
     "lodash": "^4.16.6",
     "mkdirp": "^0.5.1",
     "opener": "^1.4.2"

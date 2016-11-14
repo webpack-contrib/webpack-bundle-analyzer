@@ -43,8 +43,12 @@ class File extends Node {
     return this.data.parsedSize;
   }
 
+  get gzipSize() {
+    return this.data.gzipSize;
+  }
+
   toString(indent) {
-    return `${super.toString(indent)} [${this.data.id}] (${filesize(this.size)} / ${filesize(this.parsedSize)})`;
+    return `${super.toString(indent)} [${this.data.id}] (${filesize(this.size)})`;
   }
 
   toChartData() {
@@ -52,9 +56,9 @@ class File extends Node {
       id: this.data.id,
       label: this.name,
       path: this.path,
-      weight: (this.parsedSize === undefined) ? this.size : this.parsedSize,
       statSize: this.size,
-      parsedSize: this.parsedSize
+      parsedSize: this.parsedSize,
+      gzipSize: this.gzipSize
     };
   }
 
@@ -88,6 +92,20 @@ class Folder extends Node {
     }
 
     return this._parsedSize;
+  }
+
+  get gzipSize() {
+    if (!_.has(this, '_gzipSize')) {
+      this._gzipSize = this.walk((node, size, stop) => {
+        if (node.gzipSize === undefined) {
+          return stop(undefined);
+        }
+
+        return (size + node.gzipSize);
+      }, 0);
+    }
+
+    return this._gzipSize;
   }
 
   getChild(name) {
@@ -154,7 +172,7 @@ class Folder extends Node {
     const { sortBy } = opts || {};
     indent = indent || '|';
 
-    let str = `${indent} ${this.name} (${filesize(this.size)} / ${filesize(this.parsedSize)})\n`;
+    let str = `${indent} ${this.name} (${filesize(this.size)})\n`;
 
     str += _(this.children)
       .sortBy(sortBy)
@@ -169,9 +187,9 @@ class Folder extends Node {
     return {
       label: this.name,
       path: this.path,
-      weight: (this.parsedSize === undefined) ? this.size : this.parsedSize,
       statSize: this.size,
       parsedSize: this.parsedSize,
+      gzipSize: this.gzipSize,
       groups: _.invokeMap(this.children, 'toChartData')
     };
   }

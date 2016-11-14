@@ -10,8 +10,15 @@ export default class Treemap extends Component {
   }
 
   componentDidMount() {
+    this.setWeightProp(this.props.weightProp);
     this.treemap = this.createTreemap();
     window.addEventListener('resize', this.treemap.resize, false);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.weightProp !== this.props.weightProp) {
+      this.setWeightProp(nextProps.weightProp);
+    }
   }
 
   shouldComponentUpdate() {
@@ -24,10 +31,8 @@ export default class Treemap extends Component {
   }
 
   render() {
-    const { className } = this.props;
-
     return (
-      <div ref={this.saveNode} className={className}/>
+      <div {...this.props} ref={this.saveNode}/>
     );
   }
 
@@ -87,6 +92,22 @@ export default class Treemap extends Component {
         }
       }
     });
+  }
+
+  setWeightProp(prop) {
+    this.props.data.forEach(setProp);
+
+    if (this.treemap) {
+      this.treemap.update();
+    }
+
+    function setProp(group) {
+      group.weight = group[prop];
+
+      if (group.groups) {
+        group.groups.forEach(setProp);
+      }
+    }
   }
 }
 

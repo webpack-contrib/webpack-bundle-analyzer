@@ -1,0 +1,28 @@
+.container {
+  font: normal 10px Verdana;
+  white-space: nowrap;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 7px;
+}
+
+.item {
+  display: inline-block;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 5px 7px;
+  cursor: pointer;
+  transition: background .3s ease;
+}
+
+.item + .item {
+  margin-left: 5px;
+}
+
+.activeItem {
+  composes: item;
+  cursor: default;
+  background: orange;
+}

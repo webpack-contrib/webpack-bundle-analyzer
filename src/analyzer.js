@@ -2,60 +2,77 @@ const fs = require('fs');
 const path = require('path');
 
 const _ = require('lodash');
+const gzipSize = require('gzip-size');
 
 const { Folder } = require('../lib/tree');
-const { getModuleSizesFromBundle } = require('../lib/parseUtils');
+const { parseBundle } = require('../lib/parseUtils');
 
 module.exports = {
-  getChartData,
+  getViewerData,
   readStatsFromFile
 };
 
-function getChartData(bundleStats, bundleDir) {
+function getViewerData(bundleStats, bundleDir) {
   // Picking only `*.js` assets from bundle that has non-empty `chunks` array
   bundleStats.assets = _.filter(bundleStats.assets, asset =>
     _.endsWith(asset.name, '.js') && !_.isEmpty(asset.chunks)
   );
 
-  // Real module sizes got by parsing assets
+  // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided
   let parsedModuleSizes = null;
+  let bundlesSources = {};
+  let parsedModules = {};
 
   if (bundleDir) {
-    // Checking if all assets are exist
-    const bundleScriptsFound = _.every(bundleStats.assets, statAsset => {
+    for (const statAsset of bundleStats.assets) {
       const assetFile = path.join(bundleDir, statAsset.name);
-      const assetExists = fs.existsSync(assetFile);
+      let bundleInfo;
 
-      if (!assetExists) {
-        console.log(
-          `\nUnable to find bundle asset "${assetFile}".\n` +
-          'Analyzer will use module sizes from stats file.\n'
-        );
+      try {
+        bundleInfo = parseBundle(assetFile);
+      } catch (err) {
+        bundleInfo = null;
       }
 
-      return assetExists;
-    });
-
-    if (bundleScriptsFound) {
-      // Parsing assets and getting real module sizes
-      parsedModuleSizes = _.transform(bundleStats.assets, (result, statAsset) => {
-        _.assign(result,
-          getModuleSizesFromBundle(path.join(bundleDir, statAsset.name))
+      if (bundleInfo) {
+        bundlesSources[statAsset.name] = bundleInfo.src;
+        _.assign(parsedModules, bundleInfo.modules);
+      } else {
+        console.log(
+          `\nCouldn't parse bundle asset "${assetFile}".\n` +
+          'Analyzer will use module sizes from stats file.\n'
         );
-      }, {});
+        parsedModules = null;
+        bundlesSources = null;
+        break;
+      }
+    }
+
+    if (parsedModules) {
+      parsedModuleSizes = _.mapValues(parsedModules,
+        moduleSrc => ({
+          raw: moduleSrc.length,
+          gzip: gzipSize.sync(moduleSrc)
+        })
+      );
     }
   }
 
   const assets = _.transform(bundleStats.assets, (result, statAsset) => {
-    const bundleFilename = statAsset.name;
-    const asset = result[bundleFilename] = _.pick(statAsset, 'size');
+    const asset = result[statAsset.name] = _.pick(statAsset, 'size');
+
+    if (bundlesSources) {
+      asset.parsedSize = bundlesSources[statAsset.name].length;
+      asset.gzipSize = gzipSize.sync(bundlesSources[statAsset.name]);
+    }
 
     // Picking modules from current bundle script
     asset.modules = _(bundleStats.modules)
       .filter(statModule => assetHasModule(statAsset, statModule))
       .each(statModule => {
         if (parsedModuleSizes) {
-          statModule.parsedSize = parsedModuleSizes[statModule.id];
+          statModule.parsedSize = parsedModuleSizes[statModule.id].raw;
+          statModule.gzipSize = parsedModuleSizes[statModule.id].gzip;
         }
       });
 
@@ -63,14 +80,11 @@ function getChartData(bundleStats, bundleDir) {
   }, {});
 
   return _.transform(assets, (result, asset, filename) => {
-    const statSize = asset.tree.size;
-    const parsedSize = parsedModuleSizes ? asset.tree.parsedSize : undefined;
-
     result.push({
       label: filename,
-      weight: (parsedSize === undefined) ? statSize : parsedSize,
-      statSize,
-      parsedSize,
+      statSize: asset.size,
+      parsedSize: asset.parsedSize,
+      gzipSize: asset.gzipSize,
       groups: _.invokeMap(asset.tree.children, 'toChartData')
     });
   }, []);
