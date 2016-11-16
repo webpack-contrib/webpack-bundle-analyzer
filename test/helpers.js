@@ -25,6 +25,7 @@ function makeWebpackConfig(opts) {
       analyzerMode: 'static',
       openAnalyzer: false
     },
+    minify: false,
     ...opts
   };
 
@@ -35,8 +36,28 @@ function makeWebpackConfig(opts) {
       path: `${__dirname}/output`,
       filename: 'bundle.js'
     },
-    plugins: [
-      new BundleAnalyzerPlugin(opts.analyzerOpts)
-    ]
+    plugins: (plugins => {
+      plugins.push(
+        new BundleAnalyzerPlugin(opts.analyzerOpts)
+      );
+
+      if (opts.minify) {
+        plugins.push(
+          new webpack.optimize.UglifyJsPlugin({
+            screw_ie8: true,
+            compress: {
+              warnings: false,
+              negate_iife: false,
+              screw_ie8: true
+            },
+            mangle: {
+              screw_ie8: true
+            }
+          })
+        );
+      }
+
+      return plugins;
+    })([])
   };
 }

@@ -39,18 +39,16 @@ function parseBundle(bundlePath) {
         if (
           node.callee.type === 'FunctionExpression' &&
           !node.callee.id &&
-          args.length === 1
+          args.length === 1 &&
+          isArgumentContainsModulesList(args[0])
         ) {
-          const [arg] = args;
-
-          if (arg.type === 'CallExpression') {
-            // DedupePlugin and maybe some others wrap modules in additional self-invoking function expression.
-            // Walking into it.
-            return c(arg, state);
-          } else if (isArgumentContainsModulesList(arg)) {
-            state.locations = getModulesLocationFromFunctionArgument(arg);
-          }
+          state.locations = getModulesLocationFromFunctionArgument(args[0]);
+          return;
         }
+
+        // Walking into arguments because some of plugins (e.g. `DedupePlugin`) or some Webpack
+        // features (e.g. `umd` library output) can wrap modules list into additional IIFE.
+        _.each(args, arg => c(arg, state));
       }
     }
   );
