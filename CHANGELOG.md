@@ -10,8 +10,13 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 1.5.4
+
+ * **Bug Fix**
+  * Fix bug when Webpack build is being controlled by some wrapper like `grunt-webpack` (see #21)
+
 ## 1.5.3
- 
+
  * **Bug Fix**
   * Workaround `Express` bug that caused wrong `ejs` version to be used as view engine (fixes #17)
 
