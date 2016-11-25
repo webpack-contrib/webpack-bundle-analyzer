@@ -56,7 +56,9 @@ module.exports = opts => {
       if (opts.env === 'prod') {
         if (opts.analyze) {
           plugins.push(
-            new BundleAnalyzePlugin()
+            new BundleAnalyzePlugin({
+              generateStatsFile: true
+            })
           );
         }
 
