@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-const path = require('path');
+const { resolve, dirname } = require('path');
 
 const _ = require('lodash');
 const commander = require('commander');
@@ -60,7 +60,9 @@ if (!bundleStatsFile) showHelp('Provide path to Webpack Stats file as first argu
 if (mode !== 'server' && mode !== 'static') showHelp('Invalid mode. Should be either `server` or `static`.');
 if (mode === 'server' && isNaN(port)) showHelp('Invalid port number');
 
-if (!bundleDir) bundleDir = path.dirname(bundleStatsFile);
+bundleStatsFile = resolve(bundleStatsFile);
+
+if (!bundleDir) bundleDir = dirname(bundleStatsFile);
 
 let bundleStats;
 try {
@@ -79,7 +81,7 @@ if (mode === 'server') {
 } else {
   viewer.generateReport(bundleStats, {
     openBrowser,
-    reportFilename: path.resolve(reportFilename),
+    reportFilename: resolve(reportFilename),
     bundleDir
   });
 }
