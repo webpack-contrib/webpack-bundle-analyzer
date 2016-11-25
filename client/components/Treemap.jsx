@@ -3,6 +3,7 @@ import { h, Component } from 'preact';
 import FoamTree from 'carrotsearch.foamtree';
 
 export default class Treemap extends Component {
+
   constructor(props) {
     super(props);
     this.treemap = null;
@@ -109,6 +110,7 @@ export default class Treemap extends Component {
       }
     }
   }
+
 }
 
 function preventDefault(event) {

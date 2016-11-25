@@ -5,6 +5,7 @@ import cls from 'classnames';
 import s from './Tooltip.css';
 
 export default class Tooltip extends Component {
+
   static marginX = 10;
   static marginY = 30;
 
@@ -101,4 +102,5 @@ export default class Tooltip extends Component {
       this.updatePosition();
     }
   };
+
 }

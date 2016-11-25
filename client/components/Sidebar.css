@@ -1,0 +1,20 @@
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  opacity: 0.9;
+  border: none;
+  border-right: 1px solid #aaa;
+  padding: 20px;
+  z-index: 1;
+  transition: transform .2s ease;
+}
+
+.container.left {
+  left: 0;
+}
+
+.container.left.hidden {
+  transform: translateX(calc(-100% + 5px));
+}

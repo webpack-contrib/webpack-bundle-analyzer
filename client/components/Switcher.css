@@ -5,7 +5,8 @@
 
 .label {
   font-weight: bold;
-  margin-right: 7px;
+  font-size: 11px;
+  margin-bottom: 7px;
 }
 
 .item {
@@ -17,12 +18,15 @@
   transition: background .3s ease;
 }
 
-.item + .item {
-  margin-left: 5px;
+.item:hover {
+  background: rgba(255, 165, 0, 0.15);
 }
 
-.activeItem {
-  composes: item;
+.item.active {
   cursor: default;
-  background: orange;
+  background: #ffa500;
+}
+
+.item + .item {
+  margin-left: 5px;
 }
