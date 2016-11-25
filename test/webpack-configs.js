@@ -25,7 +25,7 @@ describe('Webpack config', function () {
     config.output.filename = '/bundle.js';
 
     await webpackCompile(config);
-    this.clock.tick(1000);
+    this.clock.tick(1);
 
     expect(fs.existsSync(`${__dirname}/output/bundle.js`)).to.be.true;
     expect(fs.existsSync(`${__dirname}/output/report.html`)).to.be.true;
@@ -33,8 +33,8 @@ describe('Webpack config', function () {
       .goto(`file://${__dirname}/output/report.html`)
       .evaluate(() => window.chartData);
     expect(chartData[0]).to.containSubset({
-      parsedSize: 213,
-      statSize: 141
+      parsedSize: 2776,
+      statSize: 2776
     });
   });
 });

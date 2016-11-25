@@ -1,0 +1,8 @@
+{
+  "modules": {
+    "0": "{t(1),t(2),t(3)}",
+    "1": "{e.exports=\"module a\"}",
+    "2": "{e.exports=\"module b\"}",
+    "3": "{e.exports=\"module a\"}"
+  }
+}
