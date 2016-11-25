@@ -16,5 +16,5 @@
 }
 
 .container.left.hidden {
-  transform: translateX(calc(-100% + 5px));
+  transform: translateX(calc(-100% + 7px));
 }
