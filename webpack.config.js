@@ -14,18 +14,17 @@ module.exports = opts => {
     output: {
       path: 'public',
       filename: 'viewer.js',
-      publicPath: '/',
-      pathinfo: true
+      publicPath: '/'
     },
 
     resolve: {
-      root: [
-        `${__dirname}/client/vendor`
+      modules: [
+        `${__dirname}/client/vendor`,
+        'node_modules'
       ],
-      extensions: ['', '.js', '.jsx']
+      extensions: ['.js', '.jsx']
     },
 
-    debug: (opts.env === 'dev'),
     devtool: (opts.env === 'dev') ? 'eval' : 'source-map',
     watch: (opts.env === 'dev'),
 
@@ -34,40 +33,53 @@ module.exports = opts => {
         {
           test: /\.jsx?$/,
           exclude: /(node_modules|client\/vendor)/,
-          loader: 'babel'
+          loader: 'babel-loader'
         },
         {
           test: /\.css$/,
-          loader: 'style!css?modules&localIdentName=[name]__[local]'
+          loader: 'style-loader!css-loader?modules&localIdentName=[name]__[local]'
         },
         {
           test: /carrotsearch\.foamtree/,
-          loader: 'exports?CarrotSearchFoamTree'
+          loader: 'exports-loader?CarrotSearchFoamTree'
         }
       ]
     },
 
-    plugins: (list => {
+    plugins: (plugins => {
+      if (opts.env === 'dev') {
+        plugins.push(
+          new webpack.NamedModulesPlugin()
+        );
+      }
+
       if (opts.env === 'prod') {
         if (opts.analyze) {
-          list.push(
+          plugins.push(
             new BundleAnalyzePlugin()
           );
         }
 
-        list.push(
+        plugins.push(
           new webpack.DefinePlugin({
             'process.env': {
               NODE_ENV: '"production"'
             }
           }),
-          new webpack.optimize.OccurenceOrderPlugin(),
+          new webpack.optimize.OccurrenceOrderPlugin(),
           new webpack.optimize.UglifyJsPlugin({
-            compress: { warnings: false }
+            compress: {
+              warnings: false,
+              negate_iife: false
+            },
+            mangle: true,
+            comments: false,
+            sourceMap: true
           })
         );
       }
-      return list;
+
+      return plugins;
     })([])
   };
 };

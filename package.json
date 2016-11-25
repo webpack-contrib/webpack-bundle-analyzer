@@ -71,7 +71,7 @@
     "sinon": "1.17.6",
     "stream-combiner2": "1.1.1",
     "style-loader": "0.13.1",
-    "webpack": "1.13.3"
+    "webpack": "2.1.0-beta.27"
   },
   "keywords": [
     "webpack",
