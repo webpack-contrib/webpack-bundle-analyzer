@@ -82,7 +82,10 @@ function getViewerData(bundleStats, bundleDir) {
   return _.transform(assets, (result, asset, filename) => {
     result.push({
       label: filename,
-      statSize: asset.size,
+      // Not using `asset.size` here provided by Webpack because it can be very confusing when `UglifyJsPlugin` is used.
+      // In this case all module sizes from stats file will represent unminified module sizes, but `asset.size` will
+      // be the size of minified bundle.
+      statSize: asset.tree.size,
       parsedSize: asset.parsedSize,
       gzipSize: asset.gzipSize,
       groups: _.invokeMap(asset.tree.children, 'toChartData')

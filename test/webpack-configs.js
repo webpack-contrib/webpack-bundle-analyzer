@@ -34,7 +34,7 @@ describe('Webpack config', function () {
       .evaluate(() => window.chartData);
     expect(chartData[0]).to.containSubset({
       parsedSize: 2776,
-      statSize: 2776
+      statSize: 141
     });
   });
 });
