@@ -6,7 +6,7 @@ Webpack plugin and CLI utility that represents bundle content as convenient inte
 ## What is this for?
 Just take a look at this demo:
 
-![webpack bundle analyzer zoomable treemap](https://cloud.githubusercontent.com/assets/302213/19711973/908ae002-9b42-11e6-8471-bc8e9ab6dec7.gif)
+![webpack bundle analyzer zoomable treemap](https://cloud.githubusercontent.com/assets/302213/20628702/93f72404-b338-11e6-92d4-9a365550a701.gif)
 
 This module will help you:
 
@@ -16,6 +16,7 @@ This module will help you:
 4. Optimize it!
 
 And the best thing is it supports minified bundles! It parses them to get real size of bundled modules.
+And it also shows their gzipped sizes!
 
 ## Installation and usage
 There are two ways to use this module:
