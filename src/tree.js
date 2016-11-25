@@ -28,7 +28,7 @@ class Node {
 
 }
 
-class File extends Node {
+class Module extends Node {
 
   constructor(name, data, parent) {
     super(name, parent);
@@ -45,6 +45,14 @@ class File extends Node {
 
   get gzipSize() {
     return this.data.gzipSize;
+  }
+
+  mergeData(data) {
+    _.each(['size', 'parsedSize', 'gzipSize'], prop => {
+      if (data[prop]) {
+        this.data[prop] = (this.data[prop] || 0) + data[prop];
+      }
+    });
   }
 
   toString(indent) {
@@ -122,21 +130,29 @@ class Folder extends Node {
     return folder;
   }
 
-  addFile(name, data, overwrite = false) {
-    const file = new File(name, data, this);
+  addModule(name, data) {
+    let node = this.children[name];
 
-    if (this.children[name] && !overwrite) {
-      return this.children[name];
+    // For some reason we already have this node in children and it's a folder.
+    if (node && node instanceof Folder) return false;
+
+    if (node) {
+      // We already have this node in children and it's a module.
+      // Merging it's data.
+      node.mergeData(data);
+    } else {
+      // Creating new module.
+      node = new Module(name, data, this);
+      this.children[name] = node;
     }
 
-    this.children[name] = file;
     delete this._size;
     delete this._parsedSize;
 
-    return file;
+    return true;
   }
 
-  addFileByPath(path, data) {
+  addModuleByPath(path, data) {
     const [folderNames, fileName] = [path.slice(0, -1), _.last(path)];
     let currentFolder = this;
 
@@ -144,7 +160,7 @@ class Folder extends Node {
       currentFolder = currentFolder.getChild(folderName) || currentFolder.addFolder(folderName);
     });
 
-    currentFolder.addFile(fileName, data);
+    currentFolder.addModule(fileName, data);
   }
 
   walk(walker, state = {}) {
@@ -198,6 +214,6 @@ class Folder extends Node {
 
 module.exports = {
   Node,
-  File,
+  Module,
   Folder
 };

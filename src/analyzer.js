@@ -110,16 +110,25 @@ function createModulesTree(modules) {
 
   _.each(modules, module => {
     const path = getModulePath(module.name);
-    root.addFileByPath(path, module);
+
+    if (path) {
+      root.addModuleByPath(path, module);
+    }
   });
 
   return root;
 }
 
 function getModulePath(path) {
-  return _(path)
+  const parsedPath = _
+    // Removing loaders from module path: they're joined by `!` and the last part is a raw module path
+    .last(path.split('!'))
+    // Splitting module path into parts
     .split('/')
+    // Removing first `.`
     .slice(1)
-    .map(part => (part === '~') ? 'node_modules' : part)
-    .value();
+    // Replacing `~` with `node_modules`
+    .map(part => (part === '~') ? 'node_modules' : part);
+
+  return parsedPath.length ? parsedPath : null;
 }
