@@ -10,6 +10,13 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.0.1
+ * **Bug Fix**
+  * Support query in bundle filenames (fixes [#22])
+
+ * **Internal**
+  * Minimize CSS for report UI
+
 ## 2.0.0
  * **New Feature**
   * Analyzer now also shows gzipped sizes (closes [#6])
