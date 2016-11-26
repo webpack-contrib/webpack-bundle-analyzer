@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
+const _ = require('lodash');
 const express = require('express');
 const ejs = require('ejs');
 const opener = require('opener');
@@ -26,13 +27,9 @@ function startServer(bundleStats, opts) {
     ...opts
   };
 
-  let chartData;
-  try {
-    chartData = analyzer.getViewerData(bundleStats, opts.bundleDir);
-  } catch (err) {
-    console.error(`Could't analyze webpack bundle:\n${err}`);
-    return;
-  }
+  const chartData = getChartData(bundleStats, opts.bundleDir);
+
+  if (!chartData) return;
 
   const app = express();
 
@@ -72,13 +69,9 @@ function generateReport(bundleStats, opts) {
     ...opts
   };
 
-  let chartData;
-  try {
-    chartData = analyzer.getViewerData(bundleStats, opts.bundleDir);
-  } catch (err) {
-    console.error(`Could't analyze webpack bundle:\n${err}`);
-    return;
-  }
+  const chartData = getChartData(bundleStats, opts.bundleDir);
+
+  if (!chartData) return;
 
   ejs.renderFile(
     `${projectRoot}/views/viewer.ejs`,
@@ -112,4 +105,22 @@ function generateReport(bundleStats, opts) {
 
 function getAssetContent(filename) {
   return fs.readFileSync(`${projectRoot}/public/${filename}`, 'utf8');
+}
+
+function getChartData(...args) {
+  let chartData;
+
+  try {
+    chartData = analyzer.getViewerData(...args);
+  } catch (err) {
+    console.error(`Could't analyze webpack bundle:\n${err}`);
+    chartData = null;
+  }
+
+  if (_.isEmpty(chartData)) {
+    console.error("Could't find any javascript bundles in provided stats file");
+    chartData = null;
+  }
+
+  return chartData;
 }

@@ -7,6 +7,8 @@ const gzipSize = require('gzip-size');
 const { Folder } = require('../lib/tree');
 const { parseBundle } = require('../lib/parseUtils');
 
+const FILENAME_QUERY_REGEXP = /\?.*$/;
+
 module.exports = {
   getViewerData,
   readStatsFromFile
@@ -14,9 +16,13 @@ module.exports = {
 
 function getViewerData(bundleStats, bundleDir) {
   // Picking only `*.js` assets from bundle that has non-empty `chunks` array
-  bundleStats.assets = _.filter(bundleStats.assets, asset =>
-    _.endsWith(asset.name, '.js') && !_.isEmpty(asset.chunks)
-  );
+  bundleStats.assets = _.filter(bundleStats.assets, asset => {
+    // Removing query part from filename (yes, somebody uses it for some reason and Webpack supports it)
+    // See #22
+    asset.name = asset.name.replace(FILENAME_QUERY_REGEXP, '');
+
+    return _.endsWith(asset.name, '.js') && !_.isEmpty(asset.chunks);
+  });
 
   // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided
   let parsedModuleSizes = null;
