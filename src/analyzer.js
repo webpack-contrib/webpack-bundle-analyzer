@@ -4,6 +4,7 @@ const path = require('path');
 const _ = require('lodash');
 const gzipSize = require('gzip-size');
 
+const Logger = require('./Logger');
 const { Folder } = require('../lib/tree');
 const { parseBundle } = require('../lib/parseUtils');
 
@@ -14,7 +15,11 @@ module.exports = {
   readStatsFromFile
 };
 
-function getViewerData(bundleStats, bundleDir) {
+function getViewerData(bundleStats, bundleDir, opts) {
+  const {
+    logger = new Logger()
+  } = opts || {};
+
   // Picking only `*.js` assets from bundle that has non-empty `chunks` array
   bundleStats.assets = _.filter(bundleStats.assets, asset => {
     // Removing query part from filename (yes, somebody uses it for some reason and Webpack supports it)
@@ -44,7 +49,7 @@ function getViewerData(bundleStats, bundleDir) {
         bundlesSources[statAsset.name] = bundleInfo.src;
         _.assign(parsedModules, bundleInfo.modules);
       } else {
-        console.log(
+        logger.warn(
           `\nCouldn't parse bundle asset "${assetFile}".\n` +
           'Analyzer will use module sizes from stats file.\n'
         );

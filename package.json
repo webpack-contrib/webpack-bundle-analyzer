@@ -23,7 +23,7 @@
     "build": "gulp build",
     "prepublish": "npm run build && npm test",
     "test": "mocha --compilers js:babel-core/register -r babel-polyfill",
-    "test-dev": "mocha --watch --reporter min --compilers js:babel-core/register -r babel-polyfill"
+    "test-dev": "mocha --watch --compilers js:babel-core/register -r babel-polyfill"
   },
   "files": [
     "public",

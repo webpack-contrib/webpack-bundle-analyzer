@@ -3,6 +3,7 @@ const path = require('path');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
+const Logger = require('./Logger');
 const viewer = require('./viewer');
 
 class BundleAnalyzerPlugin {
@@ -16,10 +17,13 @@ class BundleAnalyzerPlugin {
       generateStatsFile: false,
       statsFilename: 'stats.json',
       statsOptions: null,
+      logLevel: 'info',
       // deprecated
       startAnalyzer: true,
       ...opts
     };
+
+    this.logger = new Logger(this.opts.logLevel);
   }
 
   apply(compiler) {
@@ -48,7 +52,6 @@ class BundleAnalyzerPlugin {
       if (actions.length) {
         // Making analyzer logs to be after all webpack logs in the console
         setImmediate(() => {
-          console.log('');
           actions.forEach(action => action());
         });
       }
@@ -69,7 +72,7 @@ class BundleAnalyzerPlugin {
       JSON.stringify(stats, null, 2)
     );
 
-    console.log(
+    this.logger.info(
       `${bold('Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
     );
   }
@@ -78,7 +81,8 @@ class BundleAnalyzerPlugin {
     viewer.startServer(stats, {
       openBrowser: this.opts.openAnalyzer,
       port: this.opts.analyzerPort,
-      bundleDir: this.compiler.outputPath
+      bundleDir: this.compiler.outputPath,
+      logger: this.logger
     });
   }
 
@@ -86,7 +90,8 @@ class BundleAnalyzerPlugin {
     viewer.generateReport(stats, {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: this.opts.reportFilename,
-      bundleDir: this.compiler.outputPath
+      bundleDir: this.compiler.outputPath,
+      logger: this.logger
     });
   }
 

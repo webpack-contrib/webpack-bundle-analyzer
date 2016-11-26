@@ -23,7 +23,8 @@ function makeWebpackConfig(opts) {
   opts = {
     analyzerOpts: {
       analyzerMode: 'static',
-      openAnalyzer: false
+      openAnalyzer: false,
+      logLevel: 'silent'
     },
     minify: false,
     ...opts

@@ -8,6 +8,7 @@ const opener = require('opener');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
+const Logger = require('./Logger');
 const analyzer = require('./analyzer');
 
 const projectRoot = path.resolve(__dirname, '..');
@@ -20,14 +21,14 @@ module.exports = {
 };
 
 function startServer(bundleStats, opts) {
-  opts = {
-    port: 8888,
-    openBrowser: true,
-    bundleDir: null,
-    ...opts
-  };
+  const {
+    port = 8888,
+    openBrowser = true,
+    bundleDir = null,
+    logger = new Logger()
+  } = opts || {};
 
-  const chartData = getChartData(bundleStats, opts.bundleDir);
+  const chartData = getChartData(logger, bundleStats, bundleDir);
 
   if (!chartData) return;
 
@@ -47,29 +48,29 @@ function startServer(bundleStats, opts) {
     });
   });
 
-  return app.listen(opts.port, () => {
-    const url = `http://localhost:${opts.port}`;
+  return app.listen(port, () => {
+    const url = `http://localhost:${port}`;
 
-    console.log(
+    logger.info(
       `${bold('Webpack Bundle Analyzer')} is started at ${bold(url)}\n` +
       `Use ${bold('Ctrl+C')} to close it`
     );
 
-    if (opts.openBrowser) {
+    if (openBrowser) {
       opener(url);
     }
   });
 }
 
 function generateReport(bundleStats, opts) {
-  opts = {
-    openBrowser: true,
-    reportFilename: 'report.html',
-    bundleDir: null,
-    ...opts
-  };
+  const {
+    openBrowser = true,
+    reportFilename = 'report.html',
+    bundleDir = null,
+    logger = new Logger()
+  } = opts || {};
 
-  const chartData = getChartData(bundleStats, opts.bundleDir);
+  const chartData = getChartData(logger, bundleStats, bundleDir);
 
   if (!chartData) return;
 
@@ -81,22 +82,22 @@ function generateReport(bundleStats, opts) {
       assetContent: getAssetContent
     },
     (err, reportHtml) => {
-      if (err) return console.error(err);
+      if (err) return logger.error(err);
 
-      let reportFilepath = opts.reportFilename;
+      let reportFilepath = reportFilename;
 
       if (!path.isAbsolute(reportFilepath)) {
-        reportFilepath = path.resolve(opts.bundleDir || process.cwd(), reportFilepath);
+        reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilepath);
       }
 
       mkdir.sync(path.dirname(reportFilepath));
       fs.writeFileSync(reportFilepath, reportHtml);
 
-      console.log(
+      logger.info(
         `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`
       );
 
-      if (opts.openBrowser) {
+      if (openBrowser) {
         opener(`file://${reportFilepath}`);
       }
     }
@@ -107,18 +108,18 @@ function getAssetContent(filename) {
   return fs.readFileSync(`${projectRoot}/public/${filename}`, 'utf8');
 }
 
-function getChartData(...args) {
+function getChartData(logger, ...args) {
   let chartData;
 
   try {
-    chartData = analyzer.getViewerData(...args);
+    chartData = analyzer.getViewerData(...args, { logger });
   } catch (err) {
-    console.error(`Could't analyze webpack bundle:\n${err}`);
+    logger.error(`Could't analyze webpack bundle:\n${err}`);
     chartData = null;
   }
 
   if (_.isEmpty(chartData)) {
-    console.error("Could't find any javascript bundles in provided stats file");
+    logger.error("Could't find any javascript bundles in provided stats file");
     chartData = null;
   }
 
