@@ -59,7 +59,9 @@ new BundleAnalyzerPlugin({
   // Options for `stats.toJson()` method.
   // For example you can exclude sources of your modules from stats file with `source: false` option.
   // See more options here: https://github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21
-  statsOptions: null
+  statsOptions: null,
+  // Log level. Can be 'info', 'warn', 'error' or 'silent'.
+  logLevel: 'info'
 })
 ```
 

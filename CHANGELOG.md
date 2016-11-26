@@ -10,6 +10,10 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.1.0
+ * **New Feature**
+  * Add `logLevel` option (closes [#19])
+
 ## 2.0.1
  * **Bug Fix**
   * Support query in bundle filenames (fixes [#22])
