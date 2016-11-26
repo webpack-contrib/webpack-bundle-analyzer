@@ -37,7 +37,17 @@ module.exports = opts => {
         },
         {
           test: /\.css$/,
-          loader: 'style-loader!css-loader?modules&localIdentName=[name]__[local]'
+          loaders: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                minimize: (opts.env === 'prod'),
+                localIdentName: '[name]__[local]'
+              }
+            }
+          ]
         },
         {
           test: /carrotsearch\.foamtree/,
