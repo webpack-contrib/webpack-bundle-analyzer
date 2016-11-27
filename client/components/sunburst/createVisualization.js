@@ -115,7 +115,7 @@ function mouseover(object, callback) {
   })
 
   if (filteredPaths.size()) {
-    filteredPaths.style('stroke-width', 2);
+    filteredPaths.style('stroke-width', 1);
     filteredPaths.style('opacity', 1);
   }
 
