@@ -3,6 +3,8 @@ import { h, Component } from 'preact';
 
 import createVisualization from './createVisualization';
 
+import s from './Chart.css';
+
 export default class SunburstChart extends Component {
   componentDidMount() {
     if (this.props.data) {
@@ -31,7 +33,13 @@ export default class SunburstChart extends Component {
 
   render() {
     return (
-      <svg ref={this.saveNode}/>
+      <div className={s.svgContainer}>
+        <svg
+          preserveAspectRatio='xMidYMid meet'
+          className={s.svgContentResponsive}
+          ref={this.saveNode}
+        />
+      </div>
     );
   }
 

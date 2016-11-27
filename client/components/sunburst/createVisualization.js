@@ -9,11 +9,27 @@ const getColor = (d) => {
   return color(colorData.path || colorData.label);
 };
 
-export default function createVisualization({svgElement, data, onMouseOver, onMouseLeave}) {
-  const chartWidth = 950;
-  const chartHeight = 950;
-  const radius = Math.min(chartWidth, chartHeight) / 2;
+function calculateChartSize() {
+  var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    x = w.innerWidth || e.clientWidth || g.clientWidth,
+    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
+  return { chartWidth: x, chartHeight: y };
+}
+
+export default function createVisualization({
+  svgElement,
+  responsiveClassName,
+  data,
+  onMouseOver,
+  onMouseLeave
+}) {
+  const { chartWidth, chartHeight } = calculateChartSize();
+
+  const radius = Math.min(chartWidth, chartHeight) / 2;
 
   const x = d3.scaleLinear().range([0, 2 * Math.PI]);
   const y = d3.scaleSqrt().range([0, radius]);
@@ -31,8 +47,7 @@ export default function createVisualization({svgElement, data, onMouseOver, onMo
   }
 
   svg = d3.select(svgElement)
-    .attr('width', chartWidth)
-    .attr('height', chartHeight)
+    .attr('viewBox', `0 0 ${chartWidth} ${chartHeight}`)
     .append('g')
     .attr(
       'transform',
