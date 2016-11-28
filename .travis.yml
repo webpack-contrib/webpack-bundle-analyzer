@@ -3,6 +3,9 @@ node_js:
   - "4"
   - "6"
   - "node"
+cache:
+  directories:
+    - node_modules
 env:
   # Required to compile native modules for Node.js v4+
   # See https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Node.js-v4-(or-io.js-v3)-compiler-requirements
