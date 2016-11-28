@@ -1,12 +1,19 @@
 const fs = require('fs');
 const del = require('del');
-const Nightmare = require('nightmare');
-const nightmare = Nightmare();
+
+let nightmare;
 
 describe('Webpack config', function () {
+  // `Nightmare` doesn't support Node less than v4 so we have to skip these tests
+  const shouldSkip = process.versions.node.startsWith('0.');
+
   this.timeout(5000);
 
   before(async function () {
+    if (shouldSkip) return this.skip();
+
+    const Nightmare = require('nightmare');
+    nightmare = Nightmare();
     del.sync(`${__dirname}/output`);
     this.clock = sinon.useFakeTimers();
   });
@@ -20,6 +27,7 @@ describe('Webpack config', function () {
   });
 
   after(function () {
+    if (shouldSkip) return;
     this.clock.restore();
   });
 
