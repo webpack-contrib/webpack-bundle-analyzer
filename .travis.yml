@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+  - "0.10"
+  - "0.12"
+  - "4"
+  - "6"
+  - "node"
+cache:
+  - yarn: true
+  - directories:
+    - node_modules
+env:
+  # Required to compile native modules for Node.js v4+
+  # See https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Node.js-v4-(or-io.js-v3)-compiler-requirements
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      # Required to compile native modules for Node.js v4+
+      - ubuntu-toolchain-r-test
+    packages:
+      # Required by Electron
+      # https://github.com/juliangruber/electron-stream#travis
+      - xvfb
+      # Required to compile native modules for Node.js v4+
+      - g++-4.8
+before_script:
+  # Required by Electron
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  # Building sources
+  - npm run build
