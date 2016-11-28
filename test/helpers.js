@@ -24,35 +24,44 @@ function makeWebpackConfig(opts) {
     analyzerOpts: {
       analyzerMode: 'static',
       openAnalyzer: false,
-      logLevel: 'silent'
+      logLevel: 'error'
     },
     minify: false,
+    multipleChunks: false,
     ...opts
   };
 
   return {
     context: __dirname,
-    entry: './src',
+    entry: {
+      bundle: './src'
+    },
     output: {
       path: `${__dirname}/output`,
-      filename: 'bundle.js'
+      filename: '[name].js'
     },
     plugins: (plugins => {
       plugins.push(
         new BundleAnalyzerPlugin(opts.analyzerOpts)
       );
 
+      if (opts.multipleChunks) {
+        plugins.push(
+          new webpack.optimize.CommonsChunkPlugin({
+            name: 'manifest',
+            minChunks: Infinity
+          })
+        );
+      }
+
       if (opts.minify) {
         plugins.push(
           new webpack.optimize.UglifyJsPlugin({
-            screw_ie8: true,
+            comments: false,
+            mangle: true,
             compress: {
               warnings: false,
-              negate_iife: false,
-              screw_ie8: true
-            },
-            mangle: {
-              screw_ie8: true
+              negate_iife: false
             }
           })
         );

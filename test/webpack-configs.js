@@ -56,13 +56,32 @@ describe('Webpack config', function () {
 
     await expectValidReport();
   });
+
+  it('with custom `jsonpFunction` name should be supported', async function () {
+    const config = makeWebpackConfig({
+      multipleChunks: true
+    });
+
+    config.output.jsonpFunction = 'somethingCompletelyDifferent';
+
+    await webpackCompile(config);
+    clock.tick(1);
+
+    await expectValidReport({
+      parsedSize: 439,
+      gzipSize: 179
+    });
+  });
 });
 
 async function expectValidReport(opts) {
   const {
     bundleFilename = 'bundle.js',
     reportFilename = 'report.html',
-    bundleLabel = 'bundle.js'
+    bundleLabel = 'bundle.js',
+    statSize = 141,
+    parsedSize = 2776,
+    gzipSize = 796
   } = opts || {};
 
   expect(fs.existsSync(`${__dirname}/output/${bundleFilename}`)).to.be.true;
@@ -72,8 +91,8 @@ async function expectValidReport(opts) {
     .evaluate(() => window.chartData);
   expect(chartData[0]).to.containSubset({
     label: bundleLabel,
-    statSize: 141,
-    parsedSize: 2776,
-    gzipSize: 796
+    statSize,
+    parsedSize,
+    gzipSize
   });
 }
