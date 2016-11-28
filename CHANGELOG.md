@@ -10,6 +10,10 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.1.1
+ * **Improvement**
+  * Add support for `output.jsonpFunction` webpack config option (fixes [#16])
+
 ## 2.1.0
  * **New Feature**
   * Add `logLevel` option (closes [#19])
