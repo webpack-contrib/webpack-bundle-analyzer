@@ -4,7 +4,7 @@ const Nightmare = require('nightmare');
 const nightmare = Nightmare();
 
 describe('Webpack config', function () {
-  this.timeout(5000);
+  this.timeout(10000);
 
   before(async function () {
     del.sync(`${__dirname}/output`);
