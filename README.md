@@ -72,7 +72,11 @@ You can generate it using `BundleAnalyzerPlugin` with `generateStatsFile` option
 command: `webpack --profile --json > stats.json`
 
 `webpack-bundle-analyzer --help` will show you all usage information.
- 
+
+## Contributing
+
+Check out [CONTRIBUTING.md](./CONTRIBUTING.md) for instructions on contributing :tada:
+
 ## License
 
 [MIT](LICENSE)
