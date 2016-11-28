@@ -13,10 +13,8 @@ npm install --global yarn
 Next, install this package's dependencies with `yarn`:
 
 ```sh
-yarn install --pure-lockfile
+yarn install
 ```
-
-We're using `--pure-lockfile` for this first time as the `yarn.lock` file should not be unnecessarily changed unless we modify `package.json`.
 
 ## Develop with your own project
 
