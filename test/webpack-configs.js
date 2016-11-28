@@ -6,8 +6,9 @@ let nightmare;
 describe('Webpack config', function () {
   // `Nightmare` doesn't support Node less than v4 so we have to skip these tests
   const shouldSkip = process.versions.node.startsWith('0.');
+  let clock;
 
-  this.timeout(5000);
+  this.timeout(3000);
 
   before(async function () {
     if (shouldSkip) return this.skip();
@@ -15,10 +16,11 @@ describe('Webpack config', function () {
     const Nightmare = require('nightmare');
     nightmare = Nightmare();
     del.sync(`${__dirname}/output`);
-    this.clock = sinon.useFakeTimers();
+    clock = sinon.useFakeTimers();
   });
 
   beforeEach(async function () {
+    this.timeout(10000);
     await nightmare.goto('about:blank');
   });
 
@@ -28,7 +30,7 @@ describe('Webpack config', function () {
 
   after(function () {
     if (shouldSkip) return;
-    this.clock.restore();
+    clock.restore();
   });
 
   it('with head slash in bundle filename should be supported', async function () {
@@ -37,7 +39,7 @@ describe('Webpack config', function () {
     config.output.filename = '/bundle.js';
 
     await webpackCompile(config);
-    this.clock.tick(1);
+    clock.tick(1);
 
     await expectValidReport({
       bundleLabel: '/bundle.js'
@@ -50,7 +52,7 @@ describe('Webpack config', function () {
     config.output.filename = 'bundle.js?what=is-this-for';
 
     await webpackCompile(config);
-    this.clock.tick(1);
+    clock.tick(1);
 
     await expectValidReport();
   });
