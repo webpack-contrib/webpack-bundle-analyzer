@@ -25,10 +25,16 @@ function parseBundle(bundlePath) {
 
         const args = node.arguments;
 
-        // Additional bundle without webpack loader
-        // Modules are stored in second argument:
-        // webpackJsonp([<chunks>], <modules>)
-        if (_.get(node, 'callee.name') === 'webpackJsonp') {
+        // Additional bundle without webpack loader.
+        // Modules are stored in second argument, after chunk ids:
+        // webpackJsonp([<chunks>], <modules>, ...)
+        // As function name may be changed with `output.jsonpFunction` option we can't rely on it's default name.
+        if (
+          node.callee.type === 'Identifier' &&
+          args.length >= 2 &&
+          isArgumentContainsChunkIds(args[0]) &&
+          isArgumentContainsModulesList(args[1])
+        ) {
           state.locations = getModulesLocationFromFunctionArgument(args[1]);
           return;
         }
@@ -65,6 +71,11 @@ function parseBundle(bundlePath) {
   };
 }
 
+function isArgumentContainsChunkIds(arg) {
+  // Array of numeric ids
+  return (arg.type === 'ArrayExpression' && _.every(arg.elements, isNumericId));
+}
+
 function isArgumentContainsModulesList(arg) {
   if (arg.type === 'ObjectExpression') {
     return _(arg.properties)
@@ -90,14 +101,18 @@ function isModuleWrapper(node) {
     // It's an anonymous function expression that wraps module
     (node.type === 'FunctionExpression' && !node.id) ||
     // If `DedupePlugin` is used it can be an ID of duplicated module...
-    (node.type === 'Literal' && (typeof node.value === 'number' || typeof node.value === 'string')) ||
+    isModuleId(node) ||
     // or an array of shape [<module_id>, ...args]
     (node.type === 'ArrayExpression' && node.elements.length > 1 && isModuleId(node.elements[0]))
   );
 }
 
 function isModuleId(node) {
-  return (node.type === 'Literal' && (typeof node.value === 'string' || typeof node.value === 'number'));
+  return (node.type === 'Literal' && (isNumericId(node) || typeof node.value === 'string'));
+}
+
+function isNumericId(node) {
+  return (node.type === 'Literal' && Number.isInteger(node.value) && node.value >= 0);
 }
 
 function getModulesLocationFromFunctionArgument(arg) {
