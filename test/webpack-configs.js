@@ -10,7 +10,7 @@ describe('Webpack config', function () {
 
   this.timeout(3000);
 
-  before(async function () {
+  before(function () {
     if (shouldSkip) return this.skip();
 
     const Nightmare = require('nightmare');

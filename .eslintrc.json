@@ -135,7 +135,7 @@
     "object-shorthand": 2,
     "prefer-const": [2, {"destructuring": "all"}],
     "prefer-numeric-literals": 2,
-    "prefer-spread": 1,
+    "prefer-spread": 2,
     "quotes": [2, "single", "avoid-escape"],
     "jsx-quotes": [2, "prefer-double"],
     "require-await": 2,

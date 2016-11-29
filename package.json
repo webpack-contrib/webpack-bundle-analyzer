@@ -22,6 +22,7 @@
     "start": "gulp watch",
     "build": "gulp build",
     "npm-publish": "npm run build && npm test && npm publish",
+    "lint": "eslint --ext js,jsx .",
     "test": "mocha --compilers js:babel-core/register -r babel-polyfill",
     "test-dev": "mocha --watch --compilers js:babel-core/register -r babel-polyfill"
   },

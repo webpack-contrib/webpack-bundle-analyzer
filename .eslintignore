@@ -1,1 +1,11 @@
+# Generated code
+lib
+public
+
+# Vendor code
+client/vendor
+
+# Test fixtures
 test/bundles
+
+samples
