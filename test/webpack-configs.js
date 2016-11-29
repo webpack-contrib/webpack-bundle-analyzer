@@ -4,15 +4,11 @@ const del = require('del');
 let nightmare;
 
 describe('Webpack config', function () {
-  // `Nightmare` doesn't support Node less than v4 so we have to skip these tests
-  const shouldSkip = process.versions.node.startsWith('0.');
   let clock;
 
   this.timeout(3000);
 
   before(function () {
-    if (shouldSkip) return this.skip();
-
     const Nightmare = require('nightmare');
     nightmare = Nightmare();
     del.sync(`${__dirname}/output`);
@@ -29,7 +25,6 @@ describe('Webpack config', function () {
   });
 
   after(function () {
-    if (shouldSkip) return;
     clock.restore();
   });
 
