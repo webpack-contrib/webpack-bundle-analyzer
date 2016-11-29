@@ -16,6 +16,7 @@
   "rules": {
     "arrow-body-style": [2, "as-needed"],
     "arrow-parens": 0,
+    "capitalized-comments": 0,
     "class-methods-use-this": 0,
     "complexity": [2, 20],
     "consistent-return": 0,
@@ -137,6 +138,7 @@
     "prefer-spread": 1,
     "quotes": [2, "single", "avoid-escape"],
     "jsx-quotes": [2, "prefer-double"],
+    "require-await": 2,
     "require-yield": 2,
     "rest-spread-spacing": [2, "never"],
     "semi": [2, "always", {"omitLastInOneLineBlock": true}],
