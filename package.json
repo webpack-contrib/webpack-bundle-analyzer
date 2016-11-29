@@ -21,7 +21,7 @@
   "scripts": {
     "start": "gulp watch",
     "build": "gulp build",
-    "publish": "npm run build && npm test && npm publish",
+    "npm-publish": "npm run build && npm test && npm publish",
     "test": "mocha --compilers js:babel-core/register -r babel-polyfill",
     "test-dev": "mocha --watch --compilers js:babel-core/register -r babel-polyfill"
   },
