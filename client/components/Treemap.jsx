@@ -48,6 +48,7 @@ export default class Treemap extends Component {
       element: this.node,
       layout: 'squarified',
       stacking: 'flattened',
+      pixelRatio: window.devicePixelRatio || 1,
       maxGroupLevelsDrawn: Number.MAX_VALUE,
       maxGroupLabelLevelsDrawn: Number.MAX_VALUE,
       groupLabelVerticalPadding: 0.2,
