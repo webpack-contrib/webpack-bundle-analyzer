@@ -1,0 +1,336 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "1.14.0",
+  "hash": "4e39ab22a848116a4c15",
+  "children": [
+    {
+      "errors": [],
+      "warnings": [],
+      "version": "1.14.0",
+      "hash": "4e39ab22a848116a4c15",
+      "time": 79,
+      "publicPath": "",
+      "assetsByChunkName": {
+        "bundle": "bundle.js"
+      },
+      "assets": [
+        {
+          "name": "bundle.js",
+          "size": 1735,
+          "chunks": [
+            0
+          ],
+          "chunkNames": [
+            "bundle"
+          ],
+          "emitted": true
+        }
+      ],
+      "chunks": [
+        {
+          "id": 0,
+          "rendered": true,
+          "initial": true,
+          "entry": true,
+          "extraAsync": false,
+          "size": 141,
+          "names": [
+            "bundle"
+          ],
+          "files": [
+            "bundle.js"
+          ],
+          "hash": "eb0091314b5c4ca75abf",
+          "parents": [],
+          "modules": [
+            {
+              "id": 0,
+              "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "name": "./src/index.js",
+              "index": 0,
+              "index2": 3,
+              "size": 54,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "assets": [],
+              "issuer": null,
+              "profile": {
+                "factory": 19,
+                "building": 15
+              },
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "reasons": [],
+              "source": "require('./a');\nrequire('./b');\nrequire('./a-clone');\n"
+            },
+            {
+              "id": 1,
+              "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/a.js",
+              "name": "./src/a.js",
+              "index": 1,
+              "index2": 0,
+              "size": 29,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "assets": [],
+              "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "profile": {
+                "factory": 8,
+                "building": 6
+              },
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "reasons": [
+                {
+                  "moduleId": 0,
+                  "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+                  "module": "./src/index.js",
+                  "moduleName": "./src/index.js",
+                  "type": "cjs require",
+                  "userRequest": "./a",
+                  "loc": "1:0-14"
+                }
+              ],
+              "source": "module.exports = 'module a';\n"
+            },
+            {
+              "id": 2,
+              "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/b.js",
+              "name": "./src/b.js",
+              "index": 2,
+              "index2": 1,
+              "size": 29,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "assets": [],
+              "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "profile": {
+                "factory": 9,
+                "building": 5
+              },
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "reasons": [
+                {
+                  "moduleId": 0,
+                  "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+                  "module": "./src/index.js",
+                  "moduleName": "./src/index.js",
+                  "type": "cjs require",
+                  "userRequest": "./b",
+                  "loc": "2:0-14"
+                }
+              ],
+              "source": "module.exports = 'module b';\n"
+            },
+            {
+              "id": 3,
+              "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/a-clone.js",
+              "name": "./src/a-clone.js",
+              "index": 3,
+              "index2": 2,
+              "size": 29,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "assets": [],
+              "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "profile": {
+                "factory": 10,
+                "building": 5
+              },
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "reasons": [
+                {
+                  "moduleId": 0,
+                  "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+                  "module": "./src/index.js",
+                  "moduleName": "./src/index.js",
+                  "type": "cjs require",
+                  "userRequest": "./a-clone",
+                  "loc": "3:0-20"
+                }
+              ],
+              "source": "module.exports = 'module a';\n"
+            }
+          ],
+          "filteredModules": 0,
+          "origins": [
+            {
+              "moduleId": 0,
+              "module": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "moduleName": "./src/index.js",
+              "loc": "",
+              "name": "bundle",
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "name": "./src/index.js",
+          "index": 0,
+          "index2": 3,
+          "size": 54,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": null,
+          "profile": {
+            "factory": 19,
+            "building": 15
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [],
+          "source": "require('./a');\nrequire('./b');\nrequire('./a-clone');\n"
+        },
+        {
+          "id": 1,
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/a.js",
+          "name": "./src/a.js",
+          "index": 1,
+          "index2": 0,
+          "size": 29,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "profile": {
+            "factory": 8,
+            "building": 6
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 0,
+              "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "type": "cjs require",
+              "userRequest": "./a",
+              "loc": "1:0-14"
+            }
+          ],
+          "source": "module.exports = 'module a';\n"
+        },
+        {
+          "id": 2,
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/b.js",
+          "name": "./src/b.js",
+          "index": 2,
+          "index2": 1,
+          "size": 29,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "profile": {
+            "factory": 9,
+            "building": 5
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 0,
+              "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "type": "cjs require",
+              "userRequest": "./b",
+              "loc": "2:0-14"
+            }
+          ],
+          "source": "module.exports = 'module b';\n"
+        },
+        {
+          "id": 3,
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/a-clone.js",
+          "name": "./src/a-clone.js",
+          "index": 3,
+          "index2": 2,
+          "size": 29,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "profile": {
+            "factory": 10,
+            "building": 5
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 0,
+              "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "type": "cjs require",
+              "userRequest": "./a-clone",
+              "loc": "3:0-20"
+            }
+          ],
+          "source": "module.exports = 'module a';\n"
+        }
+      ],
+      "filteredModules": 0,
+      "children": []
+    }
+  ]
+}

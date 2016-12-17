@@ -20,6 +20,11 @@ function getViewerData(bundleStats, bundleDir, opts) {
     logger = new Logger()
   } = opts || {};
 
+  // Sometimes all the information is located in `children` array (e.g. problem in #10)
+  if (!_.isEmpty(bundleStats.children)) {
+    bundleStats = bundleStats.children[0];
+  }
+
   // Picking only `*.js` assets from bundle that has non-empty `chunks` array
   bundleStats.assets = _.filter(bundleStats.assets, asset => {
     // Removing query part from filename (yes, somebody uses it for some reason and Webpack supports it)
