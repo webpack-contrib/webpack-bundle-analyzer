@@ -10,6 +10,14 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.2.0
+ * **Improvement**
+  * Improve treemap sharpness on hi-res displays (fixes #33)
+  * Add support for stats files with all the information under `children` property (fixes #10)
+
+ * **Internal**
+  * Update deps
+
 ## 2.1.1
  * **Improvement**
   * Add support for `output.jsonpFunction` webpack config option (fixes [#16])
