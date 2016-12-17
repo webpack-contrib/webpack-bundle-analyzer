@@ -15,6 +15,7 @@
   "rules": {
     "react/display-name": 1,
     "react/forbid-component-props": 0,
+    "react/no-array-index-key": 2,
     "react/no-children-prop": 2,
     "react/no-danger": 0,
     "react/no-danger-with-children": 2,
@@ -35,6 +36,7 @@
     "react/prefer-stateless-function": 0,
     "react/prop-types": 0,
     "react/react-in-jsx-scope": 1,
+    "react/require-default-props": 2,
     "react/require-optimization": 0,
     "react/require-render-return": 2,
     "react/self-closing-comp": 2,
@@ -102,6 +104,11 @@
     "react/jsx-pascal-case": 2,
     "react/jsx-sort-props": 0,
     "react/jsx-space-before-closing": [2, "never"],
+    "react/jsx-tag-spacing": [2, {
+      "closingSlash": "never",
+      "beforeSelfClosing": "never",
+      "afterOpening": "never"
+    }],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/jsx-wrap-multilines": 2
