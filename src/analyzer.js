@@ -21,7 +21,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
   } = opts || {};
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
-  if (!_.isEmpty(bundleStats.children)) {
+  if (_.isEmpty(bundleStats.assets) && !_.isEmpty(bundleStats.children)) {
     bundleStats = bundleStats.children[0];
   }
 
