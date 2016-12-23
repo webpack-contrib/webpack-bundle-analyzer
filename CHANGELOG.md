@@ -10,6 +10,10 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.2.1
+ * **Bug Fix**
+  * Fix regression in analyzing stats files with non-empty `children` property (@gbakernet)
+
 ## 2.2.0
  * **Improvement**
   * Improve treemap sharpness on hi-res displays (fixes #33)
