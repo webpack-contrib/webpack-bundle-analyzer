@@ -4,8 +4,8 @@ const _ = require('lodash');
 const gzipSize = require('gzip-size');
 
 const Logger = require('../Logger');
-const { Folder } = require('../../lib/tree');
-const { parseBundle } = require('../../lib/parseUtils');
+const { Folder } = require('../../lib/viewer/tree');
+const { parseBundle } = require('../../lib/viewer/parseUtils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/;
 
