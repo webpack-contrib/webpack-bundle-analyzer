@@ -14,14 +14,11 @@ function startServer(chartData, logger, serverOptions) {
   if (!logger) {
     throw new Error('A logger parameter is missing');
   }
-  if (!serverOptions) {
-    throw new Error('Server options parameter is missing');
-  }
 
   const {
     port = 8888,
     openBrowser = true
-  } = serverOptions;
+  } = serverOptions || {};
 
   const app = express();
 
