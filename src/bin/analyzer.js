@@ -8,6 +8,7 @@ const commander = require('commander');
 const { magenta } = require('chalk');
 
 const viewer = require('../viewer');
+const Logger = require('../Logger');
 
 const program = commander
   .version(require('../../package.json').version)
@@ -76,13 +77,15 @@ if (mode === 'server') {
   viewer.startServer(bundleStats, {
     openBrowser,
     port,
-    bundleDir
+    bundleDir,
+    logger: new Logger()
   });
 } else {
   viewer.generateReport(bundleStats, {
     openBrowser,
     reportFilename: resolve(reportFilename),
-    bundleDir
+    bundleDir,
+    logger: new Logger()
   });
 }
 
