@@ -4,11 +4,11 @@ const getViewerData = require('./getViewerData');
 
 module.exports = getChartData;
 
-function getChartData(logger, ...args) {
+function getChartData({ bundleStats, bundleDir, logger }) {
   let chartData;
 
   try {
-    chartData = getViewerData(...args, { logger });
+    chartData = getViewerData({ bundleStats, bundleDir, logger });
   } catch (err) {
     logger.error(`Could't analyze webpack bundle:\n${err}`);
     chartData = null;

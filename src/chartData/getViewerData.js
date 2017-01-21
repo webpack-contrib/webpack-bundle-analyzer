@@ -10,17 +10,13 @@ const FILENAME_QUERY_REGEXP = /\?.*$/;
 
 module.exports = getViewerData;
 
-function getViewerData(bundleStats, bundleDir, opts) {
-  if (!opts) {
-    throw new Error('Options parameter is missing');
+function getViewerData({ bundleStats, bundleDir, logger }) {
+  if (!bundleStats) {
+    throw new Error('bundleStats parameter is missing');
   }
-  if (!opts.logger) {
-    throw new Error('A logger is missing from the options parameter');
+  if (!logger) {
+    throw new Error('logger parameter is missing');
   }
-
-  const {
-    logger
-  } = opts;
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
   if (_.isEmpty(bundleStats.assets) && !_.isEmpty(bundleStats.children)) {

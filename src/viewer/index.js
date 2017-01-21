@@ -18,7 +18,7 @@ function loadChartDataAndStartServer(bundleStats, opts) {
     logger
   } = opts;
 
-  const chartData = getChartData(logger, bundleStats, bundleDir);
+  const chartData = getChartData({ logger, bundleStats, bundleDir });
 
   if (!chartData) return;
 
@@ -38,7 +38,7 @@ function loadChartDataAndGenerateReport(bundleStats, opts) {
     logger
   } = opts;
 
-  const chartData = getChartData(logger, bundleStats, bundleDir);
+  const chartData = getChartData({ logger, bundleStats, bundleDir });
 
   if (!chartData) return;
 
