@@ -26,7 +26,27 @@ function loadChartDataAndStartServer(bundleStats, opts) {
   startServer(chartData, logger, serverOptions);
 }
 
+function loadChartDataAndGenerateReport(bundleStats, opts) {
+  if (!opts) {
+    throw new Error('Options parameter is missing');
+  }
+  if (!opts.logger) {
+    throw new Error('A logger is missing from the options parameter');
+  }
+
+  const {
+    bundleDir = null,
+    logger
+  } = opts;
+
+  const chartData = getChartData(logger, bundleStats, bundleDir);
+
+  if (!chartData) return;
+
+  return generateReport(chartData, opts);
+}
+
 module.exports = {
   startServer: loadChartDataAndStartServer,
-  generateReport
+  generateReport: loadChartDataAndGenerateReport
 };

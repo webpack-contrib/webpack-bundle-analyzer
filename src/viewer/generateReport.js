@@ -6,13 +6,14 @@ const opener = require('opener');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
-const getChartData = require('./getChartData');
-
 module.exports = generateReport;
 
 const projectRoot = path.resolve(__dirname, '..', '..');
 
-function generateReport(bundleStats, opts) {
+function generateReport(chartData, opts) {
+  if (!chartData) {
+    throw new Error('chartData was not set! It should be present at this point');
+  }
   if (!opts) {
     throw new Error('Options parameter is missing');
   }
@@ -26,10 +27,6 @@ function generateReport(bundleStats, opts) {
     bundleDir = null,
     logger
   } = opts;
-
-  const chartData = getChartData(logger, bundleStats, bundleDir);
-
-  if (!chartData) return;
 
   ejs.renderFile(
     `${projectRoot}/views/viewer.ejs`,
