@@ -7,18 +7,22 @@ const projectRoot = path.resolve(__dirname, '..', '..');
 
 module.exports = startServer;
 
-function startServer(chartData, logger, serverOptions) {
+function startServer(chartData, opts) {
   if (!chartData) {
     throw new Error('chartData was not set! It should be present at this point');
   }
-  if (!logger) {
-    throw new Error('A logger parameter is missing');
+  if (!opts) {
+    throw new Error('Options parameter is missing');
+  }
+  if (!opts.logger) {
+    throw new Error('A logger is missing from the options parameter');
   }
 
   const {
     port = 8888,
-    openBrowser = true
-  } = serverOptions || {};
+    openBrowser = true,
+    logger
+  } = opts;
 
   const app = express();
 

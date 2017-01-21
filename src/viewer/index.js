@@ -15,15 +15,14 @@ function loadChartDataAndStartServer(bundleStats, opts) {
   }
   const {
     bundleDir = null,
-    logger,
-    ...serverOptions
+    logger
   } = opts;
 
   const chartData = getChartData(logger, bundleStats, bundleDir);
 
   if (!chartData) return;
 
-  startServer(chartData, logger, serverOptions);
+  startServer(chartData, opts);
 }
 
 function loadChartDataAndGenerateReport(bundleStats, opts) {
