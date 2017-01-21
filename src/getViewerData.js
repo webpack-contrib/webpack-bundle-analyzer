@@ -9,9 +9,7 @@ const { parseBundle } = require('../lib/parseUtils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/;
 
-module.exports = {
-  getViewerData
-};
+module.exports = getViewerData;
 
 function getViewerData(bundleStats, bundleDir, opts) {
   const {

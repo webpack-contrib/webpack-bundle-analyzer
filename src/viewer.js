@@ -9,7 +9,7 @@ const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
 const Logger = require('./Logger');
-const analyzer = require('./analyzer');
+const getViewerData = require('./getViewerData');
 
 const projectRoot = path.resolve(__dirname, '..');
 
@@ -112,7 +112,7 @@ function getChartData(logger, ...args) {
   let chartData;
 
   try {
-    chartData = analyzer.getViewerData(...args, { logger });
+    chartData = getViewerData(...args, { logger });
   } catch (err) {
     logger.error(`Could't analyze webpack bundle:\n${err}`);
     chartData = null;
