@@ -1,7 +1,7 @@
 const startServer = require('./startServer');
 const generateReport = require('./generateReport');
 
-const getChartData = require('../chartData/getChartData');
+const getChartData = require('../chartData');
 
 // A plumbing solution to load the graph data at the outermost boundary and then providing
 // it down to the individual pieces. This way those pieces don't have to worry about how
