@@ -14,12 +14,16 @@ module.exports = generateReport;
 const projectRoot = path.resolve(__dirname, '..', '..');
 
 function generateReport(bundleStats, opts) {
+  if (!opts) {
+    throw new Error('Options parameter is missing');
+  }
+
   const {
     openBrowser = true,
     reportFilename = 'report.html',
     bundleDir = null,
     logger = new Logger()
-  } = opts || {};
+  } = opts;
 
   const chartData = getChartData(logger, bundleStats, bundleDir);
 

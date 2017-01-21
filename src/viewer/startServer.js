@@ -11,12 +11,16 @@ const projectRoot = path.resolve(__dirname, '..', '..');
 module.exports = startServer;
 
 function startServer(bundleStats, opts) {
+  if (!opts) {
+    throw new Error('Options parameter is missing');
+  }
+
   const {
     port = 8888,
     openBrowser = true,
     bundleDir = null,
     logger = new Logger()
-  } = opts || {};
+  } = opts;
 
   const chartData = getChartData(logger, bundleStats, bundleDir);
 
