@@ -1,4 +1,3 @@
-const fs = require('fs');
 const path = require('path');
 
 const _ = require('lodash');
@@ -11,8 +10,7 @@ const { parseBundle } = require('../lib/parseUtils');
 const FILENAME_QUERY_REGEXP = /\?.*$/;
 
 module.exports = {
-  getViewerData,
-  readStatsFromFile
+  getViewerData
 };
 
 function getViewerData(bundleStats, bundleDir, opts) {
@@ -107,12 +105,6 @@ function getViewerData(bundleStats, bundleDir, opts) {
       groups: _.invokeMap(asset.tree.children, 'toChartData')
     });
   }, []);
-}
-
-function readStatsFromFile(filename) {
-  return JSON.parse(
-    fs.readFileSync(filename, 'utf8')
-  );
 }
 
 function assetHasModule(statAsset, statModule) {

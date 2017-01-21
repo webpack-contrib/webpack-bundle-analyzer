@@ -1,12 +1,12 @@
 #! /usr/bin/env node
 
+const fs = require('fs');
 const { resolve, dirname } = require('path');
 
 const _ = require('lodash');
 const commander = require('commander');
 const { magenta } = require('chalk');
 
-const analyzer = require('../analyzer');
 const viewer = require('../viewer');
 
 const program = commander
@@ -15,7 +15,7 @@ const program = commander
 `<bundleStatsFile> [bundleDir] [options]
 
   Arguments:
-  
+
     bundleStatsFile  Path to Webpack Stats JSON file.
     bundleDir        Directory containing all generated bundles.
                      You should provided it if you want analyzer to show you the real parsed module sizes.
@@ -66,7 +66,7 @@ if (!bundleDir) bundleDir = dirname(bundleStatsFile);
 
 let bundleStats;
 try {
-  bundleStats = analyzer.readStatsFromFile(bundleStatsFile);
+  bundleStats = readStatsFromFile(bundleStatsFile);
 } catch (err) {
   console.error(`Could't read webpack bundle stats from "${bundleStatsFile}":\n${err}`);
   process.exit(1);
@@ -94,4 +94,10 @@ function showHelp(error) {
 
 function br(str) {
   return `\n${_.repeat(' ', 21)}${str}`;
+}
+
+function readStatsFromFile(filename) {
+  return JSON.parse(
+    fs.readFileSync(filename, 'utf8')
+  );
 }
