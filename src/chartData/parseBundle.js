@@ -3,9 +3,7 @@ const _ = require('lodash');
 const acorn = require('acorn');
 const walk = require('acorn/dist/walk');
 
-module.exports = {
-  parseBundle
-};
+module.exports = parseBundle;
 
 function parseBundle(bundlePath) {
   const contentBuffer = fs.readFileSync(bundlePath);
