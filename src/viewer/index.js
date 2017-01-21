@@ -8,10 +8,10 @@ const opener = require('opener');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
-const Logger = require('./Logger');
+const Logger = require('../Logger');
 const getViewerData = require('./getViewerData');
 
-const projectRoot = path.resolve(__dirname, '..');
+const projectRoot = path.resolve(__dirname, '..', '..');
 
 module.exports = {
   startServer,
