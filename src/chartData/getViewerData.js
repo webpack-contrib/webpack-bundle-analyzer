@@ -10,7 +10,7 @@ const FILENAME_QUERY_REGEXP = /\?.*$/;
 
 module.exports = getViewerData;
 
-function getViewerData({ bundleStats, bundleDir, logger }) {
+function getViewerData({ bundleStats, logger, bundleDir = null }) {
   if (!bundleStats) {
     throw new Error('bundleStats parameter is missing');
   }

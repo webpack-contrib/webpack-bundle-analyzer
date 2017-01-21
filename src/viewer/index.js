@@ -14,7 +14,7 @@ function loadChartDataAndStartServer(bundleStats, opts) {
     throw new Error('A logger is missing from the options parameter');
   }
   const {
-    bundleDir = null,
+    bundleDir,
     logger
   } = opts;
 
@@ -34,7 +34,7 @@ function loadChartDataAndGenerateReport(bundleStats, opts) {
   }
 
   const {
-    bundleDir = null,
+    bundleDir,
     logger
   } = opts;
 
