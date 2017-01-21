@@ -6,7 +6,6 @@ const opener = require('opener');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
-const Logger = require('../Logger');
 const getChartData = require('./getChartData');
 
 module.exports = generateReport;
@@ -17,12 +16,15 @@ function generateReport(bundleStats, opts) {
   if (!opts) {
     throw new Error('Options parameter is missing');
   }
+  if (!opts.logger) {
+    throw new Error('A logger is missing from the options parameter');
+  }
 
   const {
     openBrowser = true,
     reportFilename = 'report.html',
     bundleDir = null,
-    logger = new Logger()
+    logger
   } = opts;
 
   const chartData = getChartData(logger, bundleStats, bundleDir);

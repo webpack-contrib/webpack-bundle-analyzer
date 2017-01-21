@@ -3,7 +3,6 @@ const express = require('express');
 const opener = require('opener');
 const { bold } = require('chalk');
 
-const Logger = require('../Logger');
 const getChartData = require('./getChartData');
 
 const projectRoot = path.resolve(__dirname, '..', '..');
@@ -14,12 +13,15 @@ function startServer(bundleStats, opts) {
   if (!opts) {
     throw new Error('Options parameter is missing');
   }
+  if (!opts.logger) {
+    throw new Error('A logger is missing from the options parameter');
+  }
 
   const {
     port = 8888,
     openBrowser = true,
     bundleDir = null,
-    logger = new Logger()
+    logger
   } = opts;
 
   const chartData = getChartData(logger, bundleStats, bundleDir);

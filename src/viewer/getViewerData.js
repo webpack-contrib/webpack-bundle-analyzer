@@ -3,7 +3,6 @@ const path = require('path');
 const _ = require('lodash');
 const gzipSize = require('gzip-size');
 
-const Logger = require('../Logger');
 const { Folder } = require('./tree');
 const { parseBundle } = require('./parseUtils');
 
@@ -15,9 +14,12 @@ function getViewerData(bundleStats, bundleDir, opts) {
   if (!opts) {
     throw new Error('Options parameter is missing');
   }
+  if (!opts.logger) {
+    throw new Error('A logger is missing from the options parameter');
+  }
 
   const {
-    logger = new Logger()
+    logger
   } = opts;
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
