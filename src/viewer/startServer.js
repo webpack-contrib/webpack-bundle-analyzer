@@ -3,30 +3,25 @@ const express = require('express');
 const opener = require('opener');
 const { bold } = require('chalk');
 
-const getChartData = require('./getChartData');
-
 const projectRoot = path.resolve(__dirname, '..', '..');
 
 module.exports = startServer;
 
-function startServer(bundleStats, opts) {
-  if (!opts) {
-    throw new Error('Options parameter is missing');
+function startServer(chartData, logger, serverOptions) {
+  if (!chartData) {
+    throw new Error('chartData was not set! It should be present at this point');
   }
-  if (!opts.logger) {
-    throw new Error('A logger is missing from the options parameter');
+  if (!logger) {
+    throw new Error('A logger parameter is missing');
+  }
+  if (!serverOptions) {
+    throw new Error('Server options parameter is missing');
   }
 
   const {
     port = 8888,
-    openBrowser = true,
-    bundleDir = null,
-    logger
-  } = opts;
-
-  const chartData = getChartData(logger, bundleStats, bundleDir);
-
-  if (!chartData) return;
+    openBrowser = true
+  } = serverOptions;
 
   const app = express();
 
