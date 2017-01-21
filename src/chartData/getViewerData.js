@@ -10,12 +10,15 @@ const FILENAME_QUERY_REGEXP = /\?.*$/;
 
 module.exports = getViewerData;
 
-function getViewerData({ bundleStats, logger, bundleDir = null }) {
+function getViewerData({ bundleStats, logger, bundleDir }) {
   if (!bundleStats) {
     throw new Error('bundleStats parameter is missing');
   }
   if (!logger) {
     throw new Error('logger parameter is missing');
+  }
+  if (!bundleDir) {
+    throw new Error('bundleDir parameter is missing');
   }
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
@@ -32,44 +35,42 @@ function getViewerData({ bundleStats, logger, bundleDir = null }) {
     return _.endsWith(asset.name, '.js') && !_.isEmpty(asset.chunks);
   });
 
-  // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided
+  // Trying to parse bundle assets and get real module sizes
   let parsedModuleSizes = null;
   let bundlesSources = {};
   let parsedModules = {};
 
-  if (bundleDir) {
-    for (const statAsset of bundleStats.assets) {
-      const assetFile = path.join(bundleDir, statAsset.name);
-      let bundleInfo;
+  for (const statAsset of bundleStats.assets) {
+    const assetFile = path.join(bundleDir, statAsset.name);
+    let bundleInfo;
 
-      try {
-        bundleInfo = parseBundle(assetFile);
-      } catch (err) {
-        bundleInfo = null;
-      }
-
-      if (bundleInfo) {
-        bundlesSources[statAsset.name] = bundleInfo.src;
-        _.assign(parsedModules, bundleInfo.modules);
-      } else {
-        logger.warn(
-          `\nCouldn't parse bundle asset "${assetFile}".\n` +
-          'Analyzer will use module sizes from stats file.\n'
-        );
-        parsedModules = null;
-        bundlesSources = null;
-        break;
-      }
+    try {
+      bundleInfo = parseBundle(assetFile);
+    } catch (err) {
+      bundleInfo = null;
     }
 
-    if (parsedModules) {
-      parsedModuleSizes = _.mapValues(parsedModules,
-        moduleSrc => ({
-          raw: moduleSrc.length,
-          gzip: gzipSize.sync(moduleSrc)
-        })
+    if (bundleInfo) {
+      bundlesSources[statAsset.name] = bundleInfo.src;
+      _.assign(parsedModules, bundleInfo.modules);
+    } else {
+      logger.warn(
+        `\nCouldn't parse bundle asset "${assetFile}".\n` +
+        'Analyzer will use module sizes from stats file.\n'
       );
+      parsedModules = null;
+      bundlesSources = null;
+      break;
     }
+  }
+
+  if (parsedModules) {
+    parsedModuleSizes = _.mapValues(parsedModules,
+      moduleSrc => ({
+        raw: moduleSrc.length,
+        gzip: gzipSize.sync(moduleSrc)
+      })
+    );
   }
 
   const assets = _.transform(bundleStats.assets, (result, statAsset) => {

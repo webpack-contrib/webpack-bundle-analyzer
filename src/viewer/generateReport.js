@@ -20,11 +20,14 @@ function generateReport(chartData, opts) {
   if (!opts.logger) {
     throw new Error('A logger is missing from the options parameter');
   }
+  if (!opts.bundleDir) {
+    throw new Error('bundleDir is missing from the options parameter');
+  }
 
   const {
     openBrowser = true,
     reportFilename = 'report.html',
-    bundleDir = null,
+    bundleDir,
     logger
   } = opts;
 
@@ -41,7 +44,7 @@ function generateReport(chartData, opts) {
       let reportFilepath = reportFilename;
 
       if (!path.isAbsolute(reportFilepath)) {
-        reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilepath);
+        reportFilepath = path.resolve(bundleDir, reportFilepath);
       }
 
       mkdir.sync(path.dirname(reportFilepath));
