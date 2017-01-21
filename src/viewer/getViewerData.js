@@ -12,9 +12,13 @@ const FILENAME_QUERY_REGEXP = /\?.*$/;
 module.exports = getViewerData;
 
 function getViewerData(bundleStats, bundleDir, opts) {
+  if (!opts) {
+    throw new Error('Options parameter is missing');
+  }
+
   const {
     logger = new Logger()
-  } = opts || {};
+  } = opts;
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
   if (_.isEmpty(bundleStats.assets) && !_.isEmpty(bundleStats.children)) {
