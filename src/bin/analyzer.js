@@ -7,6 +7,7 @@ const _ = require('lodash');
 const commander = require('commander');
 const { magenta } = require('chalk');
 
+const getChartData = require('../chartData');
 const viewer = require('../viewer');
 const Logger = require('../Logger');
 
@@ -73,19 +74,28 @@ try {
   process.exit(1);
 }
 
+const logger = new Logger();
+const chartData = getChartData({ logger, bundleStats, bundleDir });
+
+if (!chartData) {
+  // TODO: Exit with an error code as the only reason `chartData` is falsy
+  // at this point is if `getChartData` had an error
+  process.exit(0);
+}
+
 if (mode === 'server') {
-  viewer.startServer(bundleStats, {
+  viewer.startServer(chartData, {
     openBrowser,
     port,
     bundleDir,
-    logger: new Logger()
+    logger
   });
 } else {
-  viewer.generateReport(bundleStats, {
+  viewer.generateReport(chartData, {
     openBrowser,
     reportFilename: resolve(reportFilename),
     bundleDir,
-    logger: new Logger()
+    logger
   });
 }
 
