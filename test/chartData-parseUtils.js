@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const _ = require('lodash');
-const { parseBundle } = require('../../lib/chartData/parseUtils');
+const { parseBundle } = require('../lib/chartData/parseUtils');
 
 const BUNDLES_DIR = `${__dirname}/bundles`;
 
