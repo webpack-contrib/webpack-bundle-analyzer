@@ -86,7 +86,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     asset.modules = _(bundleStats.modules)
       .filter(statModule => assetHasModule(statAsset, statModule))
       .each(statModule => {
-        if (parsedModuleSizes) {
+        if (parsedModuleSizes && parsedModuleSizes[statModule.id]) {
           statModule.parsedSize = parsedModuleSizes[statModule.id].raw;
           statModule.gzipSize = parsedModuleSizes[statModule.id].gzip;
         }
