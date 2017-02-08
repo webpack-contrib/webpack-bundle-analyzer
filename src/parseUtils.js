@@ -93,6 +93,16 @@ function isArgumentContainsModulesList(arg) {
     );
   }
 
+  const arrayCallExpression = getArrayCallExpression(arg);
+  if (arrayCallExpression) {
+    const modulesNodes = arrayCallExpression.modulesNodes;
+    return _.every(modulesNodes, elem =>
+        // Some of array items may be skipped because there is no module with such id
+      !elem ||
+      isModuleWrapper(elem)
+    );
+  }
+
   return false;
 }
 
@@ -136,7 +146,50 @@ function getModulesLocationFromFunctionArgument(arg) {
     }, {});
   }
 
+  const arrayCallExpression = getArrayCallExpression(arg);
+  if (arrayCallExpression) {
+    const baseModuleId = arrayCallExpression.baseModuleId;
+    const modulesNodes = arrayCallExpression.modulesNodes;
+
+    return _.transform(modulesNodes, (result, moduleNode, i) => {
+      if (!moduleNode) return;
+
+      result[baseModuleId + i] = getModuleLocation(moduleNode);
+    }, {});
+  }
+
   return {};
+}
+
+function getArrayCallExpression(arg) {
+  if (arg.type === 'CallExpression') {
+    // Modules contained in an array initializer, like Array(<module_id>).concat(function,function,...)
+    const callee = arg.callee;
+    if (callee.type === 'MemberExpression') {
+      const object = callee.object;
+      if (object && object.type === 'CallExpression') {
+        const objectCallee = object.callee;
+        if (objectCallee.type === 'Identifier' && objectCallee.name === 'Array') {
+          const objectArgs = object.arguments;
+          if (objectArgs && objectArgs.length === 1 && objectArgs[0].type === 'Literal' && isModuleId(objectArgs[0])) {
+            const baseModuleId = objectArgs[0].value;
+            const property = callee.property;
+            if (property.type === 'Identifier' && property.name === 'concat') {
+              const args = arg.arguments;
+              if (args && args.length === 1 && args[0].type === 'ArrayExpression') {
+                const modulesNodes = args[0].elements;
+                return {
+                  baseModuleId,
+                  modulesNodes
+                };
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return null;
 }
 
 function getModuleLocation(node) {
