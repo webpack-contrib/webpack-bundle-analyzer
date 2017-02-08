@@ -154,7 +154,7 @@ function getModulesLocationFromFunctionArgument(arg) {
     return _.transform(modulesNodes, (result, moduleNode, i) => {
       if (!moduleNode) return;
 
-      result[baseModuleId+i] = getModuleLocation(moduleNode);
+      result[baseModuleId + i] = getModuleLocation(moduleNode);
     }, {});
   }
 
@@ -179,8 +179,8 @@ function getArrayCallExpression(arg) {
               if (args && args.length === 1 && args[0].type === 'ArrayExpression') {
                 const modulesNodes = args[0].elements;
                 return {
-                  baseModuleId: baseModuleId,
-                  modulesNodes: modulesNodes
+                  baseModuleId,
+                  modulesNodes
                 };
               }
             }
