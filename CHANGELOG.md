@@ -10,6 +10,10 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.2.2
+ * **Bug Fix**
+  * Support bundles that uses `Array.concat` expression in modules definition (@valscion)
+
 ## 2.2.1
  * **Bug Fix**
   * Fix regression in analyzing stats files with non-empty `children` property (@gbakernet)
