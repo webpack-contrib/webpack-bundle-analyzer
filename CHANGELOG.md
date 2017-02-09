@@ -10,7 +10,7 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
-## 2.2.2
+## 2.2.3
  * **Bug Fix**
   * Support bundles that uses `Array.concat` expression in modules definition (@valscion)
 
