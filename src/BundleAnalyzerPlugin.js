@@ -11,6 +11,7 @@ class BundleAnalyzerPlugin {
   constructor(opts) {
     this.opts = {
       analyzerMode: 'server',
+      analyzerHost: '127.0.0.1',
       analyzerPort: 8888,
       reportFilename: 'report.html',
       openAnalyzer: true,
@@ -80,6 +81,7 @@ class BundleAnalyzerPlugin {
   startAnalyzerServer(stats) {
     viewer.startServer(stats, {
       openBrowser: this.opts.openAnalyzer,
+      host: this.opts.analyzerHost,
       port: this.opts.analyzerPort,
       bundleDir: this.compiler.outputPath,
       logger: this.logger
