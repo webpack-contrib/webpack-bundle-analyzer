@@ -23,6 +23,7 @@ module.exports = {
 function startServer(bundleStats, opts) {
   const {
     port = 8888,
+    host = '127.0.0.1',
     openBrowser = true,
     bundleDir = null,
     logger = new Logger()
@@ -48,8 +49,8 @@ function startServer(bundleStats, opts) {
     });
   });
 
-  return app.listen(port, () => {
-    const url = `http://localhost:${port}`;
+  return app.listen(port, host, () => {
+    const url = `http://${host}:${port}`;
 
     logger.info(
       `${bold('Webpack Bundle Analyzer')} is started at ${bold(url)}\n` +
