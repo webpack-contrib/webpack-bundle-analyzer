@@ -160,7 +160,7 @@ class Folder extends Node {
       currentFolder = currentFolder.getChild(folderName) || currentFolder.addFolder(folderName);
     });
 
-    if (!currentModule.addModule) return;
+    if (!currentFolder.addModule) return;
     currentFolder.addModule(fileName, data);
   }
 
