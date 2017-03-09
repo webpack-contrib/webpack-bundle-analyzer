@@ -10,9 +10,14 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.3.1
+ * **Improvement**
+  * Improve compatibility with Webpack 2 (@valscion)
+
 ## 2.3.0
  * **Improvement**
   * Add `analyzerHost` option (@freaz)
+  
  * **Internal**
   * Update deps
 
