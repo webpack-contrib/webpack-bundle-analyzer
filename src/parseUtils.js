@@ -45,7 +45,7 @@ function parseBundle(bundlePath) {
         // As function name may be changed with `output.jsonpFunction` option we can't rely on it's default name.
         if (
           node.callee.type === 'Identifier' &&
-          args.length === 2 &&
+          (args.length === 2 || args.length === 3) &&
           isArgumentContainsChunkIds(args[0]) &&
           isArgumentArrayConcatContainingChunks(args[1])
         ) {
