@@ -77,7 +77,7 @@ command:
 webpack --profile --json > stats.json
 ```
 
-If you're on Windows and using PowerShell, you can generate the stats file with this command to [avoid BOM issues]()https://github.com/th0r/webpack-bundle-analyzer/issues/47:
+If you're on Windows and using PowerShell, you can generate the stats file with this command to [avoid BOM issues](https://github.com/th0r/webpack-bundle-analyzer/issues/47):
 
 ```
 webpack --profile --json | Out-file 'stats.json' -Encoding OEM
