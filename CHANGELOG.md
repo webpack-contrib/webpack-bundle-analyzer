@@ -10,6 +10,21 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.3.1
+ * **Improvement**
+  * Improve compatibility with Webpack 2 (@valscion)
+
+## 2.3.0
+ * **Improvement**
+  * Add `analyzerHost` option (@freaz)
+  
+ * **Internal**
+  * Update deps
+
+## 2.2.3
+ * **Bug Fix**
+  * Support bundles that uses `Array.concat` expression in modules definition (@valscion)
+
 ## 2.2.1
  * **Bug Fix**
   * Fix regression in analyzing stats files with non-empty `children` property (@gbakernet)
