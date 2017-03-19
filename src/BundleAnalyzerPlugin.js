@@ -81,8 +81,11 @@ class BundleAnalyzerPlugin {
 
   startAnalyzerServer(stats) {
     const bundleDir = this.compiler.outputPath;
-    const logger = this.logger;
-    const chartData = getChartData({ logger, bundleStats: stats, bundleDir });
+    const chartData = getChartData({
+      logger: this.logger,
+      bundleStats: stats,
+      bundleDir
+    });
 
     if (!chartData) return;
 
@@ -91,14 +94,17 @@ class BundleAnalyzerPlugin {
       host: this.opts.analyzerHost,
       port: this.opts.analyzerPort,
       bundleDir,
-      logger
+      logger: this.logger
     });
   }
 
   generateStaticReport(stats) {
     const bundleDir = this.compiler.outputPath;
-    const logger = this.logger;
-    const chartData = getChartData({ logger, bundleStats: stats, bundleDir });
+    const chartData = getChartData({
+      logger: this.logger,
+      bundleStats: stats,
+      bundleDir
+    });
 
     if (!chartData) return;
 
@@ -106,7 +112,7 @@ class BundleAnalyzerPlugin {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: this.opts.reportFilename,
       bundleDir,
-      logger
+      logger: this.logger
     });
   }
 
