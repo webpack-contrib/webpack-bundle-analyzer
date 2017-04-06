@@ -71,7 +71,17 @@ new BundleAnalyzerPlugin({
 You can also analyze already existing bundles if you have Webpack Stats JSON file.
 
 You can generate it using `BundleAnalyzerPlugin` with `generateStatsFile` option set to `true` or with this simple
-command: `webpack --profile --json > stats.json`
+command:
+
+```
+webpack --profile --json > stats.json
+```
+
+If you're on Windows and using PowerShell, you can generate the stats file with this command to [avoid BOM issues](https://github.com/th0r/webpack-bundle-analyzer/issues/47):
+
+```
+webpack --profile --json | Out-file 'stats.json' -Encoding OEM
+```
 
 `webpack-bundle-analyzer --help` will show you all usage information.
 
