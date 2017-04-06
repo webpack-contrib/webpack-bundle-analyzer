@@ -3,6 +3,7 @@ const path = require('path');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
+const getChartData = require('./chartData');
 const Logger = require('./Logger');
 const viewer = require('./viewer');
 
@@ -79,20 +80,38 @@ class BundleAnalyzerPlugin {
   }
 
   startAnalyzerServer(stats) {
-    viewer.startServer(stats, {
+    const bundleDir = this.compiler.outputPath;
+    const chartData = getChartData({
+      logger: this.logger,
+      bundleStats: stats,
+      bundleDir
+    });
+
+    if (!chartData) return;
+
+    viewer.startServer(chartData, {
       openBrowser: this.opts.openAnalyzer,
       host: this.opts.analyzerHost,
       port: this.opts.analyzerPort,
-      bundleDir: this.compiler.outputPath,
+      bundleDir,
       logger: this.logger
     });
   }
 
   generateStaticReport(stats) {
-    viewer.generateReport(stats, {
+    const bundleDir = this.compiler.outputPath;
+    const chartData = getChartData({
+      logger: this.logger,
+      bundleStats: stats,
+      bundleDir
+    });
+
+    if (!chartData) return;
+
+    viewer.generateReport(chartData, {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: this.opts.reportFilename,
-      bundleDir: this.compiler.outputPath,
+      bundleDir,
       logger: this.logger
     });
   }

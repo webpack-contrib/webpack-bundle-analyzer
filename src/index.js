@@ -1,6 +1,7 @@
-const { start } = require('./viewer');
+const { startServer } = require('./viewer');
 
 module.exports = {
-  start,
+  // Deprecated
+  start: startServer,
   BundleAnalyzerPlugin: require('./BundleAnalyzerPlugin')
 };
