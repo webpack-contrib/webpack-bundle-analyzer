@@ -12,7 +12,7 @@ module.exports = opts => {
     context: __dirname,
     entry: './client/viewer',
     output: {
-      path: 'public',
+      path: `${__dirname}/public`,
       filename: 'viewer.js',
       publicPath: '/'
     },
