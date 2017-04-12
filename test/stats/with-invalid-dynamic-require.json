@@ -1,0 +1,169 @@
+{
+  "errors": [],
+  "warnings": [
+    "./src/invalid-require-usage.js\n2:9-28 Critical dependency: the request of a dependency is an expression\n    at CommonJsRequireContextDependency.getWarnings (/Users/th0r/.nvm/versions/node/v7.8.0/lib/node_modules/webpack/lib/dependencies/CommonJsRequireContextDependency.js:27:4)\n    at Compilation.reportDependencyErrorsAndWarnings (/Users/th0r/.nvm/versions/node/v7.8.0/lib/node_modules/webpack/lib/Compilation.js:668:24)\n    at Compilation.finish (/Users/th0r/.nvm/versions/node/v7.8.0/lib/node_modules/webpack/lib/Compilation.js:531:9)\n    at /Users/th0r/.nvm/versions/node/v7.8.0/lib/node_modules/webpack/lib/Compiler.js:486:16\n    at /Users/th0r/.nvm/versions/node/v7.8.0/lib/node_modules/webpack/node_modules/tapable/lib/Tapable.js:225:11\n    at _addModuleChain (/Users/th0r/.nvm/versions/node/v7.8.0/lib/node_modules/webpack/lib/Compilation.js:477:11)\n    at processModuleDependencies.err (/Users/th0r/.nvm/versions/node/v7.8.0/lib/node_modules/webpack/lib/Compilation.js:448:13)\n    at _combinedTickCallback (internal/process/next_tick.js:73:7)\n    at process._tickCallback (internal/process/next_tick.js:104:9)"
+  ],
+  "version": "2.3.3",
+  "hash": "6f90cfe22237ea1b46c7",
+  "time": 161,
+  "publicPath": "",
+  "assetsByChunkName": {
+    "bundle": "bundle.js"
+  },
+  "assets": [
+    {
+      "name": "bundle.js",
+      "size": 793,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "bundle"
+      ],
+      "emitted": true
+    }
+  ],
+  "entrypoints": {
+    "bundle": {
+      "chunks": [
+        0
+      ],
+      "assets": [
+        "bundle.js"
+      ]
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "extraAsync": false,
+      "size": 296,
+      "names": [
+        "bundle"
+      ],
+      "files": [
+        "bundle.js"
+      ],
+      "hash": "af2ae029ed2063f5780c",
+      "parents": [],
+      "origins": [
+        {
+          "moduleId": 2,
+          "module": "/Volumes/Work/webpack-bundle-analyzer/test/src/invalid-require-usage.js",
+          "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/invalid-require-usage.js",
+          "moduleName": "./src/invalid-require-usage.js",
+          "loc": "",
+          "name": "bundle",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": 0,
+      "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src",
+      "name": "./src",
+      "index": 1,
+      "index2": 0,
+      "size": 160,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "assets": [],
+      "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/invalid-require-usage.js",
+      "issuerId": 2,
+      "issuerName": "./src/invalid-require-usage.js",
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": 2,
+          "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/invalid-require-usage.js",
+          "module": "./src/invalid-require-usage.js",
+          "moduleName": "./src/invalid-require-usage.js",
+          "type": "cjs require context",
+          "userRequest": ".",
+          "loc": "2:9-28"
+        }
+      ],
+      "usedExports": true,
+      "providedExports": null,
+      "depth": 1
+    },
+    {
+      "id": 1,
+      "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/a.js",
+      "name": "./src/a.js",
+      "index": 2,
+      "index2": 1,
+      "size": 29,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "assets": [],
+      "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/invalid-require-usage.js",
+      "issuerId": 2,
+      "issuerName": "./src/invalid-require-usage.js",
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": 2,
+          "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/invalid-require-usage.js",
+          "module": "./src/invalid-require-usage.js",
+          "moduleName": "./src/invalid-require-usage.js",
+          "type": "cjs require",
+          "userRequest": "./a",
+          "loc": "6:0-14"
+        }
+      ],
+      "usedExports": true,
+      "providedExports": null,
+      "depth": 1,
+      "source": "module.exports = 'module a';\n"
+    },
+    {
+      "id": 2,
+      "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/invalid-require-usage.js",
+      "name": "./src/invalid-require-usage.js",
+      "index": 0,
+      "index2": 2,
+      "size": 107,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "assets": [],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [],
+      "usedExports": true,
+      "providedExports": null,
+      "depth": 0,
+      "source": "function dynamicRequire(moduleName) {\n  return require(moduleName);\n}\n\ndynamicRequire('');\nrequire('./a');\n"
+    }
+  ],
+  "filteredModules": 0,
+  "children": []
+}

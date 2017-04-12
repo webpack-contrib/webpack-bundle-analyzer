@@ -153,11 +153,25 @@ class Folder extends Node {
   }
 
   addModuleByPath(path, data) {
-    const [folderNames, fileName] = [path.slice(0, -1), _.last(path)];
+    const [pathParts, fileName] = [path.slice(0, -1), _.last(path)];
     let currentFolder = this;
 
-    _.each(folderNames, folderName => {
-      currentFolder = currentFolder.getChild(folderName) || currentFolder.addFolder(folderName);
+    _.each(pathParts, pathPart => {
+      let childNode = currentFolder.getChild(pathPart);
+
+      if (
+        // Folder is not created yet
+        !childNode ||
+        // In some situations (invalid usage of dynamic `require()`) webpack generates a module with empty require
+        // context, but it's moduleId points to a directory in filesystem.
+        // In this case we replace this `File` node with `Folder`.
+        // See `test/stats/with-invalid-dynamic-require.json` as an example.
+        !(childNode instanceof Folder)
+      ) {
+        childNode = currentFolder.addFolder(pathPart);
+      }
+
+      currentFolder = childNode;
     });
 
     currentFolder.addModule(fileName, data);

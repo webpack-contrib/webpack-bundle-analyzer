@@ -33,6 +33,11 @@ describe('Analyzer', function () {
     generateReportFrom('with-children-array.json');
     await expectValidReport();
   });
+
+  it('should support bundles with invalid dynamic require calls', async function () {
+    generateReportFrom('with-invalid-dynamic-require.json');
+    await expectValidReport({ statSize: 136 });
+  });
 });
 
 function generateReportFrom(statsFilename) {
