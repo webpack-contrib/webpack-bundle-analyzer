@@ -31,27 +31,6 @@ export default class Tooltip extends Component {
     return this.props.visible || nextProps.visible;
   }
 
-  componentDidUpdate() {
-    if (this.props.visible && this.node) {
-      const boundingRect = this.node.getBoundingClientRect();
-      const newPos = {};
-
-      if (boundingRect.right > window.innerWidth) {
-        // Shifting horizontally
-        newPos.left = window.innerWidth - boundingRect.width;
-      }
-
-      if (boundingRect.bottom > window.innerHeight) {
-        // Flipping vertically
-        newPos.top = this.mouseCoords.y - Tooltip.marginY - boundingRect.height;
-      }
-
-      if (Object.keys(newPos).length) {
-        this.updatePosition(newPos);
-      }
-    }
-  }
-
   componentWillUnmount() {
     document.removeEventListener('mousemove', this.onMouseMove);
   }
@@ -81,12 +60,24 @@ export default class Tooltip extends Component {
     };
   }
 
-  updatePosition(pos) {
-    if (!pos) {
-      pos = {
-        left: this.mouseCoords.x + Tooltip.marginX,
-        top: this.mouseCoords.y + Tooltip.marginY
-      };
+  updatePosition() {
+    if (!this.props.visible) return;
+
+    const pos = {
+      left: this.mouseCoords.x + Tooltip.marginX,
+      top: this.mouseCoords.y + Tooltip.marginY
+    };
+
+    const boundingRect = this.node.getBoundingClientRect();
+
+    if (pos.left + boundingRect.width > window.innerWidth) {
+      // Shifting horizontally
+      pos.left = window.innerWidth - boundingRect.width;
+    }
+
+    if (pos.top + boundingRect.height > window.innerHeight) {
+      // Flipping vertically
+      pos.top = this.mouseCoords.y - Tooltip.marginY - boundingRect.height;
     }
 
     this.setState(pos);

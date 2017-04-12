@@ -28,19 +28,6 @@ describe('Webpack config', function () {
     clock.restore();
   });
 
-  it('with head slash in bundle filename should be supported', async function () {
-    const config = makeWebpackConfig();
-
-    config.output.filename = '/bundle.js';
-
-    await webpackCompile(config);
-    clock.tick(1);
-
-    await expectValidReport({
-      bundleLabel: '/bundle.js'
-    });
-  });
-
   it('with query in bundle filename should be supported', async function () {
     const config = makeWebpackConfig();
 
@@ -63,8 +50,8 @@ describe('Webpack config', function () {
     clock.tick(1);
 
     await expectValidReport({
-      parsedSize: 447,
-      gzipSize: 181
+      parsedSize: 445,
+      gzipSize: 179
     });
   });
 });
@@ -75,8 +62,8 @@ async function expectValidReport(opts) {
     reportFilename = 'report.html',
     bundleLabel = 'bundle.js',
     statSize = 141,
-    parsedSize = 2857,
-    gzipSize = 813
+    parsedSize = 2977,
+    gzipSize = 820
   } = opts || {};
 
   expect(fs.existsSync(`${__dirname}/output/${bundleFilename}`)).to.be.true;
