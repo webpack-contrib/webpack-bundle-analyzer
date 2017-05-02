@@ -94,7 +94,7 @@ webpack-bundle-analyzer reports three values:
 This is the "input" size of your files, before any transformations like
 minification.
 
-It is called "stat size" because it obtained from Webpack's
+It is called "stat size" because it's obtained from Webpack's
 [stats object](https://webpack.js.org/configuration/stats/).
 
 ### Parsed size
