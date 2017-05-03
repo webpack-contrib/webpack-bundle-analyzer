@@ -86,8 +86,8 @@ function parseBundle(bundlePath) {
 }
 
 function isArgumentContainsChunkIds(arg) {
-  // Array of numeric ids
-  return (arg.type === 'ArrayExpression' && _.every(arg.elements, isNumericId));
+  // Array of numeric or string ids. Chunk IDs are strings when NamedChunksPlugin is used
+  return (arg.type === 'ArrayExpression' && _.every(arg.elements, isModuleId));
 }
 
 function isArgumentContainsModulesList(arg) {
