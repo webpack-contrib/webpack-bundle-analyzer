@@ -85,6 +85,34 @@ webpack --profile --json | Out-file 'stats.json' -Encoding OEM
 
 `webpack-bundle-analyzer --help` will show you all usage information.
 
+## Definitions
+
+webpack-bundle-analyzer reports three values:
+
+### Stat size
+
+This is the "input" size of your files, before any transformations like
+minification.
+
+It is called "stat size" because it's obtained from Webpack's
+[stats object](https://webpack.js.org/configuration/stats/).
+
+### Parsed size
+
+This is the "output" size of your files. If you're using a Webpack plugin such
+as Uglify, then this value will reflect the minified size of your code.
+
+### Gzip size
+
+This is the size of running the file(s) through gzip compression. Note that the
+value listed for the entire bundle is correct, but it will be slightly off if
+you look at the gzip value for individual files.
+
+This is because of the way gzip works: the more files that are gzipped together,
+the more opportunities there are for things to be compressed. Accordingly, the
+gzip value reported for each individual file will be slightly _larger_ than the
+actual contribution that the file makes to the overall gzipped bundle.
+
 ## Contributing
 
 Check out [CONTRIBUTING.md](./CONTRIBUTING.md) for instructions on contributing :tada:
