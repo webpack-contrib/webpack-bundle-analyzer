@@ -10,6 +10,10 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.4.1
+ * **Improvement**
+  * Support `NamedChunksPlugin` (@valscion)
+
 ## 2.4.0
  * **Bug Fix**
   * Fix `TypeError: currentFolder.addModule is not a function`
