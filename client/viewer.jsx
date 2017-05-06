@@ -7,7 +7,7 @@ import styles from './viewer.css';
 
 window.addEventListener('load', () => {
   render(
-    <ModulesTreemap data={window.chartData}/>,
+    <ModulesTreemap data={window.chartData} defaultSizes={window.defaultSizes}/>,
     document.getElementById('app')
   );
 }, false);

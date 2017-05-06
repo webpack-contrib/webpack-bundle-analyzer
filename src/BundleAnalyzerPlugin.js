@@ -14,6 +14,7 @@ class BundleAnalyzerPlugin {
       analyzerHost: '127.0.0.1',
       analyzerPort: 8888,
       reportFilename: 'report.html',
+      defaultSizes: 'parsed',
       openAnalyzer: true,
       generateStatsFile: false,
       statsFilename: 'stats.json',
@@ -84,7 +85,8 @@ class BundleAnalyzerPlugin {
       host: this.opts.analyzerHost,
       port: this.opts.analyzerPort,
       bundleDir: this.compiler.outputPath,
-      logger: this.logger
+      logger: this.logger,
+      defaultSizes: this.opts.defaultSizes
     });
   }
 
@@ -93,7 +95,8 @@ class BundleAnalyzerPlugin {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: this.opts.reportFilename,
       bundleDir: this.compiler.outputPath,
-      logger: this.logger
+      logger: this.logger,
+      defaultSizes: this.opts.defaultSizes
     });
   }
 

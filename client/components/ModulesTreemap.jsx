@@ -20,14 +20,15 @@ export default class ModulesTreemap extends Component {
   constructor(props) {
     super(props);
     this.treemap = null;
-    this.hasParsedSizes = (typeof this.props.data[0].parsedSize === 'number');
+    this.hasParsedSizes = (typeof props.data[0].parsedSize === 'number');
     this.sizeSwitchItems = this.hasParsedSizes ? SIZE_SWITCH_ITEMS : SIZE_SWITCH_ITEMS.slice(0, 1);
+    let activeSizeItem = this.sizeSwitchItems.find(item => item.prop === `${props.defaultSizes}Size`);
+    if (!activeSizeItem) activeSizeItem = this.sizeSwitchItems[0];
+
     this.state = {
       showTooltip: false,
       tooltipContent: null,
-      activeSizeItem: SIZE_SWITCH_ITEMS.find(item =>
-        item.label === (this.hasParsedSizes ? 'Parsed' : 'Stat')
-      )
+      activeSizeItem
     };
   }
 
