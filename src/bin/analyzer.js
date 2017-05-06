@@ -30,6 +30,12 @@ const program = commander
     'server'
   )
   .option(
+    '-h, --host <host>',
+    'Host that will be used in `server` mode to start HTTP server.' +
+    br('Default is `127.0.0.1`.'),
+    '127.0.0.1'
+  )
+  .option(
     '-p, --port <n>',
     'Port that will be used in `server` mode to start HTTP server.' +
     br('Default is 8888.'),
@@ -50,6 +56,7 @@ const program = commander
 
 let {
   mode,
+  host,
   port,
   report: reportFilename,
   open: openBrowser,
@@ -58,6 +65,7 @@ let {
 
 if (!bundleStatsFile) showHelp('Provide path to Webpack Stats file as first argument');
 if (mode !== 'server' && mode !== 'static') showHelp('Invalid mode. Should be either `server` or `static`.');
+if (mode === 'server' && !host) showHelp('Invalid host name');
 if (mode === 'server' && isNaN(port)) showHelp('Invalid port number');
 
 bundleStatsFile = resolve(bundleStatsFile);
@@ -76,6 +84,7 @@ if (mode === 'server') {
   viewer.startServer(bundleStats, {
     openBrowser,
     port,
+    host,
     bundleDir
   });
 } else {
