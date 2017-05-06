@@ -10,6 +10,10 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.5.0
+ * **New Feature**
+  * Added `--host` CLI option (@difelice)
+
 ## 2.4.1
  * **Improvement**
   * Support `NamedChunksPlugin` (@valscion)
