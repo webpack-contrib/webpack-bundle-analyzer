@@ -51,6 +51,10 @@ new BundleAnalyzerPlugin({
   // Path to bundle report file that will be generated in `static` mode.
   // Relative to bundles output directory.
   reportFilename: 'report.html',
+  // Module sizes to show in report by default.
+  // Should be one of `stat`, `parsed` or `gzip`.
+  // See "Definitions" section for more information.
+  defaultSizes: 'parsed',
   // Automatically open report in default browser
   openAnalyzer: true,
   // If `true`, Webpack Stats JSON file will be generated in bundles output directory

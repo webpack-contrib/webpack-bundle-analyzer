@@ -26,7 +26,8 @@ function startServer(bundleStats, opts) {
     host = '127.0.0.1',
     openBrowser = true,
     bundleDir = null,
-    logger = new Logger()
+    logger = new Logger(),
+    defaultSizes = 'parsed'
   } = opts || {};
 
   const chartData = getChartData(logger, bundleStats, bundleDir);
@@ -45,7 +46,8 @@ function startServer(bundleStats, opts) {
   app.use('/', (req, res) => {
     res.render('viewer', {
       mode: 'server',
-      chartData: JSON.stringify(chartData)
+      chartData: JSON.stringify(chartData),
+      defaultSizes: JSON.stringify(defaultSizes)
     });
   });
 
@@ -68,7 +70,8 @@ function generateReport(bundleStats, opts) {
     openBrowser = true,
     reportFilename = 'report.html',
     bundleDir = null,
-    logger = new Logger()
+    logger = new Logger(),
+    defaultSizes = 'parsed'
   } = opts || {};
 
   const chartData = getChartData(logger, bundleStats, bundleDir);
@@ -80,7 +83,8 @@ function generateReport(bundleStats, opts) {
     {
       mode: 'static',
       chartData: JSON.stringify(chartData),
-      assetContent: getAssetContent
+      assetContent: getAssetContent,
+      defaultSizes: JSON.stringify(defaultSizes)
     },
     (err, reportHtml) => {
       if (err) return logger.error(err);
