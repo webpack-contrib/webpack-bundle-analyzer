@@ -10,6 +10,10 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.6.0
+ * **New Feature**
+  * Add `defaultSizes` option (closes [#52])
+
 ## 2.5.0
  * **New Feature**
   * Added `--host` CLI option (@difelice)
