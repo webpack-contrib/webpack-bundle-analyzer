@@ -9,6 +9,8 @@ const { magenta } = require('chalk');
 const analyzer = require('../analyzer');
 const viewer = require('../viewer');
 
+const SIZES = new Set(['stat', 'parsed', 'gzip']);
+
 const program = commander
   .version(require('../../package.json').version)
   .usage(
@@ -49,6 +51,13 @@ const program = commander
     'report.html'
   )
   .option(
+    '-s, --default-sizes <type>',
+    'Module sizes to show in treemap by default.' +
+    br(`Possible values: ${[...SIZES].join(', ')}`) +
+    br('Default is `parsed`.'),
+    'parsed'
+  )
+  .option(
     '-O, --no-open',
     "Don't open report in default browser automatically."
   )
@@ -59,6 +68,7 @@ let {
   host,
   port,
   report: reportFilename,
+  defaultSizes,
   open: openBrowser,
   args: [bundleStatsFile, bundleDir]
 } = program;
@@ -67,6 +77,7 @@ if (!bundleStatsFile) showHelp('Provide path to Webpack Stats file as first argu
 if (mode !== 'server' && mode !== 'static') showHelp('Invalid mode. Should be either `server` or `static`.');
 if (mode === 'server' && !host) showHelp('Invalid host name');
 if (mode === 'server' && isNaN(port)) showHelp('Invalid port number');
+if (!SIZES.has(defaultSizes)) showHelp(`Invalid default sizes option. Possible values are: ${[...SIZES].join(', ')}`);
 
 bundleStatsFile = resolve(bundleStatsFile);
 
@@ -85,12 +96,14 @@ if (mode === 'server') {
     openBrowser,
     port,
     host,
+    defaultSizes,
     bundleDir
   });
 } else {
   viewer.generateReport(bundleStats, {
     openBrowser,
     reportFilename: resolve(reportFilename),
+    defaultSizes,
     bundleDir
   });
 }
@@ -102,5 +115,5 @@ function showHelp(error) {
 }
 
 function br(str) {
-  return `\n${_.repeat(' ', 21)}${str}`;
+  return `\n${_.repeat(' ', 28)}${str}`;
 }
