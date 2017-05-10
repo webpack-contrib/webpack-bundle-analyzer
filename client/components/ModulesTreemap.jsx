@@ -6,8 +6,11 @@ import Treemap from './Treemap';
 import Tooltip from './Tooltip';
 import Switcher from './Switcher';
 import Sidebar from './Sidebar';
+import CheckboxList from './CheckboxList';
 
 import s from './ModulesTreemap.css';
+
+import { compareStrings } from '../utils';
 
 const SIZE_SWITCH_ITEMS = [
   { label: 'Stat', prop: 'statSize' },
@@ -25,7 +28,12 @@ export default class ModulesTreemap extends Component {
     let activeSizeItem = this.sizeSwitchItems.find(item => item.prop === `${props.defaultSizes}Size`);
     if (!activeSizeItem) activeSizeItem = this.sizeSwitchItems[0];
 
+    this.chunkItems = [...props.data]
+      .sort((chunk1, chunk2) => compareStrings(chunk1.label, chunk2.label))
+      .map(chunk => ({ label: chunk.label }));
+
     this.state = {
+      data: props.data,
       showTooltip: false,
       tooltipContent: null,
       activeSizeItem
@@ -33,16 +41,24 @@ export default class ModulesTreemap extends Component {
   }
 
   render() {
-    const { data } = this.props;
-    const { showTooltip, tooltipContent, activeSizeItem } = this.state;
+    const { data, showTooltip, tooltipContent, activeSizeItem } = this.state;
 
     return (
       <div className={s.container}>
         <Sidebar>
-          <Switcher label="Treemap sizes"
-            items={this.sizeSwitchItems}
-            activeItem={activeSizeItem}
-            onSwitch={this.handleSizeSwitch}/>
+          <div className={s.sidebarGroup}>
+            <Switcher label="Treemap sizes"
+              items={this.sizeSwitchItems}
+              activeItem={activeSizeItem}
+              onSwitch={this.handleSizeSwitch}/>
+          </div>
+          {this.chunkItems.length > 1 &&
+            <div className={s.sidebarGroup}>
+              <CheckboxList label="Show chunks"
+                items={this.chunkItems}
+                onChange={this.handleVisibleChunksChange}/>
+            </div>
+          }
         </Sidebar>
         <Treemap className={s.map}
           data={data}
@@ -56,8 +72,16 @@ export default class ModulesTreemap extends Component {
     );
   }
 
-  handleSizeSwitch = (sizeSwitchItem) => {
+  handleSizeSwitch = sizeSwitchItem => {
     this.setState({ activeSizeItem: sizeSwitchItem });
+  };
+
+  handleVisibleChunksChange = visibleChunkItems => {
+    this.setState({
+      data: this.props.data.filter(chunk =>
+        visibleChunkItems.find(item => item.label === chunk.label)
+      )
+    });
   };
 
   handleMouseLeaveTreemap = () => {
