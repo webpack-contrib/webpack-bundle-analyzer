@@ -34,6 +34,7 @@
     "react/no-unescaped-entities": 0,
     "react/no-unknown-property": 2,
     "react/no-unused-prop-types": 2,
+    "react/no-will-update-set-state": 2,
     "react/prefer-es6-class": 2,
     "react/prefer-stateless-function": 0,
     "react/prop-types": 0,
@@ -109,9 +110,9 @@
       "callbacksLast": true,
       "shorthandLast": true,
       "ignoreCase": true,
-      "noSortAlphabetically": true
+      "noSortAlphabetically": true,
+      "reservedFirst": true
     }],
-    "react/jsx-space-before-closing": [2, "never"],
     "react/jsx-tag-spacing": [2, {
       "closingSlash": "never",
       "beforeSelfClosing": "never",
@@ -119,6 +120,11 @@
     }],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
-    "react/jsx-wrap-multilines": 2
+    "react/jsx-wrap-multilines": [2, {
+      "declaration": true,
+      "assignment": true,
+      "return": true,
+      "arrow": false
+    }]
   }
 }

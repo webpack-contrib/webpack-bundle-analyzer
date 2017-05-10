@@ -62,7 +62,7 @@ async function expectValidReport(opts) {
     reportFilename = 'report.html',
     bundleLabel = 'bundle.js',
     statSize = 141,
-    parsedSize = 2977,
+    parsedSize = 2983,
     gzipSize = 820
   } = opts || {};
 
