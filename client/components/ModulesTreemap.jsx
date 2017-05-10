@@ -72,6 +72,20 @@ export default class ModulesTreemap extends Component {
     );
   }
 
+  renderModuleSize(module, sizeType) {
+    const sizeProp = `${sizeType}Size`;
+    const size = module[sizeProp];
+    const sizeLabel = SIZE_SWITCH_ITEMS.find(item => item.prop === sizeProp).label;
+    const isActive = (this.state.activeSizeItem.prop === sizeProp);
+
+    return (typeof size === 'number') ?
+      <div className={isActive ? s.activeSize : ''}>
+        {sizeLabel} size: <strong>{filesize(size)}</strong>
+      </div>
+      :
+      null;
+  }
+
   handleSizeSwitch = sizeSwitchItem => {
     this.setState({ activeSizeItem: sizeSwitchItem });
   };
@@ -106,17 +120,13 @@ export default class ModulesTreemap extends Component {
 
     return (
       <div>
-        <div><b>{module.label}</b></div>
+        <div><strong>{module.label}</strong></div>
         <br/>
-        <div>Stat size: <b>{filesize(module.statSize)}</b></div>
-        {(typeof module.parsedSize === 'number') &&
-          <div>Parsed size: <b>{filesize(module.parsedSize)}</b></div>
-        }
-        {(typeof module.gzipSize === 'number') &&
-          <div>Gzip size: <b>{filesize(module.gzipSize)}</b></div>
-        }
+        {this.renderModuleSize(module, 'stat')}
+        {this.renderModuleSize(module, 'parsed')}
+        {this.renderModuleSize(module, 'gzip')}
         {module.path &&
-          <div>Path: <b>{module.path}</b></div>
+          <div>Path: <strong>{module.path}</strong></div>
         }
       </div>
     );

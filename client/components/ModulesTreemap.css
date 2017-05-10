@@ -7,3 +7,7 @@
 .sidebarGroup {
   margin-bottom: 20px;
 }
+
+.activeSize {
+  font-weight: bold;
+}
