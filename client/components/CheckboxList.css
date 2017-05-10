@@ -1,0 +1,27 @@
+.container {
+  font: normal 10px Verdana;
+  white-space: nowrap;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+.checkbox {
+  cursor: pointer;
+}
+
+.item {
+  cursor: pointer;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.itemText {
+  margin-left: 3px;
+  position: relative;
+  top: -2px;
+  vertical-align: middle;
+}
