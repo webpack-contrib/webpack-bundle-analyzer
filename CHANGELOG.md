@@ -10,6 +10,10 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.7.0
+ * **New Feature**
+  * Add control to sidebar that allows to choose shown chunks (closes [#71] and partially addresses [#38])
+
 ## 2.6.0
  * **New Feature**
   * Add `defaultSizes` option (closes [#52])
