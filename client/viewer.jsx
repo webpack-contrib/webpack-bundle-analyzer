@@ -11,7 +11,7 @@ try {
   ws = new WebSocket(`ws://${location.host}`);
 } catch (err) {
   console.warn(
-    "Your browser doesn't support WebSockets so you'll have to reload page manually to see updates in the treemap"
+    "Couldn't connect to analyzer websocket server so you'll have to reload page manually to see updates in the treemap"
   );
 }
 
