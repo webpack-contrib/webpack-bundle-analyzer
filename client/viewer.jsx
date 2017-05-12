@@ -5,9 +5,35 @@ import ModulesTreemap from './components/ModulesTreemap';
 /* eslint no-unused-vars: "off" */
 import styles from './viewer.css';
 
-window.addEventListener('load', () => {
-  render(
-    <ModulesTreemap data={window.chartData} defaultSizes={window.defaultSizes}/>,
-    document.getElementById('app')
+// Initializing WebSocket for live treemap updates
+let ws;
+try {
+  ws = new WebSocket(`ws://${location.host}`);
+} catch (err) {
+  console.warn(
+    "Your browser doesn't support WebSockets so you'll have to reload page manually to see updates in the treemap"
   );
+}
+
+window.addEventListener('load', () => {
+  renderApp(window.chartData);
+
+  if (ws) {
+    ws.addEventListener('message', event => {
+      const msg = JSON.parse(event.data);
+
+      if (msg.event === 'chartDataUpdated') {
+        renderApp(msg.data);
+      }
+    });
+  }
 }, false);
+
+let app;
+function renderApp(chartData, initialRender) {
+  app = render(
+    <ModulesTreemap data={chartData} defaultSizes={window.defaultSizes}/>,
+    document.getElementById('app'),
+    app
+  );
+}

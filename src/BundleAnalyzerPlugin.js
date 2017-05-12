@@ -25,6 +25,7 @@ class BundleAnalyzerPlugin {
       ...opts
     };
 
+    this.server = null;
     this.logger = new Logger(this.opts.logLevel);
   }
 
@@ -79,25 +80,33 @@ class BundleAnalyzerPlugin {
     );
   }
 
-  startAnalyzerServer(stats) {
-    viewer.startServer(stats, {
-      openBrowser: this.opts.openAnalyzer,
-      host: this.opts.analyzerHost,
-      port: this.opts.analyzerPort,
-      bundleDir: this.compiler.outputPath,
-      logger: this.logger,
-      defaultSizes: this.opts.defaultSizes
-    });
+  async startAnalyzerServer(stats) {
+    if (this.server) {
+      (await this.server).updateChartData(stats);
+    } else {
+      this.server = viewer.startServer(stats, {
+        openBrowser: this.opts.openAnalyzer,
+        host: this.opts.analyzerHost,
+        port: this.opts.analyzerPort,
+        bundleDir: this.getBundleDirFromCompiler(),
+        logger: this.logger,
+        defaultSizes: this.opts.defaultSizes
+      });
+    }
   }
 
   generateStaticReport(stats) {
     viewer.generateReport(stats, {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: this.opts.reportFilename,
-      bundleDir: this.compiler.outputPath,
+      bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
       defaultSizes: this.opts.defaultSizes
     });
+  }
+
+  getBundleDirFromCompiler() {
+    return (this.compiler.outputFileSystem.constructor.name === 'MemoryFileSystem') ? null : this.compiler.outputPath;
   }
 
 }
