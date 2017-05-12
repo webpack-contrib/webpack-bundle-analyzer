@@ -1,6 +1,8 @@
 const path = require('path');
 const fs = require('fs');
+const http = require('http');
 
+const WebSocket = require('ws');
 const _ = require('lodash');
 const express = require('express');
 const ejs = require('ejs');
@@ -20,7 +22,7 @@ module.exports = {
   start: startServer
 };
 
-function startServer(bundleStats, opts) {
+async function startServer(bundleStats, opts) {
   const {
     port = 8888,
     host = '127.0.0.1',
@@ -30,7 +32,7 @@ function startServer(bundleStats, opts) {
     defaultSizes = 'parsed'
   } = opts || {};
 
-  const chartData = getChartData(logger, bundleStats, bundleDir);
+  let chartData = getChartData(logger, bundleStats, bundleDir);
 
   if (!chartData) return;
 
@@ -46,23 +48,54 @@ function startServer(bundleStats, opts) {
   app.use('/', (req, res) => {
     res.render('viewer', {
       mode: 'server',
-      chartData: JSON.stringify(chartData),
+      get chartData() { return JSON.stringify(chartData) },
       defaultSizes: JSON.stringify(defaultSizes)
     });
   });
 
-  return app.listen(port, host, () => {
-    const url = `http://${host}:${port}`;
+  const server = http.createServer(app);
 
-    logger.info(
-      `${bold('Webpack Bundle Analyzer')} is started at ${bold(url)}\n` +
-      `Use ${bold('Ctrl+C')} to close it`
-    );
+  await new Promise(resolve => {
+    server.listen(port, host, () => {
+      resolve();
 
-    if (openBrowser) {
-      opener(url);
-    }
+      const url = `http://${host}:${port}`;
+
+      logger.info(
+        `${bold('Webpack Bundle Analyzer')} is started at ${bold(url)}\n` +
+        `Use ${bold('Ctrl+C')} to close it`
+      );
+
+      if (openBrowser) {
+        opener(url);
+      }
+    });
   });
+
+  const wss = new WebSocket.Server({ server });
+
+  return {
+    ws: wss,
+    http: server,
+    updateChartData
+  };
+
+  function updateChartData(bundleStats) {
+    const newChartData = getChartData(logger, bundleStats, bundleDir);
+
+    if (!newChartData) return;
+
+    chartData = newChartData;
+
+    wss.clients.forEach(client => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify({
+          event: 'chartDataUpdated',
+          data: newChartData
+        }));
+      }
+    });
+  }
 }
 
 function generateReport(bundleStats, opts) {
