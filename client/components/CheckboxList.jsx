@@ -17,6 +17,24 @@ export default class CheckboxList extends Component {
     };
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.items !== this.props.items) {
+      if (this.isAllChecked()) {
+        // Preserving `all checked` state
+        this.setState({ checkedItems: newProps.items });
+        this.informAboutChange(newProps.items);
+      } else {
+        // Filtering out checked items if new items don't contain them
+        const checkedItems = this.state.checkedItems.filter(item => newProps.items.includes(item));
+
+        if (checkedItems.length !== this.state.checkedItems.length) {
+          this.setState({ checkedItems });
+          this.informAboutChange(checkedItems);
+        }
+      }
+    }
+  }
+
   render() {
     const { label, items } = this.props;
 

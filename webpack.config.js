@@ -2,11 +2,10 @@ const webpack = require('webpack');
 const BundleAnalyzePlugin = require('./lib/BundleAnalyzerPlugin');
 
 module.exports = opts => {
-  opts = {
+  opts = Object.assign({
     env: 'dev',
-    analyze: false,
-    ...opts
-  };
+    analyze: false
+  }, opts);
 
   return {
     context: __dirname,
@@ -29,15 +28,25 @@ module.exports = opts => {
     watch: (opts.env === 'dev'),
 
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.jsx?$/,
           exclude: /(node_modules|client\/vendor)/,
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['env', { targets: { uglify: true } }]
+            ],
+            plugins: [
+              'transform-class-properties',
+              'transform-react-jsx',
+              ['transform-object-rest-spread', { useBuiltIns: true }]
+            ]
+          }
         },
         {
           test: /\.css$/,
-          loaders: [
+          use: [
             'style-loader',
             {
               loader: 'css-loader',

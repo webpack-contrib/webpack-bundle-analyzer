@@ -22,22 +22,13 @@ export default class ModulesTreemap extends Component {
 
   constructor(props) {
     super(props);
-    this.treemap = null;
-    this.hasParsedSizes = (typeof props.data[0].parsedSize === 'number');
-    this.sizeSwitchItems = this.hasParsedSizes ? SIZE_SWITCH_ITEMS : SIZE_SWITCH_ITEMS.slice(0, 1);
-    let activeSizeItem = this.sizeSwitchItems.find(item => item.prop === `${props.defaultSizes}Size`);
-    if (!activeSizeItem) activeSizeItem = this.sizeSwitchItems[0];
+    this.setData(props.data, true);
+  }
 
-    this.chunkItems = [...props.data]
-      .sort((chunk1, chunk2) => compareStrings(chunk1.label, chunk2.label))
-      .map(chunk => ({ label: chunk.label }));
-
-    this.state = {
-      data: props.data,
-      showTooltip: false,
-      tooltipContent: null,
-      activeSizeItem
-    };
+  componentWillReceiveProps(newProps) {
+    if (newProps.data !== this.props.data) {
+      this.setData(newProps.data);
+    }
   }
 
   render() {
@@ -52,10 +43,10 @@ export default class ModulesTreemap extends Component {
               activeItem={activeSizeItem}
               onSwitch={this.handleSizeSwitch}/>
           </div>
-          {this.chunkItems.length > 1 &&
+          {this.state.chunkItems.length > 1 &&
             <div className={s.sidebarGroup}>
               <CheckboxList label="Show chunks"
-                items={this.chunkItems}
+                items={this.state.chunkItems}
                 onChange={this.handleVisibleChunksChange}/>
             </div>
           }
@@ -114,6 +105,26 @@ export default class ModulesTreemap extends Component {
       this.setState({ showTooltip: false });
     }
   };
+
+  setData(data, initial) {
+    const hasParsedSizes = (typeof data[0].parsedSize === 'number');
+    this.sizeSwitchItems = hasParsedSizes ? SIZE_SWITCH_ITEMS : SIZE_SWITCH_ITEMS.slice(0, 1);
+    const activeSizeItemProp = initial ? `${this.props.defaultSizes}Size` : this.state.activeSizeItem.prop;
+    let activeSizeItem = this.sizeSwitchItems.find(item => item.prop === activeSizeItemProp);
+    if (!activeSizeItem) activeSizeItem = this.sizeSwitchItems[0];
+
+    const chunkItems = [...data]
+      .sort((chunk1, chunk2) => compareStrings(chunk1.label, chunk2.label))
+      .map(chunk => ({ label: chunk.label }));
+
+    this.setState({
+      data,
+      showTooltip: false,
+      tooltipContent: null,
+      activeSizeItem,
+      chunkItems
+    });
+  }
 
   getTooltipContent(module) {
     if (!module) return null;
