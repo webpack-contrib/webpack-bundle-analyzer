@@ -36,10 +36,13 @@ function getViewerData(bundleStats, bundleDir, opts) {
 
   // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided
   let parsedModuleSizes = null;
-  let bundlesSources = {};
-  let parsedModules = {};
+  let bundlesSources = null;
+  let parsedModules = null;
 
   if (bundleDir) {
+    bundlesSources = {};
+    parsedModules = {};
+
     for (const statAsset of bundleStats.assets) {
       const assetFile = path.join(bundleDir, statAsset.name);
       let bundleInfo;

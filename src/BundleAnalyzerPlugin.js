@@ -88,7 +88,7 @@ class BundleAnalyzerPlugin {
         openBrowser: this.opts.openAnalyzer,
         host: this.opts.analyzerHost,
         port: this.opts.analyzerPort,
-        bundleDir: this.compiler.outputPath,
+        bundleDir: this.getBundleDirFromCompiler(),
         logger: this.logger,
         defaultSizes: this.opts.defaultSizes
       });
@@ -99,10 +99,14 @@ class BundleAnalyzerPlugin {
     viewer.generateReport(stats, {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: this.opts.reportFilename,
-      bundleDir: this.compiler.outputPath,
+      bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
       defaultSizes: this.opts.defaultSizes
     });
+  }
+
+  getBundleDirFromCompiler() {
+    return (this.compiler.outputFileSystem.constructor.name === 'MemoryFileSystem') ? null : this.compiler.outputPath;
   }
 
 }

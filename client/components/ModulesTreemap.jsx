@@ -82,11 +82,8 @@ export default class ModulesTreemap extends Component {
   };
 
   handleVisibleChunksChange = visibleChunkItems => {
-    this.setState({
-      data: this.props.data.filter(chunk =>
-        visibleChunkItems.find(item => item.label === chunk.label)
-      )
-    });
+    this.visibleChunkItems = visibleChunkItems;
+    this.setState({ data: this.getVisibleChunksData() });
   };
 
   handleMouseLeaveTreemap = () => {
@@ -117,13 +114,23 @@ export default class ModulesTreemap extends Component {
       .sort((chunk1, chunk2) => compareStrings(chunk1.label, chunk2.label))
       .map(chunk => ({ label: chunk.label }));
 
+    if (initial) {
+      this.visibleChunkItems = chunkItems;
+    }
+
     this.setState({
-      data,
+      data: this.getVisibleChunksData(),
       showTooltip: false,
       tooltipContent: null,
       activeSizeItem,
       chunkItems
     });
+  }
+
+  getVisibleChunksData() {
+    return this.props.data.filter(chunk =>
+      this.visibleChunkItems.find(item => item.label === chunk.label)
+    );
   }
 
   getTooltipContent(module) {
