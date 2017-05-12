@@ -125,7 +125,8 @@ function generateReport(bundleStats, opts) {
       let reportFilepath = reportFilename;
 
       if (!path.isAbsolute(reportFilepath)) {
-        reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilepath);
+        const outputPath = bundleDir !== '/' && bundleDir || process.cwd();
+        reportFilepath = path.resolve(outputPath, reportFilepath);
       }
 
       mkdir.sync(path.dirname(reportFilepath));
