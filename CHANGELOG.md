@@ -10,6 +10,10 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.8.1
+ * **Improvement**
+   * Improve warning message when analyzer client couldn't connect to WebSocket server
+
 ## 2.8.0
  * **Improvement**
    * Analyzer now supports `webpack --watch` and Webpack Dev Server!
