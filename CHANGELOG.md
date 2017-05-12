@@ -10,6 +10,15 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.8.0
+ * **Improvement**
+   * Analyzer now supports `webpack --watch` and Webpack Dev Server!
+     It will automatically update modules treemap according to changes in the sources via WebSockets!
+ 
+ * **Internal**
+   * Use `babel-preset-env` and two different Babel configs to compile node and browser code
+   * Update deps
+
 ## 2.7.0
  * **New Feature**
    * Add control to sidebar that allows to choose shown chunks (closes #71 and partially addresses #38)
