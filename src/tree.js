@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const filesize = require('filesize');
+const gzipSize = require('gzip-size');
 
 class Node {
 
@@ -35,24 +36,43 @@ class Module extends Node {
     this.data = data;
   }
 
+  get src() {
+    return this.data.parsedSrc;
+  }
+
+  set src(value) {
+    this.data.parsedSrc = value;
+    delete this._gzipSize;
+  }
+
   get size() {
     return this.data.size;
   }
 
+  set size(value) {
+    this.data.size = value;
+  }
+
   get parsedSize() {
-    return this.data.parsedSize;
+    return this.src ? this.src.length : undefined;
   }
 
   get gzipSize() {
-    return this.data.gzipSize;
+    if (!_.has(this, '_gzipSize')) {
+      this._gzipSize = this.src ? gzipSize.sync(this.src) : undefined;
+    }
+
+    return this._gzipSize;
   }
 
   mergeData(data) {
-    _.each(['size', 'parsedSize', 'gzipSize'], prop => {
-      if (data[prop]) {
-        this.data[prop] = (this.data[prop] || 0) + data[prop];
-      }
-    });
+    if (data.size) {
+      this.size += data.size;
+    }
+
+    if (data.parsedSrc) {
+      this.src = (this.src || '') + data.parsedSrc;
+    }
   }
 
   toString(indent) {
@@ -80,37 +100,32 @@ class Folder extends Node {
     this.children = Object.create(null);
   }
 
+  get src() {
+    if (!_.has(this, '_src')) {
+      this._src = this.walk((node, src, stop) => {
+        if (node.src === undefined) return stop(undefined);
+        return (src += node.src);
+      }, '', false);
+    }
+
+    return this._src;
+  }
+
   get size() {
     if (!_.has(this, '_size')) {
-      this._size = this.walk((node, size) => (size + node.size), 0);
+      this._size = this.walk((node, size) => (size + node.size), 0, false);
     }
 
     return this._size;
   }
 
   get parsedSize() {
-    if (!_.has(this, '_parsedSize')) {
-      this._parsedSize = this.walk((node, size, stop) => {
-        if (node.parsedSize === undefined) {
-          return stop(undefined);
-        }
-
-        return (size + node.parsedSize);
-      }, 0);
-    }
-
-    return this._parsedSize;
+    return this.src ? this.src.length : undefined;
   }
 
   get gzipSize() {
     if (!_.has(this, '_gzipSize')) {
-      this._gzipSize = this.walk((node, size, stop) => {
-        if (node.gzipSize === undefined) {
-          return stop(undefined);
-        }
-
-        return (size + node.gzipSize);
-      }, 0);
+      this._gzipSize = this.src ? gzipSize.sync(this.src) : undefined;
     }
 
     return this._gzipSize;
@@ -125,7 +140,7 @@ class Folder extends Node {
 
     this.children[name] = folder;
     delete this._size;
-    delete this._parsedSize;
+    delete this._src;
 
     return folder;
   }
@@ -147,7 +162,7 @@ class Folder extends Node {
     }
 
     delete this._size;
-    delete this._parsedSize;
+    delete this._src;
 
     return true;
   }
@@ -177,11 +192,11 @@ class Folder extends Node {
     currentFolder.addModule(fileName, data);
   }
 
-  walk(walker, state = {}) {
+  walk(walker, state = {}, deep = true) {
     let stopped = false;
 
     _.each(this.children, child => {
-      if (child.walk) {
+      if (deep && child.walk) {
         state = child.walk(walker, state, stop);
       } else {
         state = walker(child, state, stop);

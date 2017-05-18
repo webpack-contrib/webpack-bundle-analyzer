@@ -8,9 +8,8 @@ module.exports = {
 };
 
 function parseBundle(bundlePath) {
-  const contentBuffer = fs.readFileSync(bundlePath);
-  const contentStr = contentBuffer.toString('utf8');
-  const ast = acorn.parse(contentStr, { sourceType: 'script' });
+  const content = fs.readFileSync(bundlePath, 'utf8');
+  const ast = acorn.parse(content, { sourceType: 'script' });
 
   const walkState = {
     locations: null
@@ -78,9 +77,9 @@ function parseBundle(bundlePath) {
   }
 
   return {
-    src: contentStr,
+    src: content,
     modules: _.mapValues(walkState.locations,
-      loc => contentBuffer.toString('utf8', loc.start, loc.end)
+      loc => content.slice(loc.start, loc.end)
     )
   };
 }

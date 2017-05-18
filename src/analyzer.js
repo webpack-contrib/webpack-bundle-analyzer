@@ -35,7 +35,6 @@ function getViewerData(bundleStats, bundleDir, opts) {
   });
 
   // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided
-  let parsedModuleSizes = null;
   let bundlesSources = null;
   let parsedModules = null;
 
@@ -53,10 +52,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
         bundleInfo = null;
       }
 
-      if (bundleInfo) {
-        bundlesSources[statAsset.name] = bundleInfo.src;
-        _.assign(parsedModules, bundleInfo.modules);
-      } else {
+      if (!bundleInfo) {
         logger.warn(
           `\nCouldn't parse bundle asset "${assetFile}".\n` +
           'Analyzer will use module sizes from stats file.\n'
@@ -65,15 +61,9 @@ function getViewerData(bundleStats, bundleDir, opts) {
         bundlesSources = null;
         break;
       }
-    }
 
-    if (parsedModules) {
-      parsedModuleSizes = _.mapValues(parsedModules,
-        moduleSrc => ({
-          raw: moduleSrc.length,
-          gzip: gzipSize.sync(moduleSrc)
-        })
-      );
+      bundlesSources[statAsset.name] = bundleInfo.src;
+      _.assign(parsedModules, bundleInfo.modules);
     }
   }
 
@@ -89,9 +79,8 @@ function getViewerData(bundleStats, bundleDir, opts) {
     asset.modules = _(bundleStats.modules)
       .filter(statModule => assetHasModule(statAsset, statModule))
       .each(statModule => {
-        if (parsedModuleSizes) {
-          statModule.parsedSize = parsedModuleSizes[statModule.id].raw;
-          statModule.gzipSize = parsedModuleSizes[statModule.id].gzip;
+        if (parsedModules) {
+          statModule.parsedSrc = parsedModules[statModule.id];
         }
       });
 
