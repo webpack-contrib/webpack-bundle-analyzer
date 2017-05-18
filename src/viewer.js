@@ -122,11 +122,7 @@ function generateReport(bundleStats, opts) {
     (err, reportHtml) => {
       if (err) return logger.error(err);
 
-      let reportFilepath = reportFilename;
-
-      if (!path.isAbsolute(reportFilepath)) {
-        reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilepath);
-      }
+      const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
 
       mkdir.sync(path.dirname(reportFilepath));
       fs.writeFileSync(reportFilepath, reportHtml);
