@@ -108,14 +108,7 @@ as Uglify, then this value will reflect the minified size of your code.
 
 ### Gzip size
 
-This is the size of running the file(s) through gzip compression. Note that the
-value listed for the entire bundle is correct, but it will be slightly off if
-you look at the gzip value for individual files.
-
-This is because of the way gzip works: the more files that are gzipped together,
-the more opportunities there are for things to be compressed. Accordingly, the
-gzip value reported for each individual file will be slightly _larger_ than the
-actual contribution that the file makes to the overall gzipped bundle.
+This is the size of running the file(s) through gzip compression.
 
 ## Contributing
 
