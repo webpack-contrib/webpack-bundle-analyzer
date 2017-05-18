@@ -10,6 +10,13 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.8.2
+ * **Improvement**
+   * Greatly improved accuracy of gzip sizes
+ 
+ * **Bug Fix**
+   * Generate report file in the bundle output directory when used with Webpack Dev Server (fixes #75)
+
 ## 2.8.1
  * **Improvement**
    * Improve warning message when analyzer client couldn't connect to WebSocket server
