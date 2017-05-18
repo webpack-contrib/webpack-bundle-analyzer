@@ -62,11 +62,7 @@ class BundleAnalyzerPlugin {
   }
 
   generateStatsFile(stats) {
-    let statsFilepath = this.opts.statsFilename;
-
-    if (!path.isAbsolute(statsFilepath)) {
-      statsFilepath = path.resolve(this.compiler.outputPath, statsFilepath);
-    }
+    const statsFilepath = path.resolve(this.compiler.outputPath, this.opts.statsFilename);
 
     mkdir.sync(path.dirname(statsFilepath));
 
@@ -98,7 +94,7 @@ class BundleAnalyzerPlugin {
   generateStaticReport(stats) {
     viewer.generateReport(stats, {
       openBrowser: this.opts.openAnalyzer,
-      reportFilename: this.opts.reportFilename,
+      reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename),
       bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
       defaultSizes: this.opts.defaultSizes
