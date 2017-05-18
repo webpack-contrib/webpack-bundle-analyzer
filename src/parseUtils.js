@@ -195,9 +195,5 @@ function getModulesLocationFromArrayConcat(arg) {
 }
 
 function getModuleLocation(node) {
-  if (node.type === 'FunctionExpression') {
-    node = node.body;
-  }
-
   return _.pick(node, 'start', 'end');
 }
