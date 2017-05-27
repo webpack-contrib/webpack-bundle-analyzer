@@ -5,7 +5,7 @@ const { bold } = require('chalk');
 
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
-const viewer = require('./viewer');
+const reporter = require('@webpack-bundle-analyzer/reporter-treemap');
 
 class BundleAnalyzerPlugin {
 
@@ -80,9 +80,9 @@ class BundleAnalyzerPlugin {
   async startAnalyzerServer(stats) {
     const chartData = analyzer.getChartData(this.logger, stats, this.getBundleDirFromCompiler());
     if (this.server) {
-      (await this.server).updateChartData(chartData);
+      (await this.server).updateData(chartData);
     } else {
-      this.server = viewer.startServer(chartData, {
+      this.server = reporter.startServer(chartData, {
         openBrowser: this.opts.openAnalyzer,
         host: this.opts.analyzerHost,
         port: this.opts.analyzerPort,
@@ -95,7 +95,7 @@ class BundleAnalyzerPlugin {
 
   generateStaticReport(stats) {
     const chartData = analyzer.getChartData(this.logger, stats, this.getBundleDirFromCompiler());
-    viewer.generateReport(chartData, {
+    reporter.generateReport(chartData, {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename),
       bundleDir: this.getBundleDirFromCompiler(),
