@@ -17,7 +17,7 @@ const program = commander
 `<bundleStatsFile> [bundleDir] [options]
 
   Arguments:
-  
+
     bundleStatsFile  Path to Webpack Stats JSON file.
     bundleDir        Directory containing all generated bundles.
                      You should provided it if you want analyzer to show you the real parsed module sizes.
