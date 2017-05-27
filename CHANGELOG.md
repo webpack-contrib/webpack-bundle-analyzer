@@ -10,6 +10,13 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## UNRELEASED
+
+ * **Internal**
+   * Moved internal, treemap reporter related code around (@valscion at [#81](https://github.com/th0r/webpack-bundle-analyzer/pull/81)).
+   * Removed undocumented `require('webpack-bundle-analyzer').start` accessor. If you try to
+     use the `start` function now, it will raise an error.
+
 ## 2.8.2
  * **Improvement**
    * Greatly improved accuracy of gzip sizes
