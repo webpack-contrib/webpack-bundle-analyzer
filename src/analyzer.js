@@ -4,7 +4,6 @@ const path = require('path');
 const _ = require('lodash');
 const gzipSize = require('gzip-size');
 
-const Logger = require('./Logger');
 const { Folder } = require('../lib/tree');
 const { parseBundle } = require('../lib/parseUtils');
 
@@ -17,8 +16,12 @@ module.exports = {
 
 function getViewerData(bundleStats, bundleDir, opts) {
   const {
-    logger = new Logger()
+    logger
   } = opts || {};
+
+  if (!logger) {
+    throw new Error('opts.logger is missing');
+  }
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
   if (_.isEmpty(bundleStats.assets) && !_.isEmpty(bundleStats.children)) {
@@ -143,6 +146,10 @@ function getModulePath(path) {
 
 function getChartData(logger, ...args) {
   let chartData;
+
+  if (!logger) {
+    throw new Error('logger is missing');
+  }
 
   try {
     chartData = getViewerData(...args, { logger });
