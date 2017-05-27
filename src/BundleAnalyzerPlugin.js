@@ -82,7 +82,7 @@ class BundleAnalyzerPlugin {
     if (this.server) {
       (await this.server).updateData(chartData);
     } else {
-      this.server = reporter.startServer(chartData, {
+      this.server = reporter.createReporter(chartData, {
         openBrowser: this.opts.openAnalyzer,
         host: this.opts.analyzerHost,
         port: this.opts.analyzerPort,
