@@ -9,7 +9,7 @@ const opener = require('opener');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
-const projectRoot = path.resolve(__dirname, '..');
+const reporterRoot = path.resolve(__dirname, '..', 'reporter');
 
 module.exports = {
   startServer,
@@ -39,8 +39,8 @@ async function startServer(chartData, opts) {
   // Fixes #17
   app.engine('ejs', require('ejs').renderFile);
   app.set('view engine', 'ejs');
-  app.set('views', `${projectRoot}/views`);
-  app.use(express.static(`${projectRoot}/public`));
+  app.set('views', `${reporterRoot}/views`);
+  app.use(express.static(`${reporterRoot}/public`));
 
   app.use('/', (req, res) => {
     res.render('viewer', {
@@ -109,7 +109,7 @@ function generateReport(chartData, opts) {
   if (!chartData) return;
 
   ejs.renderFile(
-    `${projectRoot}/views/viewer.ejs`,
+    `${reporterRoot}/views/viewer.ejs`,
     {
       mode: 'static',
       chartData: JSON.stringify(chartData),
@@ -136,5 +136,5 @@ function generateReport(chartData, opts) {
 }
 
 function getAssetContent(filename) {
-  return fs.readFileSync(`${projectRoot}/public/${filename}`, 'utf8');
+  return fs.readFileSync(`${reporterRoot}/public/${filename}`, 'utf8');
 }
