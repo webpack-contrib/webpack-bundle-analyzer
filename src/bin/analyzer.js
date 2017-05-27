@@ -101,14 +101,16 @@ if (mode === 'server') {
     port,
     host,
     defaultSizes,
-    bundleDir
+    bundleDir,
+    logger
   });
 } else {
   viewer.generateReport(chartData, {
     openBrowser,
     reportFilename: resolve(reportFilename),
     defaultSizes,
-    bundleDir
+    bundleDir,
+    logger
   });
 }
 
