@@ -9,8 +9,6 @@ const opener = require('opener');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
-const Logger = require('./Logger');
-
 const projectRoot = path.resolve(__dirname, '..');
 
 module.exports = {
@@ -26,10 +24,13 @@ async function startServer(chartData, opts) {
     host = '127.0.0.1',
     openBrowser = true,
     // bundleDir = null,
-    logger = new Logger(),
+    logger,
     defaultSizes = 'parsed'
   } = opts || {};
 
+  if (!logger) {
+    throw new Error('opts.logger is missing');
+  }
   if (!chartData) return;
 
   const app = express();
@@ -97,9 +98,13 @@ function generateReport(chartData, opts) {
     openBrowser = true,
     reportFilename = 'report.html',
     bundleDir = null,
-    logger = new Logger(),
+    logger,
     defaultSizes = 'parsed'
   } = opts || {};
+
+  if (!logger) {
+    throw new Error('opts.logger is missing');
+  }
 
   if (!chartData) return;
 
