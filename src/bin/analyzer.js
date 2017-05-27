@@ -6,6 +6,7 @@ const _ = require('lodash');
 const commander = require('commander');
 const { magenta } = require('chalk');
 
+const Logger = require('../Logger');
 const analyzer = require('../analyzer');
 const viewer = require('../viewer');
 
@@ -91,8 +92,11 @@ try {
   process.exit(1);
 }
 
+const logger = new Logger();
+const chartData = analyzer.getChartData(logger, bundleStats, bundleDir);
+
 if (mode === 'server') {
-  viewer.startServer(bundleStats, {
+  viewer.startServer(chartData, {
     openBrowser,
     port,
     host,
@@ -100,7 +104,7 @@ if (mode === 'server') {
     bundleDir
   });
 } else {
-  viewer.generateReport(bundleStats, {
+  viewer.generateReport(chartData, {
     openBrowser,
     reportFilename: resolve(reportFilename),
     defaultSizes,

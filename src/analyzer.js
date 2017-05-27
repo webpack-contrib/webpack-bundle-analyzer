@@ -11,7 +11,7 @@ const { parseBundle } = require('../lib/parseUtils');
 const FILENAME_QUERY_REGEXP = /\?.*$/;
 
 module.exports = {
-  getViewerData,
+  getChartData,
   readStatsFromFile
 };
 
@@ -139,4 +139,22 @@ function getModulePath(path) {
     .map(part => (part === '~') ? 'node_modules' : part);
 
   return parsedPath.length ? parsedPath : null;
+}
+
+function getChartData(logger, ...args) {
+  let chartData;
+
+  try {
+    chartData = getViewerData(...args, { logger });
+  } catch (err) {
+    logger.error(`Could't analyze webpack bundle:\n${err}`);
+    chartData = null;
+  }
+
+  if (_.isEmpty(chartData)) {
+    logger.error("Could't find any javascript bundles in provided stats file");
+    chartData = null;
+  }
+
+  return chartData;
 }
