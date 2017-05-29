@@ -27,12 +27,13 @@
     "test-dev": "mocha --watch --compilers js:babel-core/register"
   },
   "files": [
-    "public",
     "lib",
-    "src",
-    "views"
+    "reporter/public",
+    "reporter/views",
+    "src"
   ],
   "dependencies": {
+    "@webpack-bundle-analyzer/reporter-treemap": "0.0.2",
     "acorn": "^5.0.3",
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
