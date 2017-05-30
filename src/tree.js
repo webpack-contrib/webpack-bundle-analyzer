@@ -189,6 +189,7 @@ class Folder extends Node {
       currentFolder = childNode;
     });
 
+    if (!currentFolder.addModule) return;
     currentFolder.addModule(fileName, data);
   }
 
