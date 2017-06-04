@@ -65,6 +65,12 @@ class Module extends Node {
     return this._gzipSize;
   }
 
+  get reasons( ) {
+    return this.data.reasons ?
+      this.data.reasons.map(reason => _.pick(reason, 'moduleName', 'moduleId'))
+      : this.data.reasons;
+  }
+
   mergeData(data) {
     if (data.size) {
       this.size += data.size;
@@ -86,7 +92,8 @@ class Module extends Node {
       path: this.path,
       statSize: this.size,
       parsedSize: this.parsedSize,
-      gzipSize: this.gzipSize
+      gzipSize: this.gzipSize,
+      reasons: this.reasons
     };
   }
 

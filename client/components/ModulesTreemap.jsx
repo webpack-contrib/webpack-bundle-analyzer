@@ -1,28 +1,42 @@
 /** @jsx h */
 import { h, Component } from 'preact';
-import filesize from 'filesize';
+import keyBy from 'lodash/keyBy';
 
 import Treemap from './Treemap';
 import Tooltip from './Tooltip';
 import Switcher from './Switcher';
 import Sidebar from './Sidebar';
 import CheckboxList from './CheckboxList';
+import ModuleInfo from './ModuleInfo';
+import ModuleSearch from './ModuleSearch';
 
 import s from './ModulesTreemap.css';
 
 import { compareStrings } from '../utils';
+import { SIZE_SWITCH_ITEMS } from '../constants';
 
-const SIZE_SWITCH_ITEMS = [
-  { label: 'Stat', prop: 'statSize' },
-  { label: 'Parsed', prop: 'parsedSize' },
-  { label: 'Gzipped', prop: 'gzipSize' }
-];
+const getModules = ( data, accum, parent ) => data.reduce(( accumulator, group ) => {
+  let gr = group;
+  if ('id' in gr) {
+    gr = { ...gr, parent };
+    accumulator.push(gr);
+  }
+  if ('groups' in gr) {
+    getModules(gr.groups, accumulator, gr);
+  }
+  return accumulator;
+}, accum);
 
 export default class ModulesTreemap extends Component {
 
   constructor(props) {
     super(props);
     this.setData(props.data, true);
+  }
+
+  componentDidMount( ) {
+    window.addEventListener('hashchange', this.handleHashChange);
+    this.handleHashChange();
   }
 
   componentWillReceiveProps(newProps) {
@@ -32,11 +46,34 @@ export default class ModulesTreemap extends Component {
   }
 
   render() {
-    const { data, showTooltip, tooltipContent, activeSizeItem } = this.state;
+    const {
+      data,
+      showTooltip,
+      tooltipContent,
+      activeSizeItem,
+      modules,
+      selectedModule
+    } = this.state;
+
+    const locked =
+      window.location.hash.length > 1;
 
     return (
       <div className={s.container}>
-        <Sidebar>
+        <Sidebar locked={locked} onCloseClick={this.handleSidebarCloseClick}>
+          {!selectedModule &&
+            <ModuleSearch query={this.state.query}
+              onModuleClick={this.handleModuleClick}
+              onChange={this.handleSearchChange}
+              modules={modules}/>}
+          {!!selectedModule &&
+            <div className={s.moduleInfo}>
+              <button className={s.backButton} type="button" onClick={this.handleBackClick}>
+                ←
+              </button>
+              <ModuleInfo module={selectedModule} onModuleClick={this.handleModuleClick}/>
+            </div>
+          }
           <div className={s.sidebarGroup}>
             <Switcher label="Treemap sizes"
               items={this.sizeSwitchItems}
@@ -55,7 +92,8 @@ export default class ModulesTreemap extends Component {
           data={data}
           weightProp={activeSizeItem.prop}
           onMouseLeave={this.handleMouseLeaveTreemap}
-          onGroupHover={this.handleTreemapGroupHover}/>
+          onGroupHover={this.handleTreemapGroupHover}
+          onGroupClick={this.handleTreemapGroupClick}/>
         <Tooltip visible={showTooltip}>
           {tooltipContent}
         </Tooltip>
@@ -63,18 +101,8 @@ export default class ModulesTreemap extends Component {
     );
   }
 
-  renderModuleSize(module, sizeType) {
-    const sizeProp = `${sizeType}Size`;
-    const size = module[sizeProp];
-    const sizeLabel = SIZE_SWITCH_ITEMS.find(item => item.prop === sizeProp).label;
-    const isActive = (this.state.activeSizeItem.prop === sizeProp);
-
-    return (typeof size === 'number') ?
-      <div className={isActive ? s.activeSize : ''}>
-        {sizeLabel} size: <strong>{filesize(size)}</strong>
-      </div>
-      :
-      null;
+  handleBackClick = ( ) => {
+    window.history.go(-1);
   }
 
   handleSizeSwitch = sizeSwitchItem => {
@@ -90,6 +118,47 @@ export default class ModulesTreemap extends Component {
     this.setState({ showTooltip: false });
   };
 
+  handleModuleClick = ( module ) => {
+
+    if (this.state.query) {
+      // commit query to history
+      window.location.hash = this.state.query;
+    }
+
+    const identifier = module.id
+      || module.path
+      || module.label;
+
+    window.location.hash = identifier;
+
+  };
+
+  handleHashChange = ( ) => {
+
+    const moduleId = window.location.hash.split('#')[1];
+
+    let selectedModule;
+    let { query } = this.state;
+
+    selectedModule = this.state.modulesById[moduleId];
+
+    if (!selectedModule) {
+      query = moduleId;
+      selectedModule = null;
+    } else {
+      query = '';
+    }
+
+    this.setState({
+      selectedModule,
+      query
+    });
+  };
+
+  handleSearchChange = ( event ) => {
+    this.setState({ query: event.target.value });
+  }
+
   handleTreemapGroupHover = event => {
     const { group } = event;
 
@@ -101,6 +170,16 @@ export default class ModulesTreemap extends Component {
     } else {
       this.setState({ showTooltip: false });
     }
+  };
+
+  handleTreemapGroupClick = event => {
+    const { group } = event;
+
+    this.handleModuleClick(group);
+  }
+
+  handleSidebarCloseClick = () => {
+    window.location.hash = '';
   };
 
   setData(data, initial) {
@@ -118,12 +197,27 @@ export default class ModulesTreemap extends Component {
       this.visibleChunkItems = chunkItems;
     }
 
+    const modules = getModules(data, []);
+
+    const modulesById = keyBy(modules, 'id');
+
+    modules.forEach(module => {
+      module.reasons = module.reasons ?
+        module.reasons.map(reason => (
+          modulesById[reason.moduleId]
+        ))
+        : [];
+    });
+
     this.setState({
       data: this.getVisibleChunksData(),
+      modules,
+      modulesById,
       showTooltip: false,
       tooltipContent: null,
       activeSizeItem,
-      chunkItems
+      chunkItems,
+      query: ''
     });
   }
 
@@ -136,18 +230,10 @@ export default class ModulesTreemap extends Component {
   getTooltipContent(module) {
     if (!module) return null;
 
-    return (
-      <div>
-        <div><strong>{module.label}</strong></div>
-        <br/>
-        {this.renderModuleSize(module, 'stat')}
-        {this.renderModuleSize(module, 'parsed')}
-        {this.renderModuleSize(module, 'gzip')}
-        {module.path &&
-          <div>Path: <strong>{module.path}</strong></div>
-        }
-      </div>
-    );
+    const parsedModule = this.state.modulesById[module.id] || module;
+
+    return parsedModule && (<ModuleInfo module={parsedModule}
+      onModuleClick={this.handleModuleClick}/>);
   }
 
 }

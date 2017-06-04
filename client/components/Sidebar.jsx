@@ -24,7 +24,7 @@ export default class Sidebar extends Component {
 
   render() {
     const { position, children } = this.props;
-    const { visible } = this.state;
+    const visible = this.state.visible || this.props.locked;
 
     const className = cls({
       [s.container]: true,
@@ -36,7 +36,12 @@ export default class Sidebar extends Component {
       <div className={className}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}>
-        {children}
+        <button className={s.closeButton} onClick={this.handleCloseClick}>
+          ✕
+        </button>
+        <div>
+          {children}
+        </div>
       </div>
     );
   }
@@ -47,6 +52,11 @@ export default class Sidebar extends Component {
   };
 
   handleMouseLeave = () => this.toggleVisibility(false);
+
+  handleCloseClick = ( event ) => {
+    this.toggleVisibility(false);
+    this.props.onCloseClick(event);
+  }
 
   toggleVisibility(flag) {
     this.setState({ visible: flag });
