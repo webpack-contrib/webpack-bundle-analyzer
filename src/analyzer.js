@@ -77,6 +77,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
 
     // Picking modules from current bundle script
     asset.modules = _(bundleStats.modules)
+      .filter(statModule => !statModule.name.match(/^multi /))
       .filter(statModule => assetHasModule(statAsset, statModule))
       .each(statModule => {
         if (parsedModules) {
