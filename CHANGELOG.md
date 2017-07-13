@@ -10,6 +10,12 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.8.3
+ * **Bug Fix**
+   * Correctly advertise port when using a random one (#89, @yannickcr)
+   * Add proper support for `multi` entries (fixes #92, #87)
+   * Support parsing of ESNext features (fixes #94)
+
 ## 2.8.2
  * **Improvement**
    * Greatly improved accuracy of gzip sizes
