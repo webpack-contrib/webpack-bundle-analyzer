@@ -9,7 +9,13 @@ module.exports = {
 
 function parseBundle(bundlePath) {
   const content = fs.readFileSync(bundlePath, 'utf8');
-  const ast = acorn.parse(content, { sourceType: 'script' });
+  const ast = acorn.parse(content, {
+    sourceType: 'script',
+    // I believe in a bright future of ECMAScript!
+    // Actually, it's set to `2050` to support the latest ECMAScript version that currently exists.
+    // Seems like `acorn` supports such weird option value.
+    ecmaVersion: 2050
+  });
 
   const walkState = {
     locations: null
