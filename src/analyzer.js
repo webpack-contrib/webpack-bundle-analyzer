@@ -9,6 +9,7 @@ const { Folder } = require('../lib/tree');
 const { parseBundle } = require('../lib/parseUtils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/;
+const MULTI_MODULE_REGEXP = /^multi /;
 
 module.exports = {
   getViewerData,
@@ -117,7 +118,7 @@ function createModulesTree(modules) {
   const root = new Folder('.');
 
   _.each(modules, module => {
-    const path = getModulePath(module.name);
+    const path = getModulePath(module);
 
     if (path) {
       root.addModuleByPath(path, module);
@@ -127,10 +128,14 @@ function createModulesTree(modules) {
   return root;
 }
 
-function getModulePath(path) {
+function getModulePath(module) {
+  if (MULTI_MODULE_REGEXP.test(module.identifier)) {
+    return [module.identifier];
+  }
+
   const parsedPath = _
     // Removing loaders from module path: they're joined by `!` and the last part is a raw module path
-    .last(path.split('!'))
+    .last(module.name.split('!'))
     // Splitting module path into parts
     .split('/')
     // Removing first `.`

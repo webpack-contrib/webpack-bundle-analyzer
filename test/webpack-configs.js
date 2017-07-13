@@ -54,6 +54,25 @@ describe('Webpack config', function () {
       gzipSize: 179
     });
   });
+
+  it('with `multi` module should be supported', async function () {
+    const config = makeWebpackConfig();
+
+    config.entry.bundle = [
+      './src/a.js',
+      './src/b.js'
+    ];
+
+    await webpackCompile(config);
+    clock.tick(1);
+
+    const chartData = await getChartDataFromReport();
+    expect(chartData[0].groups).to.containSubset([{
+      label: 'multi ./src/a.js ./src/b.js',
+      path: './multi ./src/a.js ./src/b.js',
+      groups: undefined
+    }]);
+  });
 });
 
 async function expectValidReport(opts) {
@@ -68,13 +87,17 @@ async function expectValidReport(opts) {
 
   expect(fs.existsSync(`${__dirname}/output/${bundleFilename}`)).to.be.true;
   expect(fs.existsSync(`${__dirname}/output/${reportFilename}`)).to.be.true;
-  const chartData = await nightmare
-    .goto(`file://${__dirname}/output/${reportFilename}`)
-    .evaluate(() => window.chartData);
+  const chartData = await getChartDataFromReport(reportFilename);
   expect(chartData[0]).to.containSubset({
     label: bundleLabel,
     statSize,
     parsedSize,
     gzipSize
   });
+}
+
+async function getChartDataFromReport(reportFilename = 'report.html') {
+  return await nightmare
+    .goto(`file://${__dirname}/output/${reportFilename}`)
+    .evaluate(() => window.chartData);
 }
