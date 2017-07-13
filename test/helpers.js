@@ -11,12 +11,9 @@ global.makeWebpackConfig = makeWebpackConfig;
 const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
 
 function webpackCompile(config) {
-  return new Promise((resolve, reject) => {
-    webpack(config, err => {
-      if (err) return reject(err);
-      resolve();
-    });
-  });
+  return new Promise((resolve, reject) =>
+    webpack(config, err => err ? reject(err) : resolve())
+  );
 }
 
 function makeWebpackConfig(opts) {
