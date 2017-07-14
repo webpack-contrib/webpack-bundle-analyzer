@@ -6,17 +6,17 @@ module.exports = opts => {
   }, opts);
 
   return {
-    context: `${__dirname}/reporter`,
+    context: `${__dirname}`,
     entry: './client/viewer',
     output: {
-      path: `${__dirname}/reporter/public`,
+      path: `${__dirname}/public`,
       filename: 'viewer.js',
       publicPath: '/'
     },
 
     resolve: {
       modules: [
-        `${__dirname}/reporter/client/vendor`,
+        `${__dirname}/client/vendor`,
         'node_modules'
       ],
       extensions: ['.js', '.jsx']

@@ -3,10 +3,10 @@ packages/*/node_modules
 
 # Generated code
 packages/*/lib
-packages/reporter-treemap/reporter/public
+packages/reporter-treemap/public
 
 # Vendor code
-packages/reporter-treemap/reporter/client/vendor
+packages/reporter-treemap/client/vendor
 
 # Test fixtures
 packages/*/test/bundles

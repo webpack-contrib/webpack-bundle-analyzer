@@ -8,14 +8,14 @@
     "Vesa Laakso <laakso.vesa@gmail.com> (http://vesalaakso.com)"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/webpack-bundle-analyzer/reporter-treemap",
-  "changelog": "https://github.com/webpack-bundle-analyzer/reporter-treemap/blob/master/CHANGELOG.md",
+  "homepage": "https://github.com/th0r/webpack-bundle-analyzer",
+  "changelog": "https://github.com/th0r/webpack-bundle-analyzer/blob/master/CHANGELOG.md",
   "bugs": {
-    "url": "https://github.com/webpack-bundle-analyzer/reporter-treemap/issues"
+    "url": "https://github.com/th0r/webpack-bundle-analyzer/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webpack-bundle-analyzer/reporter-treemap.git"
+    "url": "git+https://github.com/th0r/webpack-bundle-analyzer.git"
   },
   "main": "lib/index.js",
   "engines": {
@@ -28,8 +28,8 @@
   },
   "files": [
     "lib",
-    "reporter/public",
-    "reporter/views",
+    "public",
+    "views",
     "src"
   ],
   "dependencies": {
