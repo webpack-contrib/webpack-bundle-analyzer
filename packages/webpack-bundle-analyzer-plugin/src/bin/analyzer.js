@@ -8,7 +8,7 @@ const { magenta } = require('chalk');
 
 const Logger = require('../Logger');
 const analyzer = require('../analyzer');
-const viewer = require('../viewer');
+const reporter = require('@webpack-bundle-analyzer/reporter-treemap');
 
 const SIZES = new Set(['stat', 'parsed', 'gzip']);
 
@@ -96,7 +96,7 @@ const logger = new Logger();
 const chartData = analyzer.getChartData(logger, bundleStats, bundleDir);
 
 if (mode === 'server') {
-  viewer.startServer(chartData, {
+  reporter.createReporter(chartData, {
     openBrowser,
     port,
     host,
@@ -105,7 +105,7 @@ if (mode === 'server') {
     logger
   });
 } else {
-  viewer.generateReport(chartData, {
+  reporter.generateReport(chartData, {
     openBrowser,
     reportFilename: resolve(reportFilename),
     defaultSizes,

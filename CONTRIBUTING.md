@@ -4,7 +4,7 @@ To contribute to `webpack-bundle-analyzer`, fork the repository and clone it to 
 
 ## Setup packages
 
-Then install [`yarn`](https://yarnpkg.com/):
+Install [`yarn`](https://yarnpkg.com/):
 
 ```sh
 npm install --global yarn
@@ -14,6 +14,12 @@ Next, install this package's dependencies with `yarn`:
 
 ```sh
 yarn install
+```
+
+Bootstrap the Lerna project (installs all node_modules in monorepo packages)
+
+```sh
+npm run bootstrap
 ```
 
 ## Develop with your own project
