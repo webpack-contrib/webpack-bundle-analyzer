@@ -5,16 +5,6 @@ packages/*/node_modules
 packages/*/lib
 packages/reporter-treemap/reporter/public
 
-# Vendor code
-packages/reporter-treemap/reporter/client/vendor
-
-# Test fixtures
-packages/*/test/bundles
-packages/*/test/webpack.config.js
-
-# Test results
-packages/*/test/output
-
 samples
 
 node_modules
