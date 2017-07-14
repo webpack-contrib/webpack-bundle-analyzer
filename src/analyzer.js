@@ -4,7 +4,6 @@ const path = require('path');
 const _ = require('lodash');
 const gzipSize = require('gzip-size');
 
-const Logger = require('./Logger');
 const { Folder } = require('../lib/tree');
 const { parseBundle } = require('../lib/parseUtils');
 
@@ -12,14 +11,18 @@ const FILENAME_QUERY_REGEXP = /\?.*$/;
 const MULTI_MODULE_REGEXP = /^multi /;
 
 module.exports = {
-  getViewerData,
+  getChartData,
   readStatsFromFile
 };
 
 function getViewerData(bundleStats, bundleDir, opts) {
   const {
-    logger = new Logger()
+    logger
   } = opts || {};
+
+  if (!logger) {
+    throw new Error('opts.logger is missing');
+  }
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
   if (_.isEmpty(bundleStats.assets) && !_.isEmpty(bundleStats.children)) {
@@ -144,4 +147,26 @@ function getModulePath(module) {
     .map(part => (part === '~') ? 'node_modules' : part);
 
   return parsedPath.length ? parsedPath : null;
+}
+
+function getChartData(logger, ...args) {
+  let chartData;
+
+  if (!logger) {
+    throw new Error('logger is missing');
+  }
+
+  try {
+    chartData = getViewerData(...args, { logger });
+  } catch (err) {
+    logger.error(`Could't analyze webpack bundle:\n${err}`);
+    chartData = null;
+  }
+
+  if (_.isEmpty(chartData)) {
+    logger.error("Could't find any javascript bundles in provided stats file");
+    chartData = null;
+  }
+
+  return chartData;
 }

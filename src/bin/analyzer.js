@@ -6,6 +6,7 @@ const _ = require('lodash');
 const commander = require('commander');
 const { magenta } = require('chalk');
 
+const Logger = require('../Logger');
 const analyzer = require('../analyzer');
 const viewer = require('../viewer');
 
@@ -17,7 +18,7 @@ const program = commander
 `<bundleStatsFile> [bundleDir] [options]
 
   Arguments:
-  
+
     bundleStatsFile  Path to Webpack Stats JSON file.
     bundleDir        Directory containing all generated bundles.
                      You should provided it if you want analyzer to show you the real parsed module sizes.
@@ -91,20 +92,25 @@ try {
   process.exit(1);
 }
 
+const logger = new Logger();
+const chartData = analyzer.getChartData(logger, bundleStats, bundleDir);
+
 if (mode === 'server') {
-  viewer.startServer(bundleStats, {
+  viewer.startServer(chartData, {
     openBrowser,
     port,
     host,
     defaultSizes,
-    bundleDir
+    bundleDir,
+    logger
   });
 } else {
-  viewer.generateReport(bundleStats, {
+  viewer.generateReport(chartData, {
     openBrowser,
     reportFilename: resolve(reportFilename),
     defaultSizes,
-    bundleDir
+    bundleDir,
+    logger
   });
 }
 

@@ -4,6 +4,7 @@ const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
 const Logger = require('./Logger');
+const analyzer = require('./analyzer');
 const viewer = require('./viewer');
 
 class BundleAnalyzerPlugin {
@@ -77,10 +78,11 @@ class BundleAnalyzerPlugin {
   }
 
   async startAnalyzerServer(stats) {
+    const chartData = analyzer.getChartData(this.logger, stats, this.getBundleDirFromCompiler());
     if (this.server) {
-      (await this.server).updateChartData(stats);
+      (await this.server).updateChartData(chartData);
     } else {
-      this.server = viewer.startServer(stats, {
+      this.server = viewer.startServer(chartData, {
         openBrowser: this.opts.openAnalyzer,
         host: this.opts.analyzerHost,
         port: this.opts.analyzerPort,
@@ -92,7 +94,8 @@ class BundleAnalyzerPlugin {
   }
 
   generateStaticReport(stats) {
-    viewer.generateReport(stats, {
+    const chartData = analyzer.getChartData(this.logger, stats, this.getBundleDirFromCompiler());
+    viewer.generateReport(chartData, {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename),
       bundleDir: this.getBundleDirFromCompiler(),

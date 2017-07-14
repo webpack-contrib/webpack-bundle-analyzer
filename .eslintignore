@@ -3,7 +3,7 @@ lib
 public
 
 # Vendor code
-client/vendor
+reporter/client/vendor
 
 # Test fixtures
 test/bundles

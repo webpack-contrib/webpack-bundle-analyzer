@@ -1,6 +1,8 @@
-const { start } = require('./viewer');
+function startIsRemoved() {
+  throw new Error('Accessing .start() directly from "webpack-bundle-analyzer" package is no longer supported.');
+}
 
 module.exports = {
-  start,
+  start: startIsRemoved,
   BundleAnalyzerPlugin: require('./BundleAnalyzerPlugin')
 };
