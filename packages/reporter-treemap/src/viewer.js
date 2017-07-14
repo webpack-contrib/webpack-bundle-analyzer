@@ -13,9 +13,7 @@ const reporterRoot = path.resolve(__dirname, '..', 'reporter');
 
 module.exports = {
   startServer,
-  generateReport,
-  // deprecated
-  start: startServer
+  generateReport
 };
 
 async function startServer(chartData, opts) {
@@ -56,7 +54,7 @@ async function startServer(chartData, opts) {
     server.listen(port, host, () => {
       resolve();
 
-      const url = `http://${host}:${server.address().port}`;
+      const url = `http://${host}:${port}`;
 
       logger.info(
         `${bold('Webpack Bundle Analyzer')} is started at ${bold(url)}\n` +

@@ -1,5 +1,10 @@
 {
   "private": true,
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build --stream",
+    "test": "lerna run test"
+  },
   "devDependencies": {
     "lerna": "2.0.0"
   }
