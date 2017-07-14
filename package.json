@@ -66,6 +66,7 @@
     "gulp-plumber": "1.1.0",
     "gulp-util": "3.0.8",
     "gulp-watch": "4.3.11",
+    "lerna": "^2.0.0",
     "mocha": "3.3.0",
     "nightmare": "2.10.0",
     "preact": "8.1.0",
