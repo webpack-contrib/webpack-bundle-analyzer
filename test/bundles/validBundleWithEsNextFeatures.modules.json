@@ -1,0 +1,5 @@
+{
+  "modules": {
+    "0": "function(t,e,r){\n  async function asyncFn() {\n    return await Promise.resolve(1);\n  }\n\n  const arrowFn = arg => arg * 2;\n\n  function* generatorFn() {\n    yield 1;\n  }\n\n  class TestClass {\n    static staticMethod() {}\n    constructor() {}\n    testMethod() {}\n  }\n\n  for (const i of [1, 2, 3]) {\n    console.log(i);\n  }\n\n  let obj = {\n    ['a' + 'b']: 1,\n    func() {}\n  };\n\n  const [var1, var2] = [1, 2];\n}"
+  }
+}

@@ -56,7 +56,7 @@ async function startServer(chartData, opts) {
     server.listen(port, host, () => {
       resolve();
 
-      const url = `http://${host}:${port}`;
+      const url = `http://${host}:${server.address().port}`;
 
       logger.info(
         `${bold('Webpack Bundle Analyzer')} is started at ${bold(url)}\n` +
