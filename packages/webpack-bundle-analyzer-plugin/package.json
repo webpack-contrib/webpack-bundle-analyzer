@@ -27,8 +27,6 @@
   },
   "files": [
     "lib",
-    "reporter/public",
-    "reporter/views",
     "src"
   ],
   "dependencies": {
