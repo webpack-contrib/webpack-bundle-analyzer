@@ -3,9 +3,13 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "lint": "eslint --ext js,jsx ."
   },
   "devDependencies": {
+    "babel-eslint": "7.2.3",
+    "eslint": "3.19.0",
+    "eslint-plugin-react": "7.0.0",
     "lerna": "2.0.0"
   }
 }

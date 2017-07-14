@@ -21,8 +21,7 @@
   "scripts": {
     "start": "gulp watch",
     "build": "gulp build",
-    "npm-publish": "npm run lint && npm run build && npm test && npm publish",
-    "lint": "eslint --ext js,jsx .",
+    "npm-publish": "npm run build && npm test && npm publish",
     "test": "mocha --compilers js:babel-core/register",
     "test-dev": "mocha --watch --compilers js:babel-core/register"
   },
@@ -48,7 +47,6 @@
   },
   "devDependencies": {
     "babel-core": "6.24.1",
-    "babel-eslint": "7.2.3",
     "babel-loader": "7.0.0",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
@@ -59,8 +57,6 @@
     "classnames": "2.2.5",
     "css-loader": "0.28.1",
     "del": "2.2.2",
-    "eslint": "3.19.0",
-    "eslint-plugin-react": "7.0.0",
     "exports-loader": "0.6.4",
     "gulp": "3.9.1",
     "gulp-babel": "6.1.2",

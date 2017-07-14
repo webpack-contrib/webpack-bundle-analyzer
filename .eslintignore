@@ -1,15 +1,18 @@
+# node_modules in sub-packages
+packages/*/node_modules
+
 # Generated code
-lib
-public
+packages/*/lib
+packages/reporter-treemap/reporter/public
 
 # Vendor code
-reporter/client/vendor
+packages/reporter-treemap/reporter/client/vendor
 
 # Test fixtures
-test/bundles
-test/webpack.config.js
+packages/*/test/bundles
+packages/*/test/webpack.config.js
 
 # Test results
-test/output
+packages/*/test/output
 
 samples
