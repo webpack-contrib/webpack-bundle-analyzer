@@ -28,8 +28,8 @@
   },
   "files": [
     "lib",
-    "reporter/public",
-    "reporter/views",
+    "public",
+    "views",
     "src"
   ],
   "dependencies": {

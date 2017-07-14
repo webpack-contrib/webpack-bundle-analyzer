@@ -9,7 +9,7 @@ const opener = require('opener');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
-const reporterRoot = path.resolve(__dirname, '..', 'reporter');
+const reporterRoot = path.resolve(__dirname, '..');
 
 module.exports = {
   startServer,
