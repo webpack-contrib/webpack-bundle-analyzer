@@ -3,6 +3,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream",
+    "dev": "lerna run start --parallel",
     "test": "lerna run test",
     "lint": "eslint --ext js,jsx ."
   },
