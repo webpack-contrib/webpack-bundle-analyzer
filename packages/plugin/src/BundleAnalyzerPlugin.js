@@ -5,24 +5,38 @@ const { bold } = require('chalk');
 
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
-const reporter = require('@webpack-bundle-analyzer/reporter-treemap');
 
 class BundleAnalyzerPlugin {
 
   constructor(opts) {
+    const {
+      reporter,
+      reporterOptions,
+      ...pluginOptions
+    } = opts;
+
     this.opts = {
       analyzerMode: 'server',
-      analyzerHost: '127.0.0.1',
-      analyzerPort: 8888,
-      reportFilename: 'report.html',
-      defaultSizes: 'parsed',
-      openAnalyzer: true,
       generateStatsFile: false,
       statsFilename: 'stats.json',
       statsOptions: null,
       logLevel: 'info',
-      ...opts
+      ...pluginOptions
     };
+
+    if (!reporter) {
+      // TODO: Improve this error message a lot, as this will be the first
+      // error of backwards-incompatibility compared to v2
+      throw new Error('options.reporter is not set!');
+    }
+    if (typeof reporter !== 'string') {
+      // We can't support passing `reporter: require('my-reporter')` syntax as
+      // if we did, we'd have no way of ensuring CLI works, too.
+      // TODO: Improve this error message, explain about options.reporterOptions
+      throw new Error('options.reporter is not a string!');
+    }
+    this.reporter = require(reporter);
+    this.reporterOptions = reporterOptions || {};
 
     this.server = null;
     this.logger = new Logger(this.opts.logLevel);
@@ -75,25 +89,20 @@ class BundleAnalyzerPlugin {
     if (this.server) {
       (await this.server).updateData(chartData);
     } else {
-      this.server = reporter.createReporter(chartData, {
-        openBrowser: this.opts.openAnalyzer,
-        host: this.opts.analyzerHost,
-        port: this.opts.analyzerPort,
+      this.server = this.reporter.createReporter(chartData, {
+        ...this.reporterOptions,
         bundleDir: this.getBundleDirFromCompiler(),
-        logger: this.logger,
-        defaultSizes: this.opts.defaultSizes
+        logger: this.logger
       });
     }
   }
 
   generateStaticReport(stats) {
     const chartData = analyzer.getChartData(this.logger, stats, this.getBundleDirFromCompiler());
-    reporter.generateReport(chartData, {
-      openBrowser: this.opts.openAnalyzer,
-      reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename),
+    this.reporter.generateReport(chartData, {
+      ...this.reporterOptions,
       bundleDir: this.getBundleDirFromCompiler(),
-      logger: this.logger,
-      defaultSizes: this.opts.defaultSizes
+      logger: this.logger
     });
   }
 

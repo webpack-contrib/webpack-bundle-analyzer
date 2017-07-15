@@ -18,13 +18,12 @@ module.exports = {
 
 async function startServer(chartData, opts) {
   const {
-    port = 8888,
-    host = '127.0.0.1',
-    openBrowser = true,
-    // bundleDir = null,
+    port,
+    host,
+    openBrowser,
     logger,
-    defaultSizes = 'parsed'
-  } = opts || {};
+    defaultSizes
+  } = opts;
 
   if (!logger) {
     throw new Error('opts.logger is missing');
@@ -93,12 +92,12 @@ async function startServer(chartData, opts) {
 
 function generateReport(chartData, opts) {
   const {
-    openBrowser = true,
-    reportFilename = 'report.html',
-    bundleDir = null,
+    openBrowser,
+    reportFilename,
+    bundleDir,
     logger,
-    defaultSizes = 'parsed'
-  } = opts || {};
+    defaultSizes
+  } = opts;
 
   if (!logger) {
     throw new Error('opts.logger is missing');
