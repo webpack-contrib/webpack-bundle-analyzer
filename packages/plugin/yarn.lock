@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@webpack-bundle-analyzer/reporter-treemap@*":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@webpack-bundle-analyzer/reporter-treemap/-/reporter-treemap-0.0.2.tgz#56ef5c7103fc361c41b33d1b227f32f6825c8665"
+"@webpack-bundle-analyzer/reporter-treemap@^3.0.0-alpha.0":
+  version "3.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@webpack-bundle-analyzer/reporter-treemap/-/reporter-treemap-3.0.0-alpha.0.tgz#544cf51234f6e2002fc798a7fced8bd1c49383b4"
   dependencies:
     chalk "^1.1.3"
     ejs "^2.5.6"
