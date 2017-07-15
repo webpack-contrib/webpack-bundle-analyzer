@@ -21,7 +21,6 @@
   "scripts": {
     "start": "gulp watch",
     "build": "gulp build",
-    "npm-publish": "npm run build && npm test && npm publish",
     "test": "mocha --compilers js:babel-core/register",
     "test-dev": "mocha --watch --compilers js:babel-core/register"
   },
