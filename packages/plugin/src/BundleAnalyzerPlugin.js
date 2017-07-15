@@ -21,8 +21,6 @@ class BundleAnalyzerPlugin {
       statsFilename: 'stats.json',
       statsOptions: null,
       logLevel: 'info',
-      // deprecated
-      startAnalyzer: true,
       ...opts
     };
 
@@ -40,11 +38,6 @@ class BundleAnalyzerPlugin {
 
       if (this.opts.generateStatsFile) {
         actions.push(() => this.generateStatsFile(stats));
-      }
-
-      // Handling deprecated `startAnalyzer` flag
-      if (this.opts.analyzerMode === 'server' && !this.opts.startAnalyzer) {
-        this.opts.analyzerMode = 'disabled';
       }
 
       if (this.opts.analyzerMode === 'server') {
