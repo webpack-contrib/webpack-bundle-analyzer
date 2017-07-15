@@ -3,7 +3,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream",
-    "test": "lerna run test",
+    "dev": "lerna run start --parallel",
+    "npm-publish": "npm run lint && npm run build && npm test && lerna publish",
+    "test": "lerna run test --stream",
     "lint": "eslint --ext js,jsx ."
   },
   "devDependencies": {
