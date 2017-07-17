@@ -11,7 +11,7 @@ function generateReport(stats, opts) {
     port: 8888,
     defaultSizes: 'parsed',
     openBrowser: true,
-    outputPath: opts.outputPath || process.cwd(),
+    outputPath: opts.outputPath,
     reportFilename: opts.reportFilename || 'report.html',
     ...opts
   };
