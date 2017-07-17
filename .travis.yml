@@ -34,4 +34,5 @@ before_script:
   - npm run build
 script:
   - npm run lint
+  - npm run jest
   - npm run test

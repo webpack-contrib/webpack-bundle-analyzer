@@ -6,6 +6,7 @@
     "dev": "lerna run start --parallel",
     "npm-publish": "npm run lint && npm run build && npm test && lerna publish",
     "test": "lerna run test --stream",
+    "jest": "jest",
     "test-dev": "lerna run test-dev --parallel",
     "lint": "eslint --ext js,jsx ."
   },
