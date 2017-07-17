@@ -62,7 +62,8 @@ async function expectValidReport(opts) {
   expect(fs.existsSync(`${__dirname}/output/report.html`)).toEqual(true);
   const chartData = await nightmare
     .goto(`file://${__dirname}/output/report.html`)
-    .evaluate(() => window.chartData);
+    .evaluate(() => window.chartData)
+    .end();
   expect(chartData[0]).toMatchObject({
     label: bundleLabel,
     statSize
