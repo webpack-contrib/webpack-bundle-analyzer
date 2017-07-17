@@ -10,13 +10,10 @@ const packagesDir = path.join(__dirname, '..', '..', 'packages');
 let nightmare;
 
 describe('Analyzer', function () {
-  beforeEach(function () {
+  beforeEach(async function () {
     const Nightmare = require('nightmare');
     nightmare = Nightmare();
     del.sync(`${__dirname}/output`);
-  });
-
-  beforeEach(async function () {
     await nightmare.goto('about:blank');
   });
 

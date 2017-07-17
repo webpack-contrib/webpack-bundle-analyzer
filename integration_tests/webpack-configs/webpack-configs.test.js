@@ -11,13 +11,10 @@ const {
 let nightmare;
 
 describe('Webpack config', function () {
-  beforeEach(function () {
+  beforeEach(async function () {
     const Nightmare = require('nightmare');
     nightmare = Nightmare();
     del.sync(`${__dirname}/output`);
-  });
-
-  beforeEach(async function () {
     await nightmare.goto('about:blank');
   });
 
