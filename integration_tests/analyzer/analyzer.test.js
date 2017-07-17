@@ -5,7 +5,7 @@ const del = require('del');
 const childProcess = require('child_process');
 const path = require('path');
 
-const packagesDir = path.join(__dirname, '..', 'packages');
+const packagesDir = path.join(__dirname, '..', '..', 'packages');
 
 let nightmare;
 
