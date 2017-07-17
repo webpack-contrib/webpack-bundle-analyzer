@@ -18,6 +18,7 @@
     "eslint": "3.19.0",
     "eslint-plugin-react": "7.0.0",
     "jest": "20.0.4",
-    "lerna": "2.0.0"
+    "lerna": "2.0.0",
+    "nightmare": "2.10.0"
   }
 }
