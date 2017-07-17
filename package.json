@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
+    "babel-jest": "20.0.3",
     "eslint": "3.19.0",
     "eslint-plugin-react": "7.0.0",
     "jest": "20.0.4",
