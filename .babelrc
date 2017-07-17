@@ -1,0 +1,16 @@
+// Babel config for Jest
+{
+  "presets": [
+    ["env", {
+      "targets": { "node": 4 },
+      "exclude": [
+        // Node 4 supports all the generator features that we use so there is no need in Regenerator
+        "transform-regenerator"
+      ]
+    }]
+  ],
+  "plugins": [
+    ["transform-object-rest-spread", { "useBuiltIns": true }],
+    "transform-class-properties"
+  ]
+}

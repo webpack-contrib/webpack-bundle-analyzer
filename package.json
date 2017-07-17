@@ -6,13 +6,21 @@
     "dev": "lerna run start --parallel",
     "npm-publish": "npm run lint && npm run build && npm test && lerna publish",
     "test": "lerna run test --stream",
+    "jest": "jest",
     "test-dev": "lerna run test-dev --parallel",
     "lint": "eslint --ext js,jsx ."
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
+    "babel-jest": "20.0.3",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.23.0",
+    "babel-preset-env": "1.6.0",
     "eslint": "3.19.0",
     "eslint-plugin-react": "7.0.0",
-    "lerna": "2.0.0"
+    "jest": "20.0.4",
+    "lerna": "2.0.0",
+    "nightmare": "2.10.0",
+    "webpack": "2.5.1"
   }
 }
