@@ -9,8 +9,11 @@ module.exports = {
   plugins: [
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
-      reportFilename: 'report.html',
-      openAnalyzer: false
+      reporter: '@webpack-bundle-analyzer/reporter-treemap',
+      reporterOptions: {
+        reportFilename: 'report.html',
+        openBrowser: false
+      }
     })
   ]
 };

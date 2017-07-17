@@ -41,7 +41,18 @@ describe('Analyzer', function () {
 });
 
 function generateReportFrom(statsFilename) {
-  childProcess.execSync(`../lib/bin/analyzer.js -m static -r output/report.html -O stats/${statsFilename}`, {
+  const rOpts = JSON.stringify({
+    reportFilename: 'output/report.html',
+    openBrowser: false
+  });
+  const execArgs = [
+    '../lib/bin/analyzer.js',
+    '-m static',
+    '--reporter=@webpack-bundle-analyzer/reporter-treemap',
+    `--reporter-options='${rOpts}'`,
+    `stats/${statsFilename}`
+  ].join(' ');
+  childProcess.execSync(execArgs, {
     cwd: __dirname
   });
 }
