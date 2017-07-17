@@ -86,13 +86,13 @@ const chartData = analyzer.getChartData(logger, bundleStats, bundleDir);
 if (mode === 'server') {
   reporter.createReporter(chartData, {
     ...reporterOptions,
-    bundleDir,
+    outputPath: bundleDir,
     logger
   });
 } else {
   reporter.generateReport(chartData, {
     ...reporterOptions,
-    bundleDir,
+    outputPath: bundleDir,
     logger
   });
 }

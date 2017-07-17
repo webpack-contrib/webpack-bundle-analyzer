@@ -91,7 +91,7 @@ class BundleAnalyzerPlugin {
     } else {
       this.server = this.reporter.createReporter(chartData, {
         ...this.reporterOptions,
-        bundleDir: this.getBundleDirFromCompiler(),
+        outputPath: this.compiler.outputPath,
         logger: this.logger
       });
     }
@@ -101,7 +101,7 @@ class BundleAnalyzerPlugin {
     const chartData = analyzer.getChartData(this.logger, stats, this.getBundleDirFromCompiler());
     this.reporter.generateReport(chartData, {
       ...this.reporterOptions,
-      bundleDir: this.getBundleDirFromCompiler(),
+      outputPath: this.compiler.outputPath,
       logger: this.logger
     });
   }

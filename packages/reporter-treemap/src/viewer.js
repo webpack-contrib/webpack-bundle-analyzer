@@ -94,7 +94,7 @@ function generateReport(chartData, opts) {
   const {
     openBrowser,
     reportFilename,
-    bundleDir,
+    outputPath,
     logger,
     defaultSizes
   } = opts;
@@ -116,7 +116,7 @@ function generateReport(chartData, opts) {
     (err, reportHtml) => {
       if (err) return logger.error(err);
 
-      const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
+      const reportFilepath = path.resolve(outputPath, reportFilename);
 
       mkdir.sync(path.dirname(reportFilepath));
       fs.writeFileSync(reportFilepath, reportHtml);
