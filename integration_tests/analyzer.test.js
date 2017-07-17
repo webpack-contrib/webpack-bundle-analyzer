@@ -1,32 +1,27 @@
+/* eslint-env jest */
+
 const fs = require('fs');
 const del = require('del');
 const childProcess = require('child_process');
+const path = require('path');
+
+const packagesDir = path.join(__dirname, '..', 'packages');
 
 let nightmare;
 
 describe('Analyzer', function () {
-  let clock;
-
-  this.timeout(3000);
-
-  before(function () {
+  beforeEach(function () {
     const Nightmare = require('nightmare');
     nightmare = Nightmare();
     del.sync(`${__dirname}/output`);
-    clock = sinon.useFakeTimers();
   });
 
   beforeEach(async function () {
-    this.timeout(10000);
     await nightmare.goto('about:blank');
   });
 
   afterEach(function () {
     del.sync(`${__dirname}/output`);
-  });
-
-  after(function () {
-    clock.restore();
   });
 
   it('should support stats files with all the information in `children` array', async function () {
@@ -46,9 +41,9 @@ function generateReportFrom(statsFilename) {
     openBrowser: false
   });
   const execArgs = [
-    '../lib/bin/analyzer.js',
+    `${packagesDir}/plugin/lib/bin/analyzer.js`,
     '-m static',
-    '--reporter=@webpack-bundle-analyzer/reporter-treemap',
+    `--reporter='${packagesDir}/reporter-treemap'`,
     `--reporter-options='${rOpts}'`,
     `stats/${statsFilename}`
   ].join(' ');
@@ -58,16 +53,17 @@ function generateReportFrom(statsFilename) {
 }
 
 async function expectValidReport(opts) {
+  /* global window */
   const {
     bundleLabel = 'bundle.js',
     statSize = 141
   } = opts || {};
 
-  expect(fs.existsSync(`${__dirname}/output/report.html`)).to.be.true;
+  expect(fs.existsSync(`${__dirname}/output/report.html`)).toEqual(true);
   const chartData = await nightmare
     .goto(`file://${__dirname}/output/report.html`)
     .evaluate(() => window.chartData);
-  expect(chartData[0]).to.containSubset({
+  expect(chartData[0]).toMatchObject({
     label: bundleLabel,
     statSize
   });
