@@ -17,9 +17,7 @@ describe('Webpack Dev Server', function () {
 
     this.timeout(timeout);
 
-    const devServer = exec(`${__dirname}/../node_modules/.bin/webpack-dev-server --config ${WEBPACK_CONFIG_PATH}`, {
-      cwd: `${ROOT}/tmp`
-    });
+    const devServer = exec(`${__dirname}/../node_modules/.bin/webpack-dev-server --config ${WEBPACK_CONFIG_PATH}`);
 
     const reportCheckIntervalId = setInterval(() => {
       if (fs.existsSync(`${webpackConfig.output.path}/report.html`)) {

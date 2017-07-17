@@ -20,8 +20,11 @@ function makeWebpackConfig(opts) {
   opts = {
     analyzerOpts: {
       analyzerMode: 'static',
-      openAnalyzer: false,
-      logLevel: 'error'
+      logLevel: 'error',
+      reporter: '@webpack-bundle-analyzer/reporter-treemap',
+      reporterOptions: {
+        openBrowser: false
+      }
     },
     minify: false,
     multipleChunks: false,

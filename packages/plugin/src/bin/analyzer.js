@@ -8,9 +8,6 @@ const { magenta } = require('chalk');
 
 const Logger = require('../Logger');
 const analyzer = require('../analyzer');
-const reporter = require('@webpack-bundle-analyzer/reporter-treemap');
-
-const SIZES = new Set(['stat', 'parsed', 'gzip']);
 
 const program = commander
   .version(require('../../package.json').version)
@@ -33,52 +30,43 @@ const program = commander
     'server'
   )
   .option(
-    '-h, --host <host>',
-    'Host that will be used in `server` mode to start HTTP server.' +
-    br('Default is `127.0.0.1`.'),
-    '127.0.0.1'
+    '-r, --reporter <reporter>',
+    'The reporter package to use, e.g. @webpack-bundle-analyzer/reporter-treemap'
   )
   .option(
-    '-p, --port <n>',
-    'Port that will be used in `server` mode to start HTTP server.' +
-    br('Default is 8888.'),
-    Number,
-    8888
-  )
-  .option(
-    '-r, --report <file>',
-    'Path to bundle report file that will be generated in `static` mode.' +
-    br('Default is `report.html`.'),
-    'report.html'
-  )
-  .option(
-    '-s, --default-sizes <type>',
-    'Module sizes to show in treemap by default.' +
-    br(`Possible values: ${[...SIZES].join(', ')}`) +
-    br('Default is `parsed`.'),
-    'parsed'
-  )
-  .option(
-    '-O, --no-open',
-    "Don't open report in default browser automatically."
+    '-R, --reporter-options <options>',
+    'The options to pass to the reporter you use as a valid JSON object.' +
+    br('Consult the reporter documentation for available options.'),
+    '{}'
   )
   .parse(process.argv);
 
 let {
   mode,
-  host,
-  port,
-  report: reportFilename,
-  defaultSizes,
-  open: openBrowser,
+  reporter,
+  reporterOptions,
   args: [bundleStatsFile, bundleDir]
 } = program;
 
 if (!bundleStatsFile) showHelp('Provide path to Webpack Stats file as first argument');
 if (mode !== 'server' && mode !== 'static') showHelp('Invalid mode. Should be either `server` or `static`.');
-if (mode === 'server' && !host) showHelp('Invalid host name');
-if (mode === 'server' && isNaN(port)) showHelp('Invalid port number');
-if (!SIZES.has(defaultSizes)) showHelp(`Invalid default sizes option. Possible values are: ${[...SIZES].join(', ')}`);
+if (!reporter) {
+  // TODO: Improve this error message a lot, as this will be the first
+  // error of backwards-incompatibility compared to v2
+  throw new Error('reporter is not set!');
+}
+if (typeof reporter !== 'string') {
+  // TODO: Improve this error message
+  throw new Error('reporter is not a string!');
+}
+reporter = require(reporter);
+// TODO: Allow same format as webpack --env flag, i.e.
+// `--reporter-options.host=1234` to set `reporterOptions = { host: 1234 }`
+reporterOptions = JSON.parse(reporterOptions);
+
+if (typeof reporterOptions !== 'object') {
+  throw new Error('reporterOptions must be an object!');
+}
 
 bundleStatsFile = resolve(bundleStatsFile);
 
@@ -97,19 +85,14 @@ const chartData = analyzer.getChartData(logger, bundleStats, bundleDir);
 
 if (mode === 'server') {
   reporter.createReporter(chartData, {
-    openBrowser,
-    port,
-    host,
-    defaultSizes,
-    bundleDir,
+    ...reporterOptions,
+    outputPath: process.cwd(),
     logger
   });
 } else {
   reporter.generateReport(chartData, {
-    openBrowser,
-    reportFilename: resolve(reportFilename),
-    defaultSizes,
-    bundleDir,
+    ...reporterOptions,
+    outputPath: process.cwd(),
     logger
   });
 }
