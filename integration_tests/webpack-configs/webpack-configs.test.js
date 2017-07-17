@@ -18,8 +18,9 @@ describe('Webpack config', function () {
     await nightmare.goto('about:blank');
   });
 
-  afterEach(function () {
+  afterEach(async function () {
     del.sync(`${__dirname}/output`);
+    await nightmare.end();
   });
 
   fit('with query in bundle filename should be supported', async function () {
@@ -93,6 +94,5 @@ async function getChartDataFromReport(reportFilename = 'report.html') {
   /* global window */
   return await nightmare
     .goto(`file://${__dirname}/output/${reportFilename}`)
-    .evaluate(() => window.chartData)
-    .end();
+    .evaluate(() => window.chartData);
 }

@@ -17,8 +17,9 @@ describe('Analyzer', function () {
     await nightmare.goto('about:blank');
   });
 
-  afterEach(function () {
+  afterEach(async function () {
     del.sync(`${__dirname}/output`);
+    await nightmare.end();
   });
 
   it('should support stats files with all the information in `children` array', async function () {
@@ -59,8 +60,7 @@ async function expectValidReport(opts) {
   expect(fs.existsSync(`${__dirname}/output/report.html`)).toEqual(true);
   const chartData = await nightmare
     .goto(`file://${__dirname}/output/report.html`)
-    .evaluate(() => window.chartData)
-    .end();
+    .evaluate(() => window.chartData);
   expect(chartData[0]).toMatchObject({
     label: bundleLabel,
     statSize
