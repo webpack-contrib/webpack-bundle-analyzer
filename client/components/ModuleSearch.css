@@ -1,0 +1,13 @@
+.wrapper {
+  font-family: Verdana;
+  font-size: 11px;
+}
+
+.input {
+  padding: 2px;
+  width: 100%;
+}
+
+.list {
+  padding: 10px 0;
+}

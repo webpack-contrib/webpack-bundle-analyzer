@@ -1,0 +1,38 @@
+.button {
+  display: block;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  max-width: 100%;
+  float: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: initial;
+  line-height: 1.25em;
+  cursor: pointer;
+}
+
+.button:after {
+  content: ".";
+  display: block;
+  float: left;
+  width: 4em;
+  margin: -1em -2em;
+  color: #fff;
+  background: #fff;
+  background: linear-gradient(to right, rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
+}
+
+.content {
+  float: right;
+  min-width: 100%;
+  margin-top: 0;
+  margin-left: -1px;
+}
+
+
+
+.button:hover {
+  text-decoration: underline;
+}

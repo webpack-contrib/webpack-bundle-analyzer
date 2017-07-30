@@ -1,0 +1,17 @@
+.wrapper {
+  font-size: 11px;
+  font-family: Verdana;
+}
+
+.path {
+  overflow-wrap: break-word;
+}
+
+.reasons {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.list {
+  margin-top: 10px;
+}

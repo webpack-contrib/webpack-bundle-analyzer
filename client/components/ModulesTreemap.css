@@ -1,13 +1,25 @@
 .container, .map {
-  position: relative;
+  position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
 }
 
 .sidebarGroup {
   margin-bottom: 20px;
+  clear: both;
 }
 
 .activeSize {
   font-weight: bold;
+}
+
+.moduleInfo {
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 10px;
+}
+
+.backButton {
+  margin-bottom: 10px;
 }
