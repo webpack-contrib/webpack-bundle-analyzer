@@ -144,7 +144,7 @@ function isArgumentArrayConcatContainingChunks(arg) {
 function isModuleWrapper(node) {
   return (
     // It's an anonymous function expression that wraps module
-    (node.type === 'FunctionExpression' && !node.id) ||
+    ((node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression') && !node.id) ||
     // If `DedupePlugin` is used it can be an ID of duplicated module...
     isModuleId(node) ||
     // or an array of shape [<module_id>, ...args]
