@@ -10,8 +10,6 @@ import CheckboxList from './CheckboxList';
 
 import s from './ModulesTreemap.css';
 
-import { compareStrings } from '../utils';
-
 const SIZE_SWITCH_ITEMS = [
   { label: 'Stat', prop: 'statSize' },
   { label: 'Parsed', prop: 'parsedSize' },
@@ -47,6 +45,8 @@ export default class ModulesTreemap extends Component {
             <div className={s.sidebarGroup}>
               <CheckboxList label="Show chunks"
                 items={this.state.chunkItems}
+                checkedItems={this.visibleChunkItems}
+                renderLabel={this.renderChunkItemLabel}
                 onChange={this.handleVisibleChunksChange}/>
             </div>
           }
@@ -77,6 +77,16 @@ export default class ModulesTreemap extends Component {
       null;
   }
 
+  renderChunkItemLabel = (item, labelClass) => {
+    const isAllItem = (item === CheckboxList.ALL_ITEM);
+    const label = isAllItem ? 'All' : item.label;
+    const size = isAllItem ? this.totalChunksSize : item[this.state.activeSizeItem.prop];
+
+    return (
+      <span className={labelClass}>{label} (<strong>{filesize(size)}</strong>)</span>
+    );
+  };
+
   handleSizeSwitch = sizeSwitchItem => {
     this.setState({ activeSizeItem: sizeSwitchItem });
   };
@@ -103,6 +113,11 @@ export default class ModulesTreemap extends Component {
     }
   };
 
+  get totalChunksSize() {
+    const sizeProp = this.state.activeSizeItem.prop;
+    return this.props.data.reduce((totalSize, chunk) => totalSize + chunk[sizeProp], 0);
+  }
+
   setData(data, initial) {
     const hasParsedSizes = (typeof data[0].parsedSize === 'number');
     this.sizeSwitchItems = hasParsedSizes ? SIZE_SWITCH_ITEMS : SIZE_SWITCH_ITEMS.slice(0, 1);
@@ -111,8 +126,7 @@ export default class ModulesTreemap extends Component {
     if (!activeSizeItem) activeSizeItem = this.sizeSwitchItems[0];
 
     const chunkItems = [...data]
-      .sort((chunk1, chunk2) => compareStrings(chunk1.label, chunk2.label))
-      .map(chunk => ({ label: chunk.label }));
+      .sort((chunk1, chunk2) => chunk2[activeSizeItem.prop] - chunk1[activeSizeItem.prop]);
 
     if (initial) {
       this.visibleChunkItems = chunkItems;
