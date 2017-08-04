@@ -10,6 +10,13 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## 2.9.0
+ * **New Feature**
+   * Show chunk sizes in sidebar (closes #91)
+   
+ * **Bug Fix**
+   * Properly parse webpack bundles that use arrow functions as module wrappers (#108, @regiontog)
+
 ## 2.8.3
  * **Bug Fix**
    * Correctly advertise port when using a random one (#89, @yannickcr)
