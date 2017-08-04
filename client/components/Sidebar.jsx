@@ -11,20 +11,23 @@ export default class Sidebar extends Component {
   };
 
   state = {
-    visible: true
+    visible: true,
+    renderContent: true
   };
 
   componentDidMount() {
     this.hideTimeoutId = setTimeout(() => this.toggleVisibility(false), 1500);
+    this.hideContentTimeout = null;
   }
 
   componentWillUnmount() {
-    clearInterval(this.hideTimeoutId);
+    clearTimeout(this.hideTimeoutId);
+    clearTimeout(this.hideContentTimeout);
   }
 
   render() {
     const { position, children } = this.props;
-    const { visible } = this.state;
+    const { visible, renderContent } = this.state;
 
     const className = cls({
       [s.container]: true,
@@ -36,7 +39,7 @@ export default class Sidebar extends Component {
       <div className={className}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}>
-        {children}
+        {renderContent ? children : null}
       </div>
     );
   }
@@ -49,7 +52,19 @@ export default class Sidebar extends Component {
   handleMouseLeave = () => this.toggleVisibility(false);
 
   toggleVisibility(flag) {
+    clearTimeout(this.hideContentTimeout);
+
     this.setState({ visible: flag });
+
+    if (flag) {
+      this.setState({ renderContent: true });
+    } else {
+      // Waiting for the CSS animation to finish and hiding content
+      this.hideContentTimeout = setTimeout(
+        () => this.setState({ renderContent: false }),
+        500
+      );
+    }
   }
 
 }
