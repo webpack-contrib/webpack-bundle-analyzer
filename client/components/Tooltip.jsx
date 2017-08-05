@@ -69,13 +69,14 @@ export default class Tooltip extends Component {
     };
 
     const boundingRect = this.node.getBoundingClientRect();
+    const parentBoundingRect = (this.props.container || this.node.parentElement).getBoundingClientRect();
 
-    if (pos.left + boundingRect.width > window.innerWidth) {
+    if (pos.left + boundingRect.width > parentBoundingRect.right) {
       // Shifting horizontally
-      pos.left = window.innerWidth - boundingRect.width;
+      pos.left = parentBoundingRect.right - boundingRect.width;
     }
 
-    if (pos.top + boundingRect.height > window.innerHeight) {
+    if (pos.top + boundingRect.height > parentBoundingRect.bottom) {
       // Flipping vertically
       pos.top = this.mouseCoords.y - Tooltip.marginY - boundingRect.height;
     }

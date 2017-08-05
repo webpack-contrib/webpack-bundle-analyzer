@@ -19,3 +19,11 @@
 .container.left.hidden {
   transform: translateX(calc(-100% + 7px));
 }
+
+.container.right {
+  right: 0;
+}
+
+.container.right.hidden {
+  transform: translateX(calc(100% - 7px));
+}

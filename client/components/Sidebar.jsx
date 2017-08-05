@@ -7,17 +7,33 @@ import s from './Sidebar.css';
 export default class Sidebar extends Component {
 
   static defaultProps = {
+    className: '',
+    showOnMount: false,
+    forceVisible: false,
     position: 'left'
   };
 
-  state = {
-    visible: true,
-    renderContent: true
-  };
+  constructor(props, context) {
+    super(props, context);
+
+    const visible = props.forceVisible || props.showOnMount;
+
+    this.state = {
+      visible,
+      renderContent: visible
+    };
+  }
 
   componentDidMount() {
-    this.hideTimeoutId = setTimeout(() => this.toggleVisibility(false), 1500);
-    this.hideContentTimeout = null;
+    if (this.props.showOnMount && !this.props.forceVisible) {
+      this.hideTimeoutId = setTimeout(() => this.toggleVisibility(false), 1500);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.forceVisible && !this.state.visible) {
+      this.toggleVisibility(true);
+    }
   }
 
   componentWillUnmount() {
@@ -29,9 +45,9 @@ export default class Sidebar extends Component {
     const { position, children } = this.props;
     const { visible, renderContent } = this.state;
 
-    const className = cls({
+    const className = cls(this.props.className, {
       [s.container]: true,
-      [s.left]: (position === 'left'),
+      [s[position]]: true,
       [s.hidden]: !visible
     });
 
@@ -45,15 +61,26 @@ export default class Sidebar extends Component {
   }
 
   handleMouseEnter = () => {
+    if (this.props.forceVisible || !this.hasContent) {
+      return;
+    }
+
     clearTimeout(this.hideTimeoutId);
     this.toggleVisibility(true);
   };
 
-  handleMouseLeave = () => this.toggleVisibility(false);
+  handleMouseLeave = () => {
+    if (!this.props.forceVisible) {
+      this.toggleVisibility(false);
+    }
+  }
 
   toggleVisibility(flag) {
-    clearTimeout(this.hideContentTimeout);
+    if (this.state.visible === flag) {
+      return;
+    }
 
+    clearTimeout(this.hideContentTimeout);
     this.setState({ visible: flag });
 
     if (flag) {
@@ -65,6 +92,11 @@ export default class Sidebar extends Component {
         500
       );
     }
+  }
+
+  get hasContent() {
+    const { children } = this.props;
+    return children && children.length && children.some(Boolean);
   }
 
 }

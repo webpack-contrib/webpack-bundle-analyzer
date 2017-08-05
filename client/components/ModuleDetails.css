@@ -1,0 +1,36 @@
+.container {
+  font: normal 10px Verdana;
+  white-space: nowrap;
+}
+
+.group {
+  margin-bottom: 20px;
+}
+
+.groupTitle {
+  font-weight: bold;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.item {
+  margin: 0;
+}
+
+.item + .item {
+  margin-top: 5px;
+}
+
+.item > dt {
+  display: inline;
+  font-weight: bold;
+}
+
+.item > dd {
+  display: inline;
+  margin: 0;
+}
+
+.item > dt::after {
+  content: ": ";
+}

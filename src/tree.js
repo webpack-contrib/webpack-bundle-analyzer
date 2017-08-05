@@ -86,7 +86,8 @@ class Module extends Node {
       path: this.path,
       statSize: this.size,
       parsedSize: this.parsedSize,
-      gzipSize: this.gzipSize
+      gzipSize: this.gzipSize,
+      requiredBy: _.map(this.data.reasons, 'moduleId')
     };
   }
 

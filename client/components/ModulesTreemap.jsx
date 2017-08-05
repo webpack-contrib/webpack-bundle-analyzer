@@ -7,6 +7,7 @@ import Tooltip from './Tooltip';
 import Switcher from './Switcher';
 import Sidebar from './Sidebar';
 import CheckboxList from './CheckboxList';
+import ModuleDetails from './ModuleDetails';
 
 import s from './ModulesTreemap.css';
 
@@ -20,7 +21,16 @@ export default class ModulesTreemap extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      activeModule: null
+    };
+
     this.setData(props.data, true);
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleDocumentKeydown);
   }
 
   componentWillReceiveProps(newProps) {
@@ -29,12 +39,18 @@ export default class ModulesTreemap extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!!this.state.activeModule !== !!prevState.activeModule) {
+      this.treemap.resize();
+    }
+  }
+
   render() {
-    const { data, showTooltip, tooltipContent, activeSizeItem } = this.state;
+    const { data, showTooltip, tooltipContent, activeSizeItem, activeModule } = this.state;
 
     return (
       <div className={s.container}>
-        <Sidebar>
+        <Sidebar position="left" showOnMount>
           <div className={s.sidebarGroup}>
             <Switcher label="Treemap sizes"
               items={this.sizeSwitchItems}
@@ -51,12 +67,20 @@ export default class ModulesTreemap extends Component {
             </div>
           }
         </Sidebar>
-        <Treemap className={s.map}
+        <Treemap ref={this.setTreemapRef}
+          className={s.map}
           data={data}
           weightProp={activeSizeItem.prop}
+          highlightedGroupIds={this.state.highlightedGroupIds}
           onMouseLeave={this.handleMouseLeaveTreemap}
-          onGroupHover={this.handleTreemapGroupHover}/>
-        <Tooltip visible={showTooltip}>
+          onGroupHover={this.handleTreemapGroupHover}
+          onGroupCtrlClick={this.handleTreemapGroupCtrlClick}/>
+        {activeModule &&
+          <Sidebar className={s.staticSidebar} position="right" forceVisible>
+            <ModuleDetails module={activeModule}/>
+          </Sidebar>
+        }
+        <Tooltip visible={showTooltip} container={this.treemap ? this.treemap.node : null}>
           {tooltipContent}
         </Tooltip>
       </div>
@@ -106,12 +130,31 @@ export default class ModulesTreemap extends Component {
     if (group) {
       this.setState({
         showTooltip: true,
-        tooltipContent: this.getTooltipContent(group)
+        tooltipContent: this.getTooltipContent(group),
+        highlightedGroupIds: group.requiredBy || []
       });
     } else {
       this.setState({ showTooltip: false });
     }
   };
+
+  handleTreemapGroupCtrlClick = event => {
+    const { group } = event;
+
+    console.log(group);
+
+    this.setState({
+      activeModule: group
+    });
+  };
+
+  handleDocumentKeydown = event => {
+    if (event.key === 'Escape' && this.state.activeModule) {
+      this.setState({ activeModule: null });
+    }
+  }
+
+  setTreemapRef = comp => this.treemap = comp;
 
   get totalChunksSize() {
     const sizeProp = this.state.activeSizeItem.prop;
@@ -136,6 +179,7 @@ export default class ModulesTreemap extends Component {
       data: this.getVisibleChunksData(),
       showTooltip: false,
       tooltipContent: null,
+      highlightedGroupIds: [],
       activeSizeItem,
       chunkItems
     });

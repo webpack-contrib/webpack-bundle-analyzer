@@ -25,6 +25,9 @@ export default class Treemap extends Component {
     } else if (nextProps.weightProp !== this.props.weightProp) {
       this.setWeightProp(nextProps.weightProp);
       this.update();
+    } else if (nextProps.highlightedGroupIds !== this.props.highlightedGroupIds) {
+      const redrawGroupIds = (this.props.highlightedGroupIds || []).concat(nextProps.highlightedGroupIds || []);
+      this.treemap.redraw(false, redrawGroupIds);
     }
   }
 
@@ -66,15 +69,26 @@ export default class Treemap extends Component {
       dataObject: {
         groups: this.props.data
       },
+      groupColorDecorator: this.groupColorDecorator,
       titleBarDecorator(opts, props, vars) {
         vars.titleBarShown = false;
       },
       onGroupClick(event) {
-        preventDefault(event);
-        zoomOutDisabled = false;
-        this.zoom(event.group);
+        // preventDefault(event);
+
+        if (event.ctrlKey || event.metaKey) {
+          if (component.props.onGroupCtrlClick) {
+            component.props.onGroupCtrlClick(event);
+          }
+        } else {
+          zoomOutDisabled = false;
+          this.zoom(event.group);
+        }
       },
-      onGroupDoubleClick: preventDefault,
+      onGroupDoubleClick(event) {
+        console.log('double');
+        preventDefault(event);
+      },
       onGroupHover(event) {
         // Ignoring hovering on `FoamTree` branding group
         if (event.group && event.group.attribution) {
@@ -106,6 +120,10 @@ export default class Treemap extends Component {
     this.treemap.update();
   }
 
+  resize() {
+    this.treemap.resize();
+  }
+
   setWeightProp(prop, data) {
     data = data || this.props.data;
 
@@ -117,6 +135,12 @@ export default class Treemap extends Component {
       if (group.groups) {
         group.groups.forEach(setProp);
       }
+    }
+  }
+
+  groupColorDecorator = (opts, params, vars) => {
+    if (params.group.id && this.props.highlightedGroupIds.includes(params.group.id)) {
+      vars.groupColor = '#f00';
     }
   }
 

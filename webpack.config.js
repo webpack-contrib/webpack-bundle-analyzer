@@ -24,7 +24,7 @@ module.exports = opts => {
       extensions: ['.js', '.jsx']
     },
 
-    devtool: (opts.env === 'dev') ? 'eval' : 'source-map',
+    devtool: (opts.env === 'dev') ? 'eval-source-map' : 'source-map',
     watch: (opts.env === 'dev'),
 
     module: {
