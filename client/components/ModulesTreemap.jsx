@@ -13,7 +13,8 @@ import s from './ModulesTreemap.css';
 const SIZE_SWITCH_ITEMS = [
   { label: 'Stat', prop: 'statSize' },
   { label: 'Parsed', prop: 'parsedSize' },
-  { label: 'Gzipped', prop: 'gzipSize' }
+  { label: 'Gzip', prop: 'gzipSize' },
+  { label: 'Brotli', prop: 'brotliSize' }
 ];
 
 export default class ModulesTreemap extends Component {
@@ -157,6 +158,7 @@ export default class ModulesTreemap extends Component {
         {this.renderModuleSize(module, 'stat')}
         {this.renderModuleSize(module, 'parsed')}
         {this.renderModuleSize(module, 'gzip')}
+        {this.renderModuleSize(module, 'brotli')}
         {module.path &&
           <div>Path: <strong>{module.path}</strong></div>
         }

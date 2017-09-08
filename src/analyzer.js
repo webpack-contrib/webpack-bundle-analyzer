@@ -3,6 +3,7 @@ const path = require('path');
 
 const _ = require('lodash');
 const gzipSize = require('gzip-size');
+const brotliSize = require('brotli-size');
 
 const Logger = require('./Logger');
 const { Folder } = require('../lib/tree');
@@ -74,6 +75,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     if (bundlesSources) {
       asset.parsedSize = bundlesSources[statAsset.name].length;
       asset.gzipSize = gzipSize.sync(bundlesSources[statAsset.name]);
+      asset.brotliSize = brotliSize.sync(bundlesSources[statAsset.name]);
     }
 
     // Picking modules from current bundle script
@@ -97,6 +99,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
       statSize: asset.tree.size,
       parsedSize: asset.parsedSize,
       gzipSize: asset.gzipSize,
+      brotliSize: asset.brotliSize,
       groups: _.invokeMap(asset.tree.children, 'toChartData')
     });
   }, []);

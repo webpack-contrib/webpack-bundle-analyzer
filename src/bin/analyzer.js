@@ -9,7 +9,7 @@ const { magenta } = require('chalk');
 const analyzer = require('../analyzer');
 const viewer = require('../viewer');
 
-const SIZES = new Set(['stat', 'parsed', 'gzip']);
+const SIZES = new Set(['stat', 'parsed', 'gzip', 'brotli']);
 
 const program = commander
   .version(require('../../package.json').version)

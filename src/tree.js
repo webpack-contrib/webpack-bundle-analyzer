@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const filesize = require('filesize');
 const gzipSize = require('gzip-size');
+const brotliSize = require('brotli-size');
 
 class Node {
 
@@ -43,6 +44,7 @@ class Module extends Node {
   set src(value) {
     this.data.parsedSrc = value;
     delete this._gzipSize;
+    delete this._brotliSize;
   }
 
   get size() {
@@ -63,6 +65,14 @@ class Module extends Node {
     }
 
     return this._gzipSize;
+  }
+
+  get brotliSize() {
+    if (!_.has(this, '_brotliSize')) {
+      this._brotliSize = this.src ? brotliSize.sync(this.src) : undefined;
+    }
+
+    return this._brotliSize;
   }
 
   mergeData(data) {
@@ -86,7 +96,8 @@ class Module extends Node {
       path: this.path,
       statSize: this.size,
       parsedSize: this.parsedSize,
-      gzipSize: this.gzipSize
+      gzipSize: this.gzipSize,
+      brotliSize: this.brotliSize
     };
   }
 
@@ -129,6 +140,14 @@ class Folder extends Node {
     }
 
     return this._gzipSize;
+  }
+
+  get brotliSize() {
+    if (!_.has(this, '_brotliSize')) {
+      this._brotliSize = this.src ? brotliSize.sync(this.src) : undefined;
+    }
+
+    return this._brotliSize;
   }
 
   getChild(name) {
@@ -235,6 +254,7 @@ class Folder extends Node {
       statSize: this.size,
       parsedSize: this.parsedSize,
       gzipSize: this.gzipSize,
+      brotliSize: this.brotliSize,
       groups: _.invokeMap(this.children, 'toChartData')
     };
   }
