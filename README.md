@@ -16,7 +16,7 @@ This module will help you:
 4. Optimize it!
 
 And the best thing is it supports minified bundles! It parses them to get real size of bundled modules.
-And it also shows their gzipped sizes!
+And it also shows their gzip and brotli sizes!
 
 ## Installation and usage
 There are two ways to use this module:
@@ -52,7 +52,7 @@ new BundleAnalyzerPlugin({
   // Relative to bundles output directory.
   reportFilename: 'report.html',
   // Module sizes to show in report by default.
-  // Should be one of `stat`, `parsed` or `gzip`.
+  // Should be one of `stat`, `parsed`, `gzip` or `brotli`.
   // See "Definitions" section for more information.
   defaultSizes: 'parsed',
   // Automatically open report in default browser
@@ -109,6 +109,10 @@ as Uglify, then this value will reflect the minified size of your code.
 ### Gzip size
 
 This is the size of running the file(s) through gzip compression.
+
+### Brotli size
+
+This is the size of running the file(s) through brotli compression.
 
 ## Contributing
 
