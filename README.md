@@ -110,6 +110,14 @@ as Uglify, then this value will reflect the minified size of your code.
 
 This is the size of running the file(s) through gzip compression.
 
+## Troubleshooting
+
+### I can't see all the dependencies in a chunk
+
+This is a known caveat when `webpack.optimize.ModuleConcatenationPlugin` is used. The way `ModuleConcatenationPlugin` works is that it merges multiple modules into a single one, and so that resulting module doesn't have edges anymore.
+
+If you are interested to drill down to exact dependencies, try analyzing your bundle without `ModuleConcatenationPlugin`. See [issue #115](https://github.com/th0r/webpack-bundle-analyzer/issues/115) for more discussion.
+
 ## Contributing
 
 Check out [CONTRIBUTING.md](./CONTRIBUTING.md) for instructions on contributing :tada:
