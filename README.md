@@ -112,7 +112,7 @@ This is the size of running the file(s) through gzip compression.
 
 ## Troubleshooting
 
-### I can't see all the depencies in a chunk
+### I can't see all the dependencies in a chunk
 
 This is a known caveat when `webpack.optimize.ModuleConcatenationPlugin` is used. The way `ModuleConcatenationPlugin` works is that it merges multiple modules into a single one, and so that resulting module doesn't have edges anymore.
 
