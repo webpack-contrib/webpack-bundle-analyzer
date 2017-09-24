@@ -4,11 +4,11 @@ import { h, Component } from 'preact';
 import CheckboxListItem from './CheckboxListItem';
 import s from './CheckboxList.css';
 
-const ALL_ITEM = {
-  label: 'All'
-};
+const ALL_ITEM = Symbol('ALL_ITEM');
 
 export default class CheckboxList extends Component {
+
+  static ALL_ITEM = ALL_ITEM;
 
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ export default class CheckboxList extends Component {
   }
 
   render() {
-    const { label, items } = this.props;
+    const { label, items, renderLabel } = this.props;
 
     return (
       <div className={s.container}>
@@ -46,12 +46,16 @@ export default class CheckboxList extends Component {
         <div>
           <CheckboxListItem item={ALL_ITEM}
             checked={this.isAllChecked()}
-            onChange={this.handleToggleAllCheck}/>
+            onChange={this.handleToggleAllCheck}>
+            {renderLabel}
+          </CheckboxListItem>
           {items.map(item =>
             <CheckboxListItem key={item.label}
               item={item}
               checked={this.isItemChecked(item)}
-              onChange={this.handleItemCheck}/>
+              onChange={this.handleItemCheck}>
+              {renderLabel}
+            </CheckboxListItem>
           )}
         </div>
       </div>
