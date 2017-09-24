@@ -1,5 +1,8 @@
 {
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream",
@@ -13,6 +16,6 @@
     "babel-eslint": "7.2.3",
     "eslint": "3.19.0",
     "eslint-plugin-react": "7.0.0",
-    "lerna": "2.0.0"
+    "lerna": "2.2.0"
   }
 }
