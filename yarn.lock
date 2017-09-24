@@ -54,9 +54,9 @@ ansi-escapes@^1.1.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-1.4.0.tgz#d3a8a83b319aa67793662b13e761c7911422306e"
 
-ansi-escapes@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-2.0.0.tgz#5bae52be424878dd9783e8910e3fc2922e83c81b"
+ansi-escapes@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.0.0.tgz#ec3e8b4e9f8064fc02c3ac9b65f1c275bda8ef92"
 
 ansi-regex@^2.0.0:
   version "2.1.1"
@@ -249,6 +249,14 @@ chalk@^2.0.0:
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
 
+chalk@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.1.0.tgz#ac5becf14fa21b99c6c92ca7a7d7cfd5b17e743e"
+  dependencies:
+    ansi-styles "^3.1.0"
+    escape-string-regexp "^1.0.5"
+    supports-color "^4.0.0"
+
 ci-info@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.0.0.tgz#dc5285f2b4e251821683681c381c3388f46ec534"
@@ -352,47 +360,46 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
 
-conventional-changelog-angular@^1.3.4:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-angular/-/conventional-changelog-angular-1.3.4.tgz#7d7cdfbd358948312904d02229a61fd6075cf455"
+conventional-changelog-angular@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-angular/-/conventional-changelog-angular-1.5.0.tgz#50b2d45008448455fdf67e06ea01972fbd08182a"
   dependencies:
     compare-func "^1.3.1"
-    github-url-from-git "^1.4.0"
     q "^1.4.1"
 
-conventional-changelog-atom@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-atom/-/conventional-changelog-atom-0.1.0.tgz#67a47c66a42b2f8909ef1587c9989ae1de730b92"
+conventional-changelog-atom@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-atom/-/conventional-changelog-atom-0.1.1.tgz#d40a9b297961b53c745e5d1718fd1a3379f6a92f"
   dependencies:
     q "^1.4.1"
 
-conventional-changelog-cli@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-cli/-/conventional-changelog-cli-1.3.1.tgz#1cd5a9dbae25ffb5ffe67afef1e136eaceefd2d5"
+conventional-changelog-cli@^1.3.2:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-cli/-/conventional-changelog-cli-1.3.3.tgz#ca38f229a27ec14036021b1786a48f5b8d48d7ff"
   dependencies:
     add-stream "^1.0.0"
-    conventional-changelog "^1.1.3"
+    conventional-changelog "^1.1.5"
     lodash "^4.1.0"
     meow "^3.7.0"
     tempfile "^1.1.1"
 
-conventional-changelog-codemirror@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-codemirror/-/conventional-changelog-codemirror-0.1.0.tgz#7577a591dbf9b538e7a150a7ee62f65a2872b334"
+conventional-changelog-codemirror@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-codemirror/-/conventional-changelog-codemirror-0.2.0.tgz#3cc925955f3b14402827b15168049821972d9459"
   dependencies:
     q "^1.4.1"
 
-conventional-changelog-core@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-core/-/conventional-changelog-core-1.9.0.tgz#de5dfbc091847656508d4a389e35c9a1bc49e7f4"
+conventional-changelog-core@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-core/-/conventional-changelog-core-1.9.1.tgz#ddf767c405850dfc8df31726c80fa1a6a10bdc7b"
   dependencies:
-    conventional-changelog-writer "^1.1.0"
-    conventional-commits-parser "^1.0.0"
+    conventional-changelog-writer "^2.0.1"
+    conventional-commits-parser "^2.0.0"
     dateformat "^1.0.12"
     get-pkg-repo "^1.0.0"
     git-raw-commits "^1.2.0"
     git-remote-origin-url "^2.0.0"
-    git-semver-tags "^1.2.0"
+    git-semver-tags "^1.2.1"
     lodash "^4.0.0"
     normalize-package-data "^2.3.5"
     q "^1.4.1"
@@ -400,21 +407,21 @@ conventional-changelog-core@^1.9.0:
     read-pkg-up "^1.0.1"
     through2 "^2.0.0"
 
-conventional-changelog-ember@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-ember/-/conventional-changelog-ember-0.2.6.tgz#8b7355419f5127493c4c562473ab2fc792f1c2b6"
+conventional-changelog-ember@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-ember/-/conventional-changelog-ember-0.2.7.tgz#c6aff35976284e7222649f81c62bd96ff3217bd2"
   dependencies:
     q "^1.4.1"
 
-conventional-changelog-eslint@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-eslint/-/conventional-changelog-eslint-0.1.0.tgz#a52411e999e0501ce500b856b0a643d0330907e2"
+conventional-changelog-eslint@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-eslint/-/conventional-changelog-eslint-0.2.0.tgz#b4b9b5dc09417844d87c7bcfb16bdcc686c4b1c1"
   dependencies:
     q "^1.4.1"
 
-conventional-changelog-express@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-express/-/conventional-changelog-express-0.1.0.tgz#55c6c841c811962036c037bdbd964a54ae310fce"
+conventional-changelog-express@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-express/-/conventional-changelog-express-0.2.0.tgz#8d666ad41b10ebf964a4602062ddd2e00deb518d"
   dependencies:
     q "^1.4.1"
 
@@ -430,16 +437,16 @@ conventional-changelog-jscs@^0.1.0:
   dependencies:
     q "^1.4.1"
 
-conventional-changelog-jshint@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-jshint/-/conventional-changelog-jshint-0.1.0.tgz#00cab8e9a3317487abd94c4d84671342918d2a07"
+conventional-changelog-jshint@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-jshint/-/conventional-changelog-jshint-0.2.0.tgz#63ad7aec66cd1ae559bafe80348c4657a6eb1872"
   dependencies:
     compare-func "^1.3.1"
     q "^1.4.1"
 
-conventional-changelog-writer@^1.1.0:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-writer/-/conventional-changelog-writer-1.4.1.tgz#3f4cb4d003ebb56989d30d345893b52a43639c8e"
+conventional-changelog-writer@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-writer/-/conventional-changelog-writer-2.0.1.tgz#47c10d0faba526b78d194389d1e931d09ee62372"
   dependencies:
     compare-func "^1.3.1"
     conventional-commits-filter "^1.0.0"
@@ -452,20 +459,20 @@ conventional-changelog-writer@^1.1.0:
     split "^1.0.0"
     through2 "^2.0.0"
 
-conventional-changelog@^1.1.3:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/conventional-changelog/-/conventional-changelog-1.1.4.tgz#108bc750c2a317e200e2f9b413caaa1f8c7efa3b"
+conventional-changelog@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/conventional-changelog/-/conventional-changelog-1.1.5.tgz#4c46fb64b2986cab19888d8c4b87ca7c0e431bfd"
   dependencies:
-    conventional-changelog-angular "^1.3.4"
-    conventional-changelog-atom "^0.1.0"
-    conventional-changelog-codemirror "^0.1.0"
-    conventional-changelog-core "^1.9.0"
-    conventional-changelog-ember "^0.2.6"
-    conventional-changelog-eslint "^0.1.0"
-    conventional-changelog-express "^0.1.0"
+    conventional-changelog-angular "^1.5.0"
+    conventional-changelog-atom "^0.1.1"
+    conventional-changelog-codemirror "^0.2.0"
+    conventional-changelog-core "^1.9.1"
+    conventional-changelog-ember "^0.2.7"
+    conventional-changelog-eslint "^0.2.0"
+    conventional-changelog-express "^0.2.0"
     conventional-changelog-jquery "^0.1.0"
     conventional-changelog-jscs "^0.1.0"
-    conventional-changelog-jshint "^0.1.0"
+    conventional-changelog-jshint "^0.2.0"
 
 conventional-commits-filter@^1.0.0:
   version "1.0.0"
@@ -474,9 +481,9 @@ conventional-commits-filter@^1.0.0:
     is-subset "^0.1.1"
     modify-values "^1.0.0"
 
-conventional-commits-parser@^1.0.0, conventional-commits-parser@^1.0.1:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/conventional-commits-parser/-/conventional-commits-parser-1.3.0.tgz#e327b53194e1a7ad5dc63479ee9099a52b024865"
+conventional-commits-parser@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/conventional-commits-parser/-/conventional-commits-parser-2.0.0.tgz#71d01910cb0a99aeb20c144e50f81f4df3178447"
   dependencies:
     JSONStream "^1.0.4"
     is-text-path "^1.0.0"
@@ -486,15 +493,15 @@ conventional-commits-parser@^1.0.0, conventional-commits-parser@^1.0.1:
     through2 "^2.0.0"
     trim-off-newlines "^1.0.0"
 
-conventional-recommended-bump@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/conventional-recommended-bump/-/conventional-recommended-bump-1.0.0.tgz#6d303a27837ae938b7c68c8ddeed34559b4b0789"
+conventional-recommended-bump@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/conventional-recommended-bump/-/conventional-recommended-bump-1.0.1.tgz#56b8ae553a8a1152fa069e767599e1f6948bd36c"
   dependencies:
     concat-stream "^1.4.10"
     conventional-commits-filter "^1.0.0"
-    conventional-commits-parser "^1.0.1"
+    conventional-commits-parser "^2.0.0"
     git-raw-commits "^1.2.0"
-    git-semver-tags "^1.2.0"
+    git-semver-tags "^1.2.1"
     meow "^3.3.0"
     object-assign "^4.0.1"
 
@@ -607,7 +614,7 @@ duplexer@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
 
-error-ex@^1.2.0:
+error-ex@^1.2.0, error-ex@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/error-ex/-/error-ex-1.3.1.tgz#f855a86ce61adc4e8621c3cda21e7a7612c3a8dc"
   dependencies:
@@ -777,9 +784,9 @@ execa@^0.5.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
-execa@^0.6.3:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-0.6.3.tgz#57b69a594f081759c69e5370f0d17b9cb11658fe"
+execa@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-0.8.0.tgz#d8d76bbc1b55217ed190fd6dd49d3c774ecfc8da"
   dependencies:
     cross-spawn "^5.0.1"
     get-stream "^3.0.0"
@@ -847,12 +854,12 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-fs-extra@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-3.0.1.tgz#3794f378c58b342ea7dbbb23095109c4b3b62291"
+fs-extra@^4.0.1:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.2.tgz#f91704c53d1b461f893452b0c307d9997647ab6b"
   dependencies:
     graceful-fs "^4.1.2"
-    jsonfile "^3.0.0"
+    jsonfile "^4.0.0"
     universalify "^0.1.0"
 
 fs.realpath@^1.0.0:
@@ -900,9 +907,9 @@ get-pkg-repo@^1.0.0:
     parse-github-repo-url "^1.3.0"
     through2 "^2.0.0"
 
-get-port@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/get-port/-/get-port-3.1.0.tgz#ef01b18a84ca6486970ff99e54446141a73ffd3e"
+get-port@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/get-port/-/get-port-3.2.0.tgz#dd7ce7de187c06c8bf353796ac71e099f0980ebc"
 
 get-stdin@^4.0.1:
   version "4.0.1"
@@ -936,9 +943,9 @@ git-remote-origin-url@^2.0.0:
     gitconfiglocal "^1.0.0"
     pify "^2.3.0"
 
-git-semver-tags@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/git-semver-tags/-/git-semver-tags-1.2.0.tgz#b31fd02c8ab578bd6c9b5cacca5e1c64c1177ac1"
+git-semver-tags@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/git-semver-tags/-/git-semver-tags-1.2.1.tgz#6ccd2a52e735b736748dc762444fcd9588e27490"
   dependencies:
     meow "^3.3.0"
     semver "^5.0.1"
@@ -949,9 +956,12 @@ gitconfiglocal@^1.0.0:
   dependencies:
     ini "^1.3.2"
 
-github-url-from-git@^1.4.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/github-url-from-git/-/github-url-from-git-1.5.0.tgz#f985fedcc0a9aa579dc88d7aff068d55cc6251a0"
+glob-parent@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
+  dependencies:
+    is-glob "^3.1.0"
+    path-dirname "^1.0.0"
 
 glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.2:
   version "7.1.2"
@@ -1078,11 +1088,11 @@ inquirer@^0.12.0:
     strip-ansi "^3.0.0"
     through "^2.3.6"
 
-inquirer@^3.0.6:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-3.2.0.tgz#45b44c2160c729d7578c54060b3eed94487bb42b"
+inquirer@^3.2.2:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-3.3.0.tgz#9dd2f2ad765dcab1ff0443b491442a20ba227dc9"
   dependencies:
-    ansi-escapes "^2.0.0"
+    ansi-escapes "^3.0.0"
     chalk "^2.0.0"
     cli-cursor "^2.1.0"
     cli-width "^2.0.0"
@@ -1131,6 +1141,10 @@ is-ci@^1.0.10:
   dependencies:
     ci-info "^1.0.0"
 
+is-extglob@^2.1.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/is-extglob/-/is-extglob-2.1.1.tgz#a88c02535791f02ed37c76a1b9ea9773c833f8c2"
+
 is-finite@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-finite/-/is-finite-1.0.2.tgz#cc6677695602be550ef11e8b4aa6305342b6d0aa"
@@ -1146,6 +1160,12 @@ is-fullwidth-code-point@^1.0.0:
 is-fullwidth-code-point@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-2.0.0.tgz#a3b30a5c4f199183167aaab93beefae3ddfb654f"
+
+is-glob@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/is-glob/-/is-glob-3.1.0.tgz#7ba5ae24217804ac70707b96922567486cc3e84a"
+  dependencies:
+    is-extglob "^2.1.0"
 
 is-my-json-valid@^2.10.0:
   version "2.16.0"
@@ -1245,9 +1265,9 @@ json-stringify-safe@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
-jsonfile@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-3.0.1.tgz#a5ecc6f65f53f662c4415c7675a0331d0992ec66"
+jsonfile@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-4.0.0.tgz#8771aae0799b64076b76640fca058f9c10e33ecb"
   optionalDependencies:
     graceful-fs "^4.1.6"
 
@@ -1283,45 +1303,46 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-lerna@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/lerna/-/lerna-2.0.0.tgz#49a72fe70e06aebfd7ea23efb2ab41abe60ebeea"
+lerna@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/lerna/-/lerna-2.2.0.tgz#dcf588f8c8feb57d76b34ef72cfedef23f1b5807"
   dependencies:
     async "^1.5.0"
-    chalk "^1.1.1"
+    chalk "^2.1.0"
     cmd-shim "^2.0.2"
     columnify "^1.5.4"
     command-join "^2.0.0"
-    conventional-changelog-cli "^1.3.1"
-    conventional-recommended-bump "^1.0.0"
+    conventional-changelog-cli "^1.3.2"
+    conventional-recommended-bump "^1.0.1"
     dedent "^0.7.0"
-    execa "^0.6.3"
+    execa "^0.8.0"
     find-up "^2.1.0"
-    fs-extra "^3.0.1"
-    get-port "^3.1.0"
+    fs-extra "^4.0.1"
+    get-port "^3.2.0"
     glob "^7.1.2"
+    glob-parent "^3.1.0"
     globby "^6.1.0"
     graceful-fs "^4.1.11"
-    inquirer "^3.0.6"
+    inquirer "^3.2.2"
     is-ci "^1.0.10"
-    load-json-file "^2.0.0"
+    load-json-file "^3.0.0"
     lodash "^4.17.4"
     minimatch "^3.0.4"
-    npmlog "^4.1.0"
+    npmlog "^4.1.2"
     p-finally "^1.0.0"
     path-exists "^3.0.0"
     read-cmd-shim "^1.0.1"
     read-pkg "^2.0.0"
     rimraf "^2.6.1"
-    safe-buffer "^5.0.1"
-    semver "^5.1.0"
+    safe-buffer "^5.1.1"
+    semver "^5.4.1"
     signal-exit "^3.0.2"
     strong-log-transformer "^1.0.6"
     temp-write "^3.3.0"
-    write-file-atomic "^2.1.0"
-    write-json-file "^2.1.0"
-    write-pkg "^3.0.1"
-    yargs "^8.0.1"
+    write-file-atomic "^2.3.0"
+    write-json-file "^2.2.0"
+    write-pkg "^3.1.0"
+    yargs "^8.0.2"
 
 levn@^0.3.0, levn@~0.3.0:
   version "0.3.0"
@@ -1346,6 +1367,15 @@ load-json-file@^2.0.0:
   dependencies:
     graceful-fs "^4.1.2"
     parse-json "^2.2.0"
+    pify "^2.0.0"
+    strip-bom "^3.0.0"
+
+load-json-file@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-3.0.0.tgz#7eb3735d983a7ed2262ade4ff769af5369c5c440"
+  dependencies:
+    graceful-fs "^4.1.2"
+    parse-json "^3.0.0"
     pify "^2.0.0"
     strip-bom "^3.0.0"
 
@@ -1503,7 +1533,7 @@ npm-run-path@^2.0.0:
   dependencies:
     path-key "^2.0.0"
 
-npmlog@^4.1.0:
+npmlog@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/npmlog/-/npmlog-4.1.2.tgz#08a7f2a8bf734604779a9efa4ad5cc717abb954b"
   dependencies:
@@ -1593,6 +1623,16 @@ parse-json@^2.2.0:
   resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-2.2.0.tgz#f480f40434ef80741f8469099f8dea18f55a4dc9"
   dependencies:
     error-ex "^1.2.0"
+
+parse-json@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-3.0.0.tgz#fa6f47b18e23826ead32f263e744d0e1e847fb13"
+  dependencies:
+    error-ex "^1.3.1"
+
+path-dirname@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/path-dirname/-/path-dirname-1.0.2.tgz#cc33d24d525e099a5388c0336c6e32b9160609e0"
 
 path-exists@^2.0.0:
   version "2.1.0"
@@ -1832,13 +1872,17 @@ rx-lite@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
 
-safe-buffer@^5.0.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
+safe-buffer@^5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
-"semver@2 || 3 || 4 || 5", semver@^5.0.1, semver@^5.1.0:
+"semver@2 || 3 || 4 || 5", semver@^5.0.1:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
+
+semver@^5.4.1:
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
 
 set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"
@@ -2178,7 +2222,7 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
-write-file-atomic@^2.0.0, write-file-atomic@^2.1.0:
+write-file-atomic@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/write-file-atomic/-/write-file-atomic-2.1.0.tgz#1769f4b551eedce419f0505deae2e26763542d37"
   dependencies:
@@ -2186,7 +2230,15 @@ write-file-atomic@^2.0.0, write-file-atomic@^2.1.0:
     imurmurhash "^0.1.4"
     slide "^1.1.5"
 
-write-json-file@^2.1.0, write-json-file@^2.2.0:
+write-file-atomic@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/write-file-atomic/-/write-file-atomic-2.3.0.tgz#1ff61575c2e2a4e8e510d6fa4e243cce183999ab"
+  dependencies:
+    graceful-fs "^4.1.11"
+    imurmurhash "^0.1.4"
+    signal-exit "^3.0.2"
+
+write-json-file@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/write-json-file/-/write-json-file-2.2.0.tgz#51862506bbb3b619eefab7859f1fd6c6d0530876"
   dependencies:
@@ -2197,7 +2249,7 @@ write-json-file@^2.1.0, write-json-file@^2.2.0:
     sort-keys "^1.1.1"
     write-file-atomic "^2.0.0"
 
-write-pkg@^3.0.1:
+write-pkg@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/write-pkg/-/write-pkg-3.1.0.tgz#030a9994cc9993d25b4e75a9f1a1923607291ce9"
   dependencies:
@@ -2228,7 +2280,7 @@ yargs-parser@^7.0.0:
   dependencies:
     camelcase "^4.1.0"
 
-yargs@^8.0.1:
+yargs@^8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-8.0.2.tgz#6299a9055b1cefc969ff7e79c1d918dceb22c360"
   dependencies:
