@@ -40,7 +40,7 @@ describe('Analyzer', function () {
 });
 
 function generateReportFrom(statsFilename) {
-  childProcess.execSync(`../lib/bin/analyzer.js -m static -r output/report.html -O stats/${statsFilename}`, {
+  childProcess.execSync(`../src/bin/analyzer.js -m static -r output/report.html -O stats/${statsFilename}`, {
     cwd: __dirname
   });
 }

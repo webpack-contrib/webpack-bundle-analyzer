@@ -1,6 +1,6 @@
 require('./helpers');
 
-const Logger = require('../lib/Logger');
+const Logger = require('../src/Logger');
 
 class TestLogger extends Logger {
   constructor(level) {

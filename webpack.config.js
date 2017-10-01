@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const BundleAnalyzePlugin = require('./lib/BundleAnalyzerPlugin');
+const BundleAnalyzePlugin = require('./src/BundleAnalyzerPlugin');
 
 module.exports = opts => {
   opts = Object.assign({
