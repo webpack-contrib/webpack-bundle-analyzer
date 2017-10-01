@@ -1,0 +1,29 @@
+branches:
+  only:
+    - master
+init:
+  - git config --global core.autocrlf input
+environment:
+  matrix:
+    - nodejs_version: '8'
+      webpack_version: latest
+      job_part: test
+    - nodejs_version: '6'
+      webpack_version: latest
+      job_part: test
+    - nodejs_version: '4.3'
+      webpack_version: latest
+      job_part: test
+build: 'off'
+matrix:
+  fast_finish: true
+install:
+  - 'ps: Install-Product node $env:nodejs_version x64'
+  - npm i -g npm@latest
+  - npm install
+before_test:
+  - 'cmd: npm install webpack@%webpack_version%'
+test_script:
+  - node --version
+  - npm --version
+  - 'cmd: npm run appveyor:%job_part%'
