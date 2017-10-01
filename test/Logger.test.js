@@ -1,3 +1,5 @@
+require('./helpers');
+
 const Logger = require('../lib/Logger');
 
 class TestLogger extends Logger {

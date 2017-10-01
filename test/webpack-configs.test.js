@@ -1,3 +1,5 @@
+require('./helpers');
+
 const fs = require('fs');
 const del = require('del');
 
@@ -6,9 +8,7 @@ let nightmare;
 describe('Webpack config', function () {
   let clock;
 
-  this.timeout(3000);
-
-  before(function () {
+  beforeAll(function () {
     const Nightmare = require('nightmare');
     nightmare = Nightmare();
     del.sync(`${__dirname}/output`);
@@ -16,7 +16,6 @@ describe('Webpack config', function () {
   });
 
   beforeEach(async function () {
-    this.timeout(10000);
     await nightmare.goto('about:blank');
   });
 
@@ -24,7 +23,7 @@ describe('Webpack config', function () {
     del.sync(`${__dirname}/output`);
   });
 
-  after(function () {
+  afterAll(function () {
     clock.restore();
   });
 

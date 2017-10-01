@@ -1,3 +1,5 @@
+require('./helpers');
+
 const fs = require('fs');
 const del = require('del');
 const childProcess = require('child_process');
@@ -7,9 +9,7 @@ let nightmare;
 describe('Analyzer', function () {
   let clock;
 
-  this.timeout(3000);
-
-  before(function () {
+  beforeAll(function () {
     const Nightmare = require('nightmare');
     nightmare = Nightmare();
     del.sync(`${__dirname}/output`);
@@ -17,7 +17,6 @@ describe('Analyzer', function () {
   });
 
   beforeEach(async function () {
-    this.timeout(10000);
     await nightmare.goto('about:blank');
   });
 
@@ -25,7 +24,7 @@ describe('Analyzer', function () {
     del.sync(`${__dirname}/output`);
   });
 
-  after(function () {
+  afterAll(function () {
     clock.restore();
   });
 
