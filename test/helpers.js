@@ -8,7 +8,7 @@ global.sinon = require('sinon');
 global.webpackCompile = webpackCompile;
 global.makeWebpackConfig = makeWebpackConfig;
 
-const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
+const BundleAnalyzerPlugin = require('../src/BundleAnalyzerPlugin');
 
 function webpackCompile(config) {
   return new Promise((resolve, reject) =>
