@@ -11,9 +11,6 @@ const LEVEL_TO_CONSOLE_METHOD = new Map([
 ]);
 
 class Logger {
-
-  static levels = LEVELS;
-
   constructor(level = 'info') {
     this.activeLevels = new Set();
     this.setLogLevel(level);
@@ -34,8 +31,9 @@ class Logger {
   _log(level, ...args) {
     console[LEVEL_TO_CONSOLE_METHOD.get(level) || level](...args);
   }
-
 };
+
+Logger.levels = LEVELS;
 
 LEVELS.forEach(level => {
   if (level === 'silent') return;
