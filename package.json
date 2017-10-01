@@ -24,7 +24,8 @@
     "npm-publish": "npm run lint && npm run build && npm test && npm publish",
     "lint": "eslint --ext js,jsx .",
     "test": "mocha --compilers js:babel-core/register",
-    "test-dev": "mocha --watch --compilers js:babel-core/register"
+    "test-dev": "mocha --watch --compilers js:babel-core/register",
+    "webpack-defaults": "webpack-defaults"
   },
   "files": [
     "public",
@@ -73,6 +74,7 @@
     "stream-combiner2": "1.1.1",
     "style-loader": "0.17.0",
     "webpack": "2.5.1",
+    "webpack-defaults": "^1.6.0",
     "webpack-dev-server": "2.4.5"
   },
   "keywords": [
