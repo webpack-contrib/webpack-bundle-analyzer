@@ -1,17 +1,47 @@
-// Babel config for Node
-// Compiles sources, gulpfile and tests
 {
   "presets": [
-    ["env", {
-      "targets": { "node": 4 },
-      "exclude": [
-        // Node 4 supports all the generator features that we use so there is no need in Regenerator
-        "transform-regenerator"
-      ]
-    }]
+    [
+      "env",
+      {
+        "targets": {
+          "node": 4
+        },
+        "exclude": [
+          "transform-regenerator"
+        ]
+      }
+    ],
+    [
+      "env",
+      {
+        "useBuiltIns": true,
+        "targets": {
+          "node": "4.3"
+        },
+        "exclude": [
+          "transform-async-to-generator",
+          "transform-regenerator"
+        ]
+      }
+    ]
   ],
   "plugins": [
-    ["transform-object-rest-spread", { "useBuiltIns": true }],
+    [
+      "transform-object-rest-spread",
+      {
+        "useBuiltIns": true
+      }
+    ],
     "transform-class-properties"
-  ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "env"
+      ],
+      "plugins": [
+        "transform-object-rest-spread"
+      ]
+    }
+  }
 }

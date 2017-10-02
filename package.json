@@ -13,24 +13,38 @@
     "type": "git",
     "url": "git+https://github.com/th0r/webpack-bundle-analyzer.git"
   },
-  "main": "lib/index.js",
+  "main": "dist/cjs.js",
   "bin": "lib/bin/analyzer.js",
   "engines": {
-    "node": ">= 4"
+    "node": ">= 4.3 < 5.0.0 || >= 5.10"
   },
   "scripts": {
-    "start": "gulp watch",
-    "build": "gulp build",
+    "start": "npm run build -- -w",
+    "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js'",
     "npm-publish": "npm run lint && npm run build && npm test && npm publish",
-    "lint": "eslint --ext js,jsx .",
-    "test": "mocha --compilers js:babel-core/register",
-    "test-dev": "mocha --watch --compilers js:babel-core/register"
+    "lint": "eslint --cache src test",
+    "test": "jest",
+    "test-dev": "mocha --watch --compilers js:babel-core/register",
+    "webpack-defaults": "webpack-defaults",
+    "appveyor:test": "npm run test",
+    "clean": "del-cli dist",
+    "lint-staged": "lint-staged",
+    "prebuild": "npm run clean",
+    "prepublish": "npm run build",
+    "release": "standard-version",
+    "security": "nsp check",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
+    "travis:lint": "npm run lint && npm run security",
+    "travis:test": "npm run test -- --runInBand",
+    "travis:coverage": "npm run test:coverage -- --runInBand"
   },
   "files": [
     "public",
     "lib",
     "src",
-    "views"
+    "views",
+    "dist"
   ],
   "dependencies": {
     "acorn": "^5.1.1",
@@ -46,33 +60,41 @@
     "ws": "^2.3.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "6.24.1",
     "babel-eslint": "7.2.3",
+    "babel-jest": "^21.2.0",
     "babel-loader": "7.0.0",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
     "babel-plugin-transform-react-jsx": "6.24.1",
-    "babel-preset-env": "1.4.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "1.6.0",
     "chai": "3.5.0",
     "chai-subset": "1.5.0",
     "classnames": "2.2.5",
+    "cross-env": "^5.0.5",
     "css-loader": "0.28.1",
     "del": "2.2.2",
+    "del-cli": "^1.1.0",
     "eslint": "3.19.0",
+    "eslint-config-webpack": "^1.2.5",
+    "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-react": "7.0.0",
     "exports-loader": "0.6.4",
-    "gulp": "3.9.1",
-    "gulp-babel": "6.1.2",
-    "gulp-plumber": "1.1.0",
-    "gulp-util": "3.0.8",
-    "gulp-watch": "4.3.11",
+    "jest": "^21.2.1",
+    "lint-staged": "^4.2.3",
     "mocha": "3.3.0",
     "nightmare": "2.10.0",
+    "nsp": "^2.8.1",
+    "pre-commit": "^1.2.2",
     "preact": "8.1.0",
     "sinon": "2.2.0",
+    "standard-version": "^4.2.0",
     "stream-combiner2": "1.1.1",
     "style-loader": "0.17.0",
     "webpack": "2.5.1",
+    "webpack-defaults": "^1.6.0",
     "webpack-dev-server": "2.4.5"
   },
   "keywords": [
@@ -86,5 +108,15 @@
     "treemap",
     "zoomable",
     "zoom"
-  ]
+  ],
+  "peerDependencies": {
+    "webpack": "^2.0.0 || ^3.0.0"
+  },
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
 }

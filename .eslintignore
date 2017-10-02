@@ -13,3 +13,6 @@ test/webpack.config.js
 test/output
 
 samples
+
+/node_modules
+/dist

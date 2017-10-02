@@ -1,33 +1,48 @@
+sudo: false
+dist: trusty
 language: node_js
-node_js:
-  - "4"
-  - "6"
-  - "node"
-cache:
-  - yarn: true
-  - directories:
-    - node_modules
-env:
-  # Required to compile native modules for Node.js v4+
-  # See https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Node.js-v4-(or-io.js-v3)-compiler-requirements
-  - CXX=g++-4.8
-addons:
-  apt:
-    sources:
-      # Required to compile native modules for Node.js v4+
-      - ubuntu-toolchain-r-test
-    packages:
-      # Required by Electron
-      # https://github.com/juliangruber/electron-stream#travis
-      - xvfb
-      # Required to compile native modules for Node.js v4+
-      - g++-4.8
+branches:
+  only:
+    - master
+jobs:
+  fast_finish: true
+  allow_failures:
+    - env: WEBPACK_VERSION=canary
+  include:
+    - &test-latest
+      stage: Webpack latest
+      node_js: 6
+      env: WEBPACK_VERSION=latest JOB_PART=test
+      script: npm run travis:$JOB_PART
+    - <<: *test-latest
+      node_js: 4.8
+      env: WEBPACK_VERSION=latest JOB_PART=test
+      script: npm run travis:$JOB_PART
+    - <<: *test-latest
+      node_js: 8
+      env: WEBPACK_VERSION=latest JOB_PART=lint
+      script: npm run travis:$JOB_PART
+    - <<: *test-latest
+      node_js: 8
+      env: WEBPACK_VERSION=latest JOB_PART=coverage
+      script: npm run travis:$JOB_PART
+      after_success: 'bash <(curl -s https://codecov.io/bash)'
+    - stage: Webpack canary
+      before_script: npm i --no-save git://github.com/webpack/webpack.git#master
+      script: npm run travis:$JOB_PART
+      node_js: 8
+      env: WEBPACK_VERSION=canary JOB_PART=test
+before_install:
+  - 'if [[ `npm -v` != 5* ]]; then npm i -g npm@^5.0.0; fi'
+  - nvm --version
+  - node --version
+  - npm --version
 before_script:
-  # Required by Electron
-  - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-  # Building sources
-  - npm run build
+  - |-
+    if [ "$WEBPACK_VERSION" ]; then
+      npm i --no-save webpack@$WEBPACK_VERSION
+    fi
 script:
-  - npm run lint
-  - npm run test
+  - 'npm run travis:$JOB_PART'
+after_success:
+  - 'bash <(curl -s https://codecov.io/bash)'

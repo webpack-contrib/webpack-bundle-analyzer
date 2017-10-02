@@ -1,3 +1,5 @@
+require('./helpers');
+
 const fs = require('fs');
 const { exec } = require('child_process');
 
@@ -8,14 +10,12 @@ const WEBPACK_CONFIG_PATH = `${ROOT}/webpack.config.js`;
 const webpackConfig = require(WEBPACK_CONFIG_PATH);
 
 describe('Webpack Dev Server', function () {
-  before(deleteOutputDirectory);
+  beforeAll(deleteOutputDirectory);
   afterEach(deleteOutputDirectory);
 
   it('should save report file to the output directory', function (done) {
     const timeout = 15000;
     const startedAt = Date.now();
-
-    this.timeout(timeout);
 
     const devServer = exec(`${__dirname}/../node_modules/.bin/webpack-dev-server --config ${WEBPACK_CONFIG_PATH}`, {
       cwd: `${ROOT}/tmp`

@@ -1,4 +1,4 @@
-const BundleAnalyzerPlugin = require('../../lib/BundleAnalyzerPlugin');
+const BundleAnalyzerPlugin = require('../../src/BundleAnalyzerPlugin');
 
 module.exports = {
   entry: `${__dirname}/src.js`,
