@@ -81,7 +81,7 @@ command:
 webpack --profile --json > stats.json
 ```
 
-If you're on Windows and using PowerShell, you can generate the stats file with this command to [avoid BOM issues](https://github.com/th0r/webpack-bundle-analyzer/issues/47):
+If you're on Windows and using PowerShell, you can generate the stats file with this command to [avoid BOM issues](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/47):
 
 ```
 webpack --profile --json | Out-file 'stats.json' -Encoding OEM
@@ -116,7 +116,7 @@ This is the size of running the file(s) through gzip compression.
 
 This is a known caveat when `webpack.optimize.ModuleConcatenationPlugin` is used. The way `ModuleConcatenationPlugin` works is that it merges multiple modules into a single one, and so that resulting module doesn't have edges anymore.
 
-If you are interested to drill down to exact dependencies, try analyzing your bundle without `ModuleConcatenationPlugin`. See [issue #115](https://github.com/th0r/webpack-bundle-analyzer/issues/115) for more discussion.
+If you are interested to drill down to exact dependencies, try analyzing your bundle without `ModuleConcatenationPlugin`. See [issue #115](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/115) for more discussion.
 
 ## Contributing
 
