@@ -81,7 +81,7 @@ class BundleAnalyzerPlugin {
       .catch((error) => {
         this.logger.error(
           `${bold('Webpack Bundle Analyzer')} error saving stats file to ${bold(statsFilepath)}.`,
-          JSON.stringify(error, null, "\n") // eslint-disable-line quotes
+          JSON.stringify(error, null, '\t')
         );
       });
   }
