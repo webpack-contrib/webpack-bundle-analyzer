@@ -61,29 +61,27 @@ class BundleAnalyzerPlugin {
     });
   }
 
-  generateStatsFile(stats) {
+  async generateStatsFile(stats) {
     const statsFilepath = path.resolve(this.compiler.outputPath, this.opts.statsFilename);
     mkdir.sync(path.dirname(statsFilepath));
 
-    const options = {
-      promises: 'ignore',
-      buffers: 'ignore',
-      maps: 'ignore',
-      iterables: 'ignore',
-      circular: 'ignore'
-    };
-    return bfj.write(statsFilepath, stats, options)
-      .then(() => {
-        this.logger.info(
-          `${bold('Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
-        );
-      })
-      .catch((error) => {
-        this.logger.error(
-          `${bold('Webpack Bundle Analyzer')} error saving stats file to ${bold(statsFilepath)}.`,
-          JSON.stringify(error, null, '\t')
-        );
+    try {
+      await bfj.write(statsFilepath, stats, {
+        promises: 'ignore',
+        buffers: 'ignore',
+        maps: 'ignore',
+        iterables: 'ignore',
+        circular: 'ignore'
       });
+
+      this.logger.info(
+        `${bold('Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
+      );
+    } catch (error) {
+      this.logger.error(
+        `${bold('Webpack Bundle Analyzer')} error saving stats file to ${bold(statsFilepath)}: ${error}`
+      );
+    }
   }
 
   async startAnalyzerServer(stats) {
