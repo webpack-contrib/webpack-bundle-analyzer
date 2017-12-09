@@ -8,14 +8,14 @@
     "Vesa Laakso <laakso.vesa@gmail.com> (http://vesalaakso.com)"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/th0r/webpack-bundle-analyzer",
-  "changelog": "https://github.com/th0r/webpack-bundle-analyzer/blob/master/CHANGELOG.md",
+  "homepage": "https://github.com/webpack-contrib/webpack-bundle-analyzer",
+  "changelog": "https://github.com/webpack-contrib/webpack-bundle-analyzer/blob/master/CHANGELOG.md",
   "bugs": {
-    "url": "https://github.com/th0r/webpack-bundle-analyzer/issues"
+    "url": "https://github.com/webpack-contrib/webpack-bundle-analyzer/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/th0r/webpack-bundle-analyzer.git"
+    "url": "git+https://github.com/webpack-contrib/webpack-bundle-analyzer.git"
   },
   "main": "lib/index.js",
   "engines": {
