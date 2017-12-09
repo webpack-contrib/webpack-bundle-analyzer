@@ -1,5 +1,5 @@
 # Webpack Bundle Analyzer
-Webpack plugin and CLI utility that represents bundle content as convenient interactive zoomable treemap
+Webpack plugin and CLI utility that represents bundle content as a convenient interactive zoomable treemap
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]
 
@@ -11,7 +11,7 @@ Just take a look at this demo:
 This module will help you:
 
 1. Realize what's *really* inside your bundle
-2. Find out what modules make up the most of it's size
+2. Find out what modules make up the most of its size
 3. Find modules that got there by mistake
 4. Optimize it!
 
@@ -21,7 +21,7 @@ And it also shows their gzipped sizes!
 ## Installation and usage
 There are two ways to use this module:
 
-### As plugin
+### As a plugin
 ```sh
 npm install --save-dev webpack-bundle-analyzer
 ```
@@ -71,8 +71,8 @@ new BundleAnalyzerPlugin({
 })
 ```
 
-### As CLI utility
-You can also analyze already existing bundles if you have Webpack Stats JSON file.
+### As a CLI utility
+You can also analyze already existing bundles if you have a Webpack Stats JSON file.
 
 You can generate it using `BundleAnalyzerPlugin` with `generateStatsFile` option set to `true` or with this simple
 command:

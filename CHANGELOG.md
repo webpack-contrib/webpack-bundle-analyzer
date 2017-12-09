@@ -17,6 +17,11 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
    * Removed undocumented `require('webpack-bundle-analyzer').start` accessor. If you try to
      use the `start` function now, it will raise an error.
 
+## 2.9.1
+
+ * **Bug Fix**
+   * Bump `ws` dependency to fix DoS vulnerability (closes [#130](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/130))
+
 ## 2.9.0
  * **New Feature**
    * Show chunk sizes in sidebar (closes #91)
