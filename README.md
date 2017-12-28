@@ -61,7 +61,7 @@ new BundleAnalyzerPlugin(options?: object)
 |**`openAnalyzer`**|`{Boolean}`|Default: `true`. Automatically open report in default browser.|
 |**`generateStatsFile`**|`{Boolean}`|Default: `false`. If `true`, webpack stats JSON file will be generated in bundle output directory|
 |**`statsFilename`**|`{String}`|Default: `stats.json`. Name of webpack stats JSON file that will be generated if `generateStatsFile` is `true`. Relative to bundle output directory.|
-|**`statsOptions`**|`null` or `{Object}`|Default: `null`. Options for `stats.toJson()` method. For example you can exclude sources of your modules from stats file with `source: false` option. See more options here: https://github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21 |
+|**`statsOptions`**|`null` or `{Object}`|Default: `null`. Options for `stats.toJson()` method. For example you can exclude sources of your modules from stats file with `source: false` option. [See more options here](https://github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21). |
 |**`logLevel`**|One of: `info`, `warn`, `error`, `silent`|Default: `info`. Used to control how much details the plugin outputs.|
 
 <h2 align="center">Size definitions</h2>
