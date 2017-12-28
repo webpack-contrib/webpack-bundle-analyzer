@@ -45,6 +45,29 @@ This module will help you:
 And the best thing is it supports minified bundles! It parses them to get real size of bundled modules.
 And it also shows their gzipped sizes!
 
+### Usage as a CLI utility
+
+You can analyze an existing bundle if you have a webpack stats JSON file.
+
+You can generate it using `BundleAnalyzerPlugin` with `generateStatsFile` option set to `true` or with this simple
+command:
+
+```bash
+webpack --profile --json > stats.json
+```
+
+If you're on Windows and using PowerShell, you can generate the stats file with this command to [avoid BOM issues](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/47):
+
+```
+webpack --profile --json | Out-file 'stats.json' -Encoding OEM
+```
+
+Then you can run the CLI tool. `--help` flag will output usage information:
+
+```bash
+webpack-bundle-analyzer --help
+```
+
 <h2 align="center">Options</h2>
 
 ```js
@@ -84,29 +107,6 @@ as Uglify, then this value will reflect the minified size of your code.
 ### `gzip`
 
 This is the size of running the parsed bundles/modules through gzip compression.
-
-<h2 align="center">Usage as a CLI utility</h2>
-
-You can analyze an existing bundle if you have a webpack stats JSON file.
-
-You can generate it using `BundleAnalyzerPlugin` with `generateStatsFile` option set to `true` or with this simple
-command:
-
-```bash
-webpack --profile --json > stats.json
-```
-
-If you're on Windows and using PowerShell, you can generate the stats file with this command to [avoid BOM issues](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/47):
-
-```
-webpack --profile --json | Out-file 'stats.json' -Encoding OEM
-```
-
-Then you can run the CLI tool. `--help` flag will output usage information:
-
-```bash
-webpack-bundle-analyzer --help
-```
 
 <h2 align="center">Troubleshooting</h2>
 
