@@ -89,10 +89,34 @@ webpack-bundle-analyzer bundle/output/path/stats.json
 
 <h2 align="center">Options (for CLI)</h2>
 
-View available options by running the CLI with `--help` flag:
+```
+Usage: webpack-bundle-analyzer <bundleStatsFile> [bundleDir] [options]
 
-```bash
-webpack-bundle-analyzer --help
+Arguments:
+
+  bundleStatsFile  Path to Webpack Stats JSON file.
+  bundleDir        Directory containing all generated bundles.
+                   You should provided it if you want analyzer to show you the real parsed module sizes.
+                   By default a directory of stats file is used.
+
+Options:
+
+  -h, --help                  output usage information
+  -V, --version               output the version number
+  -m, --mode <mode>           Analyzer mode. Should be `server` or `static`.
+                              In `server` mode analyzer will start HTTP server to show bundle report.
+                              In `static` mode single HTML file with bundle report will be generated.
+                              Default is `server`.
+  -h, --host <host>           Host that will be used in `server` mode to start HTTP server.
+                              Default is `127.0.0.1`.
+  -p, --port <n>              Port that will be used in `server` mode to start HTTP server.
+                              Default is 8888.
+  -r, --report <file>         Path to bundle report file that will be generated in `static` mode.
+                              Default is `report.html`.
+  -s, --default-sizes <type>  Module sizes to show in treemap by default.
+                              Possible values: stat, parsed, gzip
+                              Default is `parsed`.
+  -O, --no-open               Don't open report in default browser automatically.
 ```
 
 <h2 align="center" id="size-definitions">Size definitions</h2>
