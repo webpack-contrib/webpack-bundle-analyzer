@@ -83,7 +83,7 @@ as Uglify, then this value will reflect the minified size of your code.
 
 ### `gzip`
 
-This is the size of running the file(s) through gzip compression.
+This is the size of running the parsed bundles/modules through gzip compression.
 
 <h2 align="center">Usage as a CLI utility</h2>
 
