@@ -62,10 +62,10 @@ If you're on Windows and using PowerShell, you can generate the stats file with 
 webpack --profile --json | Out-file 'stats.json' -Encoding OEM
 ```
 
-Then you can run the CLI tool. `--help` flag will output usage information:
+Then you can run the CLI tool.
 
-```bash
-webpack-bundle-analyzer --help
+```
+webpack-bundle-analyzer bundle/output/path/stats.json
 ```
 
 <h2 align="center">Options</h2>
@@ -86,6 +86,14 @@ new BundleAnalyzerPlugin(options?: object)
 |**`statsFilename`**|`{String}`|Default: `stats.json`. Name of webpack stats JSON file that will be generated if `generateStatsFile` is `true`. Relative to bundle output directory.|
 |**`statsOptions`**|`null` or `{Object}`|Default: `null`. Options for `stats.toJson()` method. For example you can exclude sources of your modules from stats file with `source: false` option. [See more options here](https://github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21). |
 |**`logLevel`**|One of: `info`, `warn`, `error`, `silent`|Default: `info`. Used to control how much details the plugin outputs.|
+
+### CLI Options
+
+View available options by running the CLI with `--help` flag:
+
+```bash
+webpack-bundle-analyzer --help
+```
 
 <h2 align="center">Size definitions</h2>
 
