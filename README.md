@@ -19,7 +19,7 @@
 npm install --save-dev webpack-bundle-analyzer
 ```
 
-<h2 align="center">Usage</h2>
+<h2 align="center">Usage (as a plugin)</h2>
 
 ```js
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -45,7 +45,26 @@ This module will help you:
 And the best thing is it supports minified bundles! It parses them to get real size of bundled modules.
 And it also shows their gzipped sizes!
 
-### Usage as a CLI utility
+<h2 align="center">Options (for plugin)</h2>
+
+```js
+new BundleAnalyzerPlugin(options?: object)
+```
+
+|Name|Type|Description|
+|:--:|:--:|:----------|
+|**`analyzerMode`**|One of: `server`, `static`, `disabled`|Default: `server`. In `server` mode analyzer will start HTTP server to show bundle report. In `static` mode single HTML file with bundle report will be generated. In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`. |
+|**`analyzerHost`**|`{String}`|Default: `127.0.0.1`. Host that will be used in `server` mode to start HTTP server.|
+|**`analyzerPort`**|`{Number}`|Default: `8888`. Port that will be used in `server` mode to start HTTP server.|
+|**`reportFilename`**|`{String}`|Default: `report.html`. Path to bundle report file that will be generated in `static` mode. Relative to bundle output directory (which is `output.path` in webpack config).|
+|**`defaultSizes`**|One of: `stat`, `parsed`, `gzip`|Default: `parsed`. Module sizes to show in report by default. [Size definitions](#size-definitions) section describes what these values mean.|
+|**`openAnalyzer`**|`{Boolean}`|Default: `true`. Automatically open report in default browser.|
+|**`generateStatsFile`**|`{Boolean}`|Default: `false`. If `true`, webpack stats JSON file will be generated in bundle output directory|
+|**`statsFilename`**|`{String}`|Default: `stats.json`. Name of webpack stats JSON file that will be generated if `generateStatsFile` is `true`. Relative to bundle output directory.|
+|**`statsOptions`**|`null` or `{Object}`|Default: `null`. Options for `stats.toJson()` method. For example you can exclude sources of your modules from stats file with `source: false` option. [See more options here](https://github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21). |
+|**`logLevel`**|One of: `info`, `warn`, `error`, `silent`|Default: `info`. Used to control how much details the plugin outputs.|
+
+<h2 align="center">Usage (as a CLI utility)</h2>
 
 You can analyze an existing bundle if you have a webpack stats JSON file.
 
@@ -68,26 +87,7 @@ Then you can run the CLI tool.
 webpack-bundle-analyzer bundle/output/path/stats.json
 ```
 
-<h2 align="center">Options</h2>
-
-```js
-new BundleAnalyzerPlugin(options?: object)
-```
-
-|Name|Type|Description|
-|:--:|:--:|:----------|
-|**`analyzerMode`**|One of: `server`, `static`, `disabled`|Default: `server`. In `server` mode analyzer will start HTTP server to show bundle report. In `static` mode single HTML file with bundle report will be generated. In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`. |
-|**`analyzerHost`**|`{String}`|Default: `127.0.0.1`. Host that will be used in `server` mode to start HTTP server.|
-|**`analyzerPort`**|`{Number}`|Default: `8888`. Port that will be used in `server` mode to start HTTP server.|
-|**`reportFilename`**|`{String}`|Default: `report.html`. Path to bundle report file that will be generated in `static` mode. Relative to bundle output directory (which is `output.path` in webpack config).|
-|**`defaultSizes`**|One of: `stat`, `parsed`, `gzip`|Default: `parsed`. Module sizes to show in report by default. [Size definitions](#size-definitions) section describes what these values mean.|
-|**`openAnalyzer`**|`{Boolean}`|Default: `true`. Automatically open report in default browser.|
-|**`generateStatsFile`**|`{Boolean}`|Default: `false`. If `true`, webpack stats JSON file will be generated in bundle output directory|
-|**`statsFilename`**|`{String}`|Default: `stats.json`. Name of webpack stats JSON file that will be generated if `generateStatsFile` is `true`. Relative to bundle output directory.|
-|**`statsOptions`**|`null` or `{Object}`|Default: `null`. Options for `stats.toJson()` method. For example you can exclude sources of your modules from stats file with `source: false` option. [See more options here](https://github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21). |
-|**`logLevel`**|One of: `info`, `warn`, `error`, `silent`|Default: `info`. Used to control how much details the plugin outputs.|
-
-### CLI Options
+<h2 align="center">Options (for CLI)</h2>
 
 View available options by running the CLI with `--help` flag:
 
