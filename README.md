@@ -89,18 +89,23 @@ webpack-bundle-analyzer bundle/output/path/stats.json
 
 <h2 align="center">Options (for CLI)</h2>
 
+```bash
+webpack-bundle-analyzer <bundleStatsFile> [bundleDir] [options]
 ```
-Usage: webpack-bundle-analyzer <bundleStatsFile> [bundleDir] [options]
 
-Arguments:
+Arguments are documented below:
 
-  bundleStatsFile  Path to Webpack Stats JSON file.
-  bundleDir        Directory containing all generated bundles.
-                   You should provided it if you want analyzer to show you the real parsed module sizes.
-                   By default a directory of stats file is used.
+### `bundleStatsFile`
 
-Options:
+Path to webpack stats JSON file
 
+### `bundleDir`
+
+Directory containing all generated bundles.
+
+### `options`
+
+```
   -h, --help                  output usage information
   -V, --version               output the version number
   -m, --mode <mode>           Analyzer mode. Should be `server` or `static`.
