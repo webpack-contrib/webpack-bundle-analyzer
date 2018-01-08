@@ -12,6 +12,10 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+<!-- Add changelog entries for new changes under this section -->
+
+## 2.9.2
+
  * **Bug Fix**
    * Add a listener for the 'error' event on the WebSocket server client (#140)
 
