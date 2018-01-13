@@ -12,10 +12,21 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+<!-- Add changelog entries for new changes under this section -->
+
  * **Internal**
    * Moved internal, treemap reporter related code around (@valscion at [#81](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/81)).
    * Removed undocumented `require('webpack-bundle-analyzer').start` accessor. If you try to
      use the `start` function now, it will raise an error.
+
+## 2.9.2
+
+ * **Bug Fix**
+   * Add a listener for the 'error' event on the WebSocket server client (#140)
+
+ * **Internal**
+   * Clean up .travis.yml (#140)
+   * Update ws to version 4.0.0 (#140)
 
 ## 2.9.1
 
@@ -25,7 +36,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## 2.9.0
  * **New Feature**
    * Show chunk sizes in sidebar (closes #91)
-   
+
  * **Bug Fix**
    * Properly parse webpack bundles that use arrow functions as module wrappers (#108, @regiontog)
 
@@ -38,7 +49,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## 2.8.2
  * **Improvement**
    * Greatly improved accuracy of gzip sizes
- 
+
  * **Bug Fix**
    * Generate report file in the bundle output directory when used with Webpack Dev Server (fixes #75)
 
@@ -50,7 +61,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
  * **Improvement**
    * Analyzer now supports `webpack --watch` and Webpack Dev Server!
      It will automatically update modules treemap according to changes in the sources via WebSockets!
- 
+
  * **Internal**
    * Use `babel-preset-env` and two different Babel configs to compile node and browser code
    * Update deps
@@ -74,7 +85,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## 2.4.0
  * **Bug Fix**
    * Fix `TypeError: currentFolder.addModule is not a function`
-  
+
  * **Internal**
    * Update deps
 
@@ -85,7 +96,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## 2.3.0
  * **Improvement**
    * Add `analyzerHost` option (@freaz)
-  
+
  * **Internal**
    * Update deps
 
@@ -143,37 +154,37 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
    * Workaround `Express` bug that caused wrong `ejs` version to be used as view engine (fixes #17)
 
 ## 1.5.2
- 
+
  * **Bug Fix**
    * Support array module descriptors that can be generated if `DedupePlugin` is used (fixes #4)
 
 ## 1.5.1
- 
+
  * **Internal**
    * Plug analyzer to Webpack compiler `done` event instead of `emit`. Should fix #15.
 
 ## 1.5.0
- 
+
  * **New Feature**
    * Add `statsOptions` option for `BundleAnalyzerPlugin`
 
 ## 1.4.2
- 
+
  * **Bug Fix**
    * Fix "Unable to find bundle asset" error when bundle name starts with `/` (fixes #3)
 
 ## 1.4.1
- 
+
  * **Bug Fix**
    * Add partial support for `DedupePlugin` (see #4 for more info)
 
 ## 1.4.0
- 
+
  * **New Feature**
    * Add "static report" mode (closes #2)
 
 ## 1.3.0
- 
+
  * **Improvement**
    * Add `startAnalyzer` option for `BundleAnalyzerPlugin` (fixes #1)
  * **Internal**

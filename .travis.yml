@@ -1,4 +1,5 @@
 language: node_js
+sudo: false
 branches:
   only:
     - master
@@ -6,30 +7,18 @@ node_js:
   - "4"
   - "6"
   - "node"
-before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.0.2
-  - export PATH=$HOME/.yarn/bin:$PATH
 cache:
   - yarn: true
   - directories:
     - node_modules
     - packages/reporter-treemap/node_modules
     - packages/plugin/node_modules
-env:
-  # Required to compile native modules for Node.js v4+
-  # See https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Node.js-v4-(or-io.js-v3)-compiler-requirements
-  - CXX=g++-4.8
 addons:
   apt:
-    sources:
-      # Required to compile native modules for Node.js v4+
-      - ubuntu-toolchain-r-test
     packages:
       # Required by Electron
       # https://github.com/juliangruber/electron-stream#travis
       - xvfb
-      # Required to compile native modules for Node.js v4+
-      - g++-4.8
 before_script:
   # Install packages in subdirectories
   - npm run bootstrap

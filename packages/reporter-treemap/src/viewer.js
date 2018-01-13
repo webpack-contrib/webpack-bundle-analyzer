@@ -68,6 +68,15 @@ async function startServer(chartData, opts) {
 
   const wss = new WebSocket.Server({ server });
 
+  wss.on('connection', ws => {
+    ws.on('error', err => {
+      // Ignore network errors like `ECONNRESET`, `EPIPE`, etc.
+      if (err.errno) return;
+
+      logger.info(err.message);
+    });
+  });
+
   return {
     ws: wss,
     http: server,
