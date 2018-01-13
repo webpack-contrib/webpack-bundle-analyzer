@@ -23,7 +23,9 @@
   },
   "scripts": {
     "start": "gulp watch",
-    "build": "gulp build"
+    "build": "gulp build",
+    "test": "mocha --compilers js:babel-core/register",
+    "test-dev": "mocha --watch --compilers js:babel-core/register"
   },
   "files": [
     "lib",
@@ -57,6 +59,7 @@
     "gulp-plumber": "1.1.0",
     "gulp-util": "3.0.8",
     "gulp-watch": "4.3.11",
+    "mocha": "3.3.0",
     "preact": "8.1.0",
     "stream-combiner2": "1.1.1",
     "style-loader": "0.17.0",
