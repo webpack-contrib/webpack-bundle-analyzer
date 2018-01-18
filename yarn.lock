@@ -759,6 +759,13 @@ beeper@^1.0.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/beeper/-/beeper-1.1.1.tgz#e6d5ea8c5dad001304a70b22638447f69cb2f809"
 
+bfj-node4@^4.2.4:
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/bfj-node4/-/bfj-node4-4.2.4.tgz#8484fe2ec73ea195906f3fd26ebd309be233e91a"
+  dependencies:
+    check-types "^7.3.0"
+    tryer "^1.0.0"
+
 big.js@^3.1.3:
   version "3.1.3"
   resolved "https://registry.npmjs.org/big.js/-/big.js-3.1.3.tgz#4cada2193652eb3ca9ec8e55c9015669c9806978"
@@ -966,6 +973,10 @@ chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
     has-ansi "^2.0.0"
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
+
+check-types@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/check-types/-/check-types-7.3.0.tgz#468f571a4435c24248f5fd0cb0e8d87c3c341e7d"
 
 chokidar@^1.4.3, chokidar@^1.6.0, chokidar@^1.6.1:
   version "1.7.0"
@@ -4889,6 +4900,10 @@ trim-newlines@^1.0.0:
 trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
+
+tryer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.0.tgz#027b69fa823225e551cace3ef03b11f6ab37c1d7"
 
 tryit@^1.0.1:
   version "1.0.3"
