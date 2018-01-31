@@ -35,7 +35,7 @@ function cleanNodeScripts() {
   return del(NODE_DEST);
 }
 
-function compileNodeScripts(justLogErrors = false) {
+function compileNodeScripts(justLogErrors) {
   return function compileNodeScripts() {
     const babel = require('gulp-babel');
     const plumber = require('gulp-plumber');
