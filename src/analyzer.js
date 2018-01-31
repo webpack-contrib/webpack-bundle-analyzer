@@ -141,7 +141,7 @@ function getModulePath(module) {
     // Removing first `.`
     .slice(1)
     // Replacing `~` with `node_modules`
-    .map(part => (part === '~') ? 'node_modules' : part);
+    .map(part => (part === '~' ? 'node_modules' : part));
 
   return parsedPath.length ? parsedPath : null;
 }
