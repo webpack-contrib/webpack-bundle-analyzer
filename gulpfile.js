@@ -11,20 +11,18 @@ const cli = require('commander')
   .option('-a, --analyze', 'Analyze client bundle. If set, `env` will be set to `prod`.')
   .parse(process.argv);
 
-let watching = false;
 const task = cli.args[0] || 'watch';
 if (task === 'build' || cli.analyze) {
   cli.env = 'prod';
 }
 
 gulp.task('clean', gulp.parallel(cleanNodeScripts, cleanViewerScripts));
-gulp.task('build', gulp.series('clean', compileNodeScripts, compileViewerScripts));
+gulp.task('build', gulp.series('clean', compileNodeScripts(), compileViewerScripts));
 gulp.task('watch', gulp.series('build', watch));
 gulp.task('default', gulp.task('watch'));
 
 function watch() {
-  watching = true;
-  gulp.watch(NODE_SRC, gulp.series(cleanNodeScripts, compileNodeScripts));
+  gulp.watch(NODE_SRC, gulp.series(cleanNodeScripts, compileNodeScripts(true)));
 }
 
 function cleanViewerScripts() {
@@ -37,16 +35,18 @@ function cleanNodeScripts() {
   return del(NODE_DEST);
 }
 
-function compileNodeScripts() {
-  const babel = require('gulp-babel');
-  const plumber = require('gulp-plumber');
-  const noop = require('gulp-noop');
+function compileNodeScripts(justLogErrors = false) {
+  return function compileNodeScripts() {
+    const babel = require('gulp-babel');
+    const plumber = require('gulp-plumber');
+    const noop = require('gulp-noop');
 
-  return gulp
-    .src(NODE_SRC)
-    .pipe(watching ? plumber() : noop())
-    .pipe(babel())
-    .pipe(gulp.dest(NODE_DEST));
+    return gulp
+      .src(NODE_SRC)
+      .pipe(justLogErrors ? plumber() : noop())
+      .pipe(babel())
+      .pipe(gulp.dest(NODE_DEST));
+  };
 }
 
 function compileViewerScripts() {
