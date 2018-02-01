@@ -2215,6 +2215,14 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
+eslint-config-th0r-react@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/eslint-config-th0r-react/-/eslint-config-th0r-react-1.0.0.tgz#e828657199c1f1516e02f93050e3168c09df34ea"
+
+eslint-config-th0r@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/eslint-config-th0r/-/eslint-config-th0r-1.0.0.tgz#3c7315220bf48c134a52383dd7886a131fbda82d"
+
 eslint-plugin-react@7.6.1:
   version "7.6.1"
   resolved "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-7.6.1.tgz#5d0e908be599f0c02fbf4eef0c7ed6f29dff7633"
