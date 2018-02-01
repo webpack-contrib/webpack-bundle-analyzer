@@ -12,7 +12,7 @@ const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
 
 function webpackCompile(config) {
   return new Promise((resolve, reject) =>
-    webpack(config, err => err ? reject(err) : resolve())
+    webpack(config, err => (err ? reject(err) : resolve()))
   );
 }
 
