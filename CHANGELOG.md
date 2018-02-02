@@ -14,6 +14,16 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 2.10.0
+
+ * **Bug Fix**
+   * Fix "out of memory" crash when dealing with huge stats objects ([#129](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/129), [@ryan953](https://github.com/ryan953))
+
+ * **Internal**
+   * Update dependencies ([#146](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/146))
+   * Update gulp to v4 and simplify gulpfile ([#146](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/146), [#149](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/149))
+   * Simplify ESLint configs ([#148](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/148))
+
 ## 2.9.2
 
  * **Bug Fix**
