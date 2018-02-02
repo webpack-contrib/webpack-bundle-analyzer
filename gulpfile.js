@@ -17,12 +17,15 @@ if (task === 'build' || cli.analyze) {
 }
 
 gulp.task('clean', gulp.parallel(cleanNodeScripts, cleanViewerScripts));
-gulp.task('build', gulp.series('clean', compileNodeScripts(), compileViewerScripts));
+gulp.task('build', gulp.series('clean', compileNodeScripts, compileViewerScripts));
 gulp.task('watch', gulp.series('build', watch));
 gulp.task('default', gulp.task('watch'));
 
 function watch() {
-  gulp.watch(NODE_SRC, gulp.series(cleanNodeScripts, compileNodeScripts(true)));
+  gulp
+    .watch(NODE_SRC, gulp.series(cleanNodeScripts, compileNodeScripts))
+    // TODO: replace with `emitErrors: false` option after https://github.com/gulpjs/glob-watcher/pull/34 will be merged
+    .on('error', () => {});
 }
 
 function cleanViewerScripts() {
@@ -35,18 +38,13 @@ function cleanNodeScripts() {
   return del(NODE_DEST);
 }
 
-function compileNodeScripts(justLogErrors) {
-  return function compileNodeScripts() {
-    const babel = require('gulp-babel');
-    const plumber = require('gulp-plumber');
-    const noop = require('gulp-noop');
+function compileNodeScripts() {
+  const babel = require('gulp-babel');
 
-    return gulp
-      .src(NODE_SRC)
-      .pipe(justLogErrors ? plumber() : noop())
-      .pipe(babel())
-      .pipe(gulp.dest(NODE_DEST));
-  };
+  return gulp
+    .src(NODE_SRC)
+    .pipe(babel())
+    .pipe(gulp.dest(NODE_DEST));
 }
 
 function compileViewerScripts() {
