@@ -5,7 +5,7 @@ const _ = require('lodash');
 const gzipSize = require('gzip-size');
 
 const { Folder } = require('../lib/tree');
-const { parseBundle } = require('../lib/parseUtils');
+const { parseBundle } = require('@webpack-bundle-analyzer/bundle-parser');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/;
 const MULTI_MODULE_REGEXP = /^multi /;
