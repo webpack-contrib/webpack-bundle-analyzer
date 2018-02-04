@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const crypto = require('crypto');
 const net = require('net');
 
-const Logger = require('@webpack-bundle-analyzer/plugin/lib/Logger');
+const Logger = require('@webpack-bundle-analyzer/logger');
 const { startServer } = require('../lib/viewer.js');
 
 describe('WebSocket server', function () {

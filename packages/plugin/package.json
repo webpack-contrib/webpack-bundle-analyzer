@@ -30,6 +30,7 @@
   ],
   "dependencies": {
     "@webpack-bundle-analyzer/bundle-parser": "^3.0.0-alpha.1",
+    "@webpack-bundle-analyzer/logger": "^3.0.0-alpha.1",
     "@webpack-bundle-analyzer/reporter-treemap": "^3.0.0-alpha.1",
     "bfj-node4": "^5.2.0",
     "chalk": "^2.3.0",

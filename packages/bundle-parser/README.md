@@ -17,7 +17,7 @@ npm install --save @webpack-bundle-analyzer/bundle-parser
 
 ```js
 const parseBundle = require('@webpack-bundle-analyzer/bundle-parser');
-const Logger = require('@webpack-bundle-analyzer/plugin/lib/Logger');
+const Logger = require('@webpack-bundle-analyzer/logger');
 
 const fs = require('fs');
 const webpackStats = JSON.parse(

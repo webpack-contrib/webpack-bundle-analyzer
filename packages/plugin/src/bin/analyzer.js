@@ -7,7 +7,7 @@ const _ = require('lodash');
 const commander = require('commander');
 const { magenta } = require('chalk');
 
-const Logger = require('../Logger');
+const Logger = require('@webpack-bundle-analyzer/logger');
 const parseBundle = require('@webpack-bundle-analyzer/bundle-parser');
 
 const program = commander

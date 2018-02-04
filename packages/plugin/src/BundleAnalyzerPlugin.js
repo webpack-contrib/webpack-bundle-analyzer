@@ -3,7 +3,7 @@ const path = require('path');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
-const Logger = require('./Logger');
+const Logger = require('@webpack-bundle-analyzer/logger');
 const parseBundle = require('@webpack-bundle-analyzer/bundle-parser');
 
 class BundleAnalyzerPlugin {
