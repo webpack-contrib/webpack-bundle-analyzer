@@ -3,6 +3,7 @@ sudo: false
 branches:
   only:
     - master
+    - version-3
 node_js:
   - "4"
   - "6"
