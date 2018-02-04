@@ -8,7 +8,7 @@ const commander = require('commander');
 const { magenta } = require('chalk');
 
 const Logger = require('../Logger');
-const analyzer = require('../analyzer');
+const { getChartData } = require('@webpack-bundle-analyzer/bundle-parser');
 
 const program = commander
   .version(require('../../package.json').version)
@@ -82,7 +82,7 @@ try {
 }
 
 const logger = new Logger();
-const chartData = analyzer.getChartData(logger, bundleStats, bundleDir);
+const chartData = getChartData(logger, bundleStats, bundleDir);
 
 if (mode === 'server') {
   reporter.createReporter(chartData, {
