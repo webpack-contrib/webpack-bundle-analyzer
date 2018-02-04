@@ -24,12 +24,10 @@ const webpackStats = JSON.parse(
   fs.readFileSync('webpack/output/path/stats.json', 'utf8')
 );
 
-const logger = new Logger('info');
-
 const moduleSizeData = parseBundle(
   webpackStats,
   'webpack/output/path',
-  logger
+  { logger: new Logger('info') }
 );
 
 console.log(JSON.stringify(moduleSizeData, null, 2));
