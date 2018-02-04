@@ -13,9 +13,11 @@
     "lint": "eslint --ext js,jsx ."
   },
   "devDependencies": {
-    "babel-eslint": "7.2.3",
-    "eslint": "3.19.0",
-    "eslint-plugin-react": "7.0.0",
+    "babel-eslint": "8.2.1",
+    "eslint": "4.16.0",
+    "eslint-config-th0r": "1.0.0",
+    "eslint-config-th0r-react": "1.0.0",
+    "eslint-plugin-react": "7.6.1",
     "lerna": "2.2.0"
   }
 }
