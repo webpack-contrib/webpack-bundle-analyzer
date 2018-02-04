@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 const { resolve, dirname } = require('path');
+const fs = require('fs');
 
 const _ = require('lodash');
 const commander = require('commander');
@@ -74,7 +75,7 @@ if (!bundleDir) bundleDir = dirname(bundleStatsFile);
 
 let bundleStats;
 try {
-  bundleStats = analyzer.readStatsFromFile(bundleStatsFile);
+  bundleStats = readStatsFromFile(bundleStatsFile);
 } catch (err) {
   console.error(`Could't read webpack bundle stats from "${bundleStatsFile}":\n${err}`);
   process.exit(1);
@@ -105,4 +106,10 @@ function showHelp(error) {
 
 function br(str) {
   return `\n${_.repeat(' ', 28)}${str}`;
+}
+
+function readStatsFromFile(filename) {
+  return JSON.parse(
+    fs.readFileSync(filename, 'utf8')
+  );
 }
