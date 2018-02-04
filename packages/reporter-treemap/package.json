@@ -1,6 +1,6 @@
 {
   "name": "@webpack-bundle-analyzer/reporter-treemap",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "description": "Reporter for webpack-bundle-analyzer that represents bundle content as convenient interactive zoomable treemap",
   "author": "Yury Grunin <grunin.ya@ya.ru>",
   "contributors": [
@@ -42,7 +42,7 @@
     "ws": "^4.0.0"
   },
   "devDependencies": {
-    "@webpack-bundle-analyzer/logger": "^3.0.0-alpha.1",
+    "@webpack-bundle-analyzer/logger": "^3.0.0-alpha.2",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
     "babel-plugin-transform-class-properties": "6.24.1",

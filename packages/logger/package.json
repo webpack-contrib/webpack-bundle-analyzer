@@ -1,6 +1,6 @@
 {
   "name": "@webpack-bundle-analyzer/logger",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "description": "Logger class used by webpack-bundle-analyzer",
   "author": "Yury Grunin <grunin.ya@ya.ru>",
   "contributors": [
@@ -31,12 +31,10 @@
     "src",
     "lib"
   ],
-  "dependencies": {
-  },
   "devDependencies": {
     "babel-core": "6.26.0",
-    "babel-preset-env": "1.6.1",
     "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-preset-env": "1.6.1",
     "gulp": "4.0.0",
     "gulp-babel": "7.0.1",
     "mocha": "5.0.0"

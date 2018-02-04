@@ -1,6 +1,6 @@
 {
   "name": "@webpack-bundle-analyzer/plugin",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "description": "Webpack plugin and CLI utility that represents bundle content as convenient interactive zoomable treemap",
   "author": "Yury Grunin <grunin.ya@ya.ru>",
   "license": "MIT",
@@ -29,9 +29,9 @@
     "src"
   ],
   "dependencies": {
-    "@webpack-bundle-analyzer/bundle-parser": "^3.0.0-alpha.1",
-    "@webpack-bundle-analyzer/logger": "^3.0.0-alpha.1",
-    "@webpack-bundle-analyzer/reporter-treemap": "^3.0.0-alpha.1",
+    "@webpack-bundle-analyzer/bundle-parser": "^3.0.0-alpha.2",
+    "@webpack-bundle-analyzer/logger": "^3.0.0-alpha.2",
+    "@webpack-bundle-analyzer/reporter-treemap": "^3.0.0-alpha.2",
     "bfj-node4": "^5.2.0",
     "chalk": "^2.3.0",
     "commander": "^2.13.0",

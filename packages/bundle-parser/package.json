@@ -1,6 +1,6 @@
 {
   "name": "@webpack-bundle-analyzer/bundle-parser",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "description": "Maps webpack bundled output files to the modules based on the given webpack stats object",
   "author": "Yury Grunin <grunin.ya@ya.ru>",
   "contributors": [
