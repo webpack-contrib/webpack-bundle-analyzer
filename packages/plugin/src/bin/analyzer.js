@@ -1,13 +1,14 @@
 #! /usr/bin/env node
 
 const { resolve, dirname } = require('path');
+const fs = require('fs');
 
 const _ = require('lodash');
 const commander = require('commander');
 const { magenta } = require('chalk');
 
 const Logger = require('../Logger');
-const analyzer = require('../analyzer');
+const parseBundle = require('@webpack-bundle-analyzer/bundle-parser');
 
 const program = commander
   .version(require('../../package.json').version)
@@ -74,14 +75,14 @@ if (!bundleDir) bundleDir = dirname(bundleStatsFile);
 
 let bundleStats;
 try {
-  bundleStats = analyzer.readStatsFromFile(bundleStatsFile);
+  bundleStats = readStatsFromFile(bundleStatsFile);
 } catch (err) {
   console.error(`Could't read webpack bundle stats from "${bundleStatsFile}":\n${err}`);
   process.exit(1);
 }
 
 const logger = new Logger();
-const chartData = analyzer.getChartData(logger, bundleStats, bundleDir);
+const chartData = parseBundle(logger, bundleStats, bundleDir);
 
 if (mode === 'server') {
   reporter.createReporter(chartData, {
@@ -105,4 +106,10 @@ function showHelp(error) {
 
 function br(str) {
   return `\n${_.repeat(' ', 28)}${str}`;
+}
+
+function readStatsFromFile(filename) {
+  return JSON.parse(
+    fs.readFileSync(filename, 'utf8')
+  );
 }

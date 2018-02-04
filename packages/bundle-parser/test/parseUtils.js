@@ -1,7 +1,8 @@
+const { expect } = require('chai');
 const fs = require('fs');
 
 const _ = require('lodash');
-const { parseBundle } = require('../lib/parseUtils');
+const { parseBundle } = require('../src/parseUtils');
 
 const BUNDLES_DIR = `${__dirname}/bundles`;
 

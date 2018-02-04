@@ -4,7 +4,7 @@ const mkdir = require('mkdirp');
 const { bold } = require('chalk');
 
 const Logger = require('./Logger');
-const analyzer = require('./analyzer');
+const parseBundle = require('@webpack-bundle-analyzer/bundle-parser');
 
 class BundleAnalyzerPlugin {
 
@@ -93,7 +93,7 @@ class BundleAnalyzerPlugin {
   }
 
   async startAnalyzerServer(stats) {
-    const chartData = analyzer.getChartData(this.logger, stats, this.getBundleDirFromCompiler());
+    const chartData = parseBundle(this.logger, stats, this.getBundleDirFromCompiler());
     if (this.server) {
       (await this.server).updateData(chartData);
     } else {
@@ -106,7 +106,7 @@ class BundleAnalyzerPlugin {
   }
 
   generateStaticReport(stats) {
-    const chartData = analyzer.getChartData(this.logger, stats, this.getBundleDirFromCompiler());
+    const chartData = parseBundle(this.logger, stats, this.getBundleDirFromCompiler());
     this.reporter.generateReport(chartData, {
       ...this.reporterOptions,
       outputPath: this.compiler.outputPath,

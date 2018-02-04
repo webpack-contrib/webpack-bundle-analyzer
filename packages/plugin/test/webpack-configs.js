@@ -88,7 +88,12 @@ async function expectValidReport(opts) {
   expect(fs.existsSync(`${__dirname}/output/${bundleFilename}`)).to.be.true;
   expect(fs.existsSync(`${__dirname}/output/${reportFilename}`)).to.be.true;
   const chartData = await getChartDataFromReport(reportFilename);
-  expect(chartData[0]).to.containSubset({
+  expect({
+    label: chartData[0].label,
+    statSize: chartData[0].statSize,
+    parsedSize: chartData[0].parsedSize,
+    gzipSize: chartData[0].gzipSize
+  }).to.deep.equal({
     label: bundleLabel,
     statSize,
     parsedSize,
