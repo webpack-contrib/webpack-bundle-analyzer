@@ -14,6 +14,11 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Internal**
+   * Moved internal, treemap reporter related code around (@valscion at [#81](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/81)).
+   * Removed undocumented `require('webpack-bundle-analyzer').start` accessor. If you try to
+     use the `start` function now, it will raise an error.
+
 ## 2.10.0
 
  * **Bug Fix**

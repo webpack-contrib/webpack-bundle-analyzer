@@ -1,0 +1,84 @@
+{
+  "name": "@webpack-bundle-analyzer/plugin",
+  "version": "3.0.0-alpha.2",
+  "description": "Webpack plugin and CLI utility that represents bundle content as convenient interactive zoomable treemap",
+  "author": "Yury Grunin <grunin.ya@ya.ru>",
+  "license": "MIT",
+  "homepage": "https://github.com/webpack-contrib/webpack-bundle-analyzer",
+  "changelog": "https://github.com/webpack-contrib/webpack-bundle-analyzer/blob/master/CHANGELOG.md",
+  "bugs": {
+    "url": "https://github.com/webpack-contrib/webpack-bundle-analyzer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webpack-contrib/webpack-bundle-analyzer.git"
+  },
+  "main": "lib/index.js",
+  "bin": "lib/bin/analyzer.js",
+  "engines": {
+    "node": ">= 4"
+  },
+  "scripts": {
+    "start": "gulp watch",
+    "build": "gulp build",
+    "test": "mocha --exit --require babel-core/register",
+    "test-dev": "mocha --watch --require babel-core/register"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "dependencies": {
+    "@webpack-bundle-analyzer/bundle-parser": "^3.0.0-alpha.2",
+    "@webpack-bundle-analyzer/logger": "^3.0.0-alpha.2",
+    "@webpack-bundle-analyzer/reporter-treemap": "^3.0.0-alpha.2",
+    "bfj-node4": "^5.2.0",
+    "chalk": "^2.3.0",
+    "commander": "^2.13.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "filesize": "^3.5.11",
+    "gzip-size": "^4.1.0",
+    "lodash": "^4.17.4",
+    "mkdirp": "^0.5.1",
+    "opener": "^1.4.3",
+    "ws": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-plugin-transform-react-jsx": "6.24.1",
+    "babel-preset-env": "1.6.1",
+    "chai": "4.1.2",
+    "chai-subset": "1.6.0",
+    "classnames": "2.2.5",
+    "css-loader": "0.28.9",
+    "del": "3.0.0",
+    "exports-loader": "0.6.4",
+    "gulp": "4.0.0",
+    "gulp-babel": "7.0.1",
+    "gulp-plumber": "1.2.0",
+    "mocha": "5.0.0",
+    "nightmare": "git://github.com/segmentio/nightmare.git#7d1b8a40b6f5857a06e7f20440fc4f416c54e9a1",
+    "preact": "8.2.7",
+    "sinon": "4.2.2",
+    "stream-combiner2": "1.1.1",
+    "style-loader": "0.20.1",
+    "webpack": "3.10.0",
+    "webpack-dev-server": "2.11.1"
+  },
+  "keywords": [
+    "webpack",
+    "bundle",
+    "analyzer",
+    "modules",
+    "size",
+    "interactive",
+    "chart",
+    "treemap",
+    "zoomable",
+    "zoom"
+  ]
+}

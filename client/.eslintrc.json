@@ -1,6 +1,0 @@
-{
-  "extends": [
-    "th0r-react",
-    "../.eslintrc.json"
-  ]
-}

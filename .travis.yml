@@ -3,6 +3,7 @@ sudo: false
 branches:
   only:
     - master
+    - version-3
 node_js:
   - "4"
   - "6"
@@ -12,6 +13,9 @@ cache:
   - yarn: true
   - directories:
     - node_modules
+    - packages/bundle-parser/node_modules
+    - packages/reporter-treemap/node_modules
+    - packages/plugin/node_modules
 addons:
   apt:
     packages:
@@ -19,6 +23,8 @@ addons:
       # https://github.com/juliangruber/electron-stream#travis
       - xvfb
 before_script:
+  # Install packages in subdirectories
+  - npm run bootstrap
   # Required by Electron
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &

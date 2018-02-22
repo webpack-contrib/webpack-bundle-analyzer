@@ -1,5 +1,12 @@
-lib
-public
+# node_modules in sub-packages
+packages/*/node_modules
+
+# Generated code
+packages/*/lib
+packages/reporter-treemap/public
+
 samples
+
 node_modules
 npm-debug.log
+lerna-debug.log

@@ -1,0 +1,80 @@
+{
+  "name": "@webpack-bundle-analyzer/reporter-treemap",
+  "version": "3.0.0-alpha.2",
+  "description": "Reporter for webpack-bundle-analyzer that represents bundle content as convenient interactive zoomable treemap",
+  "author": "Yury Grunin <grunin.ya@ya.ru>",
+  "contributors": [
+    "Yury Grunin <grunin.ya@ya.ru>",
+    "Vesa Laakso <laakso.vesa@gmail.com> (http://vesalaakso.com)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/webpack-contrib/webpack-bundle-analyzer",
+  "changelog": "https://github.com/webpack-contrib/webpack-bundle-analyzer/blob/master/CHANGELOG.md",
+  "bugs": {
+    "url": "https://github.com/webpack-contrib/webpack-bundle-analyzer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webpack-contrib/webpack-bundle-analyzer.git"
+  },
+  "main": "lib/index.js",
+  "engines": {
+    "node": ">= 4"
+  },
+  "scripts": {
+    "start": "gulp watch",
+    "build": "gulp build",
+    "test": "mocha --exit --require babel-core/register",
+    "test-dev": "mocha --watch --require babel-core/register"
+  },
+  "files": [
+    "lib",
+    "public",
+    "views",
+    "src"
+  ],
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mkdirp": "^0.5.1",
+    "opener": "^1.4.3",
+    "ws": "^4.0.0"
+  },
+  "devDependencies": {
+    "@webpack-bundle-analyzer/logger": "^3.0.0-alpha.2",
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-plugin-transform-react-jsx": "6.24.1",
+    "babel-preset-env": "1.6.1",
+    "classnames": "2.2.5",
+    "commander": "^2.13.0",
+    "css-loader": "0.28.9",
+    "del": "3.0.0",
+    "exports-loader": "0.6.4",
+    "filesize": "^3.5.11",
+    "gulp": "4.0.0",
+    "gulp-babel": "7.0.1",
+    "gulp-noop": "1.0.0",
+    "gulp-plumber": "1.2.0",
+    "mocha": "5.0.0",
+    "preact": "8.2.7",
+    "stream-combiner2": "1.1.1",
+    "style-loader": "0.20.1",
+    "webpack": "3.10.0"
+  },
+  "keywords": [
+    "webpack",
+    "bundle",
+    "analyzer",
+    "modules",
+    "size",
+    "interactive",
+    "chart",
+    "treemap",
+    "zoomable",
+    "zoom"
+  ]
+}
