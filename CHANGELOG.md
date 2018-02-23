@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Improvement**
+   * Support webpack 4 without deprecation warnings. @ai in [#156](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/156), fixes [#154](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/154)
+
 ## 2.10.0
 
  * **Bug Fix**

@@ -32,7 +32,7 @@ class BundleAnalyzerPlugin {
   apply(compiler) {
     this.compiler = compiler;
 
-    compiler.plugin('done', stats => {
+    const done = stats => {
       stats = stats.toJson(this.opts.statsOptions);
 
       const actions = [];
@@ -58,7 +58,13 @@ class BundleAnalyzerPlugin {
           actions.forEach(action => action());
         });
       }
-    });
+    };
+
+    if (compiler.hooks) {
+      compiler.hooks.done.tap('webpack-bundle-analyzer', done);
+    } else {
+      compiler.plugin('done', done);
+    }
   }
 
   async generateStatsFile(stats) {
