@@ -5,11 +5,10 @@ const _ = require('lodash');
 const gzipSize = require('gzip-size');
 
 const Logger = require('./Logger');
-const { Folder } = require('../lib/tree');
-const { parseBundle } = require('../lib/parseUtils');
+const Folder = require('./tree/Folder').default;
+const { parseBundle } = require('./parseUtils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/;
-const MULTI_MODULE_REGEXP = /^multi /;
 
 module.exports = {
   getViewerData,
@@ -117,31 +116,7 @@ function assetHasModule(statAsset, statModule) {
 function createModulesTree(modules) {
   const root = new Folder('.');
 
-  _.each(modules, module => {
-    const path = getModulePath(module);
-
-    if (path) {
-      root.addModuleByPath(path, module);
-    }
-  });
+  _.each(modules, module => root.addModule(module));
 
   return root;
-}
-
-function getModulePath(module) {
-  if (MULTI_MODULE_REGEXP.test(module.identifier)) {
-    return [module.identifier];
-  }
-
-  const parsedPath = _
-    // Removing loaders from module path: they're joined by `!` and the last part is a raw module path
-    .last(module.name.split('!'))
-    // Splitting module path into parts
-    .split('/')
-    // Removing first `.`
-    .slice(1)
-    // Replacing `~` with `node_modules`
-    .map(part => (part === '~' ? 'node_modules' : part));
-
-  return parsedPath.length ? parsedPath : null;
 }
