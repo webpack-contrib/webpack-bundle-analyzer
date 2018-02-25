@@ -155,8 +155,8 @@ export default class ModulesTreemap extends Component {
         <div><strong>{module.label}</strong></div>
         <br/>
         {this.renderModuleSize(module, 'stat')}
-        {this.renderModuleSize(module, 'parsed')}
-        {this.renderModuleSize(module, 'gzip')}
+        {!module.inaccurateSizes && this.renderModuleSize(module, 'parsed')}
+        {!module.inaccurateSizes && this.renderModuleSize(module, 'gzip')}
         {module.path &&
           <div>Path: <strong>{module.path}</strong></div>
         }
