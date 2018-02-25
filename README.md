@@ -149,9 +149,11 @@ This is the size of running the parsed bundles/modules through gzip compression.
 
 ### I can't see all the dependencies in a chunk
 
-This is a known caveat when `webpack.optimize.ModuleConcatenationPlugin` is used. The way `ModuleConcatenationPlugin` works is that it merges multiple modules into a single one, and so that resulting module doesn't have edges anymore.
+This is a known caveat when `webpack.optimize.ModuleConcatenationPlugin` is used with `Webpack 3` or `webpack-bundle-analyzer < 2.11.0`.
+The way `ModuleConcatenationPlugin` works is that it merges multiple modules into a single one, and so that resulting module doesn't have edges anymore.
+`Webpack 3` didn't provide any information about concatenated modules, but `Webpack 4` started including it into a `stats` files and `webpack-bundle-analyzer 2.11.0` learned to show it.
 
-If you are interested to drill down to exact dependencies, try analyzing your bundle without `ModuleConcatenationPlugin`. See [issue #115](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/115) for more discussion.
+If for some reason you can't update to the latest versions try analyzing your bundle without `ModuleConcatenationPlugin`. See [issue #115](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/115) for more discussion.
 
 <h2 align="center">Maintainers</h2>
 
