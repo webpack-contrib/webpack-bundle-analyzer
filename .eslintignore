@@ -10,6 +10,7 @@ client/vendor
 
 # Test fixtures
 test/bundles
+test/stats
 test/webpack.config.js
 
 # Test results
