@@ -158,6 +158,7 @@ function getChartData(logger, ...args) {
     chartData = analyzer.getViewerData(...args, { logger });
   } catch (err) {
     logger.error(`Could't analyze webpack bundle:\n${err}`);
+    logger.debug(err.stack);
     chartData = null;
   }
 
