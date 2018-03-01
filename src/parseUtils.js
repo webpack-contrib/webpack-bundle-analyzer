@@ -71,6 +71,17 @@ function parseBundle(bundlePath) {
           return;
         }
 
+        // Additional bundles with webpack 4 are loaded with:
+        // (window.webpackJsonp=window.webpackJsonp||[]).push([[minimum ID], <module>, <module>]);
+        if (
+          isWindowPropertyPushExpression(node) &&
+          args.length === 1 &&
+          isArgumentContainingChunkIdsAndModulesList(args[0])
+        ) {
+          state.locations = getModulesLocationFromFunctionArgument(args[0].elements[1]);
+          return;
+        }
+
         // Walking into arguments because some of plugins (e.g. `DedupePlugin`) or some Webpack
         // features (e.g. `umd` library output) can wrap modules list into additional IIFE.
         _.each(args, arg => c(arg, state));
@@ -115,6 +126,17 @@ function isArgumentContainsModulesList(arg) {
   return false;
 }
 
+function isArgumentContainingChunkIdsAndModulesList(arg) {
+  if (
+    arg.type === 'ArrayExpression' &&
+    isArgumentContainsChunkIds(arg.elements[0]) &&
+    isArgumentContainsModulesList(arg.elements[1])
+  ) {
+    return true;
+  }
+  return false;
+}
+
 function isArgumentArrayConcatContainingChunks(arg) {
   if (
     arg.type === 'CallExpression' &&
@@ -139,6 +161,13 @@ function isArgumentArrayConcatContainingChunks(arg) {
   }
 
   return false;
+}
+
+function isWindowPropertyPushExpression(node) {
+  return node.callee.type === 'MemberExpression' &&
+    node.callee.property.name === 'push' &&
+    node.callee.object.type === 'AssignmentExpression' &&
+    node.callee.object.left.object.name === 'window';
 }
 
 function isModuleWrapper(node) {
