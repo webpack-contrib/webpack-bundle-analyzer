@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Improvement**
+   * Add support for parsing Webpack 4's chunked modules ([#159](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/159), [@jdelStrother](https://github.com/jdelStrother))
+
 ## 2.11.0
 
  * **Improvement**
