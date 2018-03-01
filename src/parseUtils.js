@@ -72,7 +72,7 @@ function parseBundle(bundlePath) {
         }
 
         // Additional bundles with webpack 4 are loaded with:
-        // (window.webpackJsonp=window.webpackJsonp||[]).push([[minimum ID], <module>, <module>]);
+        // (window.webpackJsonp=window.webpackJsonp||[]).push([[chunkId], [<module>, <module>], [[optional_entries]]]);
         if (
           isWindowPropertyPushExpression(node) &&
           args.length === 1 &&
@@ -129,6 +129,7 @@ function isArgumentContainsModulesList(arg) {
 function isArgumentContainingChunkIdsAndModulesList(arg) {
   if (
     arg.type === 'ArrayExpression' &&
+    arg.elements.length >= 2 &&
     isArgumentContainsChunkIds(arg.elements[0]) &&
     isArgumentContainsModulesList(arg.elements[1])
   ) {
