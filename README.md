@@ -155,7 +155,7 @@ The way `ModuleConcatenationPlugin` works is that it merges multiple modules int
 
 If for some reason you can't update to the latest versions try analyzing your bundle without `ModuleConcatenationPlugin`. See [issue #115](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/115) for more discussion.
 
-If you are using `Angular CLI < 6.0.0` (which is based on `Webpack 3` and uses `ModuleConcatenationPlugin`) you can build you project using the following command:
+If you are using `Angular CLI < 6.0.0` (which is based on `Webpack 3` and uses `ModuleConcatenationPlugin`) you can build your project using the following command:
 ```
 ng build --stats-json --build-optimizer=false --vendor-chunk=true
 ```
