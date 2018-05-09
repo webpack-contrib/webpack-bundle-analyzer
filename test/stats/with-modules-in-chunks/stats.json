@@ -1,0 +1,554 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.6.0",
+  "hash": "3e40877c6bf4ead7ce87",
+  "publicPath": "",
+  "outputPath": "/ng6-app",
+  "assetsByChunkName": {
+    "runtime": "runtime.6afe30102d8fe7337431.js",
+    "styles": "styles.34c57ab7888ec1573f9c.css",
+    "polyfills": "polyfills.2903ad11212d7d797800.js",
+    "main": "main.e339f68cc77f07c43589.js"
+  },
+  "assets": [
+    {
+      "name": "runtime.6afe30102d8fe7337431.js",
+      "size": 1053,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "runtime"
+      ],
+      "emitted": true
+    },
+    {
+      "name": "styles.34c57ab7888ec1573f9c.css",
+      "size": 0,
+      "chunks": [
+        1
+      ],
+      "chunkNames": [
+        "styles"
+      ],
+      "emitted": true
+    },
+    {
+      "name": "polyfills.2903ad11212d7d797800.js",
+      "size": 59561,
+      "chunks": [
+        2
+      ],
+      "chunkNames": [
+        "polyfills"
+      ],
+      "emitted": true
+    },
+    {
+      "name": "main.e339f68cc77f07c43589.js",
+      "size": 152607,
+      "chunks": [
+        3
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "emitted": true
+    },
+    {
+      "name": "favicon.ico",
+      "size": 5430,
+      "chunks": [],
+      "chunkNames": [],
+      "emitted": true
+    },
+    {
+      "name": "stats.json",
+      "size": 0,
+      "chunks": [],
+      "chunkNames": []
+    },
+    {
+      "name": "3rdpartylicenses.txt",
+      "size": 2179,
+      "chunks": [],
+      "chunkNames": []
+    },
+    {
+      "name": "index.html",
+      "size": 586,
+      "chunks": [],
+      "chunkNames": []
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "main": {
+      "chunks": [
+        0,
+        3
+      ],
+      "assets": [
+        "runtime.6afe30102d8fe7337431.js",
+        "main.e339f68cc77f07c43589.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "polyfills": {
+      "chunks": [
+        0,
+        2
+      ],
+      "assets": [
+        "runtime.6afe30102d8fe7337431.js",
+        "polyfills.2903ad11212d7d797800.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "styles": {
+      "chunks": [
+        0,
+        1
+      ],
+      "assets": [
+        "runtime.6afe30102d8fe7337431.js",
+        "styles.34c57ab7888ec1573f9c.css"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 0,
+      "names": [
+        "runtime"
+      ],
+      "files": [
+        "runtime.6afe30102d8fe7337431.js"
+      ],
+      "hash": "6afe30102d8fe7337431",
+      "siblings": [
+        1,
+        2,
+        3
+      ],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "reasons": []
+        },
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "polyfills",
+          "reasons": []
+        },
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "styles",
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "rendered": true,
+      "initial": true,
+      "entry": false,
+      "size": 147,
+      "names": [
+        "styles"
+      ],
+      "files": [
+        "styles.34c57ab7888ec1573f9c.css"
+      ],
+      "hash": "eac73a092fc2e8501030",
+      "siblings": [
+        0
+      ],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "css /Volumes/Work/ng6-app/node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!/Volumes/Work/ng6-app/node_modules/postcss-loader/lib/index.js??extracted!/Volumes/Work/ng6-app/src/styles.css 0",
+          "name": "css ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!./node_modules/postcss-loader/lib??extracted!./src/styles.css",
+          "index": 148,
+          "index2": 146,
+          "size": 80,
+          "built": false,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            1
+          ],
+          "issuer": "/Volumes/Work/ng6-app/node_modules/mini-css-extract-plugin/dist/loader.js!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!/Volumes/Work/ng6-app/node_modules/postcss-loader/lib/index.js??extracted!/Volumes/Work/ng6-app/src/styles.css",
+          "issuerId": "OmL/",
+          "issuerName": "./src/styles.css",
+          "issuerPath": [
+            {
+              "id": 1,
+              "identifier": "multi /Volumes/Work/ng6-app/src/styles.css",
+              "name": "multi ./src/styles.css"
+            },
+            {
+              "id": "OmL/",
+              "identifier": "/Volumes/Work/ng6-app/node_modules/mini-css-extract-plugin/dist/loader.js!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!/Volumes/Work/ng6-app/node_modules/postcss-loader/lib/index.js??extracted!/Volumes/Work/ng6-app/src/styles.css",
+              "name": "./src/styles.css"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "OmL/",
+              "moduleIdentifier": "/Volumes/Work/ng6-app/node_modules/mini-css-extract-plugin/dist/loader.js!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!/Volumes/Work/ng6-app/node_modules/postcss-loader/lib/index.js??extracted!/Volumes/Work/ng6-app/src/styles.css",
+              "module": "./src/styles.css",
+              "moduleName": "./src/styles.css"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": null,
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 2
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "styles",
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "rendered": true,
+      "initial": true,
+      "entry": false,
+      "size": 183344,
+      "names": [
+        "polyfills"
+      ],
+      "files": [
+        "polyfills.2903ad11212d7d797800.js"
+      ],
+      "hash": "2903ad11212d7d797800",
+      "siblings": [
+        0
+      ],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": "+rLv",
+          "identifier": "/Volumes/Work/ng6-app/node_modules/cache-loader/dist/cjs.js??ref--8-0!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--8-1!/Volumes/Work/ng6-app/node_modules/core-js/modules/_html.js",
+          "name": "./node_modules/core-js/modules/_html.js",
+          "index": 96,
+          "index2": 88,
+          "size": 101,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            2
+          ],
+          "issuer": "/Volumes/Work/ng6-app/node_modules/cache-loader/dist/cjs.js??ref--8-0!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--8-1!/Volumes/Work/ng6-app/node_modules/core-js/modules/_object-create.js",
+          "issuerId": "Kuth",
+          "issuerName": "./node_modules/core-js/modules/_object-create.js",
+          "issuerPath": [
+            {
+              "id": 2,
+              "identifier": "multi /Volumes/Work/ng6-app/src/polyfills.ts",
+              "name": "multi ./src/polyfills.ts"
+            },
+            {
+              "id": "hN/g",
+              "identifier": "/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--17-0!/Volumes/Work/ng6-app/node_modules/@ngtools/webpack/src/index.js!/Volumes/Work/ng6-app/src/polyfills.ts",
+              "name": "./src/polyfills.ts"
+            },
+            {
+              "id": "FZcq",
+              "identifier": "/Volumes/Work/ng6-app/node_modules/cache-loader/dist/cjs.js??ref--8-0!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--8-1!/Volumes/Work/ng6-app/node_modules/core-js/es7/reflect.js",
+              "name": "./node_modules/core-js/es7/reflect.js"
+            },
+            {
+              "id": "uAtd",
+              "identifier": "/Volumes/Work/ng6-app/node_modules/cache-loader/dist/cjs.js??ref--8-0!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--8-1!/Volumes/Work/ng6-app/node_modules/core-js/modules/es7.reflect.get-metadata-keys.js",
+              "name": "./node_modules/core-js/modules/es7.reflect.get-metadata-keys.js"
+            },
+            {
+              "id": "T39b",
+              "identifier": "/Volumes/Work/ng6-app/node_modules/cache-loader/dist/cjs.js??ref--8-0!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--8-1!/Volumes/Work/ng6-app/node_modules/core-js/modules/es6.set.js",
+              "name": "./node_modules/core-js/modules/es6.set.js"
+            },
+            {
+              "id": "wmvG",
+              "identifier": "/Volumes/Work/ng6-app/node_modules/cache-loader/dist/cjs.js??ref--8-0!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--8-1!/Volumes/Work/ng6-app/node_modules/core-js/modules/_collection-strong.js",
+              "name": "./node_modules/core-js/modules/_collection-strong.js"
+            },
+            {
+              "id": "Kuth",
+              "identifier": "/Volumes/Work/ng6-app/node_modules/cache-loader/dist/cjs.js??ref--8-0!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--8-1!/Volumes/Work/ng6-app/node_modules/core-js/modules/_object-create.js",
+              "name": "./node_modules/core-js/modules/_object-create.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "Kuth",
+              "moduleIdentifier": "/Volumes/Work/ng6-app/node_modules/cache-loader/dist/cjs.js??ref--8-0!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--8-1!/Volumes/Work/ng6-app/node_modules/core-js/modules/_object-create.js",
+              "module": "./node_modules/core-js/modules/_object-create.js",
+              "moduleName": "./node_modules/core-js/modules/_object-create.js",
+              "type": "cjs require",
+              "userRequest": "./_html",
+              "loc": "18:2-20"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": null,
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 7
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "polyfills",
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "rendered": true,
+      "initial": true,
+      "entry": false,
+      "size": 1132413,
+      "names": [
+        "main"
+      ],
+      "files": [
+        "main.e339f68cc77f07c43589.js"
+      ],
+      "hash": "e339f68cc77f07c43589",
+      "siblings": [
+        0
+      ],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": "crnd",
+          "identifier": "/Volumes/Work/ng6-app/src/$$_lazy_route_resource lazy groupOptions: {} namespace object",
+          "name": "./src/$$_lazy_route_resource lazy namespace object",
+          "index": 58,
+          "index2": 53,
+          "size": 160,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            3
+          ],
+          "issuer": "/Volumes/Work/ng6-app/node_modules/cache-loader/dist/cjs.js??ref--8-0!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--8-1!/Volumes/Work/ng6-app/node_modules/@angular/core/fesm5/core.js",
+          "issuerId": null,
+          "issuerName": "./node_modules/@angular/core/fesm5/core.js",
+          "issuerPath": [
+            {
+              "id": 3,
+              "identifier": "multi /Volumes/Work/ng6-app/src/main.ts",
+              "name": "multi ./src/main.ts"
+            },
+            {
+              "id": null,
+              "identifier": "/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--17-0!/Volumes/Work/ng6-app/node_modules/@ngtools/webpack/src/index.js!/Volumes/Work/ng6-app/src/main.ts",
+              "name": "./src/main.ts"
+            },
+            {
+              "id": null,
+              "identifier": "/Volumes/Work/ng6-app/node_modules/cache-loader/dist/cjs.js??ref--8-0!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--8-1!/Volumes/Work/ng6-app/node_modules/@angular/core/fesm5/core.js",
+              "name": "./node_modules/@angular/core/fesm5/core.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "zUnb",
+              "moduleIdentifier": "/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--17-0!/Volumes/Work/ng6-app/node_modules/@ngtools/webpack/src/index.js!/Volumes/Work/ng6-app/src/main.ts 40d81dc475464ed670e8b87f50048d33",
+              "module": "./src/main.ts + 58 modules",
+              "moduleName": "./src/main.ts + 58 modules",
+              "type": "import() context lazy",
+              "userRequest": ".",
+              "loc": "5518:15-36"
+            },
+            {
+              "moduleId": "zUnb",
+              "moduleIdentifier": "/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-optimizer/src/build-optimizer/webpack-loader.js??ref--17-0!/Volumes/Work/ng6-app/node_modules/@ngtools/webpack/src/index.js!/Volumes/Work/ng6-app/src/main.ts 40d81dc475464ed670e8b87f50048d33",
+              "module": "./src/main.ts + 58 modules",
+              "moduleName": "./src/main.ts + 58 modules",
+              "type": "import() context lazy",
+              "userRequest": ".",
+              "loc": "5530:15-102"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": null,
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 3
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "children": [
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "",
+      "outputPath": "/Volumes/Work/ng6-app/dist/ng6-app",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "chunks": [
+        {
+          "id": 0,
+          "rendered": true,
+          "initial": true,
+          "entry": true,
+          "size": 125,
+          "names": [
+            "mini-css-extract-plugin"
+          ],
+          "files": [
+            "*"
+          ],
+          "hash": "86ef7ed56df014a3a96e",
+          "siblings": [],
+          "parents": [],
+          "children": [],
+          "childrenByOrder": {},
+          "modules": [
+            {
+              "id": "OCjF",
+              "identifier": "/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!/Volumes/Work/ng6-app/node_modules/postcss-loader/lib/index.js??extracted!/Volumes/Work/ng6-app/src/styles.css",
+              "name": "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!./node_modules/postcss-loader/lib??extracted!./src/styles.css",
+              "index": 0,
+              "index2": 0,
+              "size": 125,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "issuer": null,
+              "issuerId": null,
+              "issuerName": null,
+              "issuerPath": null,
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [],
+              "reasons": [
+                {
+                  "moduleId": null,
+                  "moduleIdentifier": null,
+                  "module": null,
+                  "moduleName": null,
+                  "type": "single entry",
+                  "userRequest": "!!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!/Volumes/Work/ng6-app/node_modules/postcss-loader/lib/index.js??extracted!/Volumes/Work/ng6-app/src/styles.css",
+                  "loc": "mini-css-extract-plugin"
+                }
+              ],
+              "usedExports": true,
+              "providedExports": null,
+              "optimizationBailout": [
+                "ModuleConcatenation bailout: Module is not an ECMAScript module"
+              ],
+              "depth": 0
+            }
+          ],
+          "filteredModules": 0,
+          "origins": [
+            {
+              "module": "",
+              "moduleIdentifier": "",
+              "moduleName": "",
+              "loc": "mini-css-extract-plugin",
+              "request": "!!/Volumes/Work/ng6-app/node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!/Volumes/Work/ng6-app/node_modules/postcss-loader/lib/index.js??extracted!/Volumes/Work/ng6-app/src/styles.css",
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!node_modules/postcss-loader/lib/index.js??extracted!src/styles.css"
+    }
+  ]
+}
