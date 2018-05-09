@@ -67,6 +67,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     }
   }
 
+  const modules = getBundleModules(bundleStats);
   const assets = _.transform(bundleStats.assets, (result, statAsset) => {
     const asset = result[statAsset.name] = _.pick(statAsset, 'size');
 
@@ -76,7 +77,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     }
 
     // Picking modules from current bundle script
-    asset.modules = _(bundleStats.modules)
+    asset.modules = _(modules)
       .filter(statModule => assetHasModule(statAsset, statModule))
       .each(statModule => {
         if (parsedModules) {
@@ -105,6 +106,16 @@ function readStatsFromFile(filename) {
   return JSON.parse(
     fs.readFileSync(filename, 'utf8')
   );
+}
+
+function getBundleModules(bundleStats) {
+  return _(bundleStats.chunks)
+    .map('modules')
+    .concat(bundleStats.modules)
+    .compact()
+    .flatten()
+    .uniqBy('id')
+    .value();
 }
 
 function assetHasModule(statAsset, statModule) {
