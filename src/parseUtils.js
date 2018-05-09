@@ -74,7 +74,7 @@ function parseBundle(bundlePath) {
         // Additional bundles with webpack 4 are loaded with:
         // (window.webpackJsonp=window.webpackJsonp||[]).push([[chunkId], [<module>, <module>], [[optional_entries]]]);
         if (
-          isWindowPropertyPushExpression(node) &&
+          isAsyncChunkPushExpression(node) &&
           args.length === 1 &&
           isArgumentContainingChunkIdsAndModulesList(args[0])
         ) {
@@ -164,11 +164,18 @@ function isArgumentArrayConcatContainingChunks(arg) {
   return false;
 }
 
-function isWindowPropertyPushExpression(node) {
-  return node.callee.type === 'MemberExpression' &&
-    node.callee.property.name === 'push' &&
-    node.callee.object.type === 'AssignmentExpression' &&
-    node.callee.object.left.object.name === 'window';
+function isAsyncChunkPushExpression(node) {
+  const { callee } = node;
+  return (
+    callee.type === 'MemberExpression' &&
+    callee.property.name === 'push' &&
+    callee.object.type === 'AssignmentExpression' &&
+    (
+      callee.object.left.object.name === 'window' ||
+      // Webpack 4 uses `this` instead of `window`
+      callee.object.left.object.type === 'ThisExpression'
+    )
+  );
 }
 
 function isModuleWrapper(node) {
