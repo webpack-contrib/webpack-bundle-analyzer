@@ -34,6 +34,14 @@ describe('Analyzer', function () {
     await expectValidReport();
   });
 
+  it('should support stats files with modules inside `chunks` array', async function () {
+    generateReportFrom('with-modules-in-chunks/stats.json');
+    const chartData = await getChartData();
+    expect(chartData).to.containSubset(
+      require('./stats/with-modules-in-chunks/expected-chart-data')
+    );
+  });
+
   it('should support bundles with invalid dynamic require calls', async function () {
     generateReportFrom('with-invalid-dynamic-require.json');
     await expectValidReport({ statSize: 136 });
