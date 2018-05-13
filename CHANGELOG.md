@@ -14,6 +14,11 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 2.11.3
+
+ * **Bug Fix**
+   * Filter out modules that weren't found during bundles parsing ([#177](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/177))
+
 ## 2.11.2
 
  * **Bug Fix**
