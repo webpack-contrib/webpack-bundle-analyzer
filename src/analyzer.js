@@ -78,7 +78,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
 
     // Picking modules from current bundle script
     asset.modules = _(modules)
-      .filter(statModule => assetHasModule(statAsset, statModule))
+      .filter(statModule => assetHasModule(statAsset, statModule, parsedModules))
       .each(statModule => {
         if (parsedModules) {
           statModule.parsedSrc = parsedModules[statModule.id];
@@ -118,9 +118,19 @@ function getBundleModules(bundleStats) {
     .value();
 }
 
-function assetHasModule(statAsset, statModule) {
-  return _.some(statModule.chunks, moduleChunk =>
+function assetHasModule(statAsset, statModule, parsedModules) {
+  // Checking if this module is the part of asset chunks
+  const moduleIsInsideAsset = _.some(statModule.chunks, moduleChunk =>
     _.includes(statAsset.chunks, moduleChunk)
+  );
+
+  return (
+    moduleIsInsideAsset &&
+    // ...and that we have found it during parsing
+    (
+      !parsedModules ||
+      _.has(parsedModules, statModule.id)
+    )
   );
 }
 

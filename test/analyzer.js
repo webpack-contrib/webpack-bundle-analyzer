@@ -54,6 +54,14 @@ describe('Analyzer', function () {
       require('./stats/with-module-concatenation-info/expected-chart-data')
     );
   });
+
+  it("should filter out modules that we could't find during parsing", async function () {
+    generateReportFrom('with-missing-parsed-module/stats.json');
+    const chartData = await getChartData();
+    forEachChartItem(chartData, item => {
+      expect(typeof item.parsedSize).to.equal('number');
+    });
+  });
 });
 
 function generateReportFrom(statsFilename) {
@@ -66,6 +74,16 @@ async function getChartData() {
   return await nightmare
     .goto(`file://${__dirname}/output/report.html`)
     .evaluate(() => window.chartData);
+}
+
+function forEachChartItem(chartData, cb) {
+  for (const item of chartData) {
+    cb(item);
+
+    if (item.groups) {
+      forEachChartItem(item.groups, cb);
+    }
+  }
 }
 
 async function expectValidReport(opts) {
