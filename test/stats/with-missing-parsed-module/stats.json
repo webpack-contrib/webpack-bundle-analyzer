@@ -1,0 +1,404 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.8.2",
+  "hash": "3c8608aea48b794f4b86",
+  "time": 1782,
+  "builtAt": 1526083245813,
+  "outputPath": "/lpdb/bundles",
+  "publicPath": "/static/bundles/",
+  "assetsByChunkName": {
+    "main": [
+      "main.bundle.1866c96b564d4c893baa.css",
+      "bundle.js"
+    ]
+  },
+  "assets": [
+    {
+      "name": "bundle.js",
+      "size": 335046,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "main": {
+      "chunks": [
+        "main"
+      ],
+      "assets": [
+        "main.bundle.1866c96b564d4c893baa.css",
+        "bundle.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "chunks": [
+        "main"
+      ],
+      "assets": [
+        "main.bundle.1866c96b564d4c893baa.css",
+        "bundle.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "chunks": [
+    {
+      "id": "main",
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 316495,
+      "names": [
+        "main"
+      ],
+      "files": [
+        "main.bundle.1866c96b564d4c893baa.css",
+        "bundle.js"
+      ],
+      "hash": "6ccc2c99f7fd9d84fd66",
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": "./client/App.vue",
+          "identifier": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+          "name": "./client/App.vue",
+          "index": 9,
+          "index2": 13,
+          "size": 1055,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "main"
+          ],
+          "issuer": "/lpdb/node_modules/babel-loader/lib/index.js!/lpdb/client/index.js",
+          "issuerId": "./client/index.js",
+          "issuerName": "./client/index.js",
+          "issuerPath": [
+            {
+              "id": "./client/index.js",
+              "identifier": "/lpdb/node_modules/babel-loader/lib/index.js!/lpdb/client/index.js",
+              "name": "./client/index.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./client/index.js",
+              "moduleIdentifier": "/lpdb/node_modules/babel-loader/lib/index.js!/lpdb/client/index.js",
+              "module": "./client/index.js",
+              "moduleName": "./client/index.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./App.vue",
+              "loc": "3:0-28"
+            },
+            {
+              "moduleId": "./client/index.js",
+              "moduleIdentifier": "/lpdb/node_modules/babel-loader/lib/index.js!/lpdb/client/index.js",
+              "module": "./client/index.js",
+              "moduleName": "./client/index.js",
+              "type": "harmony import specifier",
+              "userRequest": "./App.vue",
+              "loc": "7:13-16"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 1
+        },
+        {
+          "id": "./client/App.vue?vue&type=script&lang=js",
+          "identifier": "/lpdb/node_modules/vue-loader/lib/loaders/pitcher.js!/lpdb/node_modules/babel-loader/lib/index.js!/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue?vue&type=script&lang=js",
+          "name": "./client/App.vue?vue&type=script&lang=js",
+          "index": 12,
+          "index2": 11,
+          "size": 438,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "main"
+          ],
+          "issuer": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+          "issuerId": "./client/App.vue",
+          "issuerName": "./client/App.vue",
+          "issuerPath": [
+            {
+              "id": "./client/index.js",
+              "identifier": "/lpdb/node_modules/babel-loader/lib/index.js!/lpdb/client/index.js",
+              "name": "./client/index.js"
+            },
+            {
+              "id": "./client/App.vue",
+              "identifier": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+              "name": "./client/App.vue"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./client/App.vue",
+              "moduleIdentifier": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+              "module": "./client/App.vue",
+              "moduleName": "./client/App.vue",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./App.vue?vue&type=script&lang=js",
+              "loc": "2:0-54"
+            },
+            {
+              "moduleId": "./client/App.vue",
+              "moduleIdentifier": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+              "module": "./client/App.vue",
+              "moduleName": "./client/App.vue",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./App.vue?vue&type=script&lang=js",
+              "loc": "3:0-49"
+            },
+            {
+              "moduleId": "./client/App.vue",
+              "moduleIdentifier": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+              "module": "./client/App.vue",
+              "moduleName": "./client/App.vue",
+              "type": "harmony export imported specifier",
+              "userRequest": "./App.vue?vue&type=script&lang=js",
+              "loc": "3:0-49"
+            },
+            {
+              "moduleId": "./client/App.vue",
+              "moduleIdentifier": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+              "module": "./client/App.vue",
+              "moduleName": "./client/App.vue",
+              "type": "harmony import specifier",
+              "userRequest": "./App.vue?vue&type=script&lang=js",
+              "loc": "9:2-8"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 2
+        },
+        {
+          "id": "./client/App.vue?vue&type=template&id=278f674b",
+          "identifier": "/lpdb/node_modules/vue-loader/lib/loaders/pitcher.js!/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue?vue&type=template&id=278f674b",
+          "name": "./client/App.vue?vue&type=template&id=278f674b",
+          "index": 10,
+          "index2": 9,
+          "size": 481,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "main"
+          ],
+          "issuer": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+          "issuerId": "./client/App.vue",
+          "issuerName": "./client/App.vue",
+          "issuerPath": [
+            {
+              "id": "./client/index.js",
+              "identifier": "/lpdb/node_modules/babel-loader/lib/index.js!/lpdb/client/index.js",
+              "name": "./client/index.js"
+            },
+            {
+              "id": "./client/App.vue",
+              "identifier": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+              "name": "./client/App.vue"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./client/App.vue",
+              "moduleIdentifier": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+              "module": "./client/App.vue",
+              "moduleName": "./client/App.vue",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./App.vue?vue&type=template&id=278f674b",
+              "loc": "1:0-81"
+            },
+            {
+              "moduleId": "./client/App.vue",
+              "moduleIdentifier": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+              "module": "./client/App.vue",
+              "moduleName": "./client/App.vue",
+              "type": "harmony import specifier",
+              "userRequest": "./App.vue?vue&type=template&id=278f674b",
+              "loc": "10:2-8"
+            },
+            {
+              "moduleId": "./client/App.vue",
+              "moduleIdentifier": "/lpdb/node_modules/vue-loader/lib/index.js??vue-loader-options!/lpdb/client/App.vue",
+              "module": "./client/App.vue",
+              "moduleName": "./client/App.vue",
+              "type": "harmony import specifier",
+              "userRequest": "./App.vue?vue&type=template&id=278f674b",
+              "loc": "11:2-17"
+            }
+          ],
+          "providedExports": [
+            "render",
+            "staticRenderFns"
+          ],
+          "optimizationBailout": [],
+          "depth": 2
+        },
+        {
+          "id": 0,
+          "identifier": "css /lpdb/node_modules/css-loader/index.js!/lpdb/node_modules/bootstrap/dist/css/bootstrap-reboot.css 0",
+          "name": "css ./node_modules/css-loader!./node_modules/bootstrap/dist/css/bootstrap-reboot.css",
+          "index": 2,
+          "index2": 0,
+          "size": 4807,
+          "built": false,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "main"
+          ],
+          "issuer": "/lpdb/node_modules/mini-css-extract-plugin/dist/loader.js!/lpdb/node_modules/css-loader/index.js!/lpdb/node_modules/postcss-loader/lib/index.js!/lpdb/node_modules/sass-loader/lib/loader.js!/lpdb/client/index.scss",
+          "issuerId": "./client/index.scss",
+          "issuerName": "./client/index.scss",
+          "issuerPath": [
+            {
+              "id": "./client/index.js",
+              "identifier": "/lpdb/node_modules/babel-loader/lib/index.js!/lpdb/client/index.js",
+              "name": "./client/index.js"
+            },
+            {
+              "id": "./client/index.scss",
+              "identifier": "/lpdb/node_modules/mini-css-extract-plugin/dist/loader.js!/lpdb/node_modules/css-loader/index.js!/lpdb/node_modules/postcss-loader/lib/index.js!/lpdb/node_modules/sass-loader/lib/loader.js!/lpdb/client/index.scss",
+              "name": "./client/index.scss"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": "./client/index.scss",
+              "moduleIdentifier": "/lpdb/node_modules/mini-css-extract-plugin/dist/loader.js!/lpdb/node_modules/css-loader/index.js!/lpdb/node_modules/postcss-loader/lib/index.js!/lpdb/node_modules/sass-loader/lib/loader.js!/lpdb/client/index.scss",
+              "module": "./client/index.scss",
+              "moduleName": "./client/index.scss"
+            }
+          ],
+          "providedExports": null,
+          "optimizationBailout": [],
+          "depth": 2
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "request": "index.js",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "filteredModules": 0,
+  "children": [
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/static/bundles/",
+      "outputPath": "/lpdb/bundles",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            "mini-css-extract-plugin"
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            "mini-css-extract-plugin"
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "chunks": [
+        {
+          "id": "mini-css-extract-plugin",
+          "rendered": true,
+          "initial": true,
+          "entry": true,
+          "size": 7897,
+          "names": [
+            "mini-css-extract-plugin"
+          ],
+          "files": [
+            "*"
+          ],
+          "hash": "0a66b245ce5674406bd4",
+          "siblings": [],
+          "parents": [],
+          "children": [],
+          "childrenByOrder": {},
+          "filteredModules": 0,
+          "origins": [
+            {
+              "module": "",
+              "moduleIdentifier": "",
+              "moduleName": "",
+              "loc": "mini-css-extract-plugin",
+              "request": "!!/lpdb/node_modules/css-loader/index.js!/lpdb/node_modules/postcss-loader/lib/index.js!/lpdb/node_modules/sass-loader/lib/loader.js!/lpdb/client/index.scss",
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "filteredModules": 0,
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/index.js!node_modules/postcss-loader/lib/index.js!node_modules/sass-loader/lib/loader.js!client/index.scss"
+    }
+  ]
+}
