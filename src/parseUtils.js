@@ -71,6 +71,17 @@ function parseBundle(bundlePath) {
           return;
         }
 
+        // Additional bundles with webpack 4 are loaded with:
+        // (window.webpackJsonp=window.webpackJsonp||[]).push([[chunkId], [<module>, <module>], [[optional_entries]]]);
+        if (
+          isAsyncChunkPushExpression(node) &&
+          args.length === 1 &&
+          isArgumentContainingChunkIdsAndModulesList(args[0])
+        ) {
+          state.locations = getModulesLocationFromFunctionArgument(args[0].elements[1]);
+          return;
+        }
+
         // Walking into arguments because some of plugins (e.g. `DedupePlugin`) or some Webpack
         // features (e.g. `umd` library output) can wrap modules list into additional IIFE.
         _.each(args, arg => c(arg, state));
@@ -115,6 +126,18 @@ function isArgumentContainsModulesList(arg) {
   return false;
 }
 
+function isArgumentContainingChunkIdsAndModulesList(arg) {
+  if (
+    arg.type === 'ArrayExpression' &&
+    arg.elements.length >= 2 &&
+    isArgumentContainsChunkIds(arg.elements[0]) &&
+    isArgumentContainsModulesList(arg.elements[1])
+  ) {
+    return true;
+  }
+  return false;
+}
+
 function isArgumentArrayConcatContainingChunks(arg) {
   if (
     arg.type === 'CallExpression' &&
@@ -139,6 +162,20 @@ function isArgumentArrayConcatContainingChunks(arg) {
   }
 
   return false;
+}
+
+function isAsyncChunkPushExpression(node) {
+  const { callee } = node;
+  return (
+    callee.type === 'MemberExpression' &&
+    callee.property.name === 'push' &&
+    callee.object.type === 'AssignmentExpression' &&
+    (
+      callee.object.left.object.name === 'window' ||
+      // Webpack 4 uses `this` instead of `window`
+      callee.object.left.object.type === 'ThisExpression'
+    )
+  );
 }
 
 function isModuleWrapper(node) {

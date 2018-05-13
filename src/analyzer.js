@@ -5,11 +5,10 @@ const _ = require('lodash');
 const gzipSize = require('gzip-size');
 
 const Logger = require('./Logger');
-const { Folder } = require('../lib/tree');
-const { parseBundle } = require('../lib/parseUtils');
+const Folder = require('./tree/Folder').default;
+const { parseBundle } = require('./parseUtils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/;
-const MULTI_MODULE_REGEXP = /^multi /;
 
 module.exports = {
   getViewerData,
@@ -68,6 +67,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     }
   }
 
+  const modules = getBundleModules(bundleStats);
   const assets = _.transform(bundleStats.assets, (result, statAsset) => {
     const asset = result[statAsset.name] = _.pick(statAsset, 'size');
 
@@ -77,8 +77,8 @@ function getViewerData(bundleStats, bundleDir, opts) {
     }
 
     // Picking modules from current bundle script
-    asset.modules = _(bundleStats.modules)
-      .filter(statModule => assetHasModule(statAsset, statModule))
+    asset.modules = _(modules)
+      .filter(statModule => assetHasModule(statAsset, statModule, parsedModules))
       .each(statModule => {
         if (parsedModules) {
           statModule.parsedSrc = parsedModules[statModule.id];
@@ -108,40 +108,36 @@ function readStatsFromFile(filename) {
   );
 }
 
-function assetHasModule(statAsset, statModule) {
-  return _.some(statModule.chunks, moduleChunk =>
+function getBundleModules(bundleStats) {
+  return _(bundleStats.chunks)
+    .map('modules')
+    .concat(bundleStats.modules)
+    .compact()
+    .flatten()
+    .uniqBy('id')
+    .value();
+}
+
+function assetHasModule(statAsset, statModule, parsedModules) {
+  // Checking if this module is the part of asset chunks
+  const moduleIsInsideAsset = _.some(statModule.chunks, moduleChunk =>
     _.includes(statAsset.chunks, moduleChunk)
+  );
+
+  return (
+    moduleIsInsideAsset &&
+    // ...and that we have found it during parsing
+    (
+      !parsedModules ||
+      _.has(parsedModules, statModule.id)
+    )
   );
 }
 
 function createModulesTree(modules) {
   const root = new Folder('.');
 
-  _.each(modules, module => {
-    const path = getModulePath(module);
-
-    if (path) {
-      root.addModuleByPath(path, module);
-    }
-  });
+  _.each(modules, module => root.addModule(module));
 
   return root;
-}
-
-function getModulePath(module) {
-  if (MULTI_MODULE_REGEXP.test(module.identifier)) {
-    return [module.identifier];
-  }
-
-  const parsedPath = _
-    // Removing loaders from module path: they're joined by `!` and the last part is a raw module path
-    .last(module.name.split('!'))
-    // Splitting module path into parts
-    .split('/')
-    // Removing first `.`
-    .slice(1)
-    // Replacing `~` with `node_modules`
-    .map(part => (part === '~') ? 'node_modules' : part);
-
-  return parsedPath.length ? parsedPath : null;
 }

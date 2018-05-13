@@ -10,10 +10,64 @@
 
 _Note: Gaps between patch versions are faulty, broken or test releases._
 
+## UNRELEASED
+
+<!-- Add changelog entries for new changes under this section -->
+
+## 2.11.3
+
+ * **Bug Fix**
+   * Filter out modules that weren't found during bundles parsing ([#177](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/177))
+
+## 2.11.2
+
+ * **Bug Fix**
+   * Properly process stat files that contain modules inside of `chunks` array ([#175](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/175))
+   * Fix parsing of async chunks that push to `this.webpackJsonp` array ([#176](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/176))
+
+## 2.11.1
+
+ * **Improvement**
+   * Add support for parsing Webpack 4's chunked modules ([#159](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/159), [@jdelStrother](https://github.com/jdelStrother))
+
+## 2.11.0
+
+ * **Improvement**
+   * Show contents of concatenated module (requires Webpack 4) ([#158](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/158), closes [#157](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/157))
+
+## 2.10.1
+
+ * **Improvement**
+   * Support webpack 4 without deprecation warnings. @ai in [#156](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/156), fixes [#154](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/154)
+
+## 2.10.0
+
+ * **Bug Fix**
+   * Fix "out of memory" crash when dealing with huge stats objects ([#129](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/129), [@ryan953](https://github.com/ryan953))
+
+ * **Internal**
+   * Update dependencies ([#146](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/146))
+   * Update gulp to v4 and simplify gulpfile ([#146](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/146), [#149](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/149))
+   * Simplify ESLint configs ([#148](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/148))
+
+## 2.9.2
+
+ * **Bug Fix**
+   * Add a listener for the 'error' event on the WebSocket server client (#140)
+
+ * **Internal**
+   * Clean up .travis.yml (#140)
+   * Update ws to version 4.0.0 (#140)
+
+## 2.9.1
+
+ * **Bug Fix**
+   * Bump `ws` dependency to fix DoS vulnerability (closes [#130](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/130))
+
 ## 2.9.0
  * **New Feature**
    * Show chunk sizes in sidebar (closes #91)
-   
+
  * **Bug Fix**
    * Properly parse webpack bundles that use arrow functions as module wrappers (#108, @regiontog)
 
@@ -26,7 +80,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## 2.8.2
  * **Improvement**
    * Greatly improved accuracy of gzip sizes
- 
+
  * **Bug Fix**
    * Generate report file in the bundle output directory when used with Webpack Dev Server (fixes #75)
 
@@ -38,7 +92,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
  * **Improvement**
    * Analyzer now supports `webpack --watch` and Webpack Dev Server!
      It will automatically update modules treemap according to changes in the sources via WebSockets!
- 
+
  * **Internal**
    * Use `babel-preset-env` and two different Babel configs to compile node and browser code
    * Update deps
@@ -62,7 +116,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## 2.4.0
  * **Bug Fix**
    * Fix `TypeError: currentFolder.addModule is not a function`
-  
+
  * **Internal**
    * Update deps
 
@@ -73,7 +127,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## 2.3.0
  * **Improvement**
    * Add `analyzerHost` option (@freaz)
-  
+
  * **Internal**
    * Update deps
 
@@ -131,37 +185,37 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
    * Workaround `Express` bug that caused wrong `ejs` version to be used as view engine (fixes #17)
 
 ## 1.5.2
- 
+
  * **Bug Fix**
    * Support array module descriptors that can be generated if `DedupePlugin` is used (fixes #4)
 
 ## 1.5.1
- 
+
  * **Internal**
    * Plug analyzer to Webpack compiler `done` event instead of `emit`. Should fix #15.
 
 ## 1.5.0
- 
+
  * **New Feature**
    * Add `statsOptions` option for `BundleAnalyzerPlugin`
 
 ## 1.4.2
- 
+
  * **Bug Fix**
    * Fix "Unable to find bundle asset" error when bundle name starts with `/` (fixes #3)
 
 ## 1.4.1
- 
+
  * **Bug Fix**
    * Add partial support for `DedupePlugin` (see #4 for more info)
 
 ## 1.4.0
- 
+
  * **New Feature**
    * Add "static report" mode (closes #2)
 
 ## 1.3.0
- 
+
  * **Improvement**
    * Add `startAnalyzer` option for `BundleAnalyzerPlugin` (fixes #1)
  * **Internal**

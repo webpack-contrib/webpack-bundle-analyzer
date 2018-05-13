@@ -1,4 +1,5 @@
 const LEVELS = [
+  'debug',
   'info',
   'warn',
   'error',
@@ -6,6 +7,7 @@ const LEVELS = [
 ];
 
 const LEVEL_TO_CONSOLE_METHOD = new Map([
+  ['debug', 'log'],
   ['info', 'log'],
   ['warn', 'log']
 ]);
@@ -13,8 +15,9 @@ const LEVEL_TO_CONSOLE_METHOD = new Map([
 class Logger {
 
   static levels = LEVELS;
+  static defaultLevel = 'info';
 
-  constructor(level = 'info') {
+  constructor(level = Logger.defaultLevel) {
     this.activeLevels = new Set();
     this.setLogLevel(level);
   }

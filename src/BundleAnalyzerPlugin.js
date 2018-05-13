@@ -1,4 +1,4 @@
-const fs = require('fs');
+const bfj = require('bfj-node4');
 const path = require('path');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
@@ -32,7 +32,7 @@ class BundleAnalyzerPlugin {
   apply(compiler) {
     this.compiler = compiler;
 
-    compiler.plugin('done', stats => {
+    const done = stats => {
       stats = stats.toJson(this.opts.statsOptions);
 
       const actions = [];
@@ -58,22 +58,36 @@ class BundleAnalyzerPlugin {
           actions.forEach(action => action());
         });
       }
-    });
+    };
+
+    if (compiler.hooks) {
+      compiler.hooks.done.tap('webpack-bundle-analyzer', done);
+    } else {
+      compiler.plugin('done', done);
+    }
   }
 
-  generateStatsFile(stats) {
+  async generateStatsFile(stats) {
     const statsFilepath = path.resolve(this.compiler.outputPath, this.opts.statsFilename);
-
     mkdir.sync(path.dirname(statsFilepath));
 
-    fs.writeFileSync(
-      statsFilepath,
-      JSON.stringify(stats, null, 2)
-    );
+    try {
+      await bfj.write(statsFilepath, stats, {
+        promises: 'ignore',
+        buffers: 'ignore',
+        maps: 'ignore',
+        iterables: 'ignore',
+        circular: 'ignore'
+      });
 
-    this.logger.info(
-      `${bold('Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
-    );
+      this.logger.info(
+        `${bold('Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
+      );
+    } catch (error) {
+      this.logger.error(
+        `${bold('Webpack Bundle Analyzer')} error saving stats file to ${bold(statsFilepath)}: ${error}`
+      );
+    }
   }
 
   async startAnalyzerServer(stats) {

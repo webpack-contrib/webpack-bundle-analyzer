@@ -74,6 +74,15 @@ async function startServer(bundleStats, opts) {
 
   const wss = new WebSocket.Server({ server });
 
+  wss.on('connection', ws => {
+    ws.on('error', err => {
+      // Ignore network errors like `ECONNRESET`, `EPIPE`, etc.
+      if (err.errno) return;
+
+      logger.info(err.message);
+    });
+  });
+
   return {
     ws: wss,
     http: server,
@@ -149,6 +158,7 @@ function getChartData(logger, ...args) {
     chartData = analyzer.getViewerData(...args, { logger });
   } catch (err) {
     logger.error(`Could't analyze webpack bundle:\n${err}`);
+    logger.debug(err.stack);
     chartData = null;
   }
 
