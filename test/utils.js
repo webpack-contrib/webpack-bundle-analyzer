@@ -34,6 +34,12 @@ describe('createAssetsFilter', function () {
     expect(filter('bar-foo')).to.equal(true);
   });
 
+  it('should throw on invalid pattern types', function () {
+    expect(() => createAssetsFilter(5)).to.throw('but "5" got');
+    expect(() => createAssetsFilter({ a: 1 })).to.throw('but "{ a: 1 }" got');
+    expect(() => createAssetsFilter([true])).to.throw('but "true" got');
+  });
+
   it('should allow an array of patterns', function () {
     const filter = createAssetsFilter([
       '^foo',
