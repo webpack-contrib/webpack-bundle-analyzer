@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **New Feature**
+   * Add option that allows to exclude assets from the report ([#178](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/178))
+
 ## 2.11.3
 
  * **Bug Fix**
