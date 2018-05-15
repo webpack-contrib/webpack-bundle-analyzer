@@ -29,10 +29,13 @@ async function startServer(bundleStats, opts) {
     openBrowser = true,
     bundleDir = null,
     logger = new Logger(),
-    defaultSizes = 'parsed'
+    defaultSizes = 'parsed',
+    excludeAssets = null
   } = opts || {};
 
-  let chartData = getChartData(logger, bundleStats, bundleDir);
+  const analyzerOpts = { logger, excludeAssets };
+
+  let chartData = getChartData(analyzerOpts, bundleStats, bundleDir);
 
   if (!chartData) return;
 
@@ -90,7 +93,7 @@ async function startServer(bundleStats, opts) {
   };
 
   function updateChartData(bundleStats) {
-    const newChartData = getChartData(logger, bundleStats, bundleDir);
+    const newChartData = getChartData(analyzerOpts, bundleStats, bundleDir);
 
     if (!newChartData) return;
 
@@ -113,10 +116,11 @@ function generateReport(bundleStats, opts) {
     reportFilename = 'report.html',
     bundleDir = null,
     logger = new Logger(),
-    defaultSizes = 'parsed'
+    defaultSizes = 'parsed',
+    excludeAssets = null
   } = opts || {};
 
-  const chartData = getChartData(logger, bundleStats, bundleDir);
+  const chartData = getChartData({ logger, excludeAssets }, bundleStats, bundleDir);
 
   if (!chartData) return;
 
@@ -151,18 +155,19 @@ function getAssetContent(filename) {
   return fs.readFileSync(`${projectRoot}/public/${filename}`, 'utf8');
 }
 
-function getChartData(logger, ...args) {
+function getChartData(analyzerOpts, ...args) {
   let chartData;
+  const { logger } = analyzerOpts;
 
   try {
-    chartData = analyzer.getViewerData(...args, { logger });
+    chartData = analyzer.getViewerData(...args, analyzerOpts);
   } catch (err) {
     logger.error(`Could't analyze webpack bundle:\n${err}`);
     logger.debug(err.stack);
     chartData = null;
   }
 
-  if (_.isEmpty(chartData)) {
+  if (_.isPlainObject(chartData) && _.isEmpty(chartData)) {
     logger.error("Could't find any javascript bundles in provided stats file");
     chartData = null;
   }
