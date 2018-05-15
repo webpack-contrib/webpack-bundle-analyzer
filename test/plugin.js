@@ -1,9 +1,10 @@
 const fs = require('fs');
 const del = require('del');
+const _ = require('lodash');
 
 let nightmare;
 
-describe('Webpack config', function () {
+describe('Plugin', function () {
   let clock;
 
   this.timeout(3000);
@@ -28,7 +29,7 @@ describe('Webpack config', function () {
     clock.restore();
   });
 
-  it('with query in bundle filename should be supported', async function () {
+  it('should support webpack config with query in bundle filename', async function () {
     const config = makeWebpackConfig();
 
     config.output.filename = 'bundle.js?what=is-this-for';
@@ -39,7 +40,7 @@ describe('Webpack config', function () {
     await expectValidReport();
   });
 
-  it('with custom `jsonpFunction` name should be supported', async function () {
+  it('should support webpack config with custom `jsonpFunction` name', async function () {
     const config = makeWebpackConfig({
       multipleChunks: true
     });
@@ -55,7 +56,7 @@ describe('Webpack config', function () {
     });
   });
 
-  it('with `multi` module should be supported', async function () {
+  it('should support webpack config with `multi` module', async function () {
     const config = makeWebpackConfig();
 
     config.entry.bundle = [
@@ -72,6 +73,25 @@ describe('Webpack config', function () {
       path: './multi ./src/a.js ./src/b.js',
       groups: undefined
     }]);
+  });
+
+  describe('options', function () {
+    describe('excludeAssets', function () {
+      it('should filter out assets from the report', async function () {
+        const config = makeWebpackConfig({
+          multipleChunks: true,
+          analyzerOpts: {
+            excludeAssets: 'manifest'
+          }
+        });
+
+        await webpackCompile(config);
+        clock.tick(1);
+
+        const chartData = await getChartDataFromReport();
+        expect(_.map(chartData, 'label')).not.to.include('manifest.js');
+      });
+    });
   });
 });
 

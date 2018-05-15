@@ -58,6 +58,13 @@ const program = commander
     "Don't open report in default browser automatically."
   )
   .option(
+    '-e, --exclude <regexp>',
+    'Assets that should be excluded from the report.' +
+    br('Can be specified multiple times.'),
+    array,
+    []
+  )
+  .option(
     '-l, --log-level <level>',
     'Log level.' +
     br(`Possible values: ${[...Logger.levels].join(', ')}`),
@@ -73,6 +80,7 @@ let {
   defaultSizes,
   logLevel,
   open: openBrowser,
+  exclude: excludeAssets,
   args: [bundleStatsFile, bundleDir]
 } = program;
 const logger = new Logger(logLevel);
@@ -103,6 +111,7 @@ if (mode === 'server') {
     host,
     defaultSizes,
     bundleDir,
+    excludeAssets,
     logger: new Logger(logLevel)
   });
 } else {
@@ -111,6 +120,7 @@ if (mode === 'server') {
     reportFilename: resolve(reportFilename),
     defaultSizes,
     bundleDir,
+    excludeAssets,
     logger: new Logger(logLevel)
   });
 }
@@ -123,4 +133,9 @@ function showHelp(error) {
 
 function br(str) {
   return `\n${_.repeat(' ', 28)}${str}`;
+}
+
+function array(val, arr) {
+  arr.push(val);
+  return arr;
 }
