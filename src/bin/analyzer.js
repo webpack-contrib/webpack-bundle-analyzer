@@ -61,8 +61,7 @@ const program = commander
     '-e, --exclude <regexp>',
     'Assets that should be excluded from the report.' +
     br('Can be specified multiple times.'),
-    array,
-    []
+    array()
   )
   .option(
     '-l, --log-level <level>',
@@ -135,7 +134,10 @@ function br(str) {
   return `\n${_.repeat(' ', 28)}${str}`;
 }
 
-function array(val, arr) {
-  arr.push(val);
-  return arr;
+function array() {
+  const arr = [];
+  return (val) => {
+    arr.push(val);
+    return arr;
+  };
 }
