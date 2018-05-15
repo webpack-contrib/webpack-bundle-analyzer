@@ -74,6 +74,7 @@ class BundleAnalyzerPlugin {
 
     try {
       await bfj.write(statsFilepath, stats, {
+        space: 2,
         promises: 'ignore',
         buffers: 'ignore',
         maps: 'ignore',
