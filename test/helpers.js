@@ -1,5 +1,6 @@
 const chai = require('chai');
 const webpack = require('webpack');
+const _ = require('lodash');
 
 chai.use(require('chai-subset'));
 
@@ -17,16 +18,15 @@ function webpackCompile(config) {
 }
 
 function makeWebpackConfig(opts) {
-  opts = {
+  opts = _.merge({
     analyzerOpts: {
       analyzerMode: 'static',
       openAnalyzer: false,
       logLevel: 'error'
     },
     minify: false,
-    multipleChunks: false,
-    ...opts
-  };
+    multipleChunks: false
+  }, opts);
 
   return {
     context: __dirname,

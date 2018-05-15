@@ -7,6 +7,7 @@ const gzipSize = require('gzip-size');
 const Logger = require('./Logger');
 const Folder = require('./tree/Folder').default;
 const { parseBundle } = require('./parseUtils');
+const { createAssetsFilter } = require('./utils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/;
 
@@ -17,8 +18,11 @@ module.exports = {
 
 function getViewerData(bundleStats, bundleDir, opts) {
   const {
-    logger = new Logger()
+    logger = new Logger(),
+    excludeAssets = null
   } = opts || {};
+
+  const isAssetIncluded = createAssetsFilter(excludeAssets);
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
   if (_.isEmpty(bundleStats.assets) && !_.isEmpty(bundleStats.children)) {
@@ -31,7 +35,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     // See #22
     asset.name = asset.name.replace(FILENAME_QUERY_REGEXP, '');
 
-    return _.endsWith(asset.name, '.js') && !_.isEmpty(asset.chunks);
+    return _.endsWith(asset.name, '.js') && !_.isEmpty(asset.chunks) && isAssetIncluded(asset.name);
   });
 
   // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided
