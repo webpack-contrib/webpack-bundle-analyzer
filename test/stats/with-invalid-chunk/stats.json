@@ -1,0 +1,507 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.8.3",
+  "hash": "9deae6a8259cab8aa857",
+  "time": 563,
+  "builtAt": 1526827103238,
+  "publicPath": "",
+  "outputPath": "/Volumes/Work/webpack-bundle-analyzer/test/output",
+  "assetsByChunkName": {
+    "invalid": "invalid-chunk.js",
+    "valid": "valid-chunk.js"
+  },
+  "assets": [
+    {
+      "name": "invalid-chunk.js",
+      "size": 568,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "invalid"
+      ],
+      "emitted": true
+    },
+    {
+      "name": "valid-chunk.js",
+      "size": 590,
+      "chunks": [
+        1
+      ],
+      "chunkNames": [
+        "valid"
+      ],
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "valid": {
+      "chunks": [
+        1
+      ],
+      "assets": [
+        "valid-chunk.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "invalid": {
+      "chunks": [
+        0
+      ],
+      "assets": [
+        "invalid-chunk.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "valid": {
+      "chunks": [
+        1
+      ],
+      "assets": [
+        "valid-chunk.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "invalid": {
+      "chunks": [
+        0
+      ],
+      "assets": [
+        "invalid-chunk.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 24,
+      "names": [
+        "invalid"
+      ],
+      "files": [
+        "invalid-chunk.js"
+      ],
+      "hash": "8582161dc498aae7630a",
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": 1,
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/invalid.js",
+          "name": "./invalid.js",
+          "index": 2,
+          "index2": 2,
+          "size": 24,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./invalid.js",
+              "loc": "invalid"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": null,
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 0,
+          "source": "console.log('invalid');\n",
+          "parsedSrc": "function(e,n){console.log(\"invalid\")}"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "invalid",
+          "request": "./invalid.js",
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 70,
+      "names": [
+        "valid"
+      ],
+      "files": [
+        "valid-chunk.js"
+      ],
+      "hash": "7c1fb8000ed732072651",
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js d378c6a2195fc2426055093c3fdde76c",
+          "name": "./valid.js + 1 modules",
+          "index": 0,
+          "index2": 1,
+          "size": 70,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            1
+          ],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./valid.js",
+              "loc": "valid"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": [],
+          "optimizationBailout": [],
+          "depth": 0,
+          "modules": [
+            {
+              "id": null,
+              "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js",
+              "name": "./valid.js",
+              "index": 0,
+              "index2": 1,
+              "size": 41,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [],
+              "issuer": null,
+              "issuerId": null,
+              "issuerName": null,
+              "issuerPath": null,
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [],
+              "reasons": [
+                {
+                  "moduleId": null,
+                  "moduleIdentifier": null,
+                  "module": null,
+                  "moduleName": null,
+                  "type": "single entry",
+                  "userRequest": "./valid.js",
+                  "loc": "valid"
+                }
+              ],
+              "usedExports": true,
+              "providedExports": [],
+              "optimizationBailout": [
+                "ModuleConcatenation bailout: Module is an entry point"
+              ],
+              "depth": 0,
+              "source": "import { a } from './a';\nconsole.log(a);\n"
+            },
+            {
+              "id": null,
+              "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/a.js",
+              "name": "./a.js",
+              "index": 1,
+              "index2": 0,
+              "size": 29,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [],
+              "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js",
+              "issuerId": null,
+              "issuerName": "./valid.js",
+              "issuerPath": [
+                {
+                  "id": null,
+                  "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js",
+                  "name": "./valid.js"
+                }
+              ],
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [],
+              "reasons": [
+                {
+                  "moduleId": null,
+                  "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js",
+                  "module": "./valid.js",
+                  "moduleName": "./valid.js",
+                  "type": "harmony side effect evaluation",
+                  "userRequest": "./a",
+                  "loc": "1:0-24"
+                },
+                {
+                  "moduleId": null,
+                  "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js",
+                  "module": "./valid.js",
+                  "moduleName": "./valid.js",
+                  "type": "harmony import specifier",
+                  "userRequest": "./a",
+                  "loc": "2:12-13"
+                }
+              ],
+              "usedExports": [
+                "a"
+              ],
+              "providedExports": [
+                "a"
+              ],
+              "optimizationBailout": [],
+              "depth": 1,
+              "source": "export const a = 'module a';\n"
+            }
+          ],
+          "filteredModules": 0,
+          "parsedSrc": "function(e,r,t){\"use strict\";t.r(r);console.log(\"module a\")}"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "valid",
+          "request": "./valid.js",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": 0,
+      "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js d378c6a2195fc2426055093c3fdde76c",
+      "name": "./valid.js + 1 modules",
+      "index": 0,
+      "index2": 1,
+      "size": 70,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        1
+      ],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": null,
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "type": "single entry",
+          "userRequest": "./valid.js",
+          "loc": "valid"
+        }
+      ],
+      "usedExports": true,
+      "providedExports": [],
+      "optimizationBailout": [],
+      "depth": 0,
+      "modules": [
+        {
+          "id": null,
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js",
+          "name": "./valid.js",
+          "index": 0,
+          "index2": 1,
+          "size": 41,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./valid.js",
+              "loc": "valid"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": [],
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is an entry point"
+          ],
+          "depth": 0,
+          "source": "import { a } from './a';\nconsole.log(a);\n"
+        },
+        {
+          "id": null,
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/a.js",
+          "name": "./a.js",
+          "index": 1,
+          "index2": 0,
+          "size": 29,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [],
+          "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js",
+          "issuerId": null,
+          "issuerName": "./valid.js",
+          "issuerPath": [
+            {
+              "id": null,
+              "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js",
+              "name": "./valid.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js",
+              "module": "./valid.js",
+              "moduleName": "./valid.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./a",
+              "loc": "1:0-24"
+            },
+            {
+              "moduleId": null,
+              "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/valid.js",
+              "module": "./valid.js",
+              "moduleName": "./valid.js",
+              "type": "harmony import specifier",
+              "userRequest": "./a",
+              "loc": "2:12-13"
+            }
+          ],
+          "usedExports": [
+            "a"
+          ],
+          "providedExports": [
+            "a"
+          ],
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "export const a = 'module a';\n"
+        }
+      ],
+      "filteredModules": 0
+    },
+    {
+      "id": 1,
+      "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/invalid-chunk/invalid.js",
+      "name": "./invalid.js",
+      "index": 2,
+      "index2": 2,
+      "size": 24,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": null,
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "type": "single entry",
+          "userRequest": "./invalid.js",
+          "loc": "invalid"
+        }
+      ],
+      "usedExports": true,
+      "providedExports": null,
+      "optimizationBailout": [
+        "ModuleConcatenation bailout: Module is not an ECMAScript module"
+      ],
+      "depth": 0,
+      "source": "console.log('invalid');\n"
+    }
+  ],
+  "filteredModules": 0,
+  "children": []
+}

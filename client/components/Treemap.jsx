@@ -11,20 +11,18 @@ export default class Treemap extends Component {
   }
 
   componentDidMount() {
-    this.setWeightProp(this.props.weightProp);
+    this.updateData(this.props.weightProp);
     this.treemap = this.createTreemap();
-    window.addEventListener('resize', this.treemap.resize, false);
+    window.addEventListener('resize', this.treemap.resize);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.data !== this.props.data) {
-      this.setWeightProp(nextProps.weightProp, nextProps.data);
-      this.treemap.set({
-        dataObject: { groups: nextProps.data }
-      });
-    } else if (nextProps.weightProp !== this.props.weightProp) {
-      this.setWeightProp(nextProps.weightProp);
-      this.update();
+    if (
+      nextProps.data !== this.props.data ||
+      nextProps.weightProp !== this.props.weightProp
+    ) {
+      this.updateData(nextProps.weightProp, nextProps.data);
+      this.treemap.set({ dataObject: this.treemapDataObject });
     }
   }
 
@@ -45,6 +43,10 @@ export default class Treemap extends Component {
 
   saveNode = node => (this.node = node);
 
+  get treemapDataObject() {
+    return { groups: this.data };
+  }
+
   createTreemap() {
     const component = this;
     const { props } = this;
@@ -63,9 +65,7 @@ export default class Treemap extends Component {
       fadeDuration: 0,
       zoomMouseWheelDuration: 300,
       openCloseDuration: 200,
-      dataObject: {
-        groups: this.props.data
-      },
+      dataObject: this.treemapDataObject,
       titleBarDecorator(opts, props, vars) {
         vars.titleBarShown = false;
       },
@@ -106,20 +106,29 @@ export default class Treemap extends Component {
     this.treemap.update();
   }
 
-  setWeightProp(prop, data) {
+  updateData(sizeProp, data) {
     data = data || this.props.data;
-
-    data.forEach(setProp);
-
-    function setProp(group) {
-      group.weight = group[prop];
-
-      if (group.groups) {
-        group.groups.forEach(setProp);
-      }
-    }
+    this.data = getDataForSize(data, sizeProp);
   }
 
+}
+
+function getDataForSize(data, sizeProp) {
+  return data.reduce((filteredData, group) => {
+    if (group[sizeProp]) {
+      if (group.groups) {
+        group = {
+          ...group,
+          groups: getDataForSize(group.groups, sizeProp)
+        };
+      }
+
+      group.weight = group[sizeProp];
+      filteredData.push(group);
+    }
+
+    return filteredData;
+  }, []);
 }
 
 function preventDefault(event) {

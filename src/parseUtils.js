@@ -89,15 +89,19 @@ function parseBundle(bundlePath) {
     }
   );
 
-  if (!walkState.locations) {
-    return null;
+  let modules;
+
+  if (walkState.locations) {
+    modules = _.mapValues(walkState.locations,
+      loc => content.slice(loc.start, loc.end)
+    );
+  } else {
+    modules = {};
   }
 
   return {
     src: content,
-    modules: _.mapValues(walkState.locations,
-      loc => content.slice(loc.start, loc.end)
-    )
+    modules
   };
 }
 
