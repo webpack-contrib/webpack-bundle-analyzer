@@ -11,10 +11,7 @@ export default class BaseFolder extends Node {
 
   get src() {
     if (!_.has(this, '_src')) {
-      this._src = this.walk((node, src, stop) => {
-        if (node.src === undefined) return stop(undefined);
-        return (src += node.src);
-      }, '', false);
+      this._src = this.walk((node, src) => (src += node.src || ''), '', false);
     }
 
     return this._src;
