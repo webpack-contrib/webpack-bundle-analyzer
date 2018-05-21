@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Improvement**
+   * Pretty-format the generated stats.json ([#180](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/180))
+
 ## 2.13.0
 
  * **Improvement**
