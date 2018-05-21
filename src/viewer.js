@@ -110,7 +110,7 @@ async function startServer(bundleStats, opts) {
   }
 }
 
-function generateReport(bundleStats, opts) {
+async function generateReport(bundleStats, opts) {
   const {
     openBrowser = true,
     reportFilename = 'report.html',
@@ -124,31 +124,33 @@ function generateReport(bundleStats, opts) {
 
   if (!chartData) return;
 
-  ejs.renderFile(
-    `${projectRoot}/views/viewer.ejs`,
-    {
-      mode: 'static',
-      chartData: JSON.stringify(chartData),
-      assetContent: getAssetContent,
-      defaultSizes: JSON.stringify(defaultSizes)
-    },
-    (err, reportHtml) => {
-      if (err) return logger.error(err);
-
-      const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
-
-      mkdir.sync(path.dirname(reportFilepath));
-      fs.writeFileSync(reportFilepath, reportHtml);
-
-      logger.info(
-        `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`
-      );
-
-      if (openBrowser) {
-        opener(`file://${reportFilepath}`);
+  let reportHtml;
+  try {
+    reportHtml = await ejs.renderFile(
+      `${projectRoot}/views/viewer.ejs`,
+      {
+        mode: 'static',
+        chartData: JSON.stringify(chartData),
+        assetContent: getAssetContent,
+        defaultSizes: JSON.stringify(defaultSizes)
       }
-    }
+    );
+  } catch (err) {
+    return logger.error(err);
+  }
+
+  const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
+
+  mkdir.sync(path.dirname(reportFilepath));
+  fs.writeFileSync(reportFilepath, reportHtml);
+
+  logger.info(
+    `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`
   );
+
+  if (openBrowser) {
+    opener(`file://${reportFilepath}`);
+  }
 }
 
 function getAssetContent(filename) {

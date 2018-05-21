@@ -5,15 +5,12 @@ const _ = require('lodash');
 let nightmare;
 
 describe('Plugin', function () {
-  let clock;
-
   this.timeout(3000);
 
   before(function () {
     const Nightmare = require('nightmare');
     nightmare = Nightmare();
     del.sync(`${__dirname}/output`);
-    clock = sinon.useFakeTimers();
   });
 
   beforeEach(async function () {
@@ -25,17 +22,13 @@ describe('Plugin', function () {
     del.sync(`${__dirname}/output`);
   });
 
-  after(function () {
-    clock.restore();
-  });
-
   it('should support webpack config with query in bundle filename', async function () {
     const config = makeWebpackConfig();
 
     config.output.filename = 'bundle.js?what=is-this-for';
 
     await webpackCompile(config);
-    clock.tick(1);
+    await pause();
 
     await expectValidReport();
   });
@@ -48,11 +41,11 @@ describe('Plugin', function () {
     config.output.jsonpFunction = 'somethingCompletelyDifferent';
 
     await webpackCompile(config);
-    clock.tick(1);
+    await pause();
 
     await expectValidReport({
-      parsedSize: 445,
-      gzipSize: 178
+      parsedSize: 1125,
+      gzipSize: 307
     });
   });
 
@@ -65,7 +58,7 @@ describe('Plugin', function () {
     ];
 
     await webpackCompile(config);
-    clock.tick(1);
+    await pause();
 
     const chartData = await getChartDataFromReport();
     expect(chartData[0].groups).to.containSubset([{
@@ -86,7 +79,7 @@ describe('Plugin', function () {
         });
 
         await webpackCompile(config);
-        clock.tick(1);
+        await pause();
 
         const chartData = await getChartDataFromReport();
         expect(_.map(chartData, 'label')).not.to.include('manifest.js');
@@ -101,8 +94,8 @@ async function expectValidReport(opts) {
     reportFilename = 'report.html',
     bundleLabel = 'bundle.js',
     statSize = 141,
-    parsedSize = 2821,
-    gzipSize = 770
+    parsedSize = 3616,
+    gzipSize = 890
   } = opts || {};
 
   expect(fs.existsSync(`${__dirname}/output/${bundleFilename}`)).to.be.true;

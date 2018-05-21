@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzePlugin = require('./lib/BundleAnalyzerPlugin');
 
 module.exports = opts => {
@@ -10,10 +11,35 @@ module.exports = opts => {
   return {
     context: __dirname,
     entry: './client/viewer',
+    mode: (opts.env === 'prod') ? 'production' : 'development',
     output: {
       path: `${__dirname}/public`,
       filename: 'viewer.js',
       publicPath: '/'
+    },
+
+    optimization: {
+      minimize: (opts.env === 'prod'),
+      minimizer: [
+        new UglifyJsPlugin({
+          sourceMap: true,
+          parallel: true,
+          uglifyOptions: {
+            output: {
+              comments: false
+            },
+            compress: {
+              // Disabling inlining of functions with parameters
+              // See https://github.com/webpack/webpack/issues/6760,
+              // https://github.com/webpack/webpack/issues/6567#issuecomment-369554250
+              inline: 1
+            },
+            mangle: {
+              safari10: true
+            }
+          }
+        })
+      ]
     },
 
     resolve: {
@@ -86,16 +112,6 @@ module.exports = opts => {
             'process.env': {
               NODE_ENV: '"production"'
             }
-          }),
-          new webpack.optimize.OccurrenceOrderPlugin(),
-          new webpack.optimize.UglifyJsPlugin({
-            compress: {
-              warnings: false,
-              negate_iife: false
-            },
-            mangle: true,
-            comments: false,
-            sourceMap: true
           })
         );
       }
