@@ -53,21 +53,19 @@ function getViewerData(bundleStats, bundleDir, opts) {
       try {
         bundleInfo = parseBundle(assetFile);
       } catch (err) {
-        bundleInfo = null;
-      }
-
-      if (!bundleInfo) {
-        logger.warn(
-          `\nCouldn't parse bundle asset "${assetFile}".\n` +
-          'Analyzer will use module sizes from stats file.\n'
-        );
-        parsedModules = null;
-        bundlesSources = null;
-        break;
+        const msg = (err.code === 'ENOENT') ? 'no such file' : err.message;
+        logger.warn(`Error parsing bundle asset "${assetFile}": ${msg}`);
+        continue;
       }
 
       bundlesSources[statAsset.name] = bundleInfo.src;
       _.assign(parsedModules, bundleInfo.modules);
+    }
+
+    if (_.isEmpty(bundlesSources)) {
+      bundlesSources = null;
+      parsedModules = null;
+      logger.warn('\nNo bundles were parsed. Analyzer will show only original module sizes from stats file.\n');
     }
   }
 
@@ -75,14 +73,14 @@ function getViewerData(bundleStats, bundleDir, opts) {
   const assets = _.transform(bundleStats.assets, (result, statAsset) => {
     const asset = result[statAsset.name] = _.pick(statAsset, 'size');
 
-    if (bundlesSources) {
+    if (bundlesSources && _.has(bundlesSources, statAsset.name)) {
       asset.parsedSize = bundlesSources[statAsset.name].length;
       asset.gzipSize = gzipSize.sync(bundlesSources[statAsset.name]);
     }
 
     // Picking modules from current bundle script
     asset.modules = _(modules)
-      .filter(statModule => assetHasModule(statAsset, statModule, parsedModules))
+      .filter(statModule => assetHasModule(statAsset, statModule))
       .each(statModule => {
         if (parsedModules) {
           statModule.parsedSrc = parsedModules[statModule.id];
@@ -98,7 +96,8 @@ function getViewerData(bundleStats, bundleDir, opts) {
       // Not using `asset.size` here provided by Webpack because it can be very confusing when `UglifyJsPlugin` is used.
       // In this case all module sizes from stats file will represent unminified module sizes, but `asset.size` will
       // be the size of minified bundle.
-      statSize: asset.tree.size,
+      // Using `asset.size` only if current asset doesn't contain any modules (resulting size equals 0)
+      statSize: asset.tree.size || asset.size,
       parsedSize: asset.parsedSize,
       gzipSize: asset.gzipSize,
       groups: _.invokeMap(asset.tree.children, 'toChartData')
@@ -122,19 +121,10 @@ function getBundleModules(bundleStats) {
     .value();
 }
 
-function assetHasModule(statAsset, statModule, parsedModules) {
+function assetHasModule(statAsset, statModule) {
   // Checking if this module is the part of asset chunks
-  const moduleIsInsideAsset = _.some(statModule.chunks, moduleChunk =>
+  return _.some(statModule.chunks, moduleChunk =>
     _.includes(statAsset.chunks, moduleChunk)
-  );
-
-  return (
-    moduleIsInsideAsset &&
-    // ...and that we have found it during parsing
-    (
-      !parsedModules ||
-      _.has(parsedModules, statModule.id)
-    )
   );
 }
 

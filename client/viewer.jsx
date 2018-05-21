@@ -32,7 +32,7 @@ window.addEventListener('load', () => {
 let app;
 function renderApp(chartData, initialRender) {
   app = render(
-    <ModulesTreemap data={chartData} defaultSizes={window.defaultSizes}/>,
+    <ModulesTreemap chunks={chartData} defaultSizes={window.defaultSizes}/>,
     document.getElementById('app'),
     app
   );
