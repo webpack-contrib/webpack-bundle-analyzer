@@ -16,7 +16,7 @@
   "main": "lib/index.js",
   "bin": "lib/bin/analyzer.js",
   "engines": {
-    "node": ">= 4"
+    "node": ">= 6"
   },
   "scripts": {
     "start": "gulp watch",
