@@ -1,7 +1,7 @@
 module.exports = [
   {
     'label': 'runtime.6afe30102d8fe7337431.js',
-    'statSize': 0,
+    'statSize': 1053,
     'groups': []
   },
   {

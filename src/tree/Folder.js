@@ -9,12 +9,12 @@ import { getModulePathParts } from './utils';
 export default class Folder extends BaseFolder {
 
   get parsedSize() {
-    return this.src ? this.src.length : undefined;
+    return this.src ? this.src.length : 0;
   }
 
   get gzipSize() {
     if (!_.has(this, '_gzipSize')) {
-      this._gzipSize = this.src ? gzipSize.sync(this.src) : undefined;
+      this._gzipSize = this.src ? gzipSize.sync(this.src) : 0;
     }
 
     return this._gzipSize;
