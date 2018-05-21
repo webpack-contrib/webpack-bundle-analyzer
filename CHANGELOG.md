@@ -14,6 +14,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 2.13.0
+
  * **Improvement**
    * Loosen bundle parsing logic ([#181](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/181)). Now analyzer will still show parsed sizes even if:
      * It can't parse some bundle chunks. Those chunks just won't have content in the report. Fixes issues like [#160](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/160).
