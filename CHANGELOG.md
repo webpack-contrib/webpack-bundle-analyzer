@@ -14,8 +14,16 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 2.13.1
+
  * **Improvement**
-   * Pretty-format the generated stats.json ([#180](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/180))
+   * Pretty-format the generated stats.json ([#180](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/180)) [@edmorley](https://github.com/edmorley))
+   
+ * **Bug Fix**
+   * Properly parse Webpack 4 async chunk with `Array.concat` optimization ([#184](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/184), fixes [#183](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/183))
+  
+ * **Internal**
+   * Refactor bundle parsing logic ([#184](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/184))
 
 ## 2.13.0
 
