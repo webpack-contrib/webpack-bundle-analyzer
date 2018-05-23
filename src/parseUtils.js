@@ -26,59 +26,40 @@ function parseBundle(bundlePath) {
     walkState,
     {
       CallExpression(node, state, c) {
-        if (state.sizes) return;
+        if (state.locations) return;
 
         const args = node.arguments;
 
-        // Additional bundle without webpack loader.
-        // Modules are stored in second argument, after chunk ids:
-        // webpackJsonp([<chunks>], <modules>, ...)
-        // As function name may be changed with `output.jsonpFunction` option we can't rely on it's default name.
-        if (
-          node.callee.type === 'Identifier' &&
-          args.length >= 2 &&
-          isArgumentContainsChunkIds(args[0]) &&
-          isArgumentContainsModulesList(args[1])
-        ) {
-          state.locations = getModulesLocationFromFunctionArgument(args[1]);
-          return;
-        }
-
-        // Additional bundle without webpack loader, with module IDs optimized.
-        // Modules are stored in second arguments Array(n).concat() call
-        // webpackJsonp([<chunks>], Array([minimum ID]).concat([<module>, <module>, ...]))
-        // As function name may be changed with `output.jsonpFunction` option we can't rely on it's default name.
-        if (
-          node.callee.type === 'Identifier' &&
-          (args.length === 2 || args.length === 3) &&
-          isArgumentContainsChunkIds(args[0]) &&
-          isArgumentArrayConcatContainingChunks(args[1])
-        ) {
-          state.locations = getModulesLocationFromArrayConcat(args[1]);
-          return;
-        }
-
-        // Main bundle with webpack loader
+        // Main chunk with webpack loader.
         // Modules are stored in first argument:
         // (function (...) {...})(<modules>)
         if (
           node.callee.type === 'FunctionExpression' &&
           !node.callee.id &&
           args.length === 1 &&
-          isArgumentContainsModulesList(args[0])
+          isSimpleModulesList(args[0])
         ) {
-          state.locations = getModulesLocationFromFunctionArgument(args[0]);
+          state.locations = getModulesLocations(args[0]);
           return;
         }
 
-        // Additional bundles with webpack 4 are loaded with:
-        // (window.webpackJsonp=window.webpackJsonp||[]).push([[chunkId], [<module>, <module>], [[optional_entries]]]);
+        // Async Webpack < v4 chunk without webpack loader.
+        // webpackJsonp([<chunks>], <modules>, ...)
+        // As function name may be changed with `output.jsonpFunction` option we can't rely on it's default name.
         if (
-          isAsyncChunkPushExpression(node) &&
-          args.length === 1 &&
-          isArgumentContainingChunkIdsAndModulesList(args[0])
+          node.callee.type === 'Identifier' &&
+          mayBeAsyncChunkArguments(args) &&
+          isModulesList(args[1])
         ) {
-          state.locations = getModulesLocationFromFunctionArgument(args[0].elements[1]);
+          state.locations = getModulesLocations(args[1]);
+          return;
+        }
+
+        // Async Webpack v4 chunk without webpack loader.
+        // (window.webpackJsonp=window.webpackJsonp||[]).push([[<chunks>], <modules>, ...]);
+        // As function name may be changed with `output.jsonpFunction` option we can't rely on it's default name.
+        if (isAsyncChunkPushExpression(node)) {
+          state.locations = getModulesLocations(args[0].elements[1]);
           return;
         }
 
@@ -105,80 +86,62 @@ function parseBundle(bundlePath) {
   };
 }
 
-function isArgumentContainsChunkIds(arg) {
-  // Array of numeric or string ids. Chunk IDs are strings when NamedChunksPlugin is used
-  return (arg.type === 'ArrayExpression' && _.every(arg.elements, isModuleId));
+function isModulesList(node) {
+  return (
+    isSimpleModulesList(node) ||
+    // Modules are contained in expression `Array([minimum ID]).concat([<module>, <module>, ...])`
+    isOptimizedModulesArray(node)
+  );
 }
 
-function isArgumentContainsModulesList(arg) {
-  if (arg.type === 'ObjectExpression') {
-    return _(arg.properties)
-      .map('value')
-      .every(isModuleWrapper);
-  }
+function isSimpleModulesList(node) {
+  return (
+    // Modules are contained in hash. Keys are module ids.
+    isModulesHash(node) ||
+    // Modules are contained in array. Indexes are module ids.
+    isModulesArray(node)
+  );
+}
 
-  if (arg.type === 'ArrayExpression') {
-    // Modules are contained in array.
-    // Array indexes are module ids
-    return _.every(arg.elements, elem =>
+function isModulesHash(node) {
+  return (
+    node.type === 'ObjectExpression' &&
+    _(node.properties)
+      .map('value')
+      .every(isModuleWrapper)
+  );
+}
+
+function isModulesArray(node) {
+  return (
+    node.type === 'ArrayExpression' &&
+    _.every(node.elements, elem =>
       // Some of array items may be skipped because there is no module with such id
       !elem ||
       isModuleWrapper(elem)
-    );
-  }
-
-  return false;
-}
-
-function isArgumentContainingChunkIdsAndModulesList(arg) {
-  if (
-    arg.type === 'ArrayExpression' &&
-    arg.elements.length >= 2 &&
-    isArgumentContainsChunkIds(arg.elements[0]) &&
-    isArgumentContainsModulesList(arg.elements[1])
-  ) {
-    return true;
-  }
-  return false;
-}
-
-function isArgumentArrayConcatContainingChunks(arg) {
-  if (
-    arg.type === 'CallExpression' &&
-    arg.callee.type === 'MemberExpression' &&
-    // Make sure the object called is `Array(<some number>)`
-    arg.callee.object.type === 'CallExpression' &&
-    arg.callee.object.callee.type === 'Identifier' &&
-    arg.callee.object.callee.name === 'Array' &&
-    arg.callee.object.arguments.length === 1 &&
-    isNumericId(arg.callee.object.arguments[0]) &&
-    // Make sure the property X called for `Array(<some number>).X` is `concat`
-    arg.callee.property.type === 'Identifier' &&
-    arg.callee.property.name === 'concat' &&
-    // Make sure exactly one array is passed in to `concat`
-    arg.arguments.length === 1 &&
-    arg.arguments[0].type === 'ArrayExpression'
-  ) {
-    // Modules are contained in `Array(<minimum ID>).concat(` array:
-    // https://github.com/webpack/webpack/blob/v1.14.0/lib/Template.js#L91
-    // The `<minimum ID>` + array indexes are module ids
-    return true;
-  }
-
-  return false;
-}
-
-function isAsyncChunkPushExpression(node) {
-  const { callee } = node;
-  return (
-    callee.type === 'MemberExpression' &&
-    callee.property.name === 'push' &&
-    callee.object.type === 'AssignmentExpression' &&
-    (
-      callee.object.left.object.name === 'window' ||
-      // Webpack 4 uses `this` instead of `window`
-      callee.object.left.object.type === 'ThisExpression'
     )
+  );
+}
+
+function isOptimizedModulesArray(node) {
+  // Checking whether modules are contained in `Array(<minimum ID>).concat(...modules)` array:
+  // https://github.com/webpack/webpack/blob/v1.14.0/lib/Template.js#L91
+  // The `<minimum ID>` + array indexes are module ids
+  return (
+    node.type === 'CallExpression' &&
+    node.callee.type === 'MemberExpression' &&
+    // Make sure the object called is `Array(<some number>)`
+    node.callee.object.type === 'CallExpression' &&
+    node.callee.object.callee.type === 'Identifier' &&
+    node.callee.object.callee.name === 'Array' &&
+    node.callee.object.arguments.length === 1 &&
+    isNumericId(node.callee.object.arguments[0]) &&
+    // Make sure the property X called for `Array(<some number>).X` is `concat`
+    node.callee.property.type === 'Identifier' &&
+    node.callee.property.name === 'concat' &&
+    // Make sure exactly one array is passed in to `concat`
+    node.arguments.length === 1 &&
+    isModulesArray(node.arguments[0])
   );
 }
 
@@ -201,9 +164,48 @@ function isNumericId(node) {
   return (node.type === 'Literal' && Number.isInteger(node.value) && node.value >= 0);
 }
 
-function getModulesLocationFromFunctionArgument(arg) {
-  if (arg.type === 'ObjectExpression') {
-    const modulesNodes = arg.properties;
+function isChunkIds(node) {
+  // Array of numeric or string ids. Chunk IDs are strings when NamedChunksPlugin is used
+  return (
+    node.type === 'ArrayExpression' &&
+    _.every(node.elements, isModuleId)
+  );
+}
+
+function isAsyncChunkPushExpression(node) {
+  const {
+    callee,
+    arguments: args
+  } = node;
+
+  return (
+    callee.type === 'MemberExpression' &&
+    callee.property.name === 'push' &&
+    callee.object.type === 'AssignmentExpression' &&
+    callee.object.left.object &&
+    (
+      callee.object.left.object.name === 'window' ||
+      // Webpack 4 uses `this` instead of `window`
+      callee.object.left.object.type === 'ThisExpression'
+    ) &&
+    args.length === 1 &&
+    args[0].type === 'ArrayExpression' &&
+    mayBeAsyncChunkArguments(args[0].elements) &&
+    isModulesList(args[0].elements[1])
+  );
+}
+
+function mayBeAsyncChunkArguments(args) {
+  return (
+    args.length >= 2 &&
+    isChunkIds(args[0])
+  );
+}
+
+function getModulesLocations(node) {
+  if (node.type === 'ObjectExpression') {
+    // Modules hash
+    const modulesNodes = node.properties;
 
     return _.transform(modulesNodes, (result, moduleNode) => {
       const moduleId = moduleNode.key.name || moduleNode.key.value;
@@ -212,35 +214,32 @@ function getModulesLocationFromFunctionArgument(arg) {
     }, {});
   }
 
-  if (arg.type === 'ArrayExpression') {
-    const modulesNodes = arg.elements;
+  const isOptimizedArray = (node.type === 'CallExpression');
+
+  if (node.type === 'ArrayExpression' || isOptimizedArray) {
+    // Modules array or optimized array
+    const minId = isOptimizedArray ?
+      // Get the [minId] value from the Array() call first argument literal value
+      node.callee.object.arguments[0].value :
+      // `0` for simple array
+      0;
+    const modulesNodes = isOptimizedArray ?
+      // The modules reside in the `concat()` function call arguments
+      node.arguments[0].elements :
+      node.elements;
 
     return _.transform(modulesNodes, (result, moduleNode, i) => {
       if (!moduleNode) return;
-
-      result[i] = getModuleLocation(moduleNode);
+      result[i + minId] = getModuleLocation(moduleNode);
     }, {});
   }
 
   return {};
 }
 
-function getModulesLocationFromArrayConcat(arg) {
-  // arg(CallExpression) =
-  //   Array([minId]).concat([<minId module>, <minId+1 module>, ...])
-  //
-  // Get the [minId] value from the Array() call first argument literal value
-  const minId = arg.callee.object.arguments[0].value;
-  // The modules reside in the `concat()` function call arguments
-  const modulesNodes = arg.arguments[0].elements;
-
-  return _.transform(modulesNodes, (result, moduleNode, i) => {
-    if (!moduleNode) return;
-
-    result[i + minId] = getModuleLocation(moduleNode);
-  }, {});
-}
-
 function getModuleLocation(node) {
-  return _.pick(node, 'start', 'end');
+  return {
+    start: node.start,
+    end: node.end
+  };
 }
