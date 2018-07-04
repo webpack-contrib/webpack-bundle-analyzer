@@ -88,6 +88,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
       });
 
     asset.tree = createModulesTree(asset.modules);
+    asset.chunkNames = statAsset.chunkNames;
   }, {});
 
   return _.transform(assets, (result, asset, filename) => {
@@ -100,7 +101,8 @@ function getViewerData(bundleStats, bundleDir, opts) {
       statSize: asset.tree.size || asset.size,
       parsedSize: asset.parsedSize,
       gzipSize: asset.gzipSize,
-      groups: _.invokeMap(asset.tree.children, 'toChartData')
+      groups: _.invokeMap(asset.tree.children, 'toChartData'),
+      chunkNames: asset.chunkNames
     });
   }, []);
 }

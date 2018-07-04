@@ -5,6 +5,7 @@ const { bold } = require('chalk');
 
 const Logger = require('./Logger');
 const viewer = require('./viewer');
+const analyzer = require('./analyzer');
 
 class BundleAnalyzerPlugin {
 
@@ -72,8 +73,28 @@ class BundleAnalyzerPlugin {
     const statsFilepath = path.resolve(this.compiler.outputPath, this.opts.statsFilename);
     mkdir.sync(path.dirname(statsFilepath));
 
+    const { excludeAssets, logger } = this.opts;
+    const reportFilepath = path.resolve(this.compiler.outputPath, 'report.json');
+    const report = analyzer.getViewerData(
+      stats,
+      this.getBundleDirFromCompiler(),
+      {
+        excludeAssets,
+        logger
+      }
+    );
+
     try {
       await bfj.write(statsFilepath, stats, {
+        space: 2,
+        promises: 'ignore',
+        buffers: 'ignore',
+        maps: 'ignore',
+        iterables: 'ignore',
+        circular: 'ignore'
+      });
+
+      await bfj.write(reportFilepath, report, {
         space: 2,
         promises: 'ignore',
         buffers: 'ignore',
@@ -85,9 +106,15 @@ class BundleAnalyzerPlugin {
       this.logger.info(
         `${bold('Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
       );
+      this.logger.info(
+        `${bold('Webpack Bundle Analyzer')} saved report file to ${bold(reportFilepath)}`
+      );
     } catch (error) {
       this.logger.error(
         `${bold('Webpack Bundle Analyzer')} error saving stats file to ${bold(statsFilepath)}: ${error}`
+      );
+      this.logger.error(
+        `${bold('Webpack Bundle Analyzer')} error saving report file to ${bold(reportFilepath)}: ${error}`
       );
     }
   }
