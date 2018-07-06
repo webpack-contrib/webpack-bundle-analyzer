@@ -34,7 +34,7 @@
   ],
   "dependencies": {
     "acorn": "^5.3.0",
-    "bfj-node4": "^5.2.0",
+    "bfj": "^6.1.1",
     "chalk": "^2.3.0",
     "commander": "^2.13.0",
     "ejs": "^2.5.7",
