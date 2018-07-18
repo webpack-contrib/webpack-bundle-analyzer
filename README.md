@@ -30,6 +30,11 @@ module.exports = {
   ]
 }
 ```
+This is equivalent to the webpack 4+ CLI option 
+```sh
+webpack [...options] --plugin webpack-bundle-analyzer/lib/BundleAnalyzerPlugin
+```
+
 
 It will create an interactive treemap visualization of the contents of all your bundles.
 
