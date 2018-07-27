@@ -74,7 +74,8 @@ class BundleAnalyzerPlugin {
     mkdir.sync(path.dirname(statsFilepath));
 
     const { excludeAssets, logger } = this.opts;
-    const reportFilepath = path.resolve(this.compiler.outputPath, 'report.json');
+    // put report.join to root of project, then it won't be exported to public
+    const reportFilepath = path.resolve(this.compiler.outputPath, '../report.json');
     const report = analyzer.getViewerData(
       stats,
       this.getBundleDirFromCompiler(),
