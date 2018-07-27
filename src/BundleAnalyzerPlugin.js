@@ -75,7 +75,7 @@ class BundleAnalyzerPlugin {
 
     const { excludeAssets, logger } = this.opts;
     // put report.join to root of project, then it won't be exported to public
-    const reportFilepath = path.resolve(this.compiler.outputPath, '../report.json');
+    const reportFilepath = path.resolve(this.compiler.outputPath, '../../report.json');
     const report = analyzer.getViewerData(
       stats,
       this.getBundleDirFromCompiler(),
