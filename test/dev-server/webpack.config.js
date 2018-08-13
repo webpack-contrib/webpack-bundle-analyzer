@@ -6,6 +6,7 @@ module.exports = {
     path: `${__dirname}/output`,
     filename: 'bundle.js'
   },
+  mode: 'production',
   plugins: [
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',

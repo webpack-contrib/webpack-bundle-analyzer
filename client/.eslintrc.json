@@ -2,5 +2,10 @@
   "extends": [
     "th0r-react",
     "../.eslintrc.json"
-  ]
+  ],
+  "settings": {
+    "react": {
+      "version": "15.6.2"
+    }
+  }
 }

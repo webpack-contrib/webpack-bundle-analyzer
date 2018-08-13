@@ -8,6 +8,7 @@
     "sinon": true,
     "expect": true,
     "makeWebpackConfig": true,
-    "webpackCompile": true
+    "webpackCompile": true,
+    "pause": true
   }
 }

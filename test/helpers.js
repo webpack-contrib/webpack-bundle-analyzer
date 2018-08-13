@@ -5,9 +5,9 @@ const _ = require('lodash');
 chai.use(require('chai-subset'));
 
 global.expect = chai.expect;
-global.sinon = require('sinon');
 global.webpackCompile = webpackCompile;
 global.makeWebpackConfig = makeWebpackConfig;
+global.pause = pause;
 
 const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
 
@@ -24,12 +24,13 @@ function makeWebpackConfig(opts) {
       openAnalyzer: false,
       logLevel: 'error'
     },
-    minify: false,
     multipleChunks: false
   }, opts);
 
-  return {
+  const config = {
     context: __dirname,
+    mode: 'development',
+    devtool: false,
     entry: {
       bundle: './src'
     },
@@ -37,34 +38,22 @@ function makeWebpackConfig(opts) {
       path: `${__dirname}/output`,
       filename: '[name].js'
     },
-    plugins: (plugins => {
-      plugins.push(
-        new BundleAnalyzerPlugin(opts.analyzerOpts)
-      );
-
-      if (opts.multipleChunks) {
-        plugins.push(
-          new webpack.optimize.CommonsChunkPlugin({
-            name: 'manifest',
-            minChunks: Infinity
-          })
-        );
-      }
-
-      if (opts.minify) {
-        plugins.push(
-          new webpack.optimize.UglifyJsPlugin({
-            comments: false,
-            mangle: true,
-            compress: {
-              warnings: false,
-              negate_iife: false
-            }
-          })
-        );
-      }
-
-      return plugins;
-    })([])
+    plugins: [
+      new BundleAnalyzerPlugin(opts.analyzerOpts)
+    ]
   };
+
+  if (opts.multipleChunks) {
+    config.optimization = {
+      runtimeChunk: {
+        name: 'manifest'
+      }
+    };
+  }
+
+  return config;
+}
+
+function pause(ms = 1) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
