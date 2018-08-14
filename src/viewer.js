@@ -124,11 +124,18 @@ function generateReport(bundleStats, opts) {
 
   if (!chartData) return;
 
+  const cleanChartData = chartData;
+  cleanChartData.forEach((bundle) => {
+    while (bundle.groups && bundle.groups.length === 1 && bundle.groups[0].groups) {
+      bundle.groups = bundle.groups[0].groups;
+    }
+  });
+
   ejs.renderFile(
     `${projectRoot}/views/viewer.ejs`,
     {
       mode: 'static',
-      chartData: JSON.stringify(chartData),
+      chartData: JSON.stringify(cleanChartData),
       assetContent: getAssetContent,
       defaultSizes: JSON.stringify(defaultSizes)
     },
