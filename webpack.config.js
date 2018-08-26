@@ -41,7 +41,6 @@ module.exports = opts => {
                 targets: [
                   'last 2 Chrome major versions',
                   'last 2 Firefox major versions',
-                  'last 2 Opera major versions',
                   'last 1 Safari major version'
                 ],
                 modules: false,
