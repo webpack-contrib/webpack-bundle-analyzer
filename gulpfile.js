@@ -21,6 +21,15 @@ gulp.task('build', gulp.series('clean', compileNodeScripts, compileViewerScripts
 gulp.task('watch', gulp.series('build', watch));
 gulp.task('default', gulp.task('watch'));
 
+class TaskError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'TaskError';
+    // Internal Gulp flag that says "don't display error stack trace"
+    this.showStack = false;
+  }
+}
+
 function watch() {
   gulp
     .watch(NODE_SRC, gulp.series(cleanNodeScripts, compileNodeScripts))
@@ -60,12 +69,19 @@ function compileViewerScripts() {
         if (err) {
           console.error(err);
         } else {
-          console.log(stats.toString({ colors: true }));
+          console.log(stats.toString({colors: true}));
         }
         resolve();
       } else {
         if (err) return reject(err);
-        console.log(stats.toString({ colors: true }));
+
+        if (stats.hasErrors()) {
+          reject(
+            new TaskError('Webpack compilation error')
+          );
+        }
+
+        console.log(stats.toString({colors: true}));
         resolve();
       }
     });

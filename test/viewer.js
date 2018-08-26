@@ -2,12 +2,12 @@ const crypto = require('crypto');
 const net = require('net');
 
 const Logger = require('../lib/Logger');
-const { startServer } = require('../lib/viewer.js');
+const {startServer} = require('../lib/viewer.js');
 
 describe('WebSocket server', function () {
   it('should not crash when an error is emitted on the websocket', function (done) {
     const bundleStats = {
-      assets: [{ name: 'bundle.js', chunks: [0] }]
+      assets: [{name: 'bundle.js', chunks: [0]}]
     };
 
     const options = {
@@ -17,7 +17,7 @@ describe('WebSocket server', function () {
     };
 
     startServer(bundleStats, options)
-      .then(function ({ http: server }) {
+      .then(function ({http: server}) {
         // The GUID constant defined in WebSocket protocol
         // https://tools.ietf.org/html/rfc6455#section-1.3
         const GUID = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';

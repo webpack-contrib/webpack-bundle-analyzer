@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, Component } from 'preact';
+import {h, Component} from 'preact';
 
 import CheckboxListItem from './CheckboxListItem';
 import s from './CheckboxList.css';
@@ -21,7 +21,7 @@ export default class CheckboxList extends Component {
     if (newProps.items !== this.props.items) {
       if (this.isAllChecked()) {
         // Preserving `all checked` state
-        this.setState({ checkedItems: newProps.items });
+        this.setState({checkedItems: newProps.items});
         this.informAboutChange(newProps.items);
       } else if (this.state.checkedItems.length) {
         // Checking only items that are in the new `items` array
@@ -29,14 +29,14 @@ export default class CheckboxList extends Component {
           this.state.checkedItems.find(checkedItem => checkedItem.label === item.label)
         );
 
-        this.setState({ checkedItems });
+        this.setState({checkedItems});
         this.informAboutChange(checkedItems);
       }
     }
   }
 
   render() {
-    const { label, items, renderLabel } = this.props;
+    const {label, items, renderLabel} = this.props;
 
     return (
       <div className={s.container}>
@@ -64,7 +64,7 @@ export default class CheckboxList extends Component {
 
   handleToggleAllCheck = () => {
     const checkedItems = this.isAllChecked() ? [] : this.props.items;
-    this.setState({ checkedItems });
+    this.setState({checkedItems});
     this.informAboutChange(checkedItems);
   };
 
@@ -77,7 +77,7 @@ export default class CheckboxList extends Component {
       checkedItems = [...this.state.checkedItems, item];
     }
 
-    this.setState({ checkedItems });
+    this.setState({checkedItems});
     this.informAboutChange(checkedItems);
   };
 

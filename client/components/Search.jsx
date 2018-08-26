@@ -1,6 +1,6 @@
 /** @jsx h */
-import { h, Component } from 'preact';
-import debounce from 'lodash/debounce';
+import {h, Component} from 'preact';
+import _ from 'lodash';
 
 import s from './Search.css';
 
@@ -11,7 +11,7 @@ export default class Search extends Component {
   }
 
   render() {
-    const { label, query } = this.props;
+    const {label, query} = this.props;
 
     return (
       <div className={s.container}>
@@ -28,7 +28,7 @@ export default class Search extends Component {
     );
   }
 
-  handleValueChange = debounce((event) => {
+  handleValueChange = _.debounce((event) => {
     this.props.onQueryChange(event.target.value);
   }, 200)
 

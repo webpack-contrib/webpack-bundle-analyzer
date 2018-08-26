@@ -1,5 +1,5 @@
-import { observable, computed } from 'mobx';
-import { isChunkParsed, walkModules } from './utils';
+import {observable, computed} from 'mobx';
+import {isChunkParsed, walkModules} from './utils';
 
 export class Store {
   sizes = new Set(['statSize', 'parsedSize', 'gzipSize']);

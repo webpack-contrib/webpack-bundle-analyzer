@@ -4,7 +4,7 @@ import gzipSize from 'gzip-size';
 import Module from './Module';
 import BaseFolder from './BaseFolder';
 import ConcatenatedModule from './ConcatenatedModule';
-import { getModulePathParts } from './utils';
+import {getModulePathParts} from './utils';
 
 export default class Folder extends BaseFolder {
 
