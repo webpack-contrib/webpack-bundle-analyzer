@@ -1,0 +1,14 @@
+.container {
+  font: normal 10px Verdana;
+  white-space: nowrap;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 11px;
+  margin-bottom: 7px;
+}
+
+.input {
+  display: block;
+}

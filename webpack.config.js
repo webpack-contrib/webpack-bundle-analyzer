@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzePlugin = require('./lib/BundleAnalyzerPlugin');
 
 module.exports = opts => {
@@ -34,13 +35,34 @@ module.exports = opts => {
           exclude: /(node_modules|client\/vendor)/,
           loader: 'babel-loader',
           options: {
+            babelrc: false,
             presets: [
-              ['env', { targets: { uglify: true } }]
+              ['@babel/preset-env', {
+                targets: [
+                  'last 2 Chrome major versions',
+                  'last 2 Firefox major versions',
+                  'last 2 Opera major versions',
+                  'last 1 Safari major version'
+                ],
+                modules: false,
+                useBuiltIns: 'entry',
+                exclude: [
+                  'web.immediate',
+                  'web.dom.iterable',
+                  'web.timers',
+                  'es7.symbol.async-iterator',
+                  'es7.promise.finally'
+                ],
+                debug: true
+              }],
+              '@babel/preset-react'
             ],
             plugins: [
-              'transform-class-properties',
-              'transform-react-jsx',
-              ['transform-object-rest-spread', { useBuiltIns: true }]
+              ['@babel/plugin-proposal-decorators', { legacy: true }],
+              ['@babel/plugin-proposal-class-properties', { loose: true }],
+              ['@babel/plugin-transform-runtime', {
+                useESModules: true
+              }]
             ]
           }
         },
@@ -88,14 +110,23 @@ module.exports = opts => {
             }
           }),
           new webpack.optimize.OccurrenceOrderPlugin(),
-          new webpack.optimize.UglifyJsPlugin({
-            compress: {
-              warnings: false,
-              negate_iife: false
-            },
-            mangle: true,
-            comments: false,
-            sourceMap: true
+          new UglifyJsPlugin({
+            parallel: true,
+            sourceMap: true,
+            uglifyOptions: {
+              output: {
+                comments: false
+              },
+              compress: {
+                // Fixes bad function inlining minification
+                // See https://github.com/webpack/webpack/issues/6760,
+                // https://github.com/webpack/webpack/issues/6567#issuecomment-369554250
+                inline: 1
+              },
+              mangle: {
+                safari10: true
+              }
+            }
           })
         );
       }
