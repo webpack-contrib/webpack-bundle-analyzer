@@ -2,7 +2,7 @@
 // Compiles sources, gulpfile and tests
 {
   "presets": [
-    ["env", {
+    ["@babel/preset-env", {
       "targets": { "node": 4 },
       "exclude": [
         // Node 4 supports all the generator features that we use so there is no need in Regenerator
@@ -11,7 +11,7 @@
     }]
   ],
   "plugins": [
-    ["transform-object-rest-spread", { "useBuiltIns": true }],
-    "transform-class-properties"
+    ["@babel/plugin-proposal-class-properties", {"loose": true}],
+    "@babel/plugin-transform-runtime"
   ]
 }
