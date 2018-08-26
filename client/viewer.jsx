@@ -1,8 +1,8 @@
 /** @jsx h */
 import '@babel/polyfill';
-import { h, render } from 'preact';
+import {h, render} from 'preact';
 
-import { store } from './store';
+import {store} from './store';
 import ModulesTreemap from './components/ModulesTreemap';
 /* eslint no-unused-vars: "off" */
 import styles from './viewer.css';

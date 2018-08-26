@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, Component } from 'preact';
+import {h, Component} from 'preact';
 
 import SwitcherItem from './SwitcherItem';
 import s from './Switcher.css';
@@ -7,7 +7,7 @@ import s from './Switcher.css';
 export default class Switcher extends Component {
 
   render() {
-    const { label, items, activeItem, onSwitch } = this.props;
+    const {label, items, activeItem, onSwitch} = this.props;
 
     return (
       <div className={s.container}>

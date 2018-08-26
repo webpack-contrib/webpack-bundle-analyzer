@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, Component } from 'preact';
+import {h, Component} from 'preact';
 import FoamTree from 'carrotsearch.foamtree';
 
 export default class Treemap extends Component {
@@ -22,7 +22,7 @@ export default class Treemap extends Component {
       nextProps.weightProp !== this.props.weightProp
     ) {
       this.updateData(nextProps.weightProp, nextProps.data);
-      this.treemap.set({ dataObject: this.treemapDataObject });
+      this.treemap.set({dataObject: this.treemapDataObject});
     }
   }
 
@@ -44,12 +44,12 @@ export default class Treemap extends Component {
   saveNode = node => (this.node = node);
 
   get treemapDataObject() {
-    return { groups: this.data };
+    return {groups: this.data};
   }
 
   createTreemap() {
     const component = this;
-    const { props } = this;
+    const {props} = this;
     let zoomOutDisabled = false;
 
     return new FoamTree({

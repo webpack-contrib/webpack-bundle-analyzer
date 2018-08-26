@@ -8,7 +8,7 @@ const express = require('express');
 const ejs = require('ejs');
 const opener = require('opener');
 const mkdir = require('mkdirp');
-const { bold } = require('chalk');
+const {bold} = require('chalk');
 
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
@@ -33,7 +33,7 @@ async function startServer(bundleStats, opts) {
     excludeAssets = null
   } = opts || {};
 
-  const analyzerOpts = { logger, excludeAssets };
+  const analyzerOpts = {logger, excludeAssets};
 
   let chartData = getChartData(analyzerOpts, bundleStats, bundleDir);
 
@@ -75,7 +75,7 @@ async function startServer(bundleStats, opts) {
     });
   });
 
-  const wss = new WebSocket.Server({ server });
+  const wss = new WebSocket.Server({server});
 
   wss.on('connection', ws => {
     ws.on('error', err => {
@@ -120,7 +120,7 @@ function generateReport(bundleStats, opts) {
     excludeAssets = null
   } = opts || {};
 
-  const chartData = getChartData({ logger, excludeAssets }, bundleStats, bundleDir);
+  const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
 
   if (!chartData) return;
 
@@ -157,7 +157,7 @@ function getAssetContent(filename) {
 
 function getChartData(analyzerOpts, ...args) {
   let chartData;
-  const { logger } = analyzerOpts;
+  const {logger} = analyzerOpts;
 
   try {
     chartData = analyzer.getViewerData(...args, analyzerOpts);

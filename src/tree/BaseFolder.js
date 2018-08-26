@@ -30,7 +30,7 @@ export default class BaseFolder extends Node {
   }
 
   addChildModule(module) {
-    const { name } = module;
+    const {name} = module;
     const currentChild = this.children[name];
 
     // For some reason we already have this node in children and it's a folder.

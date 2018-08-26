@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, Component } from 'preact';
+import {h, Component} from 'preact';
 import cls from 'classnames';
 
 import s from './Switcher.css';
@@ -7,7 +7,7 @@ import s from './Switcher.css';
 export default class SwitcherItem extends Component {
 
   render() {
-    const { item, active } = this.props;
+    const {item, active} = this.props;
 
     const className = cls({
       [s.item]: true,

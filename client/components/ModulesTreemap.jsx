@@ -1,10 +1,10 @@
 /** @jsx h */
-import { h, Component } from 'preact';
+import {h, Component} from 'preact';
 import filesize from 'filesize';
-import { computed } from 'mobx';
-import { observer } from 'mobx-preact';
+import {computed} from 'mobx';
+import {observer} from 'mobx-preact';
 
-import { isChunkParsed } from '../utils';
+import {isChunkParsed} from '../utils';
 import Treemap from './Treemap';
 import Tooltip from './Tooltip';
 import Switcher from './Switcher';
@@ -13,12 +13,12 @@ import CheckboxList from './CheckboxList';
 
 import s from './ModulesTreemap.css';
 import Search from './Search';
-import { store } from '../store';
+import {store} from '../store';
 
 const SIZE_SWITCH_ITEMS = [
-  { label: 'Stat', prop: 'statSize' },
-  { label: 'Parsed', prop: 'parsedSize' },
-  { label: 'Gzipped', prop: 'gzipSize' }
+  {label: 'Stat', prop: 'statSize'},
+  {label: 'Parsed', prop: 'parsedSize'},
+  {label: 'Gzipped', prop: 'gzipSize'}
 ];
 
 @observer
@@ -29,7 +29,7 @@ export default class ModulesTreemap extends Component {
   };
 
   render() {
-    const { showTooltip, tooltipContent } = this.state;
+    const {showTooltip, tooltipContent} = this.state;
 
     return (
       <div className={s.container}>
@@ -104,11 +104,11 @@ export default class ModulesTreemap extends Component {
   };
 
   handleMouseLeaveTreemap = () => {
-    this.setState({ showTooltip: false });
+    this.setState({showTooltip: false});
   };
 
   handleTreemapGroupHover = event => {
-    const { group } = event;
+    const {group} = event;
 
     if (group) {
       this.setState({
@@ -116,7 +116,7 @@ export default class ModulesTreemap extends Component {
         tooltipContent: this.getTooltipContent(group)
       });
     } else {
-      this.setState({ showTooltip: false });
+      this.setState({showTooltip: false});
     }
   };
 
@@ -129,7 +129,7 @@ export default class ModulesTreemap extends Component {
   }
 
   @computed get chunkItems() {
-    const { allChunks, activeSize } = store;
+    const {allChunks, activeSize} = store;
     let chunkItems = [...allChunks];
 
     if (activeSize !== 'statSize') {

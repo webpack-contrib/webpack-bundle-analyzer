@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, Component } from 'preact';
+import {h, Component} from 'preact';
 
 import CheckboxList from './CheckboxList';
 
@@ -8,7 +8,7 @@ import s from './CheckboxList.css';
 export default class CheckboxListItem extends Component {
 
   render() {
-    const { checked } = this.props;
+    const {checked} = this.props;
 
     return (
       <label className={s.item}>
@@ -22,7 +22,7 @@ export default class CheckboxListItem extends Component {
   }
 
   renderLabel() {
-    const { children, item } = this.props;
+    const {children, item} = this.props;
 
     if (children && children.length) {
       return children[0](item, s.itemText);

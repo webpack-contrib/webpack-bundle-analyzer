@@ -3,7 +3,7 @@ import _ from 'lodash';
 import Module from './Module';
 import ContentModule from './ContentModule';
 import ContentFolder from './ContentFolder';
-import { getModulePathParts } from './utils';
+import {getModulePathParts} from './utils';
 
 export default class ConcatenatedModule extends Module {
 
