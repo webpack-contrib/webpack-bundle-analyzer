@@ -22,7 +22,10 @@ module.exports = opts => {
         `${__dirname}/client/vendor`,
         'node_modules'
       ],
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      alias: {
+        mobx: require.resolve('mobx/lib/mobx.es6.js')
+      }
     },
 
     devtool: (opts.env === 'dev') ? 'eval' : 'source-map',
@@ -46,6 +49,7 @@ module.exports = opts => {
                 modules: false,
                 useBuiltIns: 'entry',
                 exclude: [
+                  // Excluding unused polyfills to completely get rid of `core.js` in the resulting bundle
                   'web.immediate',
                   'web.dom.iterable',
                   'web.timers',
