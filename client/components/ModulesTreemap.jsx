@@ -44,6 +44,15 @@ export default class ModulesTreemap extends Component {
             <Search label="Search modules"
               query={store.searchQuery}
               onQueryChange={this.handleQueryChange}/>
+            {store.isSearching &&
+              (store.foundModules.length ?
+                store.foundModules.map(module =>
+                  this.renderFoundModule(module)
+                )
+                :
+                <div>Nothing found{store.allChunksSelected ? '' : 'in selected chunks'}</div>
+              )
+            }
           </div>
           {this.chunkItems.length > 1 &&
             <div className={s.sidebarGroup}>
@@ -55,14 +64,24 @@ export default class ModulesTreemap extends Component {
             </div>
           }
         </Sidebar>
-        <Treemap className={s.map}
+        <Treemap ref={this.saveTreemapRef}
+          className={s.map}
           data={store.visibleChunks}
+          highlightGroups={this.highlightedModules}
           weightProp={store.activeSize}
           onMouseLeave={this.handleMouseLeaveTreemap}
           onGroupHover={this.handleTreemapGroupHover}/>
         <Tooltip visible={showTooltip}>
           {tooltipContent}
         </Tooltip>
+      </div>
+    );
+  }
+
+  renderFoundModule(module) {
+    return (
+      <div key={module.cid} onClick={() => this.treemap.zoomToGroup(module)}>
+        {module.path || module.label}
       </div>
     );
   }
@@ -120,6 +139,8 @@ export default class ModulesTreemap extends Component {
     }
   };
 
+  saveTreemapRef = treemap => this.treemap = treemap;
+
   @computed get sizeSwitchItems() {
     return store.hasParsedSizes ? SIZE_SWITCH_ITEMS : SIZE_SWITCH_ITEMS.slice(0, 1);
   }
@@ -139,6 +160,10 @@ export default class ModulesTreemap extends Component {
     chunkItems.sort((chunk1, chunk2) => chunk2[activeSize] - chunk1[activeSize]);
 
     return chunkItems;
+  }
+
+  @computed get highlightedModules() {
+    return new Set(store.foundModules);
   }
 
   getTooltipContent(module) {

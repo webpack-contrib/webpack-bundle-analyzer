@@ -2,5 +2,8 @@
   "extends": [
     "th0r-react",
     "../.eslintrc.json"
-  ]
+  ],
+  "rules": {
+    "react/jsx-no-bind": 0
+  }
 }
