@@ -1,5 +1,4 @@
 /** @jsx h */
-import '@babel/polyfill';
 import {h, render} from 'preact';
 
 import {store} from './store';
