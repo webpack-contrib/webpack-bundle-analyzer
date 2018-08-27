@@ -11,18 +11,21 @@ export default class Treemap extends Component {
   }
 
   componentDidMount() {
-    this.updateData(this.props.weightProp);
     this.treemap = this.createTreemap();
     window.addEventListener('resize', this.treemap.resize);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.data !== this.props.data ||
-      nextProps.weightProp !== this.props.weightProp
-    ) {
-      this.updateData(nextProps.weightProp, nextProps.data);
-      this.treemap.set({dataObject: this.treemapDataObject});
+    if (nextProps.data !== this.props.data) {
+      this.treemap.set({
+        dataObject: this.getTreemapDataObject(nextProps.data)
+      });
+    } else if (nextProps.highlightGroups !== this.props.highlightGroups) {
+      const groupsToRedraw = [
+        ...nextProps.highlightGroups,
+        ...this.props.highlightGroups
+      ];
+      setTimeout(() => this.treemap.redraw(false, groupsToRedraw));
     }
   }
 
@@ -37,20 +40,19 @@ export default class Treemap extends Component {
 
   render() {
     return (
-      <div {...this.props} ref={this.saveNode}/>
+      <div {...this.props} ref={this.saveNodeRef}/>
     );
   }
 
-  saveNode = node => (this.node = node);
+  saveNodeRef = node => (this.node = node);
 
-  get treemapDataObject() {
-    return {groups: this.data};
+  getTreemapDataObject(data = this.props.data) {
+    return {groups: data};
   }
 
   createTreemap() {
     const component = this;
     const {props} = this;
-    let zoomOutDisabled = false;
 
     return new FoamTree({
       element: this.node,
@@ -63,15 +65,30 @@ export default class Treemap extends Component {
       rolloutDuration: 0,
       pullbackDuration: 0,
       fadeDuration: 0,
+      groupExposureZoomMargin: 0.2,
       zoomMouseWheelDuration: 300,
       openCloseDuration: 200,
-      dataObject: this.treemapDataObject,
+      dataObject: this.getTreemapDataObject(),
       titleBarDecorator(opts, props, vars) {
         vars.titleBarShown = false;
       },
+      groupColorDecorator(options, properties, variables) {
+        const {highlightGroups} = component.props;
+        const module = properties.group;
+
+        if (highlightGroups && highlightGroups.has(module)) {
+          variables.groupColor = {
+            model: 'rgba',
+            r: 255,
+            g: 0,
+            b: 0,
+            a: 0.8
+          };
+        }
+      },
       onGroupClick(event) {
         preventDefault(event);
-        zoomOutDisabled = false;
+        component.zoomOutDisabled = false;
         this.zoom(event.group);
       },
       onGroupDoubleClick: preventDefault,
@@ -87,48 +104,30 @@ export default class Treemap extends Component {
         }
       },
       onGroupMouseWheel(event) {
+        const {scale} = this.get('viewport');
         const isZoomOut = (event.delta < 0);
 
         if (isZoomOut) {
-          if (zoomOutDisabled) return preventDefault(event);
-          if (this.get('viewport').scale < 1) {
-            zoomOutDisabled = true;
+          if (component.zoomOutDisabled) return preventDefault(event);
+          if (scale < 1) {
+            component.zoomOutDisabled = true;
             preventDefault(event);
           }
         } else {
-          zoomOutDisabled = false;
+          component.zoomOutDisabled = false;
         }
       }
     });
   }
 
+  zoomToGroup(group) {
+    this.zoomOutDisabled = false;
+    this.treemap.zoom(group);
+  }
+
   update() {
     this.treemap.update();
   }
-
-  updateData(sizeProp, data) {
-    data = data || this.props.data;
-    this.data = getDataForSize(data, sizeProp);
-  }
-
-}
-
-function getDataForSize(data, sizeProp) {
-  return data.reduce((filteredData, group) => {
-    if (group[sizeProp]) {
-      if (group.groups) {
-        group = {
-          ...group,
-          groups: getDataForSize(group.groups, sizeProp)
-        };
-      }
-
-      group.weight = group[sizeProp];
-      filteredData.push(group);
-    }
-
-    return filteredData;
-  }, []);
 }
 
 function preventDefault(event) {

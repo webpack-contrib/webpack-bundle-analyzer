@@ -19,8 +19,7 @@ try {
 
 window.addEventListener('load', () => {
   store.defaultSize = `${window.defaultSizes}Size`;
-  store.allChunks = window.chartData;
-  store.selectedChunks = store.allChunks;
+  store.setModules(window.chartData);
 
   render(
     <ModulesTreemap/>,
@@ -32,7 +31,7 @@ window.addEventListener('load', () => {
       const msg = JSON.parse(event.data);
 
       if (msg.event === 'chartDataUpdated') {
-        store.allChunks = msg.data;
+        store.setModules(msg.data);
       }
     });
   }
