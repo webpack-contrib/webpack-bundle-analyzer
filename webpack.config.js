@@ -74,14 +74,11 @@ module.exports = opts => {
                   'last 1 Safari major version'
                 ],
                 modules: false,
-                useBuiltIns: 'entry',
+                useBuiltIns: 'usage',
                 exclude: [
                   // Excluding unused polyfills to completely get rid of `core.js` in the resulting bundle
-                  'web.immediate',
                   'web.dom.iterable',
-                  'web.timers',
-                  'es7.symbol.async-iterator',
-                  'es7.promise.finally'
+                  'es7.symbol.async-iterator'
                 ],
                 debug: true
               }],
