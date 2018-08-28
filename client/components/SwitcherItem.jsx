@@ -1,31 +1,19 @@
 /** @jsx h */
-import {h, Component} from 'preact';
-import cls from 'classnames';
+import {h} from 'preact';
 
-import s from './Switcher.css';
+import Button from './Button';
+import PureComponent from '../lib/PureComponent';
 
-export default class SwitcherItem extends Component {
-
-  render() {
-    const {item, active} = this.props;
-
-    const className = cls({
-      [s.item]: true,
-      [s.active]: active
-    });
-
+export default class SwitcherItem extends PureComponent {
+  render({item, ...props}) {
     return (
-      <span className={className}
-        onClick={this.handleClick}>
+      <Button {...props} onClick={this.handleClick}>
         {item.label}
-      </span>
+      </Button>
     );
   }
 
   handleClick = () => {
-    if (this.props.onClick) {
-      this.props.onClick(this.props.item);
-    }
+    this.props.onClick(this.props.item);
   }
-
 }

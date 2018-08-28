@@ -1,0 +1,5 @@
+.container {
+  font: normal 11px Verdana;
+  max-height: 600px;
+  overflow: auto;
+}

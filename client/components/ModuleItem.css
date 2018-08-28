@@ -1,0 +1,5 @@
+.container {
+  cursor: pointer;
+  margin-bottom: 4px;
+  white-space: nowrap;
+}

@@ -1,5 +1,5 @@
 .container {
-  font: normal 10px Verdana;
+  font: normal 11px Verdana;
   white-space: nowrap;
 }
 
@@ -7,24 +7,6 @@
   font-weight: bold;
   font-size: 11px;
   margin-bottom: 7px;
-}
-
-.item {
-  display: inline-block;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  padding: 5px 7px;
-  cursor: pointer;
-  transition: background .3s ease;
-}
-
-.item:hover {
-  background: rgba(255, 165, 0, 0.15);
-}
-
-.item.active {
-  cursor: default;
-  background: #ffa500;
 }
 
 .item + .item {
