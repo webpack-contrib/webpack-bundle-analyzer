@@ -1,3 +1,4 @@
+const compact = require('lodash/compact');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzePlugin = require('./lib/BundleAnalyzerPlugin');
@@ -96,17 +97,25 @@ module.exports = opts => {
         },
         {
           test: /\.css$/,
-          use: [
+          use: compact([
             'style-loader',
             {
               loader: 'css-loader',
               options: {
                 modules: true,
-                minimize: (opts.env === 'prod'),
-                localIdentName: '[name]__[local]'
+                localIdentName: '[name]__[local]',
+                importLoaders: 1
+              }
+            },
+            !isDev && {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [
+                  require('cssnano')()
+                ]
               }
             }
-          ]
+          ])
         },
         {
           test: /carrotsearch\.foamtree/,
@@ -116,7 +125,7 @@ module.exports = opts => {
     },
 
     plugins: (plugins => {
-      if (opts.env === 'prod') {
+      if (!isDev) {
         if (opts.analyze) {
           plugins.push(
             new BundleAnalyzePlugin({

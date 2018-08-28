@@ -4,12 +4,10 @@ branches:
   only:
     - master
 node_js:
-  - "4"
   - "6"
   - "8"
   - "node"
 cache:
-  - yarn: true
   - directories:
     - node_modules
 addons:

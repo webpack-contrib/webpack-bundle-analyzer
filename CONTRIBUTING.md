@@ -4,16 +4,10 @@ To contribute to `webpack-bundle-analyzer`, fork the repository and clone it to 
 
 ## Setup packages
 
-Then install [`yarn`](https://yarnpkg.com/):
+Next, install this package's dependencies:
 
 ```sh
-npm install --global yarn
-```
-
-Next, install this package's dependencies with `yarn`:
-
-```sh
-yarn install
+npm i
 ```
 
 ## Develop with your own project
@@ -21,7 +15,7 @@ yarn install
 Run the following to build this library and watch its source files for changes:
 
 ```sh
-yarn run start
+npm run start
 ```
 
 You will now have a fully functioning local build of this library ready to be used. **Leave the `start` script running**, and continue with a new Terminal/shell window.
@@ -73,11 +67,11 @@ After these steps, you should be able to create a new Pull Request for this repo
 It would be really great if the changes you did could be tested somehow. Our tests live inside the `test` directory, and they can be run with the following command:
 
 ```sh
-yarn run test-dev
+npm run test-dev
 ```
 
 Now whenever you change some files, the tests will be rerun immediately. If you don't want that, and want to run tests as a one-off operation, you can use:
 
 ```sh
-yarn run test
+npm test
 ```

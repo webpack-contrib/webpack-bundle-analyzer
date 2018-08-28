@@ -5,7 +5,6 @@ const _ = require('lodash');
 chai.use(require('chai-subset'));
 
 global.expect = chai.expect;
-global.sinon = require('sinon');
 global.webpackCompile = webpackCompile;
 global.makeWebpackConfig = makeWebpackConfig;
 
