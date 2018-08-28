@@ -76,18 +76,52 @@ export class Store {
     }
 
     const query = this.searchQueryRegexp;
-    const foundByName = [];
-    const foundByPath = [];
+    let foundGroups = [];
 
     walkModules(this.visibleChunks, module => {
+      let weight = 0;
+
+      /**
+       * Splitting found modules/directories into groups:
+       *
+       * 1) Module with matched label (weight = 4)
+       * 2) Directory with matched label (weight = 3)
+       * 3) Module with matched path (weight = 2)
+       * 4) Directory with matched path (weight = 1)
+       */
       if (query.test(module.label)) {
-        foundByName.push(module);
+        weight += 3;
       } else if (module.path && query.test(module.path)) {
-        foundByPath.push(module);
+        weight++;
       }
+
+      if (!weight) return;
+
+      if (!module.groups) {
+        weight += 1;
+      }
+
+      const foundModules = foundGroups[weight - 1] = foundGroups[weight - 1] || [];
+      foundModules.push(module);
     });
 
-    return [...foundByName, ...foundByPath];
+    const {activeSize} = this;
+
+    // Filtering out missing groups
+    foundGroups = foundGroups.filter(Boolean).reverse();
+    // Sorting each group by active size
+    foundGroups.forEach(modules =>
+      modules.sort((m1, m2) => m2[activeSize] - m1[activeSize])
+    );
+
+    return [].concat(...foundGroups);
+  }
+
+  @computed get foundModulesSize() {
+    return this.foundModules.reduce(
+      (summ, module) => summ + module[this.activeSize],
+      0
+    );
   }
 
   filterModulesForSize(modules, sizeProp) {

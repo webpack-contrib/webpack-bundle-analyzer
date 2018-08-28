@@ -1,10 +1,11 @@
 /** @jsx h */
-import {h, Component} from 'preact';
+import {h} from 'preact';
 
 import SwitcherItem from './SwitcherItem';
 import s from './Switcher.css';
+import PureComponent from '../lib/PureComponent';
 
-export default class Switcher extends Component {
+export default class Switcher extends PureComponent {
 
   render() {
     const {label, items, activeItem, onSwitch} = this.props;
@@ -17,6 +18,7 @@ export default class Switcher extends Component {
         <div>
           {items.map(item =>
             <SwitcherItem key={item.label}
+              className={s.item}
               item={item}
               active={item === activeItem}
               onClick={onSwitch}/>

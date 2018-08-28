@@ -14,6 +14,7 @@ import CheckboxList from './CheckboxList';
 import s from './ModulesTreemap.css';
 import Search from './Search';
 import {store} from '../store';
+import ModulesList from './ModulesList';
 
 const SIZE_SWITCH_ITEMS = [
   {label: 'Stat', prop: 'statSize'},
@@ -44,15 +45,15 @@ export default class ModulesTreemap extends Component {
             <Search label="Search modules"
               query={store.searchQuery}
               onQueryChange={this.handleQueryChange}/>
-            {store.isSearching &&
-              (store.foundModules.length ?
-                store.foundModules.map(module =>
-                  this.renderFoundModule(module)
-                )
-                :
-                <div>Nothing found{store.allChunksSelected ? '' : 'in selected chunks'}</div>
-              )
-            }
+            {store.isSearching && [
+              <div className={s.searchInfo}>
+                {this.foundModulesInfo}
+              </div>,
+              <ModulesList modules={store.foundModules}
+                showSize={store.activeSize}
+                highlightedText={store.searchQueryRegexp}
+                onModuleClick={this.handleFoundModuleClick}/>
+            ]}
           </div>
           {this.chunkItems.length > 1 &&
             <div className={s.sidebarGroup}>
@@ -74,14 +75,6 @@ export default class ModulesTreemap extends Component {
         <Tooltip visible={showTooltip}>
           {tooltipContent}
         </Tooltip>
-      </div>
-    );
-  }
-
-  renderFoundModule(module) {
-    return (
-      <div key={module.cid} onClick={() => this.treemap.zoomToGroup(module)}>
-        {module.path || module.label}
       </div>
     );
   }
@@ -139,6 +132,8 @@ export default class ModulesTreemap extends Component {
     }
   };
 
+  handleFoundModuleClick = module => this.treemap.zoomToGroup(module);
+
   saveTreemapRef = treemap => this.treemap = treemap;
 
   @computed get sizeSwitchItems() {
@@ -164,6 +159,21 @@ export default class ModulesTreemap extends Component {
 
   @computed get highlightedModules() {
     return new Set(store.foundModules);
+  }
+
+  @computed get foundModulesInfo() {
+    if (store.foundModules.length) {
+      return ([
+        <div className={s.searchInfoItem}>
+          Count: <strong>{store.foundModules.length}</strong>
+        </div>,
+        <div className={s.searchInfoItem}>
+          Total size: <strong>{filesize(store.foundModulesSize)}</strong>
+        </div>
+      ]);
+    } else {
+      return 'Nothing found' + (store.allChunksSelected ? '' : ' in selected chunks');
+    }
   }
 
   getTooltipContent(module) {

@@ -1,10 +1,12 @@
 /** @jsx h */
-import {h, Component} from 'preact';
+import {h} from 'preact';
 import _ from 'lodash';
 
 import s from './Search.css';
+import Button from './Button';
+import PureComponent from '../lib/PureComponent';
 
-export default class Search extends Component {
+export default class Search extends PureComponent {
 
   componentWillUnmount() {
     this.handleValueChange.cancel();
@@ -18,22 +20,34 @@ export default class Search extends Component {
         <div className={s.label}>
           {label}:
         </div>
-        <div>
+        <div className={s.row}>
           <input className={s.input}
-            type="text" value={query}
+            type="text"
+            value={query}
+            placeholder="Enter regexp"
             onInput={this.handleValueChange}
             onBlur={this.handleInputBlur}/>
+          <Button className={s.clear} onClick={this.handleClearClick}>x</Button>
         </div>
       </div>
     );
   }
 
   handleValueChange = _.debounce((event) => {
-    this.props.onQueryChange(event.target.value);
+    this.informChange(event.target.value);
   }, 200)
 
   handleInputBlur = () => {
     this.handleValueChange.flush();
+  }
+
+  handleClearClick = () => {
+    this.handleValueChange.cancel();
+    this.informChange('');
+  }
+
+  informChange(value) {
+    this.props.onQueryChange(value);
   }
 
 }
