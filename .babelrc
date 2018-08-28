@@ -3,11 +3,7 @@
 {
   "presets": [
     ["@babel/preset-env", {
-      "targets": { "node": 4 },
-      "exclude": [
-        // Node 4 supports all the generator features that we use so there is no need in Regenerator
-        "transform-regenerator"
-      ]
+      "targets": {"node": 6}
     }]
   ],
   "plugins": [
