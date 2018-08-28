@@ -6,15 +6,12 @@ const childProcess = require('child_process');
 let nightmare;
 
 describe('Analyzer', function () {
-  let clock;
-
   this.timeout(5000);
 
   before(function () {
     const Nightmare = require('nightmare');
     nightmare = Nightmare();
     del.sync(`${__dirname}/output`);
-    clock = sinon.useFakeTimers();
   });
 
   beforeEach(async function () {
@@ -24,10 +21,6 @@ describe('Analyzer', function () {
 
   afterEach(function () {
     del.sync(`${__dirname}/output`);
-  });
-
-  after(function () {
-    clock.restore();
   });
 
   it('should support stats files with all the information in `children` array', async function () {
@@ -72,7 +65,7 @@ describe('Analyzer', function () {
     generateReportFrom('with-invalid-chunk/stats.json');
     const chartData = await getChartData();
     const invalidChunk = _.find(chartData, {label: 'invalid-chunk.js'});
-    expect(invalidChunk.groups).to.deep.equal([
+    expect(invalidChunk.groups).to.containSubset([
       {
         id: 1,
         label: 'invalid.js',

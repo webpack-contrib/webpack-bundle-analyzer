@@ -1,4 +1,4 @@
-const bfj = require('bfj-node4');
+const bfj = require('bfj');
 const path = require('path');
 const mkdir = require('mkdirp');
 const {bold} = require('chalk');
