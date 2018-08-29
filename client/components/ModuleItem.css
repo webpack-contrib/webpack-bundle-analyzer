@@ -1,5 +1,20 @@
 .container {
+  background: no-repeat left center;
   cursor: pointer;
   margin-bottom: 4px;
+  padding-left: 18px;
   white-space: nowrap;
+}
+
+.container.module {
+  background-image: url('../assets/icon-module.svg');
+  background-position-x: 1px;
+}
+
+.container.folder {
+  background-image: url('../assets/icon-folder.svg');
+}
+
+.container.chunk {
+  background-image: url('../assets/icon-chunk.svg');
 }
