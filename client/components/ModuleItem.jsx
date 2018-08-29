@@ -2,13 +2,15 @@
 import _ from 'lodash';
 import {h} from 'preact';
 import filesize from 'filesize';
-import s from './ModuleItem.css';
+import cls from 'classnames';
+
 import PureComponent from '../lib/PureComponent';
+import s from './ModuleItem.css';
 
 export default class ModuleItem extends PureComponent {
   render({module, showSize}) {
     return (
-      <div className={s.container} onClick={this.handleClick}>
+      <div className={cls(s.container, s[this.itemType])} onClick={this.handleClick}>
         <span dangerouslySetInnerHTML={{__html: this.titleHtml}}/>
         {showSize && [
           ' (',
@@ -20,6 +22,12 @@ export default class ModuleItem extends PureComponent {
   }
 
   handleClick = () => this.props.onClick(this.props.module);
+
+  get itemType() {
+    const {module} = this.props;
+    if (!module.path) return 'chunk';
+    return module.groups ? 'folder' : 'module';
+  }
 
   get titleHtml() {
     let html;

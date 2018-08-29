@@ -118,6 +118,10 @@ module.exports = opts => {
           ])
         },
         {
+          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+          loader: 'url-loader'
+        },
+        {
           test: /carrotsearch\.foamtree/,
           loader: 'exports-loader?CarrotSearchFoamTree'
         }
