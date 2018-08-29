@@ -1,3 +1,7 @@
+:root {
+  --main-font: normal 11px Verdana;
+}
+
 :global html,
 :global body,
 :global #app {
