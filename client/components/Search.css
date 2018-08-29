@@ -1,5 +1,5 @@
 .container {
-  font: normal 11px Verdana;
+  font: var(--main-font);
   white-space: nowrap;
 }
 

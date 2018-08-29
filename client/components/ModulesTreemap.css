@@ -14,7 +14,7 @@
 
 .searchInfo {
   display: flex;
-  font: normal 11px Verdana;
+  font: var(--main-font);
   margin: 8px 0;
 }
 
