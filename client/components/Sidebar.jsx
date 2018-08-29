@@ -16,7 +16,7 @@ export default class Sidebar extends Component {
   };
 
   componentDidMount() {
-    this.hideTimeoutId = setTimeout(() => this.toggleVisibility(false), 1500);
+    this.hideTimeoutId = setTimeout(() => this.toggleVisibility(false), 3000);
     this.hideContentTimeout = null;
   }
 
