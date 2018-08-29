@@ -136,9 +136,13 @@ module.exports = opts => {
 
         plugins.push(
           new webpack.DefinePlugin({
-            'process.env': {
-              NODE_ENV: '"production"'
-            }
+            'process': JSON.stringify({
+              env: {
+                NODE_ENV: 'production'
+              }
+            }),
+            // Fixes "ModuleConcatenation bailout" for some modules (e.g. Preact and MobX)
+            'global': 'undefined'
           })
         );
       }
