@@ -44,6 +44,7 @@ export default class ModulesTreemap extends Component {
           <div className={s.sidebarGroup}>
             <Search label="Search modules"
               query={store.searchQuery}
+              autofocus
               onQueryChange={this.handleQueryChange}/>
             {store.isSearching && [
               <div className={s.searchInfo}>

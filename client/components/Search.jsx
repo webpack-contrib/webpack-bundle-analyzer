@@ -7,6 +7,12 @@ import PureComponent from '../lib/PureComponent';
 
 export default class Search extends PureComponent {
 
+  componentDidMount() {
+    if (this.props.autofocus) {
+      this.focus();
+    }
+  }
+
   componentWillUnmount() {
     this.handleValueChange.cancel();
   }
@@ -20,7 +26,8 @@ export default class Search extends PureComponent {
           {label}:
         </div>
         <div className={s.row}>
-          <input className={s.input}
+          <input ref={this.saveInputNode}
+            className={s.input}
             type="text"
             value={query}
             placeholder="Enter regexp"
@@ -48,8 +55,15 @@ export default class Search extends PureComponent {
     this.handleValueChange.flush();
   }
 
+  focus() {
+    if (this.input) {
+      this.input.focus();
+    }
+  }
+
   informChange(value) {
     this.props.onQueryChange(value);
   }
 
+  saveInputNode = node => this.input = node;
 }
