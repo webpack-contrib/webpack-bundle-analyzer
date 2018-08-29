@@ -3,6 +3,11 @@
     "th0r-react",
     "../.eslintrc.json"
   ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  },
   "rules": {
     "react/jsx-no-bind": 0,
     "react/jsx-key": 0
