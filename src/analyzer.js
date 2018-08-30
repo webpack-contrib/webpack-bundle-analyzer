@@ -132,6 +132,7 @@ function createModulesTree(modules) {
   const root = new Folder('.');
 
   _.each(modules, module => root.addModule(module));
+  root.mergeNestedFolders();
 
   return root;
 }

@@ -9,29 +9,15 @@ module.exports = [
     'statSize': 101,
     'groups': [
       {
-        'label': 'node_modules',
-        'path': './node_modules',
+        'label': 'node_modules/core-js/modules',
+        'path': './node_modules/core-js/modules',
         'statSize': 101,
         'groups': [
           {
-            'label': 'core-js',
-            'path': './node_modules/core-js',
-            'statSize': 101,
-            'groups': [
-              {
-                'label': 'modules',
-                'path': './node_modules/core-js/modules',
-                'statSize': 101,
-                'groups': [
-                  {
-                    'id': '+rLv',
-                    'label': '_html.js',
-                    'path': './node_modules/core-js/modules/_html.js',
-                    'statSize': 101
-                  }
-                ]
-              }
-            ]
+            'id': '+rLv',
+            'label': '_html.js',
+            'path': './node_modules/core-js/modules/_html.js',
+            'statSize': 101
           }
         ]
       }
