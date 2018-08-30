@@ -57,6 +57,10 @@ export default class ConcatenatedModule extends Module {
     return folder;
   }
 
+  mergeNestedFolders() {
+    _.invokeMap(this.children, 'mergeNestedFolders');
+  }
+
   toChartData() {
     return {
       ...super.toChartData(),
