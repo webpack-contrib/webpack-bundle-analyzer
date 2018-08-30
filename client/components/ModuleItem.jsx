@@ -21,8 +21,6 @@ export default class ModuleItem extends PureComponent {
     );
   }
 
-  handleClick = () => this.props.onClick(this.props.module);
-
   get itemType() {
     const {module} = this.props;
     if (!module.path) return 'chunk';
@@ -62,4 +60,6 @@ export default class ModuleItem extends PureComponent {
 
     return html;
   }
+
+  handleClick = () => this.props.onClick(this.props.module);
 }

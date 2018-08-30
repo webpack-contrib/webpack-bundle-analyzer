@@ -104,39 +104,6 @@ export default class ModulesTreemap extends Component {
     );
   };
 
-  handleSizeSwitch = sizeSwitchItem => {
-    store.selectedSize = sizeSwitchItem.prop;
-  };
-
-  handleQueryChange = query => {
-    store.searchQuery = query;
-  }
-
-  handleSelectedChunksChange = selectedChunks => {
-    store.selectedChunks = selectedChunks;
-  };
-
-  handleMouseLeaveTreemap = () => {
-    this.setState({showTooltip: false});
-  };
-
-  handleTreemapGroupHover = event => {
-    const {group} = event;
-
-    if (group) {
-      this.setState({
-        showTooltip: true,
-        tooltipContent: this.getTooltipContent(group)
-      });
-    } else {
-      this.setState({showTooltip: false});
-    }
-  };
-
-  handleFoundModuleClick = module => this.treemap.zoomToGroup(module);
-
-  saveTreemapRef = treemap => this.treemap = treemap;
-
   @computed get sizeSwitchItems() {
     return store.hasParsedSizes ? SIZE_SWITCH_ITEMS : SIZE_SWITCH_ITEMS.slice(0, 1);
   }
@@ -176,6 +143,39 @@ export default class ModulesTreemap extends Component {
       return 'Nothing found' + (store.allChunksSelected ? '' : ' in selected chunks');
     }
   }
+
+  handleSizeSwitch = sizeSwitchItem => {
+    store.selectedSize = sizeSwitchItem.prop;
+  };
+
+  handleQueryChange = query => {
+    store.searchQuery = query;
+  }
+
+  handleSelectedChunksChange = selectedChunks => {
+    store.selectedChunks = selectedChunks;
+  };
+
+  handleMouseLeaveTreemap = () => {
+    this.setState({showTooltip: false});
+  };
+
+  handleTreemapGroupHover = event => {
+    const {group} = event;
+
+    if (group) {
+      this.setState({
+        showTooltip: true,
+        tooltipContent: this.getTooltipContent(group)
+      });
+    } else {
+      this.setState({showTooltip: false});
+    }
+  };
+
+  handleFoundModuleClick = module => this.treemap.zoomToGroup(module);
+
+  saveTreemapRef = treemap => this.treemap = treemap;
 
   getTooltipContent(module) {
     if (!module) return null;
