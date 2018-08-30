@@ -5,11 +5,11 @@ import cls from 'classnames';
 import s from './Sidebar.css';
 
 export default class Sidebar extends Component {
-
   static defaultProps = {
     position: 'left'
   };
 
+  allowHide = true;
   state = {
     visible: true,
     renderContent: true
@@ -37,11 +37,17 @@ export default class Sidebar extends Component {
 
     return (
       <div className={className}
+        onClick={this.handleClick}
         onMouseEnter={this.handleMouseEnter}
+        onMouseMove={this.handleMouseMove}
         onMouseLeave={this.handleMouseLeave}>
         {renderContent ? children : null}
       </div>
     );
+  }
+
+  handleClick = () => {
+    this.allowHide = false;
   }
 
   handleMouseEnter = () => {
@@ -49,7 +55,15 @@ export default class Sidebar extends Component {
     this.toggleVisibility(true);
   };
 
-  handleMouseLeave = () => this.toggleVisibility(false);
+  handleMouseMove = () => {
+    this.allowHide = true;
+  }
+
+  handleMouseLeave = () => {
+    if (this.allowHide) {
+      this.toggleVisibility(false);
+    }
+  }
 
   toggleVisibility(flag) {
     clearTimeout(this.hideContentTimeout);
