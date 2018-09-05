@@ -5,7 +5,7 @@ import ModuleItem from './ModuleItem';
 import PureComponent from '../lib/PureComponent';
 
 export default class ModulesList extends PureComponent {
-  render({modules, showSize, highlightedText}) {
+  render({modules, showSize, highlightedText, isModuleVisible}) {
     return (
       <div className={s.container}>
         {modules.map(module =>
@@ -13,6 +13,7 @@ export default class ModulesList extends PureComponent {
             module={module}
             showSize={showSize}
             highlightedText={highlightedText}
+            isVisible={isModuleVisible}
             onClick={this.handleModuleClick}/>
         )}
       </div>

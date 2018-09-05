@@ -53,6 +53,7 @@ export default class ModulesTreemap extends Component {
               <ModulesList modules={store.foundModules}
                 showSize={store.activeSize}
                 highlightedText={store.searchQueryRegexp}
+                isModuleVisible={this.isModuleVisible}
                 onModuleClick={this.handleFoundModuleClick}/>
             ]}
           </div>
@@ -174,6 +175,10 @@ export default class ModulesTreemap extends Component {
   };
 
   handleFoundModuleClick = module => this.treemap.zoomToGroup(module);
+
+  isModuleVisible = module => (
+    this.treemap.isGroupRendered(module)
+  )
 
   saveTreemapRef = treemap => this.treemap = treemap;
 

@@ -59,8 +59,11 @@ export default class Treemap extends Component {
       layout: 'squarified',
       stacking: 'flattened',
       pixelRatio: window.devicePixelRatio || 1,
-      maxGroupLevelsDrawn: Number.MAX_VALUE,
-      maxGroupLabelLevelsDrawn: Number.MAX_VALUE,
+      maxGroups: Infinity,
+      maxGroupLevelsDrawn: Infinity,
+      maxGroupLabelLevelsDrawn: Infinity,
+      maxGroupLevelsAttached: Infinity,
+      groupMinDiameter: 0,
       groupLabelVerticalPadding: 0.2,
       rolloutDuration: 0,
       pullbackDuration: 0,
@@ -122,7 +125,19 @@ export default class Treemap extends Component {
 
   zoomToGroup(group) {
     this.zoomOutDisabled = false;
-    this.treemap.zoom(group);
+
+    while (group && !this.treemap.get('state', group).revealed) {
+      group = this.treemap.get('hierarchy', group).parent;
+    }
+
+    if (group) {
+      this.treemap.zoom(group);
+    }
+  }
+
+  isGroupRendered(group) {
+    const groupState = this.treemap.get('state', group);
+    return !!groupState && groupState.revealed;
   }
 
   update() {
