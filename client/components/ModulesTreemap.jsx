@@ -46,16 +46,27 @@ export default class ModulesTreemap extends Component {
               query={store.searchQuery}
               autofocus
               onQueryChange={this.handleQueryChange}/>
-            {store.isSearching && [
-              <div className={s.searchInfo}>
-                {this.foundModulesInfo}
-              </div>,
-              <ModulesList modules={store.foundModules}
-                showSize={store.activeSize}
-                highlightedText={store.searchQueryRegexp}
-                isModuleVisible={this.isModuleVisible}
-                onModuleClick={this.handleFoundModuleClick}/>
-            ]}
+            <div className={s.foundModulesInfo}>
+              {this.foundModulesInfo}
+            </div>
+            {store.isSearching && store.hasFoundModules &&
+              <div className={s.foundModulesContainer}>
+                {store.foundModulesByChunk.map(({chunk, modules}) =>
+                  <div key={chunk.cid} className={s.foundModulesChunk}>
+                    <div className={s.foundModulesChunkName}
+                      onClick={() => this.treemap.zoomToGroup(chunk)}>
+                      {chunk.label}
+                    </div>
+                    <ModulesList className={s.foundModulesList}
+                      modules={modules}
+                      showSize={store.activeSize}
+                      highlightedText={store.searchQueryRegexp}
+                      isModuleVisible={this.isModuleVisible}
+                      onModuleClick={this.handleFoundModuleClick}/>
+                  </div>
+                )}
+              </div>
+            }
           </div>
           {this.chunkItems.length > 1 &&
             <div className={s.sidebarGroup}>
@@ -131,12 +142,17 @@ export default class ModulesTreemap extends Component {
   }
 
   @computed get foundModulesInfo() {
-    if (store.foundModules.length) {
+    if (!store.isSearching) {
+      // `&nbsp;` to reserve space
+      return '\u00A0';
+    }
+
+    if (store.hasFoundModules) {
       return ([
-        <div className={s.searchInfoItem}>
+        <div className={s.foundModulesInfoItem}>
           Count: <strong>{store.foundModules.length}</strong>
         </div>,
-        <div className={s.searchInfoItem}>
+        <div className={s.foundModulesInfoItem}>
           Total size: <strong>{filesize(store.foundModulesSize)}</strong>
         </div>
       ]);

@@ -1,13 +1,14 @@
 /** @jsx h */
 import {h} from 'preact';
+import cls from 'classnames';
 import s from './ModulesList.css';
 import ModuleItem from './ModuleItem';
 import PureComponent from '../lib/PureComponent';
 
 export default class ModulesList extends PureComponent {
-  render({modules, showSize, highlightedText, isModuleVisible}) {
+  render({modules, showSize, highlightedText, isModuleVisible, className}) {
     return (
-      <div className={s.container}>
+      <div className={cls(s.container, className)}>
         {modules.map(module =>
           <ModuleItem key={module.cid}
             module={module}

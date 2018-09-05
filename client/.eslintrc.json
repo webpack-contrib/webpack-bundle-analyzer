@@ -9,6 +9,7 @@
     }
   },
   "rules": {
-    "react/jsx-key": "off"
+    "react/jsx-key": "off",
+    "react/jsx-no-bind": "off"
   }
 }

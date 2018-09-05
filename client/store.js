@@ -70,51 +70,68 @@ export class Store {
     return !!this.searchQueryRegexp;
   }
 
-  @computed get foundModules() {
+  @computed get foundModulesByChunk() {
     if (!this.isSearching) {
       return [];
     }
 
     const query = this.searchQueryRegexp;
-    let foundGroups = [];
 
-    walkModules(this.visibleChunks, module => {
-      let weight = 0;
+    return this.visibleChunks
+      .map(chunk => {
+        let foundGroups = [];
 
-      /**
-       * Splitting found modules/directories into groups:
-       *
-       * 1) Module with matched label (weight = 4)
-       * 2) Directory with matched label (weight = 3)
-       * 3) Module with matched path (weight = 2)
-       * 4) Directory with matched path (weight = 1)
-       */
-      if (query.test(module.label)) {
-        weight += 3;
-      } else if (module.path && query.test(module.path)) {
-        weight++;
-      }
+        walkModules(chunk.groups, module => {
+          let weight = 0;
 
-      if (!weight) return;
+          /**
+           * Splitting found modules/directories into groups:
+           *
+           * 1) Module with matched label (weight = 4)
+           * 2) Directory with matched label (weight = 3)
+           * 3) Module with matched path (weight = 2)
+           * 4) Directory with matched path (weight = 1)
+           */
+          if (query.test(module.label)) {
+            weight += 3;
+          } else if (module.path && query.test(module.path)) {
+            weight++;
+          }
 
-      if (!module.groups) {
-        weight += 1;
-      }
+          if (!weight) return;
 
-      const foundModules = foundGroups[weight - 1] = foundGroups[weight - 1] || [];
-      foundModules.push(module);
-    });
+          if (!module.groups) {
+            weight += 1;
+          }
 
-    const {activeSize} = this;
+          const foundModules = foundGroups[weight - 1] = foundGroups[weight - 1] || [];
+          foundModules.push(module);
+        });
 
-    // Filtering out missing groups
-    foundGroups = foundGroups.filter(Boolean).reverse();
-    // Sorting each group by active size
-    foundGroups.forEach(modules =>
-      modules.sort((m1, m2) => m2[activeSize] - m1[activeSize])
-    );
+        const {activeSize} = this;
 
-    return [].concat(...foundGroups);
+        // Filtering out missing groups
+        foundGroups = foundGroups.filter(Boolean).reverse();
+        // Sorting each group by active size
+        foundGroups.forEach(modules =>
+          modules.sort((m1, m2) => m2[activeSize] - m1[activeSize])
+        );
+
+        return {
+          chunk,
+          modules: [].concat(...foundGroups)
+        };
+      })
+      .filter(result => result.modules.length > 0)
+      .sort((c1, c2) => c1.modules.length - c2.modules.length);
+  }
+
+  @computed get foundModules() {
+    return this.foundModulesByChunk.reduce((arr, chunk) => arr.concat(chunk.modules), []);
+  }
+
+  @computed get hasFoundModules() {
+    return this.foundModules.length > 0;
   }
 
   @computed get foundModulesSize() {
