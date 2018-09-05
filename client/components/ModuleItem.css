@@ -3,6 +3,7 @@
   cursor: pointer;
   margin-bottom: 4px;
   padding-left: 18px;
+  position: relative;
   white-space: nowrap;
 }
 
@@ -17,4 +18,14 @@
 
 .container.chunk {
   background-image: url('../assets/icon-chunk.svg');
+}
+
+.container.invisible:hover::before {
+  background: url('../assets/icon-invisible.svg') no-repeat left center;
+  content: "";
+  height: 100%;
+  left: 0;
+  top: 1px;
+  position: absolute;
+  width: 13px;
 }
