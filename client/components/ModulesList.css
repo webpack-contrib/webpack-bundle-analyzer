@@ -1,5 +1,3 @@
 .container {
   font: var(--main-font);
-  max-height: 600px;
-  overflow: auto;
 }
