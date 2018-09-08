@@ -43,7 +43,7 @@ module.exports = opts => {
           sourceMap: true,
           uglifyOptions: {
             output: {
-              comments: false
+              comments: /copyright/i
             },
             compress: {
               // Fixes bad function inlining minification.
