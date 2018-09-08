@@ -33,7 +33,8 @@ export default class Search extends PureComponent {
             value={query}
             placeholder="Enter regexp"
             onInput={this.handleValueChange}
-            onBlur={this.handleInputBlur}/>
+            onBlur={this.handleInputBlur}
+            onKeyDown={this.handleKeyDown}/>
           <Button className={s.clear} onClick={this.handleClearClick}>x</Button>
         </div>
       </div>
@@ -42,7 +43,7 @@ export default class Search extends PureComponent {
 
   handleValueChange = _.debounce((event) => {
     this.informChange(event.target.value);
-  }, 200)
+  }, 400)
 
   handleInputBlur = () => {
     this.handleValueChange.flush();
@@ -54,9 +55,21 @@ export default class Search extends PureComponent {
   }
 
   handleKeyDown = event => {
-    if (event.key === 'Escape') {
+    let handled = false;
+
+    switch (event.key) {
+      case 'Escape':
+        this.clear();
+        break;
+      case 'Enter':
+        this.handleValueChange.flush();
+        break;
+      default:
+        handled = false;
+    }
+
+    if (handled) {
       event.stopPropagation();
-      this.clear();
     }
   }
 
@@ -69,6 +82,7 @@ export default class Search extends PureComponent {
   clear() {
     this.handleValueChange.cancel();
     this.informChange('');
+    this.input.value = '';
   }
 
   informChange(value) {
