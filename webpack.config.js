@@ -97,7 +97,7 @@ module.exports = opts => {
         },
         {
           test: /\.css$/,
-          use: compact([
+          use: [
             'style-loader',
             {
               loader: 'css-loader',
@@ -107,15 +107,16 @@ module.exports = opts => {
                 importLoaders: 1
               }
             },
-            !isDev && {
+            {
               loader: 'postcss-loader',
               options: {
-                plugins: [
-                  require('cssnano')()
-                ]
+                plugins: compact([
+                  require('postcss-icss-values'),
+                  !isDev && require('cssnano')()
+                ])
               }
             }
-          ])
+          ]
         },
         {
           test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
