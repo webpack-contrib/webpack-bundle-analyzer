@@ -3,6 +3,9 @@ import {h, Component} from 'preact';
 import cls from 'classnames';
 
 import s from './Sidebar.css';
+import Button from './Button';
+
+const toggleTime = parseInt(s.toggleTime);
 
 export default class Sidebar extends Component {
   static defaultProps = {
@@ -10,6 +13,8 @@ export default class Sidebar extends Component {
   };
 
   allowHide = true;
+  toggling = false;
+  hideContentTimeout = null;
   state = {
     visible: true,
     renderContent: true
@@ -17,7 +22,6 @@ export default class Sidebar extends Component {
 
   componentDidMount() {
     this.hideTimeoutId = setTimeout(() => this.toggleVisibility(false), 3000);
-    this.hideContentTimeout = null;
   }
 
   componentWillUnmount() {
@@ -37,11 +41,18 @@ export default class Sidebar extends Component {
 
     return (
       <div className={className}
-        onClick={this.handleClick}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseMove={this.handleMouseMove}
         onMouseLeave={this.handleMouseLeave}>
-        {renderContent ? children : null}
+        <Button type="button"
+          className={s.toggleButton}
+          onClick={this.handleToggleButtonClick}>
+          {visible ? '<' : '>'}
+        </Button>
+        <div className={s.content}
+          onClick={this.handleClick}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseMove={this.handleMouseMove}>
+          {renderContent ? children : null}
+        </div>
       </div>
     );
   }
@@ -51,8 +62,10 @@ export default class Sidebar extends Component {
   }
 
   handleMouseEnter = () => {
-    clearTimeout(this.hideTimeoutId);
-    this.toggleVisibility(true);
+    if (!this.toggling) {
+      clearTimeout(this.hideTimeoutId);
+      this.toggleVisibility(true);
+    }
   };
 
   handleMouseMove = () => {
@@ -60,24 +73,40 @@ export default class Sidebar extends Component {
   }
 
   handleMouseLeave = () => {
-    if (this.allowHide) {
+    if (this.allowHide && !this.toggling) {
       this.toggleVisibility(false);
     }
+  }
+
+  handleToggleButtonClick = () => {
+    this.toggleVisibility();
   }
 
   toggleVisibility(flag) {
     clearTimeout(this.hideContentTimeout);
 
+    const {visible} = this.state;
+
+    if (flag === undefined) {
+      flag = !visible;
+    } else if (flag === visible) {
+      return;
+    }
+
     this.setState({visible: flag});
+    this.toggling = true;
+    setTimeout(() => {
+      this.toggling = false;
+    }, toggleTime);
 
     if (flag) {
       this.setState({renderContent: true});
     } else {
       // Waiting for the CSS animation to finish and hiding content
-      this.hideContentTimeout = setTimeout(
-        () => this.setState({renderContent: false}),
-        500
-      );
+      this.hideContentTimeout = setTimeout(() => {
+        this.hideContentTimeout = null;
+        this.setState({renderContent: false});
+      }, toggleTime);
     }
   }
 
