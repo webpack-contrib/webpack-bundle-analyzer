@@ -12,7 +12,7 @@ export default class Treemap extends Component {
 
   componentDidMount() {
     this.treemap = this.createTreemap();
-    window.addEventListener('resize', this.treemap.resize);
+    window.addEventListener('resize', this.resize);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,7 +34,7 @@ export default class Treemap extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.treemap.resize);
+    window.removeEventListener('resize', this.resize);
     this.treemap.dispose();
   }
 
@@ -142,6 +142,10 @@ export default class Treemap extends Component {
 
   update() {
     this.treemap.update();
+  }
+
+  resize = () => {
+    this.treemap.resize();
   }
 }
 

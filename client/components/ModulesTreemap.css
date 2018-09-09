@@ -1,7 +1,13 @@
-.container, .map {
+.container {
+  align-items: stretch;
+  display: flex;
   height: 100%;
   position: relative;
   width: 100%;
+}
+
+.map {
+  flex: 1;
 }
 
 .sidebarGroup {
