@@ -4,14 +4,21 @@
   background: #fff;
   border: none;
   border-right: 1px solid #aaa;
-  bottom: 0;
   box-sizing: border-box;
   max-width: calc(50% - 10px);
   opacity: 0.95;
+  z-index: 1;
+}
+
+.container:not(.pinned) {
   position: absolute;
   top: 0;
+  bottom: 0;
   transition: transform toggleTime ease;
-  z-index: 1;
+}
+
+.container.pinned {
+  position: relative;
 }
 
 .container.left {
@@ -30,14 +37,26 @@
   width: 100%;
 }
 
+.empty.pinned .content {
+  padding: 0;
+}
+
+.pinButton,
 .toggleButton {
   cursor: pointer;
   height: 27px;
   line-height: 0;
   position: absolute;
-  right: 15px;
   top: 10px;
   width: 27px;
+}
+
+.pinButton {
+  right: 47px;
+}
+
+.toggleButton {
+  right: 15px;
 }
 
 .hidden .toggleButton {
@@ -47,4 +66,13 @@
 
 .hidden .toggleButton:hover {
   transform: translateX(4px);
+}
+
+.resizer {
+  bottom: 0;
+  cursor: col-resize;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 7px;
 }

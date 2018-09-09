@@ -25,16 +25,20 @@ const SIZE_SWITCH_ITEMS = [
 @observer
 export default class ModulesTreemap extends Component {
   state = {
+    sidebarPinned: false,
     showTooltip: false,
     tooltipContent: null
   };
 
   render() {
-    const {showTooltip, tooltipContent} = this.state;
+    const {sidebarPinned, showTooltip, tooltipContent} = this.state;
 
     return (
       <div className={s.container}>
-        <Sidebar>
+        <Sidebar pinned={sidebarPinned}
+          onToggle={this.handleSidebarToggle}
+          onPinStateChange={this.handleSidebarPinStateChange}
+          onResize={this.handleSidebarResize}>
           <div className={s.sidebarGroup}>
             <Switcher label="Treemap sizes"
               items={this.sizeSwitchItems}
@@ -159,6 +163,21 @@ export default class ModulesTreemap extends Component {
     } else {
       return 'Nothing found' + (store.allChunksSelected ? '' : ' in selected chunks');
     }
+  }
+
+  handleSidebarToggle = () => {
+    if (this.state.sidebarPinned) {
+      setTimeout(() => this.treemap.resize());
+    }
+  }
+
+  handleSidebarPinStateChange = pinned => {
+    this.setState({sidebarPinned: pinned});
+    setTimeout(() => this.treemap.resize());
+  }
+
+  handleSidebarResize = () => {
+    this.treemap.resize();
   }
 
   handleSizeSwitch = sizeSwitchItem => {
