@@ -1,4 +1,4 @@
-.container {
+.button {
   background: #fff;
   border: 1px solid #aaa;
   border-radius: 4px;
@@ -11,13 +11,16 @@
   white-space: nowrap;
 }
 
-.container:focus,
-.container:hover {
+.button:focus,
+.button:hover {
   background: rgba(255, 165, 0, 0.15);
 }
 
-.container.active {
+.button.active {
   background: #ffa500;
   color: #000;
+}
+
+.button[disabled] {
   cursor: default;
 }
