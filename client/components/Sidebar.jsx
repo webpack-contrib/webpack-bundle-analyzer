@@ -4,6 +4,7 @@ import cls from 'classnames';
 
 import s from './Sidebar.css';
 import Button from './Button';
+import Icon from './Icon';
 
 const toggleTime = parseInt(s.toggleTime);
 
@@ -58,7 +59,7 @@ export default class Sidebar extends Component {
         <Button type="button"
           className={s.toggleButton}
           onClick={this.handleToggleButtonClick}>
-          {visible ? '<' : '>'}
+          <Icon name="arrow-right" size={10} rotate={visible ? 180 : 0}/>
         </Button>
         {pinned &&
           <div className={s.resizer} onMouseDown={this.handleResizeStart}/>

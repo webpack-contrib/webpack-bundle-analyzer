@@ -44,11 +44,11 @@
 .pinButton,
 .toggleButton {
   cursor: pointer;
-  height: 27px;
+  height: 26px;
   line-height: 0;
   position: absolute;
   top: 10px;
-  width: 27px;
+  width: 26px;
 }
 
 .pinButton {
