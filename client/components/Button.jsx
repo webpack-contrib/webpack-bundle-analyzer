@@ -1,9 +1,10 @@
 /** @jsx h */
-import {h, Component} from 'preact';
+import {h} from 'preact';
 import cls from 'classnames';
 import s from './Button.css';
+import PureComponent from '../lib/PureComponent';
 
-export default class Button extends Component {
+export default class Button extends PureComponent {
   render({active, disabled, className, children, ...props}) {
     const classes = cls(className, {
       [s.container]: true,
