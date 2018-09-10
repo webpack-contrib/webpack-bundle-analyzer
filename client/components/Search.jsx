@@ -55,7 +55,7 @@ export default class Search extends PureComponent {
   }
 
   handleKeyDown = event => {
-    let handled = false;
+    let handled = true;
 
     switch (event.key) {
       case 'Escape':
