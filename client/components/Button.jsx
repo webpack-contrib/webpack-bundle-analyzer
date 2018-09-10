@@ -5,10 +5,11 @@ import s from './Button.css';
 import PureComponent from '../lib/PureComponent';
 
 export default class Button extends PureComponent {
-  render({active, disabled, className, children, ...props}) {
+  render({active, toggle, className, children, ...props}) {
     const classes = cls(className, {
-      [s.container]: true,
-      [s.active]: active
+      [s.button]: true,
+      [s.active]: active,
+      [s.toggle]: toggle
     });
 
     return (
@@ -16,10 +17,18 @@ export default class Button extends PureComponent {
         ref={this.saveRef}
         type="button"
         className={classes}
-        disabled={active || disabled}
+        disabled={this.disabled}
         onClick={this.handleClick}>
         {children}
       </button>
+    );
+  }
+
+  get disabled() {
+    const {props} = this;
+    return (
+      props.disabled ||
+      (props.active && !props.toggle)
     );
   }
 

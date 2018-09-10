@@ -8,6 +8,10 @@ const ICONS = {
   'arrow-right': {
     src: require('../assets/icon-arrow-right.svg'),
     size: [7, 13]
+  },
+  'pin': {
+    src: require('../assets/icon-pin.svg'),
+    size: [12, 18]
   }
 };
 

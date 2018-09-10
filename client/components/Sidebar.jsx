@@ -51,12 +51,16 @@ export default class Sidebar extends Component {
         onMouseLeave={this.handleMouseLeave}>
         {visible &&
           <Button type="button"
+            title="Pin"
             className={s.pinButton}
+            toggle
+            active={pinned}
             onClick={this.handlePinButtonClick}>
-            {pinned ? 'unpin' : 'pin'}
+            <Icon name="pin" size={13}/>
           </Button>
         }
         <Button type="button"
+          title={visible ? 'Hide' : 'Show sidebar'}
           className={s.toggleButton}
           onClick={this.handleToggleButtonClick}>
           <Icon name="arrow-right" size={10} rotate={visible ? 180 : 0}/>
