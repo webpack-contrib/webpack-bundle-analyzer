@@ -3,15 +3,18 @@ import {h, Component} from 'preact';
 
 import Checkbox from './Checkbox';
 import CheckboxList from './CheckboxList';
+import s from './CheckboxList.css';
 
 export default class CheckboxListItem extends Component {
 
   render() {
     return (
-      <Checkbox {...this.props}
-        onChange={this.handleChange}>
-        {this.renderLabel()}
-      </Checkbox>
+      <div className={s.item}>
+        <Checkbox {...this.props}
+          onChange={this.handleChange}>
+          {this.renderLabel()}
+        </Checkbox>
+      </div>
     );
   }
 
