@@ -33,7 +33,6 @@
     "views"
   ],
   "dependencies": {
-    "@babel/runtime": "7.0.0",
     "acorn": "^5.7.3",
     "bfj": "^6.1.1",
     "chalk": "^2.4.1",
@@ -56,6 +55,7 @@
     "@babel/preset-env": "7.0.0",
     "@babel/preset-react": "7.0.0",
     "@babel/register": "7.0.0",
+    "@babel/runtime": "7.0.0",
     "babel-eslint": "9.0.0",
     "babel-loader": "8.0.2",
     "babel-plugin-lodash": "3.3.4",
