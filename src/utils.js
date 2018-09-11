@@ -1,4 +1,4 @@
-const { inspect } = require('util');
+const {inspect} = require('util');
 const _ = require('lodash');
 
 exports.createAssetsFilter = createAssetsFilter;
@@ -18,7 +18,7 @@ function createAssetsFilter(excludePatterns) {
 
       if (!_.isFunction(pattern)) {
         throw new TypeError(
-          `Pattern should be either string, RegExp or a function, but "${inspect(pattern, { depth: 0 })}" got.`
+          `Pattern should be either string, RegExp or a function, but "${inspect(pattern, {depth: 0})}" got.`
         );
       }
 

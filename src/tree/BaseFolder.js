@@ -30,7 +30,7 @@ export default class BaseFolder extends Node {
   }
 
   addChildModule(module) {
-    const { name } = module;
+    const {name} = module;
     const currentChild = this.children[name];
 
     // For some reason we already have this node in children and it's a folder.
@@ -78,6 +78,32 @@ export default class BaseFolder extends Node {
       stopped = true;
       return finalState;
     }
+  }
+
+  mergeNestedFolders() {
+    if (!this.isRoot) {
+      let childNames;
+
+      while ((childNames = Object.keys(this.children)).length === 1) {
+        const childName = childNames[0];
+        const onlyChild = this.children[childName];
+
+        if (onlyChild instanceof this.constructor) {
+          this.name += `/${onlyChild.name}`;
+          this.children = onlyChild.children;
+        } else {
+          break;
+        }
+      }
+    }
+
+    this.walk(child => {
+      child.parent = this;
+
+      if (child.mergeNestedFolders) {
+        child.mergeNestedFolders();
+      }
+    }, null, false);
   }
 
   toChartData() {

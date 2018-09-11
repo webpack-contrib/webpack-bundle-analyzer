@@ -1,5 +1,5 @@
 .container {
-  font: normal 10px Verdana;
+  font: var(--main-font);
   position: absolute;
   padding: 5px 10px;
   border-radius: 4px;

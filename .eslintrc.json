@@ -1,7 +1,4 @@
 {
   "root": true,
-  "extends": "th0r",
-  "rules": {
-    "object-curly-spacing": ["error", "always"]
-  }
+  "extends": "th0r"
 }

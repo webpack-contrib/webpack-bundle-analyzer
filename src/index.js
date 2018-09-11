@@ -1,4 +1,4 @@
-const { start } = require('./viewer');
+const {start} = require('./viewer');
 
 module.exports = {
   start,

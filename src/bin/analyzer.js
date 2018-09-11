@@ -1,10 +1,10 @@
 #! /usr/bin/env node
 
-const { resolve, dirname } = require('path');
+const {resolve, dirname} = require('path');
 
 const _ = require('lodash');
 const commander = require('commander');
-const { magenta } = require('chalk');
+const {magenta} = require('chalk');
 
 const analyzer = require('../analyzer');
 const viewer = require('../viewer');

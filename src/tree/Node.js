@@ -17,4 +17,8 @@ export default class Node {
     return path.reverse().join('/');
   }
 
+  get isRoot() {
+    return !this.parent;
+  }
+
 };

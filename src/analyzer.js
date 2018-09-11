@@ -6,8 +6,8 @@ const gzipSize = require('gzip-size');
 
 const Logger = require('./Logger');
 const Folder = require('./tree/Folder').default;
-const { parseBundle } = require('./parseUtils');
-const { createAssetsFilter } = require('./utils');
+const {parseBundle} = require('./parseUtils');
+const {createAssetsFilter} = require('./utils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/;
 
@@ -132,6 +132,7 @@ function createModulesTree(modules) {
   const root = new Folder('.');
 
   _.each(modules, module => root.addModule(module));
+  root.mergeNestedFolders();
 
   return root;
 }

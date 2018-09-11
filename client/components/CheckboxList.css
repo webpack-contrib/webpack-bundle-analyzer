@@ -1,5 +1,5 @@
 .container {
-  font: normal 10px Verdana;
+  font: var(--main-font);
   white-space: nowrap;
 }
 
@@ -9,19 +9,6 @@
   margin-bottom: 7px;
 }
 
-.checkbox {
-  cursor: pointer;
-}
-
-.item {
-  cursor: pointer;
-  display: block;
-  margin-bottom: 3px;
-}
-
-.itemText {
-  margin-left: 3px;
-  position: relative;
-  top: -2px;
-  vertical-align: middle;
+.item + .item {
+  margin-top: 1px;
 }

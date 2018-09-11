@@ -3,7 +3,7 @@ import _ from 'lodash';
 import Module from './Module';
 import ContentModule from './ContentModule';
 import ContentFolder from './ContentFolder';
-import { getModulePathParts } from './utils';
+import {getModulePathParts} from './utils';
 
 export default class ConcatenatedModule extends Module {
 
@@ -55,6 +55,10 @@ export default class ConcatenatedModule extends Module {
     folder.parent = this;
     this.children[folder.name] = folder;
     return folder;
+  }
+
+  mergeNestedFolders() {
+    _.invokeMap(this.children, 'mergeNestedFolders');
   }
 
   toChartData() {

@@ -1,6 +1,7 @@
 /** @jsx h */
-import { h, render } from 'preact';
+import {h, render} from 'preact';
 
+import {store} from './store';
 import ModulesTreemap from './components/ModulesTreemap';
 /* eslint no-unused-vars: "off" */
 import styles from './viewer.css';
@@ -16,24 +17,21 @@ try {
 }
 
 window.addEventListener('load', () => {
-  renderApp(window.chartData);
+  store.defaultSize = `${window.defaultSizes}Size`;
+  store.setModules(window.chartData);
+
+  render(
+    <ModulesTreemap/>,
+    document.getElementById('app')
+  );
 
   if (ws) {
     ws.addEventListener('message', event => {
       const msg = JSON.parse(event.data);
 
       if (msg.event === 'chartDataUpdated') {
-        renderApp(msg.data);
+        store.setModules(msg.data);
       }
     });
   }
 }, false);
-
-let app;
-function renderApp(chartData, initialRender) {
-  app = render(
-    <ModulesTreemap chunks={chartData} defaultSizes={window.defaultSizes}/>,
-    document.getElementById('app'),
-    app
-  );
-}

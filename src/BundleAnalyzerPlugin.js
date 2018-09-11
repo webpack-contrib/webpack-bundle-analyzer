@@ -1,7 +1,7 @@
-const bfj = require('bfj-node4');
+const bfj = require('bfj');
 const path = require('path');
 const mkdir = require('mkdirp');
-const { bold } = require('chalk');
+const {bold} = require('chalk');
 
 const Logger = require('./Logger');
 const viewer = require('./viewer');
