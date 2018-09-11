@@ -33,7 +33,6 @@
     "views"
   ],
   "dependencies": {
-    "@babel/polyfill": "7.0.0",
     "@babel/runtime": "7.0.0",
     "acorn": "^5.7.3",
     "bfj": "^6.1.1",
@@ -45,8 +44,6 @@
     "gzip-size": "^5.0.0",
     "lodash": "4.17.10",
     "mkdirp": "^0.5.1",
-    "mobx": "5.1.0",
-    "mobx-preact": "3.0.0",
     "opener": "^1.5.1",
     "ws": "^6.0.0"
   },
@@ -55,6 +52,7 @@
     "@babel/plugin-proposal-class-properties": "7.0.0",
     "@babel/plugin-proposal-decorators": "7.0.0",
     "@babel/plugin-transform-runtime": "7.0.0",
+    "@babel/polyfill": "7.0.0",
     "@babel/preset-env": "7.0.0",
     "@babel/preset-react": "7.0.0",
     "@babel/register": "7.0.0",
@@ -74,6 +72,8 @@
     "exports-loader": "0.7.0",
     "gulp": "4.0.0",
     "gulp-babel": "8.0.0",
+    "mobx": "5.1.0",
+    "mobx-preact": "3.0.0",
     "mocha": "5.2.0",
     "nightmare": "3.0.1",
     "postcss-icss-values": "2.0.1",
