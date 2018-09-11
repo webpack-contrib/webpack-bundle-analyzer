@@ -14,6 +14,26 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.0.0
+
+ * **Breaking change**
+   * Dropped support for Node.js v4. Minimal required version now is v6.14.4
+   * Contents of concatenated modules are now hidden by default because of a number of related issues ([details](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/188)), but can be shown using a new checkbox in the sidebar.
+
+ * **New Feature**
+   * Added modules search
+   * Added ability to pin and resize the sidebar
+   * Added button to toggle the sidebar
+   * Added checkbox to show/hide contents of concatenated modules
+
+ * **Improvements**
+   * Nested folders that contain only one child folder are now visually merged i.e. `folder1 => folder2 => file1` is now shown like `folder1/folder2 => file1` (thanks to [@varun-singh-1](https://github.com/varun-singh-1) for the idea)
+   
+ * **Internal**
+   * Dropped support for Node.js v4
+   * Using MobX for state management
+   * Updated dependencies
+
 ## 2.13.1
 
  * **Improvement**
