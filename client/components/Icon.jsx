@@ -33,14 +33,14 @@ export default class Icon extends PureComponent {
 
     if (size) {
       const ratio = size / Math.max(width, height);
-      width = Math.min(width * ratio, size);
-      height = Math.min(height * ratio, size);
+      width = Math.min(Math.ceil(width * ratio), size);
+      height = Math.min(Math.ceil(height * ratio), size);
     }
 
     return {
       backgroundImage: `url(${icon.src})`,
-      width: `${width.toFixed(1)}px`,
-      height: `${height.toFixed(1)}px`,
+      width: `${width}px`,
+      height: `${height}px`,
       transform: rotate ? `rotate(${rotate}deg)` : ''
     };
   }
