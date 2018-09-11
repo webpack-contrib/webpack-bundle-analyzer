@@ -65,7 +65,7 @@ export default class Sidebar extends Component {
           onClick={this.handleToggleButtonClick}>
           <Icon name="arrow-right" size={10} rotate={visible ? 180 : 0}/>
         </Button>
-        {pinned &&
+        {pinned && visible &&
           <div className={s.resizer} onMouseDown={this.handleResizeStart}/>
         }
         <div className={s.content}
