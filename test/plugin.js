@@ -5,15 +5,12 @@ const _ = require('lodash');
 let nightmare;
 
 describe('Plugin', function () {
-  let clock;
-
   this.timeout(3000);
 
   before(function () {
     const Nightmare = require('nightmare');
     nightmare = Nightmare();
     del.sync(`${__dirname}/output`);
-    clock = sinon.useFakeTimers();
   });
 
   beforeEach(async function () {
@@ -25,21 +22,6 @@ describe('Plugin', function () {
     del.sync(`${__dirname}/output`);
   });
 
-  after(function () {
-    clock.restore();
-  });
-
-  it('should support webpack config with query in bundle filename', async function () {
-    const config = makeWebpackConfig();
-
-    config.output.filename = 'bundle.js?what=is-this-for';
-
-    await webpackCompile(config);
-    clock.tick(1);
-
-    await expectValidReport();
-  });
-
   it('should support webpack config with custom `jsonpFunction` name', async function () {
     const config = makeWebpackConfig({
       multipleChunks: true
@@ -48,11 +30,10 @@ describe('Plugin', function () {
     config.output.jsonpFunction = 'somethingCompletelyDifferent';
 
     await webpackCompile(config);
-    clock.tick(1);
 
     await expectValidReport({
-      parsedSize: 445,
-      gzipSize: 178
+      parsedSize: 1343,
+      gzipSize: 360
     });
   });
 
@@ -65,7 +46,6 @@ describe('Plugin', function () {
     ];
 
     await webpackCompile(config);
-    clock.tick(1);
 
     const chartData = await getChartDataFromReport();
     expect(chartData[0].groups).to.containSubset([{
@@ -86,10 +66,9 @@ describe('Plugin', function () {
         });
 
         await webpackCompile(config);
-        clock.tick(1);
 
         const chartData = await getChartDataFromReport();
-        expect(_.map(chartData, 'label')).not.to.include('manifest.js');
+        expect(_.map(chartData, 'label')).to.deep.equal(['bundle.js']);
       });
     });
   });
@@ -105,8 +84,8 @@ async function expectValidReport(opts) {
     gzipSize = 770
   } = opts || {};
 
-  expect(fs.existsSync(`${__dirname}/output/${bundleFilename}`)).to.be.true;
-  expect(fs.existsSync(`${__dirname}/output/${reportFilename}`)).to.be.true;
+  expect(fs.existsSync(`${__dirname}/output/${bundleFilename}`), 'bundle file missing').to.be.true;
+  expect(fs.existsSync(`${__dirname}/output/${reportFilename}`), 'report file missing').to.be.true;
   const chartData = await getChartDataFromReport(reportFilename);
   expect(chartData[0]).to.containSubset({
     label: bundleLabel,

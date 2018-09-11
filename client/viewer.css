@@ -1,9 +1,25 @@
+:root {
+  --main-font: normal 11px Verdana;
+}
+
 :global html,
 :global body,
 :global #app {
-  width: 100%;
   height: 100%;
-  padding: 0;
   margin: 0;
   overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
+
+:global body.resizing {
+  user-select: none !important;
+}
+
+:global body.resizing * {
+  pointer-events: none;
+}
+
+:global body.resizing.col {
+  cursor: col-resize !important;
 }

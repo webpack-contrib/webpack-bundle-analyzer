@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { exec } = require('child_process');
+const {exec} = require('child_process');
 
 const del = require('del');
 
@@ -18,7 +18,7 @@ describe('Webpack Dev Server', function () {
     this.timeout(timeout);
 
     const devServer = exec(`${__dirname}/../node_modules/.bin/webpack-dev-server --config ${WEBPACK_CONFIG_PATH}`, {
-      cwd: `${ROOT}/tmp`
+      cwd: ROOT
     });
 
     const reportCheckIntervalId = setInterval(() => {

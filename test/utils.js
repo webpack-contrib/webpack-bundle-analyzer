@@ -1,4 +1,4 @@
-const { createAssetsFilter } = require('../lib/utils');
+const {createAssetsFilter} = require('../lib/utils');
 
 describe('createAssetsFilter', function () {
 
@@ -36,7 +36,7 @@ describe('createAssetsFilter', function () {
 
   it('should throw on invalid pattern types', function () {
     expect(() => createAssetsFilter(5)).to.throw('but "5" got');
-    expect(() => createAssetsFilter({ a: 1 })).to.throw('but "{ a: 1 }" got');
+    expect(() => createAssetsFilter({a: 1})).to.throw('but "{ a: 1 }" got');
     expect(() => createAssetsFilter([true])).to.throw('but "true" got');
   });
 

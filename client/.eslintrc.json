@@ -2,5 +2,14 @@
   "extends": [
     "th0r-react",
     "../.eslintrc.json"
-  ]
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  },
+  "rules": {
+    "react/jsx-key": "off",
+    "react/jsx-no-bind": "off"
+  }
 }

@@ -25,6 +25,6 @@ new BundleAnalyzerPlugin({
   generateStatsFile: true,
   // Excludes module sources from stats file so there won't be any sensitive data
   statsOptions: { source: false }
-})`
+})
 ```
 `stats.json` will be created in Webpack bundle output directory.

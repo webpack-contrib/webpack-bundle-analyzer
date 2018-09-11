@@ -1,6 +1,7 @@
 const BundleAnalyzerPlugin = require('../../lib/BundleAnalyzerPlugin');
 
 module.exports = {
+  mode: 'development',
   entry: `${__dirname}/src.js`,
   output: {
     path: `${__dirname}/output`,

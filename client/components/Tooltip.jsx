@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, Component } from 'preact';
+import {h, Component} from 'preact';
 import cls from 'classnames';
 
 import s from './Tooltip.css';
@@ -36,7 +36,7 @@ export default class Tooltip extends Component {
   }
 
   render() {
-    const { children, visible } = this.props;
+    const {children, visible} = this.props;
     const className = cls({
       [s.container]: true,
       [s.hidden]: !visible
