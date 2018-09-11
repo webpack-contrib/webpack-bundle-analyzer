@@ -5,6 +5,7 @@
   border: none;
   border-right: 1px solid #aaa;
   box-sizing: border-box;
+  max-width: calc(50% - 10px);
   opacity: 0.95;
   z-index: 1;
 }
