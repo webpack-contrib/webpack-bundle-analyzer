@@ -9,6 +9,7 @@ import Treemap from './Treemap';
 import Tooltip from './Tooltip';
 import Switcher from './Switcher';
 import Sidebar from './Sidebar';
+import Checkbox from './Checkbox';
 import CheckboxList from './CheckboxList';
 
 import s from './ModulesTreemap.css';
@@ -44,6 +45,14 @@ export default class ModulesTreemap extends Component {
               items={this.sizeSwitchItems}
               activeItem={this.activeSizeItem}
               onSwitch={this.handleSizeSwitch}/>
+            {store.hasConcatenatedModules &&
+              <div className={s.showOption}>
+                <Checkbox checked={store.showConcatenatedModulesContent}
+                  onChange={this.handleConcatenatedModulesContentToggle}>
+                  {`Show content of concatenated modules${store.activeSize === 'statSize' ? '' : ' (inaccurate)'}`}
+                </Checkbox>
+              </div>
+            }
           </div>
           <div className={s.sidebarGroup}>
             <Search label="Search modules"
@@ -110,14 +119,16 @@ export default class ModulesTreemap extends Component {
       null;
   }
 
-  renderChunkItemLabel = (item, labelClass) => {
+  renderChunkItemLabel = item => {
     const isAllItem = (item === CheckboxList.ALL_ITEM);
     const label = isAllItem ? 'All' : item.label;
     const size = isAllItem ? store.totalChunksSize : item[store.activeSize];
 
-    return (
-      <span className={labelClass}>{label} (<strong>{filesize(size)}</strong>)</span>
-    );
+    return [
+      `${label} (`,
+      <strong>{filesize(size)}</strong>,
+      ')'
+    ];
   };
 
   @computed get sizeSwitchItems() {
@@ -163,6 +174,10 @@ export default class ModulesTreemap extends Component {
     } else {
       return 'Nothing found' + (store.allChunksSelected ? '' : ' in selected chunks');
     }
+  }
+
+  handleConcatenatedModulesContentToggle = flag => {
+    store.showConcatenatedModulesContent = flag;
   }
 
   handleSidebarToggle = () => {

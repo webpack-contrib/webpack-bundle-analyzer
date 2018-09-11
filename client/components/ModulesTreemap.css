@@ -11,7 +11,12 @@
 }
 
 .sidebarGroup {
+  font: var(--main-font);
   margin-bottom: 20px;
+}
+
+.showOption {
+  margin-top: 5px;
 }
 
 .activeSize {
