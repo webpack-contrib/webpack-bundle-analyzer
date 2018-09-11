@@ -10,6 +10,7 @@ export class Store {
   @observable searchQuery = '';
   @observable defaultSize;
   @observable selectedSize;
+  @observable showConcatenatedModulesContent = false;
 
   setModules(modules) {
     walkModules(modules, module => {
@@ -134,6 +135,19 @@ export class Store {
     return this.foundModules.length > 0;
   }
 
+  @computed get hasConcatenatedModules() {
+    let result = false;
+
+    walkModules(this.visibleChunks, module => {
+      if (module.concatenated) {
+        result = true;
+        return false;
+      }
+    });
+
+    return result;
+  }
+
   @computed get foundModulesSize() {
     return this.foundModules.reduce(
       (summ, module) => summ + module[this.activeSize],
@@ -145,9 +159,11 @@ export class Store {
     return modules.reduce((filteredModules, module) => {
       if (module[sizeProp]) {
         if (module.groups) {
+          const showContent = (!module.concatenated || this.showConcatenatedModulesContent);
+
           module = {
             ...module,
-            groups: this.filterModulesForSize(module.groups, sizeProp)
+            groups: showContent ? this.filterModulesForSize(module.groups, sizeProp) : null
           };
         }
 

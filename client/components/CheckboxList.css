@@ -8,20 +8,3 @@
   font-weight: bold;
   margin-bottom: 7px;
 }
-
-.checkbox {
-  cursor: pointer;
-}
-
-.item {
-  cursor: pointer;
-  display: block;
-  margin-bottom: 3px;
-}
-
-.itemText {
-  margin-left: 3px;
-  position: relative;
-  top: -2px;
-  vertical-align: middle;
-}
