@@ -1,6 +1,6 @@
 .label {
   cursor: pointer;
-  display: block;
+  display: inline-block;
 }
 
 .checkbox {

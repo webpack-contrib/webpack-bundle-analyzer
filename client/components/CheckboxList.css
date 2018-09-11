@@ -8,3 +8,7 @@
   font-weight: bold;
   margin-bottom: 7px;
 }
+
+.item + .item {
+  margin-top: 1px;
+}
