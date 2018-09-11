@@ -13,7 +13,7 @@
 
 .button:focus,
 .button:hover {
-  background: rgba(255, 165, 0, 0.15);
+  background: #ffefd7;
 }
 
 .button.active {
