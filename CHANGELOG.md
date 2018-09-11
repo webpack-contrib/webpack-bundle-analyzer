@@ -14,6 +14,11 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.0.1
+
+ * **Bug Fix**
+   * Small UI fixes
+
 ## 3.0.0
 
  * **Breaking change**
