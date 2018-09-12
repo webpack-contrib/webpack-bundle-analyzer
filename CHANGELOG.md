@@ -14,6 +14,15 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.0.2
+
+ * **Improvements**
+   * Drop `@babel/runtime` dependency ([#209](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/209), [@realityking](https://github.com/realityking))
+   * Properly specify minimal Node.js version in `.babelrc` ([#209](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/209), [@realityking](https://github.com/realityking))
+
+ * **Bug Fix**
+   * Move some "dependencies" to "devDependencies" ([#209](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/209), [@realityking](https://github.com/realityking))
+
 ## 3.0.1
 
  * **Bug Fix**
