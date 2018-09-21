@@ -5,7 +5,6 @@ const { bold } = require('chalk');
 
 const Logger = require('./Logger');
 const viewer = require('./viewer');
-const analyzer = require('./analyzer');
 
 class BundleAnalyzerPlugin {
 
@@ -14,7 +13,7 @@ class BundleAnalyzerPlugin {
       analyzerMode: 'server',
       analyzerHost: '127.0.0.1',
       analyzerPort: 8888,
-      reportFilename: 'report.html',
+      reportFilename: opts.analyzerMode === 'json' ? 'report.json' : 'report.html',
       defaultSizes: 'parsed',
       openAnalyzer: true,
       generateStatsFile: false,
@@ -52,6 +51,8 @@ class BundleAnalyzerPlugin {
         actions.push(() => this.startAnalyzerServer(stats));
       } else if (this.opts.analyzerMode === 'static') {
         actions.push(() => this.generateStaticReport(stats));
+      } else if (this.opts.analyzerMode === 'json') {
+        actions.push(() => this.generateStatsJSONReport(stats));
       }
 
       if (actions.length) {
@@ -73,29 +74,8 @@ class BundleAnalyzerPlugin {
     const statsFilepath = path.resolve(this.compiler.outputPath, this.opts.statsFilename);
     mkdir.sync(path.dirname(statsFilepath));
 
-    const { excludeAssets, logger } = this.opts;
-    // put report.join to root of project, then it won't be exported to public
-    const reportFilepath = path.resolve(this.compiler.outputPath, '../../report.json');
-    const report = analyzer.getViewerData(
-      stats,
-      this.getBundleDirFromCompiler(),
-      {
-        excludeAssets,
-        logger
-      }
-    );
-
     try {
       await bfj.write(statsFilepath, stats, {
-        space: 2,
-        promises: 'ignore',
-        buffers: 'ignore',
-        maps: 'ignore',
-        iterables: 'ignore',
-        circular: 'ignore'
-      });
-
-      await bfj.write(reportFilepath, report, {
         space: 2,
         promises: 'ignore',
         buffers: 'ignore',
@@ -107,17 +87,22 @@ class BundleAnalyzerPlugin {
       this.logger.info(
         `${bold('Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
       );
-      this.logger.info(
-        `${bold('Webpack Bundle Analyzer')} saved report file to ${bold(reportFilepath)}`
-      );
     } catch (error) {
       this.logger.error(
         `${bold('Webpack Bundle Analyzer')} error saving stats file to ${bold(statsFilepath)}: ${error}`
       );
-      this.logger.error(
-        `${bold('Webpack Bundle Analyzer')} error saving report file to ${bold(reportFilepath)}: ${error}`
-      );
     }
+  }
+
+  async generateStatsJSONReport(stats) {
+    viewer.generateJSONReport(stats, {
+      openBrowser: this.opts.openAnalyzer,
+      reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename),
+      bundleDir: this.getBundleDirFromCompiler(),
+      logger: this.logger,
+      defaultSizes: this.opts.defaultSizes,
+      excludeAssets: this.opts.excludeAssets
+    });
   }
 
   async startAnalyzerServer(stats) {

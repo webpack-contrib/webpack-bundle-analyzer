@@ -26,9 +26,10 @@ const program = commander
   )
   .option(
     '-m, --mode <mode>',
-    'Analyzer mode. Should be `server` or `static`.' +
+    'Analyzer mode. Should be `server` or `static` or `json`.' +
     br('In `server` mode analyzer will start HTTP server to show bundle report.') +
-    br('In `static` mode single HTML file with bundle report will be generated.'),
+    br('In `static` mode single HTML file with bundle report will be generated.') +
+    br('In `json` mode single JSON file with bundle report will be generated'),
     'server'
   )
   .option(
@@ -85,7 +86,7 @@ let {
 const logger = new Logger(logLevel);
 
 if (!bundleStatsFile) showHelp('Provide path to Webpack Stats file as first argument');
-if (mode !== 'server' && mode !== 'static') showHelp('Invalid mode. Should be either `server` or `static`.');
+if (mode !== 'server' && mode !== 'static' && mode !== 'json') showHelp('Invalid mode. Should be either `server` or `static`.');
 if (mode === 'server' && !host) showHelp('Invalid host name');
 if (mode === 'server' && isNaN(port)) showHelp('Invalid port number');
 if (!SIZES.has(defaultSizes)) showHelp(`Invalid default sizes option. Possible values are: ${[...SIZES].join(', ')}`);
@@ -108,6 +109,15 @@ if (mode === 'server') {
     openBrowser,
     port,
     host,
+    defaultSizes,
+    bundleDir,
+    excludeAssets,
+    logger: new Logger(logLevel)
+  });
+} else if (mode === 'json') {
+  viewer.generateJSONReport(bundleStats, {
+    openBrowser,
+    reportFilename: resolve(reportFilename),
     defaultSizes,
     bundleDir,
     excludeAssets,

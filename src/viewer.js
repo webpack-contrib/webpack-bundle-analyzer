@@ -9,6 +9,7 @@ const ejs = require('ejs');
 const opener = require('opener');
 const mkdir = require('mkdirp');
 const { bold } = require('chalk');
+const bfj = require('bfj-node4');
 
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
@@ -18,6 +19,7 @@ const projectRoot = path.resolve(__dirname, '..');
 module.exports = {
   startServer,
   generateReport,
+  generateJSONReport,
   // deprecated
   start: startServer
 };
@@ -149,6 +151,50 @@ function generateReport(bundleStats, opts) {
       }
     }
   );
+}
+
+async function generateJSONReport(bundleStats, opts) {
+  const {
+    openBrowser = true,
+    reportFilename = 'report.json',
+    bundleDir = null,
+    logger = new Logger(),
+    excludeAssets = null
+  } = opts || {};
+
+  const report = analyzer.getViewerData(
+    bundleStats,
+    bundleDir,
+    {
+      excludeAssets,
+      logger,
+    }
+  );
+
+  const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
+
+  mkdir.sync(path.dirname(reportFilepath));
+
+  try {
+    await bfj.write(reportFilepath, report, {
+      space: 2,
+      promises: 'ignore',
+      buffers: 'ignore',
+      maps: 'ignore',
+      iterables: 'ignore',
+      circular: 'ignore'
+    });
+  } catch (err) {
+    return logger.error(err);
+  }
+
+  logger.info(
+    `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`
+  );
+
+  if (openBrowser) {
+    opener(`file://${reportFilepath}`);
+  }
 }
 
 function getAssetContent(filename) {
