@@ -86,7 +86,9 @@ let {
 const logger = new Logger(logLevel);
 
 if (!bundleStatsFile) showHelp('Provide path to Webpack Stats file as first argument');
-if (mode !== 'server' && mode !== 'static' && mode !== 'json') showHelp('Invalid mode. Should be either `server` or `static`.');
+if (mode !== 'server' && mode !== 'static' && mode !== 'json') {
+  showHelp('Invalid mode. Should be either `server` or `static`.');
+}
 if (mode === 'server' && !host) showHelp('Invalid host name');
 if (mode === 'server' && isNaN(port)) showHelp('Invalid port number');
 if (!SIZES.has(defaultSizes)) showHelp(`Invalid default sizes option. Possible values are: ${[...SIZES].join(', ')}`);

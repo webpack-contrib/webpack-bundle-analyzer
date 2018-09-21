@@ -167,7 +167,7 @@ async function generateJSONReport(bundleStats, opts) {
     bundleDir,
     {
       excludeAssets,
-      logger,
+      logger
     }
   );
 
