@@ -1,13 +1,11 @@
-/** @jsx h */
+import React from 'react';
 import _ from 'lodash';
-import {h} from 'preact';
 import filesize from 'filesize';
 import cls from 'classnames';
 
-import PureComponent from '../lib/PureComponent';
 import s from './ModuleItem.css';
 
-export default class ModuleItem extends PureComponent {
+export default class ModuleItem extends React.PureComponent {
   state = {
     visible: true
   };

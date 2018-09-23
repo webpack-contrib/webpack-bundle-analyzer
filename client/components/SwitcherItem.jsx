@@ -1,10 +1,8 @@
-/** @jsx h */
-import {h} from 'preact';
+import React from 'react';
 
 import Button from './Button';
-import PureComponent from '../lib/PureComponent';
 
-export default class SwitcherItem extends PureComponent {
+export default class SwitcherItem extends React.PureComponent {
   render({item, ...props}) {
     return (
       <Button {...props} onClick={this.handleClick}>

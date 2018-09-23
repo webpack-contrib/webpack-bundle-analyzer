@@ -1,10 +1,9 @@
-/** @jsx h */
-import {h, Component} from 'preact';
+import React from 'react';
 import cls from 'classnames';
 
 import s from './Checkbox.css';
 
-export default class Checkbox extends Component {
+export default class Checkbox extends React.Component {
 
   render() {
     const {checked, className, children} = this.props;

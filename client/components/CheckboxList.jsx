@@ -1,13 +1,11 @@
-/** @jsx h */
-import {h} from 'preact';
+import React from 'react';
 
 import CheckboxListItem from './CheckboxListItem';
 import s from './CheckboxList.css';
-import PureComponent from '../lib/PureComponent';
 
 const ALL_ITEM = Symbol('ALL_ITEM');
 
-export default class CheckboxList extends PureComponent {
+export default class CheckboxList extends React.PureComponent {
 
   static ALL_ITEM = ALL_ITEM;
 

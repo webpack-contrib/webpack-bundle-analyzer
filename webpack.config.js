@@ -28,7 +28,9 @@ module.exports = opts => {
       ],
       extensions: ['.js', '.jsx'],
       alias: {
-        mobx: require.resolve('mobx/lib/mobx.es6.js')
+        'react': 'preact-compat',
+        'react-dom': 'preact-compat',
+        'mobx': require.resolve('mobx/lib/mobx.es6.js')
       }
     },
 

@@ -1,10 +1,9 @@
-/** @jsx h */
-import {h} from 'preact';
+import React from 'react';
 import cls from 'classnames';
-import s from './Button.css';
-import PureComponent from '../lib/PureComponent';
 
-export default class Button extends PureComponent {
+import s from './Button.css';
+
+export default class Button extends React.PureComponent {
   render({active, toggle, className, children, ...props}) {
     const classes = cls(className, {
       [s.button]: true,

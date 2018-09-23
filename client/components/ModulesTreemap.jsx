@@ -1,5 +1,4 @@
-/** @jsx h */
-import {h, Component} from 'preact';
+import React from 'react';
 import filesize from 'filesize';
 import {computed} from 'mobx';
 import {observer} from 'mobx-preact';
@@ -25,7 +24,7 @@ const SIZE_SWITCH_ITEMS = [
 ];
 
 @observer
-export default class ModulesTreemap extends Component {
+export default class ModulesTreemap extends React.Component {
   mouseCoords = {
     x: 0,
     y: 0
@@ -34,7 +33,6 @@ export default class ModulesTreemap extends Component {
   state = {
     selectedChunk: null,
     selectedMouseCoords: {x: 0, y: 0},
-    sidebarPinned: false,
     showChunkContextMenu: false,
     showTooltip: false,
     tooltipContent: null
@@ -52,7 +50,6 @@ export default class ModulesTreemap extends Component {
     const {
       selectedChunk,
       selectedMouseCoords,
-      sidebarPinned,
       showChunkContextMenu,
       showTooltip,
       tooltipContent
@@ -60,10 +57,7 @@ export default class ModulesTreemap extends Component {
 
     return (
       <div className={s.container}>
-        <Sidebar pinned={sidebarPinned}
-          onToggle={this.handleSidebarToggle}
-          onPinStateChange={this.handleSidebarPinStateChange}
-          onResize={this.handleSidebarResize}>
+        <Sidebar>
           <div className={s.sidebarGroup}>
             <Switcher label="Treemap sizes"
               items={this.sizeSwitchItems}
@@ -224,21 +218,6 @@ export default class ModulesTreemap extends Component {
         showChunkContextMenu: false
       });
     }
-  }
-
-  handleSidebarToggle = () => {
-    if (this.state.sidebarPinned) {
-      setTimeout(() => this.treemap.resize());
-    }
-  }
-
-  handleSidebarPinStateChange = pinned => {
-    this.setState({sidebarPinned: pinned});
-    setTimeout(() => this.treemap.resize());
-  }
-
-  handleSidebarResize = () => {
-    this.treemap.resize();
   }
 
   handleSizeSwitch = sizeSwitchItem => {

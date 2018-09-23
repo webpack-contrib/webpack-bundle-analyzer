@@ -1,12 +1,10 @@
-/** @jsx h */
-import {h} from 'preact';
 import _ from 'lodash';
+import React from 'react';
 
 import s from './Search.css';
 import Button from './Button';
-import PureComponent from '../lib/PureComponent';
 
-export default class Search extends PureComponent {
+export default class Search extends React.PureComponent {
 
   componentDidMount() {
     if (this.props.autofocus) {

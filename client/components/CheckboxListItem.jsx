@@ -1,11 +1,10 @@
-/** @jsx h */
-import {h, Component} from 'preact';
+import React from 'react';
 
 import Checkbox from './Checkbox';
 import CheckboxList from './CheckboxList';
 import s from './CheckboxList.css';
 
-export default class CheckboxListItem extends Component {
+export default class CheckboxListItem extends React.Component {
 
   render() {
     return (
@@ -22,7 +21,7 @@ export default class CheckboxListItem extends Component {
     const {children, item} = this.props;
 
     if (children && children.length) {
-      return children[0](item);
+      return children(item);
     }
 
     return (item === CheckboxList.ALL_ITEM) ? 'All' : item.label;

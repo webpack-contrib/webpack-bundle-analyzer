@@ -1,5 +1,5 @@
-/** @jsx h */
-import {h, render} from 'preact';
+import React from 'react';
+import {render} from 'react-dom';
 
 import {store} from './store';
 import ModulesTreemap from './components/ModulesTreemap';

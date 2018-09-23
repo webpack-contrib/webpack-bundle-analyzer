@@ -1,8 +1,11 @@
-/** @jsx h */
-import {h, Component} from 'preact';
+import _ from 'lodash';
+import React from 'react';
 import FoamTree from 'carrotsearch.foamtree';
+import ResizeAware from 'react-resize-aware';
 
-export default class Treemap extends Component {
+import s from './Treemap.css';
+
+export default class Treemap extends React.Component {
 
   constructor(props) {
     super(props);
@@ -40,9 +43,18 @@ export default class Treemap extends Component {
 
   render() {
     return (
-      <div {...this.props} ref={this.saveNodeRef}/>
+      <ResizeAware {...this.props}
+        style={{position: 'relative'}}
+        onlyEvent
+        onResize={this.handleResize}>
+        <div ref={this.saveNodeRef} className={s.map}/>
+      </ResizeAware>
     );
   }
+
+  handleResize = _.debounce(() => {
+    this.resize();
+  }, 200);
 
   saveNodeRef = node => (this.node = node);
 
@@ -155,6 +167,10 @@ export default class Treemap extends Component {
   }
 
   resize = () => {
+    if (!this.treemap) {
+      return;
+    }
+
     const {props} = this;
     this.treemap.resize();
 

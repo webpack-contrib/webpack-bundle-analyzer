@@ -1,10 +1,9 @@
-/** @jsx h */
-import {h, Component} from 'preact';
+import React from 'react';
 import cls from 'classnames';
 
 import s from './Tooltip.css';
 
-export default class Tooltip extends Component {
+export default class Tooltip extends React.Component {
 
   static marginX = 10;
   static marginY = 30;

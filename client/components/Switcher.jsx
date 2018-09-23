@@ -1,11 +1,8 @@
-/** @jsx h */
-import {h} from 'preact';
-
+import React from 'react';
 import SwitcherItem from './SwitcherItem';
 import s from './Switcher.css';
-import PureComponent from '../lib/PureComponent';
 
-export default class Switcher extends PureComponent {
+export default class Switcher extends React.PureComponent {
 
   render() {
     const {label, items, activeItem, onSwitch} = this.props;

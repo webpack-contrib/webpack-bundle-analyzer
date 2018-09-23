@@ -1,8 +1,7 @@
-/** @jsx h */
-import {h} from 'preact';
+import React from 'react';
 import cls from 'classnames';
+
 import s from './Icon.css';
-import PureComponent from '../lib/PureComponent';
 
 const ICONS = {
   'arrow-right': {
@@ -15,7 +14,7 @@ const ICONS = {
   }
 };
 
-export default class Icon extends PureComponent {
+export default class Icon extends React.PureComponent {
   render({className}) {
     return (
       <i className={cls(s.icon, className)}

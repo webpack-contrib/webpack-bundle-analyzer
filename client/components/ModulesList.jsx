@@ -1,11 +1,10 @@
-/** @jsx h */
-import {h} from 'preact';
+import React from 'react';
 import cls from 'classnames';
+
 import s from './ModulesList.css';
 import ModuleItem from './ModuleItem';
-import PureComponent from '../lib/PureComponent';
 
-export default class ModulesList extends PureComponent {
+export default class ModulesList extends React.PureComponent {
   render({modules, showSize, highlightedText, isModuleVisible, className}) {
     return (
       <div className={cls(s.container, className)}>

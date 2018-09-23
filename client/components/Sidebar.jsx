@@ -1,5 +1,4 @@
-/** @jsx h */
-import {h, Component} from 'preact';
+import React from 'react';
 import cls from 'classnames';
 
 import s from './Sidebar.css';
@@ -8,9 +7,8 @@ import Icon from './Icon';
 
 const toggleTime = parseInt(s.toggleTime);
 
-export default class Sidebar extends Component {
+export default class Sidebar extends React.Component {
   static defaultProps = {
-    pinned: false,
     position: 'left'
   };
 
@@ -20,6 +18,7 @@ export default class Sidebar extends Component {
   width = null;
   state = {
     visible: true,
+    pinned: false,
     renderContent: true
   };
 
@@ -33,8 +32,8 @@ export default class Sidebar extends Component {
   }
 
   render() {
-    const {position, pinned, children} = this.props;
-    const {visible, renderContent} = this.state;
+    const {position, children} = this.props;
+    const {visible, pinned, renderContent} = this.state;
 
     const className = cls({
       [s.container]: true,
@@ -82,7 +81,7 @@ export default class Sidebar extends Component {
   }
 
   handleMouseEnter = () => {
-    if (!this.toggling && !this.props.pinned) {
+    if (!this.toggling && !this.state.pinned) {
       clearTimeout(this.hideTimeoutId);
       this.toggleVisibility(true);
     }
@@ -93,7 +92,7 @@ export default class Sidebar extends Component {
   }
 
   handleMouseLeave = () => {
-    if (this.allowHide && !this.toggling && !this.props.pinned) {
+    if (this.allowHide && !this.toggling && !this.state.pinned) {
       this.toggleVisibility(false);
     }
   }
@@ -103,10 +102,10 @@ export default class Sidebar extends Component {
   }
 
   handlePinButtonClick = () => {
-    const pinned = !this.props.pinned;
+    const pinned = !this.state.pinned;
     this.width = pinned ? this.node.getBoundingClientRect().width : null;
     this.updateNodeWidth();
-    this.props.onPinStateChange(pinned);
+    this.setState({pinned});
   }
 
   handleResizeStart = event => {
@@ -128,14 +127,12 @@ export default class Sidebar extends Component {
     document.body.classList.remove('resizing', 'col');
     document.removeEventListener('mousemove', this.handleResize, true);
     document.removeEventListener('mouseup', this.handleResizeEnd, true);
-    this.props.onResize();
   }
 
   toggleVisibility(flag) {
     clearTimeout(this.hideContentTimeout);
 
-    const {visible} = this.state;
-    const {onToggle, pinned} = this.props;
+    const {visible, pinned} = this.state;
 
     if (flag === undefined) {
       flag = !visible;
@@ -155,13 +152,11 @@ export default class Sidebar extends Component {
 
     if (flag || pinned) {
       this.setState({renderContent: flag});
-      onToggle(flag);
     } else if (!flag) {
       // Waiting for the CSS animation to finish and hiding content
       this.hideContentTimeout = setTimeout(() => {
         this.hideContentTimeout = null;
         this.setState({renderContent: false});
-        onToggle(false);
       }, toggleTime);
     }
   }
