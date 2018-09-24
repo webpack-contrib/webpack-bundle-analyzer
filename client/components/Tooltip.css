@@ -1,14 +1,14 @@
 .container {
-  font: var(--main-font);
-  position: absolute;
-  padding: 5px 10px;
-  border-radius: 4px;
   background: #fff;
   border: 1px solid #aaa;
+  border-radius: 4px;
+  font: var(--main-font);
+  max-width: 500px;
   opacity: 0.7;
-  white-space: nowrap;
-  visibility: visible;
+  padding: 5px 10px;
+  position: absolute;
   transition: opacity .2s ease, visibility .2s ease;
+  visibility: visible;
 }
 
 .hidden {
