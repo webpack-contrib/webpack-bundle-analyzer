@@ -4,7 +4,8 @@ const http = require('http');
 
 const WebSocket = require('ws');
 const _ = require('lodash');
-const express = require('express');
+const polka = require('polka');
+const sirv = require('sirv');
 const {bold} = require('chalk');
 
 const Logger = require('./Logger');
@@ -48,8 +49,8 @@ async function startServer(bundleStats, opts) {
 
   if (!chartData) return;
 
-  const app = express();
-  app.use(express.static(`${projectRoot}/public`));
+  const app = polka();
+  app.use(sirv(`${projectRoot}/public`));
 
   app.get('/', (req, res) => {
     res.writeHead(200, {'Content-Type': 'text/html'});
@@ -63,7 +64,7 @@ async function startServer(bundleStats, opts) {
     return res.end(html);
   });
 
-  const server = http.createServer(app);
+  const server = http.createServer(app.handler);
 
   await new Promise(resolve => {
     server.listen(port, host, () => {
