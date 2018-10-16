@@ -52,7 +52,8 @@ async function startServer(bundleStats, opts) {
     res.render('viewer', {
       mode: 'server',
       get chartData() { return JSON.stringify(chartData) },
-      defaultSizes: JSON.stringify(defaultSizes)
+      defaultSizes: JSON.stringify(defaultSizes),
+      enableWebSocket: true
     });
   });
 
@@ -130,7 +131,8 @@ function generateReport(bundleStats, opts) {
       mode: 'static',
       chartData: JSON.stringify(chartData),
       assetContent: getAssetContent,
-      defaultSizes: JSON.stringify(defaultSizes)
+      defaultSizes: JSON.stringify(defaultSizes),
+      enableWebSocket: false
     },
     (err, reportHtml) => {
       if (err) return logger.error(err);
