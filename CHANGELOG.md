@@ -14,6 +14,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.0.3
+
 * **Bug Fix**
   * Disable viewer websocket connection when report is generated in `static` mode ([#215](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/215), [@sebastianhaeni](https://github.com/sebastianhaeni))
 
