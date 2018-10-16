@@ -9,7 +9,9 @@ import styles from './viewer.css';
 // Initializing WebSocket for live treemap updates
 let ws;
 try {
-  ws = new WebSocket(`ws://${location.host}`);
+  if (window.enableWebSocket) {
+    ws = new WebSocket(`ws://${location.host}`);
+  }
 } catch (err) {
   console.warn(
     "Couldn't connect to analyzer websocket server so you'll have to reload page manually to see updates in the treemap"
