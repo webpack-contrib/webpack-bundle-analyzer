@@ -7,8 +7,12 @@ module.exports = {
   parseBundle
 };
 
-function parseBundle(bundlePath) {
-  const content = fs.readFileSync(bundlePath, 'utf8');
+const defaultBundleHost = {
+  getFileContent: path => fs.readFileSync(path, 'utf8')
+};
+
+function parseBundle(bundlePath, bundleHost = defaultBundleHost) {
+  const content = bundleHost.getFileContent(bundlePath);
   const ast = acorn.parse(content, {
     sourceType: 'script',
     // I believe in a bright future of ECMAScript!

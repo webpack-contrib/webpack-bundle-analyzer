@@ -30,4 +30,16 @@ describe('parseBundle', function () {
     expect(bundle.src).to.equal(fs.readFileSync(bundleFile, 'utf8'));
     expect(bundle.modules).to.deep.equal({});
   });
+
+  it('should allow a custom bundle host to override file system operations', function () {
+    let getBundleContentArg;
+    const bundle = parseBundle('arg', {
+      getFileContent: bundlePath => {
+        getBundleContentArg = bundlePath;
+        return 'webpackJsonp([0],[(t,e,r)=>{}])';
+      }
+    });
+    expect(getBundleContentArg).to.equal('arg');
+    expect(bundle.modules).to.deep.equal({0: '(t,e,r)=>{}'});
+  });
 });
