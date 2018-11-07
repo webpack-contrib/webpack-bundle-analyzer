@@ -73,13 +73,13 @@ You can generate it using `BundleAnalyzerPlugin` with `generateStatsFile` option
 command:
 
 ```bash
-webpack --profile --json > stats.json
+webpack --profile --reporter json > stats.json
 ```
 
 If you're on Windows and using PowerShell, you can generate the stats file with this command to [avoid BOM issues](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/47):
 
 ```
-webpack --profile --json | Out-file 'stats.json' -Encoding OEM
+webpack --profile --reporter json | Out-file 'stats.json' -Encoding OEM
 ```
 
 Then you can run the CLI tool.
