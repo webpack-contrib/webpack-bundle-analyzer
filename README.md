@@ -16,7 +16,10 @@
 <h2 align="center">Install</h2>
 
 ```bash
+# NPM
 npm install --save-dev webpack-bundle-analyzer
+# Yarn
+yarn add -D webpack-bundle-analyzer
 ```
 
 <h2 align="center">Usage (as a plugin)</h2>
