@@ -74,7 +74,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     const asset = result[statAsset.name] = _.pick(statAsset, 'size');
 
     if (bundlesSources && _.has(bundlesSources, statAsset.name)) {
-      asset.parsedSize = bundlesSources[statAsset.name].length;
+      asset.parsedSize = Buffer.byteLength(bundlesSources[statAsset.name]);
       asset.gzipSize = gzipSize.sync(bundlesSources[statAsset.name]);
     }
 
