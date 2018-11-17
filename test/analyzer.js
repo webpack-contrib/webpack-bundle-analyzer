@@ -36,6 +36,14 @@ describe('Analyzer', function () {
     );
   });
 
+  it('should record accurate byte lengths for sources with special chars', async function () {
+    generateReportFrom('with-special-chars/stats.json');
+    const chartData = await getChartData();
+    expect(chartData).to.containSubset(
+      require('./stats/with-special-chars/expected-chart-data')
+    );
+  });
+
   it('should support bundles with invalid dynamic require calls', async function () {
     generateReportFrom('with-invalid-dynamic-require.json');
     await expectValidReport({statSize: 136});
