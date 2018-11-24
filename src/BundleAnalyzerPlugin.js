@@ -15,6 +15,7 @@ class BundleAnalyzerPlugin {
       analyzerPort: 8888,
       reportFilename: 'report.html',
       defaultSizes: 'parsed',
+      defaultPinned: false,
       openAnalyzer: true,
       generateStatsFile: false,
       statsFilename: 'stats.json',
@@ -103,6 +104,7 @@ class BundleAnalyzerPlugin {
         bundleDir: this.getBundleDirFromCompiler(),
         logger: this.logger,
         defaultSizes: this.opts.defaultSizes,
+        defaultPinned: this.opts.defaultPinned,
         excludeAssets: this.opts.excludeAssets
       });
     }
@@ -115,6 +117,7 @@ class BundleAnalyzerPlugin {
       bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
       defaultSizes: this.opts.defaultSizes,
+      defaultPinned: this.opts.defaultPinned,
       excludeAssets: this.opts.excludeAssets
     });
   }

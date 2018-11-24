@@ -61,6 +61,7 @@ new BundleAnalyzerPlugin(options?: object)
 |**`analyzerPort`**|`{Number}`|Default: `8888`. Port that will be used in `server` mode to start HTTP server.|
 |**`reportFilename`**|`{String}`|Default: `report.html`. Path to bundle report file that will be generated in `static` mode. It can be either an absolute path or a path relative to a bundle output directory (which is output.path in webpack config).|
 |**`defaultSizes`**|One of: `stat`, `parsed`, `gzip`|Default: `parsed`. Module sizes to show in report by default. [Size definitions](#size-definitions) section describes what these values mean.|
+|**`defaultPinned`**|`{Boolean}`|Default: `false`. Pin sidebar.|
 |**`openAnalyzer`**|`{Boolean}`|Default: `true`. Automatically open report in default browser.|
 |**`generateStatsFile`**|`{Boolean}`|Default: `false`. If `true`, webpack stats JSON file will be generated in bundle output directory|
 |**`statsFilename`**|`{String}`|Default: `stats.json`. Name of webpack stats JSON file that will be generated if `generateStatsFile` is `true`. It can be either an absolute path or a path relative to a bundle output directory (which is output.path in webpack config).|

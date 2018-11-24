@@ -30,6 +30,7 @@ async function startServer(bundleStats, opts) {
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
+    defaultPinned = false,
     excludeAssets = null
   } = opts || {};
 
@@ -53,6 +54,7 @@ async function startServer(bundleStats, opts) {
       mode: 'server',
       get chartData() { return JSON.stringify(chartData) },
       defaultSizes: JSON.stringify(defaultSizes),
+      defaultPinned: JSON.stringify(defaultPinned),
       enableWebSocket: true
     });
   });
@@ -118,6 +120,7 @@ function generateReport(bundleStats, opts) {
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
+    defaultPinned = false,
     excludeAssets = null
   } = opts || {};
 
@@ -132,6 +135,7 @@ function generateReport(bundleStats, opts) {
       chartData: JSON.stringify(chartData),
       assetContent: getAssetContent,
       defaultSizes: JSON.stringify(defaultSizes),
+      defaultPinned: JSON.stringify(defaultPinned),
       enableWebSocket: false
     },
     (err, reportHtml) => {
