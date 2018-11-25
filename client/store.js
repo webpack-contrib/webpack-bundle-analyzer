@@ -9,6 +9,7 @@ export class Store {
   @observable.shallow selectedChunks;
   @observable searchQuery = '';
   @observable defaultSize;
+  @observable defaultPinned;
   @observable selectedSize;
   @observable showConcatenatedModulesContent = false;
 

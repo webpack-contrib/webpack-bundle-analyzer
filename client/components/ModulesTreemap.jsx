@@ -26,7 +26,7 @@ const SIZE_SWITCH_ITEMS = [
 @observer
 export default class ModulesTreemap extends Component {
   state = {
-    sidebarPinned: false,
+    sidebarPinned: store.defaultPinned,
     showTooltip: false,
     tooltipContent: null
   };

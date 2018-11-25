@@ -20,6 +20,7 @@ try {
 
 window.addEventListener('load', () => {
   store.defaultSize = `${window.defaultSizes}Size`;
+  store.defaultPinned = window.defaultPinned;
   store.setModules(window.chartData);
 
   render(
