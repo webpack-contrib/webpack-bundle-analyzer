@@ -24,7 +24,7 @@ export default class Sidebar extends Component {
   };
 
   componentDidMount() {
-    if(this.props.pinned) {
+    if (this.props.pinned) {
       this.hideTimeoutId = setTimeout(() => this.toggleVisibility(false), 3000);
     }
   }
@@ -37,7 +37,7 @@ export default class Sidebar extends Component {
   render() {
     const {position, pinned, children} = this.props;
     const {visible, renderContent} = this.state;
-    
+
     const className = cls({
       [s.container]: true,
       [s.pinned]: pinned,

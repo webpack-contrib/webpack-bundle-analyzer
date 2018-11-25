@@ -29,7 +29,7 @@ async function startServer(bundleStats, opts) {
     openBrowser = true,
     bundleDir = null,
     logger = new Logger(),
-    defaultSizes =' parsed',
+    defaultSizes = ' parsed',
     defaultPinned = false,
     excludeAssets = null
   } = opts || {};
