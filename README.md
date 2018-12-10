@@ -48,8 +48,6 @@ This module will help you:
 And the best thing is it supports minified bundles! It parses them to get real size of bundled modules.
 And it also shows their gzipped sizes!
 
-__IMPORTANT NOTE!__ Please keep in mind that it parses files that actually exists in the file system. If files are located in RAM (for example working with <a href="https://webpack.js.org/configuration/dev-server/" target="_blank" rel="nofollow">webpack-dev-server</a>) it only provides `stat` size value - `parsed` and `gzip` size values are not provided in this case.
-
 <h2 align="center">Options (for plugin)</h2>
 
 ```js
