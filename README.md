@@ -164,6 +164,8 @@ ng build --stats-json --build-optimizer=false --vendor-chunk=true
 ```
 The resulting stats.json can be found at `dist/stats.json`
 
+*Please be aware, that this is not a reasonable build for production use, as it increases the build output size considerably.*
+
 ### I don't see `gzip` or `parsed` sizes, it only shows `stat` size
 
 It happens when `webpack-bundle-analyzer` analyzes files that don't actually exist in your file system, for example when you work with `webpack-dev-server` that keeps all the files in RAM. If you use `webpack-bundle-analyzer` as a plugin you won't get any errors, however if you run it via CLI you get the error message in terminal:
@@ -173,7 +175,6 @@ Analyzer will use module sizes from stats file.
 ```
 To get more information about it you can read [issue #147](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/147).
 
-*Please be aware, that this is not a reasonable build for production use, as it increases the build output size considerably.*
 
 <h2 align="center">Maintainers</h2>
 
