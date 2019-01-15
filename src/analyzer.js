@@ -89,6 +89,12 @@ function getViewerData(bundleStats, bundleDir, opts) {
       });
 
     asset.tree = createModulesTree(asset.modules);
+
+    const parentChunks = _.flatten(statAsset.chunks.map(chunkId => bundleStats.chunks[chunkId].parents));
+    const parentAssetNames = bundleStats.assets
+      .filter(asset => asset.chunks.some(chunk => parentChunks.includes(chunk)))
+      .map(asset => asset.name);
+    asset.parentAssetNames = parentAssetNames;
   }, {});
 
   return _.transform(assets, (result, asset, filename) => {
@@ -101,7 +107,8 @@ function getViewerData(bundleStats, bundleDir, opts) {
       statSize: asset.tree.size || asset.size,
       parsedSize: asset.parsedSize,
       gzipSize: asset.gzipSize,
-      groups: _.invokeMap(asset.tree.children, 'toChartData')
+      groups: _.invokeMap(asset.tree.children, 'toChartData'),
+      parentAssetNames: asset.parentAssetNames
     });
   }, []);
 }
