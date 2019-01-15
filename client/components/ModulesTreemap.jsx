@@ -97,6 +97,7 @@ export default class ModulesTreemap extends Component {
           highlightGroups={this.highlightedModules}
           weightProp={store.activeSize}
           onMouseLeave={this.handleMouseLeaveTreemap}
+          onGroupClick={this.handleTreemapGroupClick}
           onGroupHover={this.handleTreemapGroupHover}/>
         <Tooltip visible={showTooltip}>
           {tooltipContent}
@@ -209,6 +210,16 @@ export default class ModulesTreemap extends Component {
 
   handleMouseLeaveTreemap = () => {
     this.setState({showTooltip: false});
+  };
+
+  handleTreemapGroupClick = event => {
+    const {group} = event;
+
+    if (group && group.parentAssetNames) {
+      const groupAndParentAssets = [group.label, ...group.parentAssetNames];
+      const filteredChunks = store.allChunks.filter(chunk => groupAndParentAssets.includes(chunk.label));
+      store.selectedChunks = filteredChunks;
+    }
   };
 
   handleTreemapGroupHover = event => {

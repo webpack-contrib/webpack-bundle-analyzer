@@ -91,8 +91,12 @@ export default class Treemap extends Component {
       },
       onGroupClick(event) {
         preventDefault(event);
-        component.zoomOutDisabled = false;
-        this.zoom(event.group);
+        if (props.onGroupClick) {
+          props.onGroupClick.call(component, event);
+        } else {
+          component.zoomOutDisabled = false;
+          this.zoom(event.group);
+        }
       },
       onGroupDoubleClick: preventDefault,
       onGroupHover(event) {
