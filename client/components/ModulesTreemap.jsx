@@ -1,10 +1,10 @@
 /** @jsx h */
-import {h, Component} from 'preact';
+import { h, Component } from 'preact';
 import filesize from 'filesize';
-import {computed} from 'mobx';
-import {observer} from 'mobx-preact';
+import { computed } from 'mobx';
+import { observer } from 'mobx-preact';
 
-import {isChunkParsed} from '../utils';
+import { isChunkParsed } from '../utils';
 import Treemap from './Treemap';
 import Tooltip from './Tooltip';
 import Switcher from './Switcher';
@@ -14,13 +14,13 @@ import CheckboxList from './CheckboxList';
 
 import s from './ModulesTreemap.css';
 import Search from './Search';
-import {store} from '../store';
+import { store } from '../store';
 import ModulesList from './ModulesList';
 
 const SIZE_SWITCH_ITEMS = [
-  {label: 'Stat', prop: 'statSize'},
-  {label: 'Parsed', prop: 'parsedSize'},
-  {label: 'Gzipped', prop: 'gzipSize'}
+  { label: 'Stat', prop: 'statSize' },
+  { label: 'Parsed', prop: 'parsedSize' },
+  { label: 'Gzipped', prop: 'gzipSize' }
 ];
 
 @observer
@@ -32,7 +32,7 @@ export default class ModulesTreemap extends Component {
   };
 
   render() {
-    const {sidebarPinned, showTooltip, tooltipContent} = this.state;
+    const { sidebarPinned, showTooltip, tooltipContent } = this.state;
 
     return (
       <div className={s.container}>
@@ -44,7 +44,7 @@ export default class ModulesTreemap extends Component {
             <Switcher label="Treemap sizes"
               items={this.sizeSwitchItems}
               activeItem={this.activeSizeItem}
-              onSwitch={this.handleSizeSwitch}/>
+              onSwitch={this.handleSizeSwitch} />
             {store.hasConcatenatedModules &&
               <div className={s.showOption}>
                 <Checkbox checked={store.showConcatenatedModulesContent}
@@ -58,13 +58,13 @@ export default class ModulesTreemap extends Component {
             <Search label="Search modules"
               query={store.searchQuery}
               autofocus
-              onQueryChange={this.handleQueryChange}/>
+              onQueryChange={this.handleQueryChange} />
             <div className={s.foundModulesInfo}>
               {this.foundModulesInfo}
             </div>
             {store.isSearching && store.hasFoundModules &&
               <div className={s.foundModulesContainer}>
-                {store.foundModulesByChunk.map(({chunk, modules}) =>
+                {store.foundModulesByChunk.map(({ chunk, modules }) =>
                   <div key={chunk.cid} className={s.foundModulesChunk}>
                     <div className={s.foundModulesChunkName}
                       onClick={() => this.treemap.zoomToGroup(chunk)}>
@@ -75,7 +75,7 @@ export default class ModulesTreemap extends Component {
                       showSize={store.activeSize}
                       highlightedText={store.searchQueryRegexp}
                       isModuleVisible={this.isModuleVisible}
-                      onModuleClick={this.handleFoundModuleClick}/>
+                      onModuleClick={this.handleFoundModuleClick} />
                   </div>
                 )}
               </div>
@@ -87,7 +87,7 @@ export default class ModulesTreemap extends Component {
                 items={this.chunkItems}
                 checkedItems={store.selectedChunks}
                 renderLabel={this.renderChunkItemLabel}
-                onChange={this.handleSelectedChunksChange}/>
+                onChange={this.handleSelectedChunksChange} />
             </div>
           }
         </Sidebar>
@@ -97,8 +97,8 @@ export default class ModulesTreemap extends Component {
           highlightGroups={this.highlightedModules}
           weightProp={store.activeSize}
           onMouseLeave={this.handleMouseLeaveTreemap}
-          onGroupClick={this.handleTreemapGroupClick}
-          onGroupHover={this.handleTreemapGroupHover}/>
+          onGroupHover={this.handleTreemapGroupHover}
+          onGroupSecondaryClick={this.handleTreemapGroupSecondaryClick} />
         <Tooltip visible={showTooltip}>
           {tooltipContent}
         </Tooltip>
@@ -141,7 +141,7 @@ export default class ModulesTreemap extends Component {
   }
 
   @computed get chunkItems() {
-    const {allChunks, activeSize} = store;
+    const { allChunks, activeSize } = store;
     let chunkItems = [...allChunks];
 
     if (activeSize !== 'statSize') {
@@ -188,7 +188,7 @@ export default class ModulesTreemap extends Component {
   }
 
   handleSidebarPinStateChange = pinned => {
-    this.setState({sidebarPinned: pinned});
+    this.setState({ sidebarPinned: pinned });
     setTimeout(() => this.treemap.resize());
   }
 
@@ -209,12 +209,11 @@ export default class ModulesTreemap extends Component {
   };
 
   handleMouseLeaveTreemap = () => {
-    this.setState({showTooltip: false});
+    this.setState({ showTooltip: false });
   };
 
-  handleTreemapGroupClick = event => {
-    const {group} = event;
-
+  handleTreemapGroupSecondaryClick = event => {
+    const { group } = event;
     if (group && group.parentAssetNames) {
       const groupAndParentAssets = [group.label, ...group.parentAssetNames];
       const filteredChunks = store.allChunks.filter(chunk => groupAndParentAssets.includes(chunk.label));
@@ -223,7 +222,7 @@ export default class ModulesTreemap extends Component {
   };
 
   handleTreemapGroupHover = event => {
-    const {group} = event;
+    const { group } = event;
 
     if (group) {
       this.setState({
@@ -231,7 +230,7 @@ export default class ModulesTreemap extends Component {
         tooltipContent: this.getTooltipContent(group)
       });
     } else {
-      this.setState({showTooltip: false});
+      this.setState({ showTooltip: false });
     }
   };
 
@@ -249,7 +248,7 @@ export default class ModulesTreemap extends Component {
     return (
       <div>
         <div><strong>{module.label}</strong></div>
-        <br/>
+        <br />
         {this.renderModuleSize(module, 'stat')}
         {!module.inaccurateSizes && this.renderModuleSize(module, 'parsed')}
         {!module.inaccurateSizes && this.renderModuleSize(module, 'gzip')}
