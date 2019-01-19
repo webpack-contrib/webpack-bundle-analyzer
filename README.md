@@ -118,7 +118,7 @@ Directory containing all generated bundles.
   -p, --port <n>              Port that will be used in `server` mode to start HTTP server. (default: 8888)
   -r, --report <file>         Path to bundle report file that will be generated in `static` mode. (default: report.html)
   -s, --default-sizes <type>  Module sizes to show in treemap by default.
-                              Possible values: stat, parsed, gzip (default: parsed)
+                              Possible values: stat, parsed, gzip, brotli (default: parsed)
   -O, --no-open               Don't open report in default browser automatically.
   -e, --exclude <regexp>      Assets that should be excluded from the report.
                               Can be specified multiple times.
@@ -147,6 +147,11 @@ as Uglify, then this value will reflect the minified size of your code.
 ### `gzip`
 
 This is the size of running the parsed bundles/modules through gzip compression.
+
+
+### `brotli`
+
+This is the size of running the parsed bundles/modules through brotli compression.
 
 <h2 align="center">Troubleshooting</h2>
 

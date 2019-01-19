@@ -33,7 +33,8 @@ describe('Plugin', function () {
 
     await expectValidReport({
       parsedSize: 1343,
-      gzipSize: 360
+      gzipSize: 360,
+      brotliSize: 304
     });
   });
 
@@ -81,7 +82,8 @@ async function expectValidReport(opts) {
     bundleLabel = 'bundle.js',
     statSize = 141,
     parsedSize = 2821,
-    gzipSize = 770
+    gzipSize = 770,
+    brotliSize = 560
   } = opts || {};
 
   expect(fs.existsSync(`${__dirname}/output/${bundleFilename}`), 'bundle file missing').to.be.true;
@@ -91,7 +93,8 @@ async function expectValidReport(opts) {
     label: bundleLabel,
     statSize,
     parsedSize,
-    gzipSize
+    gzipSize,
+    brotliSize
   });
 }
 

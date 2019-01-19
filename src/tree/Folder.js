@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import gzipSize from 'gzip-size';
+import brotliSize from 'brotli-fsize';
 
 import Module from './Module';
 import BaseFolder from './BaseFolder';
@@ -18,6 +19,14 @@ export default class Folder extends BaseFolder {
     }
 
     return this._gzipSize;
+  }
+
+  get brotliSize() {
+    if (!_.has(this, '_brotliSize')) {
+      this._brotliSize = this.src ? brotliSize.sync(this.src) : 0;
+    }
+
+    return this._brotliSize;
   }
 
   addModule(moduleData) {
@@ -57,7 +66,8 @@ export default class Folder extends BaseFolder {
     return {
       ...super.toChartData(),
       parsedSize: this.parsedSize,
-      gzipSize: this.gzipSize
+      gzipSize: this.gzipSize,
+      brotliSize: this.brotliSize
     };
   }
 

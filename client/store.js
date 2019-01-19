@@ -3,7 +3,7 @@ import {isChunkParsed, walkModules} from './utils';
 
 export class Store {
   cid = 0;
-  sizes = new Set(['statSize', 'parsedSize', 'gzipSize']);
+  sizes = new Set(['statSize', 'parsedSize', 'gzipSize', 'brotliSize']);
 
   @observable.ref allChunks;
   @observable.shallow selectedChunks;

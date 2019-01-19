@@ -20,7 +20,8 @@ import ModulesList from './ModulesList';
 const SIZE_SWITCH_ITEMS = [
   {label: 'Stat', prop: 'statSize'},
   {label: 'Parsed', prop: 'parsedSize'},
-  {label: 'Gzipped', prop: 'gzipSize'}
+  {label: 'Gzipped', prop: 'gzipSize'},
+  {label: 'Brotli', prop: 'brotliSize'}
 ];
 
 @observer
