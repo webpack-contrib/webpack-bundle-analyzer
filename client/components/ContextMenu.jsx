@@ -44,16 +44,34 @@ export default class ContextMenu extends Component {
     });
 
     return (
-      <ul className={className} ref={this.saveNode}>
+      <ul ref={this.saveNode} className={className}>
+        <li onClick={this.handleClickHideChunk}>Hide chunk</li>
         <li onClick={this.handleClickFilterToParents}>Show parent chunks</li>
+        <li onClick={this.handleClickFilterToChunk}>Hide all other chunks</li>
       </ul>
     );
   }
 
+  handleClickHideChunk = () => {
+    const {chunk: selectedChunk} = this.props;
+    if (selectedChunk && selectedChunk.label) {
+      const filteredChunks = store.allChunks.filter(chunk => chunk.label !== selectedChunk.label);
+      store.selectedChunks = filteredChunks;
+    }
+  }
+
+  handleClickFilterToChunk = () => {
+    const {chunk: selectedChunk} = this.props;
+    if (selectedChunk && selectedChunk.label) {
+      const filteredChunks = store.allChunks.filter(chunk => chunk.label === selectedChunk.label);
+      store.selectedChunks = filteredChunks;
+    }
+  }
+
   handleClickFilterToParents = () => {
-    const {chunk} = this.props;
-    if (chunk && chunk.parentAssetNames) {
-      const groupAndParentAssets = [chunk.label, ...chunk.parentAssetNames];
+    const {chunk: selectedChunk} = this.props;
+    if (selectedChunk && selectedChunk.parentAssetNames) {
+      const groupAndParentAssets = [selectedChunk.label, ...selectedChunk.parentAssetNames];
       const filteredChunks = store.allChunks.filter(chunk => groupAndParentAssets.includes(chunk.label));
       store.selectedChunks = filteredChunks;
     }
