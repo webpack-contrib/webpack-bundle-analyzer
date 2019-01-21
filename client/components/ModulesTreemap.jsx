@@ -253,7 +253,7 @@ export default class ModulesTreemap extends Component {
   };
 
   handleTreemapGroupHover = event => {
-    const { group } = event;
+    const {group} = event;
 
     if (group) {
       this.setState({
@@ -285,6 +285,12 @@ export default class ModulesTreemap extends Component {
         {!module.inaccurateSizes && this.renderModuleSize(module, 'gzip')}
         {module.path &&
           <div>Path: <strong>{module.path}</strong></div>
+        }
+        {module.parentAssetNames &&
+          <div>
+            <br/>
+            <strong><em>Right-click to view options related to this chunk</em></strong>
+          </div>
         }
       </div>
     );

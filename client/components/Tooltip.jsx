@@ -47,7 +47,6 @@ export default class Tooltip extends Component {
         className={className}
         style={this.getStyle()}>
         {children}
-        <p><strong><em>Right-click to view options related to this chunk</em></strong></p>
       </div>
     );
   }
