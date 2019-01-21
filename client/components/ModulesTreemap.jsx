@@ -28,13 +28,14 @@ const SIZE_SWITCH_ITEMS = [
 export default class ModulesTreemap extends Component {
   state = {
     selectedChunk: null,
+    selectedMouseCoords: {x:0, y:0},
     sidebarPinned: false,
     showTooltip: false,
     tooltipContent: null
   };
 
   render() {
-    const { selectedChunk, sidebarPinned, showTooltip, tooltipContent } = this.state;
+    const { selectedChunk, selectedMouseCoords, sidebarPinned, showTooltip, tooltipContent } = this.state;
 
     return (
       <div className={s.container}>
@@ -104,9 +105,7 @@ export default class ModulesTreemap extends Component {
         <Tooltip visible={showTooltip}>
           {tooltipContent}
         </Tooltip>
-        {selectedChunk &&
-          <ContextMenu visible={selectedChunk} chunk={selectedChunk} />
-        }
+        <ContextMenu visible={selectedChunk} chunk={selectedChunk} coords={selectedMouseCoords} />
       </div>
     );
   }
@@ -218,10 +217,14 @@ export default class ModulesTreemap extends Component {
   };
 
   handleTreemapGroupSecondaryClick = event => {
-    const { group } = event;
+    const { group, x, y } = event;
     if (group && group.parentAssetNames) {
       this.setState({
-        selectedChunk: group
+        selectedChunk: group,
+        selectedMouseCoords: {
+          x,
+          y
+        }
       });
     } else {
       this.setState({
