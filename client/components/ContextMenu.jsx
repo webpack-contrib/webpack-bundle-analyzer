@@ -32,6 +32,7 @@ export default class ContextMenu extends Component {
         <li className={itemClassName} onClick={this.handleClickHideChunk}>Hide chunk</li>
         <li className={itemClassName} onClick={this.handleClickFilterToParents}>Show parent chunks</li>
         <li className={itemClassName} onClick={this.handleClickFilterToChunk}>Hide all other chunks</li>
+        <li className={itemClassName} onClick={this.handleClickShowAllChunks}>Show all chunks</li>
       </ul>
     );
   }
@@ -61,6 +62,11 @@ export default class ContextMenu extends Component {
       const filteredChunks = store.allChunks.filter(chunk => groupAndParentAssets.includes(chunk.label));
       store.selectedChunks = filteredChunks;
     }
+    this.hide();
+  }
+
+  handleClickShowAllChunks = () => {
+    store.selectedChunks = store.allChunks;
     this.hide();
   }
 
