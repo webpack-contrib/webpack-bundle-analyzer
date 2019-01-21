@@ -39,7 +39,7 @@ export default class ContextMenu extends Component {
   handleClickHideChunk = () => {
     const {chunk: selectedChunk} = this.props;
     if (selectedChunk && selectedChunk.label) {
-      const filteredChunks = store.allChunks.filter(chunk => chunk.label !== selectedChunk.label);
+      const filteredChunks = store.selectedChunks.filter(chunk => chunk.label !== selectedChunk.label);
       store.selectedChunks = filteredChunks;
     }
   }
