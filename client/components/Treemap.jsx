@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, Component } from 'preact';
+import {h, Component} from 'preact';
 import FoamTree from 'carrotsearch.foamtree';
 
 export default class Treemap extends Component {
@@ -40,19 +40,19 @@ export default class Treemap extends Component {
 
   render() {
     return (
-      <div {...this.props} ref={this.saveNodeRef} />
+      <div {...this.props} ref={this.saveNodeRef}/>
     );
   }
 
   saveNodeRef = node => (this.node = node);
 
   getTreemapDataObject(data = this.props.data) {
-    return { groups: data };
+    return {groups: data};
   }
 
   createTreemap() {
     const component = this;
-    const { props } = this;
+    const {props} = this;
 
     return new FoamTree({
       element: this.node,
@@ -76,7 +76,7 @@ export default class Treemap extends Component {
         vars.titleBarShown = false;
       },
       groupColorDecorator(options, properties, variables) {
-        const { highlightGroups } = component.props;
+        const {highlightGroups} = component.props;
         const module = properties.group;
 
         if (highlightGroups && highlightGroups.has(module)) {
@@ -111,7 +111,7 @@ export default class Treemap extends Component {
         }
       },
       onGroupMouseWheel(event) {
-        const { scale } = this.get('viewport');
+        const {scale} = this.get('viewport');
         const isZoomOut = (event.delta < 0);
 
         if (isZoomOut) {
