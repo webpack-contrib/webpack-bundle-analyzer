@@ -30,12 +30,20 @@ export default class ModulesTreemap extends Component {
     selectedChunk: null,
     selectedMouseCoords: {x:0, y:0},
     sidebarPinned: false,
+    showChunkContextMenu: false,
     showTooltip: false,
     tooltipContent: null
   };
 
   render() {
-    const { selectedChunk, selectedMouseCoords, sidebarPinned, showTooltip, tooltipContent } = this.state;
+    const {
+      selectedChunk,
+      selectedMouseCoords,
+      sidebarPinned,
+      showChunkContextMenu,
+      showTooltip,
+      tooltipContent
+    } = this.state;
 
     return (
       <div className={s.container}>
@@ -105,7 +113,10 @@ export default class ModulesTreemap extends Component {
         <Tooltip visible={showTooltip}>
           {tooltipContent}
         </Tooltip>
-        <ContextMenu visible={selectedChunk} chunk={selectedChunk} coords={selectedMouseCoords} />
+        <ContextMenu onHide={this.handleChunkContextMenuHide}
+          visible={showChunkContextMenu}
+          chunk={selectedChunk}
+          coords={selectedMouseCoords} />
       </div>
     );
   }
@@ -185,6 +196,12 @@ export default class ModulesTreemap extends Component {
     store.showConcatenatedModulesContent = flag;
   }
 
+  handleChunkContextMenuHide = () => {
+    this.setState({
+      showChunkContextMenu: false
+    });
+  }
+
   handleSidebarToggle = () => {
     if (this.state.sidebarPinned) {
       setTimeout(() => this.treemap.resize());
@@ -224,11 +241,13 @@ export default class ModulesTreemap extends Component {
         selectedMouseCoords: {
           x,
           y
-        }
+        },
+        showChunkContextMenu: true
       });
     } else {
       this.setState({
-        selectedChunk: null
+        selectedChunk: null,
+        showChunkContextMenu: false
       })
     }
   };

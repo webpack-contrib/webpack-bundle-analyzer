@@ -42,6 +42,7 @@ export default class ContextMenu extends Component {
       const filteredChunks = store.selectedChunks.filter(chunk => chunk.label !== selectedChunk.label);
       store.selectedChunks = filteredChunks;
     }
+    this.hide();
   }
 
   handleClickFilterToChunk = () => {
@@ -50,6 +51,7 @@ export default class ContextMenu extends Component {
       const filteredChunks = store.allChunks.filter(chunk => chunk.label === selectedChunk.label);
       store.selectedChunks = filteredChunks;
     }
+    this.hide();
   }
 
   handleClickFilterToParents = () => {
@@ -58,6 +60,13 @@ export default class ContextMenu extends Component {
       const groupAndParentAssets = [selectedChunk.label, ...selectedChunk.parentAssetNames];
       const filteredChunks = store.allChunks.filter(chunk => groupAndParentAssets.includes(chunk.label));
       store.selectedChunks = filteredChunks;
+    }
+    this.hide();
+  }
+
+  hide() {
+    if (this.props.onHide) {
+      this.props.onHide();
     }
   }
 
