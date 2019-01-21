@@ -1,10 +1,11 @@
 /** @jsx h */
 import {h, Component} from 'preact';
 import cls from 'classnames';
+import { store } from '../store';
 
 import s from './Tooltip.css';
 
-export default class Tooltip extends Component {
+export default class ContextMenu extends Component {
 
   static marginX = 10;
   static marginY = 30;
@@ -36,20 +37,26 @@ export default class Tooltip extends Component {
   }
 
   render() {
-    const {children, visible} = this.props;
+    const {visible} = this.props;
     const className = cls({
       [s.container]: true,
       [s.hidden]: !visible
     });
 
     return (
-      <div ref={this.saveNode}
-        className={className}
-        style={this.getStyle()}>
-        {children}
-        <p><strong><em>Right-click to view options related to this chunk</em></strong></p>
-      </div>
+      <ul className={className} ref={this.saveNode}>
+        <li onClick={this.handleClickFilterToParents}>Show parent chunks</li>
+      </ul>
     );
+  }
+
+  handleClickFilterToParents = () => {
+    const {chunk} = this.props;
+    if (chunk && chunk.parentAssetNames) {
+      const groupAndParentAssets = [chunk.label, ...chunk.parentAssetNames];
+      const filteredChunks = store.allChunks.filter(chunk => groupAndParentAssets.includes(chunk.label));
+      store.selectedChunks = filteredChunks;
+    }
   }
 
   saveNode = node => (this.node = node);
@@ -65,8 +72,8 @@ export default class Tooltip extends Component {
     if (!this.props.visible) return;
 
     const pos = {
-      left: this.mouseCoords.x + Tooltip.marginX,
-      top: this.mouseCoords.y + Tooltip.marginY
+      left: this.mouseCoords.x + ContextMenu.marginX,
+      top: this.mouseCoords.y + ContextMenu.marginY
     };
 
     const boundingRect = this.node.getBoundingClientRect();
@@ -78,7 +85,7 @@ export default class Tooltip extends Component {
 
     if (pos.top + boundingRect.height > window.innerHeight) {
       // Flipping vertically
-      pos.top = this.mouseCoords.y - Tooltip.marginY - boundingRect.height;
+      pos.top = this.mouseCoords.y - ContextMenu.marginY - boundingRect.height;
     }
 
     this.setState(pos);

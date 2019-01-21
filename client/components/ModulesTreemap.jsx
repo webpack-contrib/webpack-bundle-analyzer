@@ -11,6 +11,7 @@ import Switcher from './Switcher';
 import Sidebar from './Sidebar';
 import Checkbox from './Checkbox';
 import CheckboxList from './CheckboxList';
+import ContextMenu from './ContextMenu';
 
 import s from './ModulesTreemap.css';
 import Search from './Search';
@@ -26,13 +27,14 @@ const SIZE_SWITCH_ITEMS = [
 @observer
 export default class ModulesTreemap extends Component {
   state = {
+    selectedChunk: null,
     sidebarPinned: false,
     showTooltip: false,
     tooltipContent: null
   };
 
   render() {
-    const { sidebarPinned, showTooltip, tooltipContent } = this.state;
+    const { selectedChunk, sidebarPinned, showTooltip, tooltipContent } = this.state;
 
     return (
       <div className={s.container}>
@@ -102,6 +104,9 @@ export default class ModulesTreemap extends Component {
         <Tooltip visible={showTooltip}>
           {tooltipContent}
         </Tooltip>
+        {selectedChunk &&
+          <ContextMenu visible={selectedChunk} chunk={selectedChunk} />
+        }
       </div>
     );
   }
@@ -215,9 +220,13 @@ export default class ModulesTreemap extends Component {
   handleTreemapGroupSecondaryClick = event => {
     const { group } = event;
     if (group && group.parentAssetNames) {
-      const groupAndParentAssets = [group.label, ...group.parentAssetNames];
-      const filteredChunks = store.allChunks.filter(chunk => groupAndParentAssets.includes(chunk.label));
-      store.selectedChunks = filteredChunks;
+      this.setState({
+        selectedChunk: group
+      });
+    } else {
+      this.setState({
+        selectedChunk: null
+      })
     }
   };
 

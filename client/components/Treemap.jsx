@@ -91,7 +91,7 @@ export default class Treemap extends Component {
       },
       onGroupClick(event) {
         preventDefault(event);
-        if (event.ctrlKey && props.onGroupSecondaryClick) {
+        if ((event.ctrlKey || event.secondary) && props.onGroupSecondaryClick) {
           props.onGroupSecondaryClick.call(component, event);
           return;
         }
