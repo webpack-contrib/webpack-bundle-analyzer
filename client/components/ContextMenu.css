@@ -20,9 +20,9 @@
 .item {
   cursor: pointer;
   margin: 0;
-  padding: 4px 6px;
+  padding: 8px 14px;
 }
 
 .item:hover {
-  background: #ccc;
+  background: #ffefd7;
 }

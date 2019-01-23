@@ -40,6 +40,7 @@ export default class ContextMenu extends Component {
         <li className={itemClassName} onClick={this.handleClickHideChunk}>Hide chunk</li>
         <li className={itemClassName} onClick={this.handleClickFilterToParents}>Show parent chunks</li>
         <li className={itemClassName} onClick={this.handleClickFilterToChunk}>Hide all other chunks</li>
+        <hr/>
         <li className={itemClassName} onClick={this.handleClickShowAllChunks}>Show all chunks</li>
       </ul>
     );
