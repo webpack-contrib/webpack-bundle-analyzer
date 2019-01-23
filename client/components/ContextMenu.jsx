@@ -18,6 +18,14 @@ export default class ContextMenu extends Component {
     return this.props.visible || nextProps.visible;
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.visible && !prevProps.visible) {
+      document.addEventListener('mousedown', this.handleDocumentMousedown);
+    } else if (prevProps.visible && !this.props.visible) {
+      document.removeEventListener('mousedown', this.handleDocumentMousedown);
+    }
+  }
+
   render() {
     const {visible} = this.props;
     const containerClassName = cls({
@@ -68,6 +76,12 @@ export default class ContextMenu extends Component {
   handleClickShowAllChunks = () => {
     store.selectedChunks = store.allChunks;
     this.hide();
+  }
+
+  handleDocumentMousedown = (e) => {
+    if (!this.node.contains(e.target)) {
+      this.hide();
+    }
   }
 
   hide() {
