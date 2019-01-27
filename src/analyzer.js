@@ -129,9 +129,11 @@ function getBundleModules(bundleStats) {
 
 function getParentAssets(statAsset, bundleStats) {
   // Get asset objects corresponding to parent chunks of the specified asset
-  const parentChunks = _.flatten(
-    statAsset.chunks.map(chunkId => bundleStats.chunks[chunkId].parents)
-  );
+  const parentChunks = _(statAsset.chunks)
+    .map(chunkId => _.find(bundleStats.chunks, {id: chunkId}))
+    .map('parents')
+    .flatten()
+    .value();
   return bundleStats.assets.filter(asset =>
     asset.chunks.some(chunk => parentChunks.includes(chunk))
   );
