@@ -111,7 +111,7 @@ export default class ContextMenu extends Component {
 
     if (pos.top + boundingRect.height > window.innerHeight) {
       // Flipping vertically
-      pos.top = this.coords.y - boundingRect.height;
+      pos.top = coords.y - boundingRect.height;
     }
     return pos;
   }
