@@ -20,9 +20,9 @@ export default class ContextMenu extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.visible && !prevProps.visible) {
-      document.addEventListener('mousedown', this.handleDocumentMousedown);
+      document.addEventListener('mousedown', this.handleDocumentMousedown, true);
     } else if (prevProps.visible && !this.props.visible) {
-      document.removeEventListener('mousedown', this.handleDocumentMousedown);
+      document.removeEventListener('mousedown', this.handleDocumentMousedown, true);
     }
   }
 
@@ -81,6 +81,8 @@ export default class ContextMenu extends Component {
 
   handleDocumentMousedown = (e) => {
     if (!this.node.contains(e.target)) {
+      e.preventDefault();
+      e.stopPropagation();
       this.hide();
     }
   }
