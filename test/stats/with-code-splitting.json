@@ -1,0 +1,801 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.29.0",
+  "hash": "c4f92a36be6f014c7dc2",
+  "time": 145,
+  "builtAt": 1548638493185,
+  "publicPath": "dist/",
+  "outputPath": "/webpack/examples/code-splitting-harmony/dist",
+  "assetsByChunkName": {
+    "main": "output.js"
+  },
+  "assets": [
+    {
+      "name": "0.output.js",
+      "size": 275,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [],
+      "emitted": true
+    },
+    {
+      "name": "1.output.js",
+      "size": 284,
+      "chunks": [
+        1
+      ],
+      "chunkNames": [],
+      "emitted": true
+    },
+    {
+      "name": "3.output.js",
+      "size": 270,
+      "chunks": [
+        3
+      ],
+      "chunkNames": [],
+      "emitted": true
+    },
+    {
+      "name": "output.js",
+      "size": 9933,
+      "chunks": [
+        2
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "main": {
+      "chunks": [
+        2
+      ],
+      "assets": [
+        "output.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "chunks": [
+        2
+      ],
+      "assets": [
+        "output.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "size": 13,
+      "names": [],
+      "files": [
+        "0.output.js"
+      ],
+      "hash": "1e662b61f1fa5874e1ac",
+      "siblings": [],
+      "parents": [
+        2
+      ],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/webpack/examples/code-splitting-harmony/node_modules/c/1.js",
+          "name": "./node_modules/c/1.js",
+          "index": 4,
+          "index2": 4,
+          "size": 13,
+          "cacheable": true,
+          "built": true,
+          "optional": true,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "issuer": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "issuerId": 4,
+          "issuerName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "issuerPath": [
+            {
+              "id": 2,
+              "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+              "name": "./example.js"
+            },
+            {
+              "id": 4,
+              "identifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+              "name": "./node_modules/c lazy ^\\.\\/.*$ namespace object"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": 4,
+              "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+              "module": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+              "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+              "type": "context element",
+              "userRequest": "./1",
+              "loc": "./1"
+            },
+            {
+              "moduleId": 4,
+              "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+              "module": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+              "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+              "type": "context element",
+              "userRequest": "./1.js",
+              "loc": "./1.js"
+            }
+          ],
+          "providedExports": null,
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "// module c/1"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "moduleId": 4,
+          "module": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "loc": "./1",
+          "request": "./1",
+          "reasons": []
+        },
+        {
+          "moduleId": 4,
+          "module": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "loc": "./1.js",
+          "request": "./1.js",
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "size": 13,
+      "names": [],
+      "files": [
+        "1.output.js"
+      ],
+      "hash": "bfcb9bc3cdf7038d8a93",
+      "siblings": [],
+      "parents": [
+        2
+      ],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": 1,
+          "identifier": "/webpack/examples/code-splitting-harmony/node_modules/c/2.js",
+          "name": "./node_modules/c/2.js",
+          "index": 5,
+          "index2": 5,
+          "size": 13,
+          "cacheable": true,
+          "built": true,
+          "optional": true,
+          "prefetched": false,
+          "chunks": [
+            1
+          ],
+          "issuer": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "issuerId": 4,
+          "issuerName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "issuerPath": [
+            {
+              "id": 2,
+              "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+              "name": "./example.js"
+            },
+            {
+              "id": 4,
+              "identifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+              "name": "./node_modules/c lazy ^\\.\\/.*$ namespace object"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": 4,
+              "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+              "module": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+              "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+              "type": "context element",
+              "userRequest": "./2",
+              "loc": "./2"
+            },
+            {
+              "moduleId": 4,
+              "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+              "module": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+              "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+              "type": "context element",
+              "userRequest": "./2.js",
+              "loc": "./2.js"
+            }
+          ],
+          "providedExports": null,
+          "optimizationBailout": [],
+          "depth": 2,
+          "source": "// module c/2"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "moduleId": 4,
+          "module": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "loc": "./2",
+          "request": "./2",
+          "reasons": []
+        },
+        {
+          "moduleId": 4,
+          "module": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "loc": "./2.js",
+          "request": "./2.js",
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 414,
+      "names": [
+        "main"
+      ],
+      "files": [
+        "output.js"
+      ],
+      "hash": "87c76c49d5f80884a77d",
+      "siblings": [],
+      "parents": [],
+      "children": [
+        0,
+        1,
+        3
+      ],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": 2,
+          "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+          "name": "./example.js",
+          "index": 0,
+          "index2": 2,
+          "size": 243,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            2
+          ],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "/webpack/examples/code-splitting-harmony/example.js",
+              "loc": "main"
+            }
+          ],
+          "providedExports": [],
+          "optimizationBailout": [],
+          "depth": 0,
+          "source": "import a from \"a\";\n\nimport(\"b\").then(function(b) {\n\tconsole.log(\"b loaded\", b);\n})\n\nfunction loadC(name) {\n\treturn import(\"c/\" + name);\n}\n\nPromise.all([loadC(\"1\"), loadC(\"2\")]).then(function(arr) {\n\tconsole.log(\"c/1 and c/2 loaded\", arr);\n});\n"
+        },
+        {
+          "id": 3,
+          "identifier": "/webpack/examples/code-splitting-harmony/node_modules/a.js",
+          "name": "./node_modules/a.js",
+          "index": 1,
+          "index2": 0,
+          "size": 11,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            2
+          ],
+          "issuer": "/webpack/examples/code-splitting-harmony/example.js",
+          "issuerId": 2,
+          "issuerName": "./example.js",
+          "issuerPath": [
+            {
+              "id": 2,
+              "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+              "name": "./example.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": 2,
+              "moduleIdentifier": "/webpack/examples/code-splitting-harmony/example.js",
+              "module": "./example.js",
+              "moduleName": "./example.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "a",
+              "loc": "1:0-18"
+            }
+          ],
+          "providedExports": null,
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "// module a"
+        },
+        {
+          "id": 4,
+          "identifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "name": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "index": 2,
+          "index2": 1,
+          "size": 160,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            2
+          ],
+          "issuer": "/webpack/examples/code-splitting-harmony/example.js",
+          "issuerId": 2,
+          "issuerName": "./example.js",
+          "issuerPath": [
+            {
+              "id": 2,
+              "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+              "name": "./example.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": 2,
+              "moduleIdentifier": "/webpack/examples/code-splitting-harmony/example.js",
+              "module": "./example.js",
+              "moduleName": "./example.js",
+              "type": "import() context lazy",
+              "userRequest": "c",
+              "loc": "8:8-27"
+            }
+          ],
+          "providedExports": null,
+          "optimizationBailout": [],
+          "depth": 1
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "request": "/webpack/examples/code-splitting-harmony/example.js",
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "size": 11,
+      "names": [],
+      "files": [
+        "3.output.js"
+      ],
+      "hash": "9da6621e51370ece9905",
+      "siblings": [],
+      "parents": [
+        2
+      ],
+      "children": [],
+      "childrenByOrder": {},
+      "modules": [
+        {
+          "id": 5,
+          "identifier": "/webpack/examples/code-splitting-harmony/node_modules/b.js",
+          "name": "./node_modules/b.js",
+          "index": 3,
+          "index2": 3,
+          "size": 11,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            3
+          ],
+          "issuer": "/webpack/examples/code-splitting-harmony/example.js",
+          "issuerId": 2,
+          "issuerName": "./example.js",
+          "issuerPath": [
+            {
+              "id": 2,
+              "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+              "name": "./example.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": 2,
+              "moduleIdentifier": "/webpack/examples/code-splitting-harmony/example.js",
+              "module": "./example.js",
+              "moduleName": "./example.js",
+              "type": "import()",
+              "userRequest": "b",
+              "loc": "3:0-11"
+            }
+          ],
+          "providedExports": null,
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "// module b"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "moduleId": 2,
+          "module": "/webpack/examples/code-splitting-harmony/example.js",
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/example.js",
+          "moduleName": "./example.js",
+          "loc": "3:0-11",
+          "request": "b",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": 0,
+      "identifier": "/webpack/examples/code-splitting-harmony/node_modules/c/1.js",
+      "name": "./node_modules/c/1.js",
+      "index": 4,
+      "index2": 4,
+      "size": 13,
+      "cacheable": true,
+      "built": true,
+      "optional": true,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+      "issuerId": 4,
+      "issuerName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+      "issuerPath": [
+        {
+          "id": 2,
+          "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+          "name": "./example.js"
+        },
+        {
+          "id": 4,
+          "identifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "name": "./node_modules/c lazy ^\\.\\/.*$ namespace object"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": 4,
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "module": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "type": "context element",
+          "userRequest": "./1",
+          "loc": "./1"
+        },
+        {
+          "moduleId": 4,
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "module": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "type": "context element",
+          "userRequest": "./1.js",
+          "loc": "./1.js"
+        }
+      ],
+      "providedExports": null,
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "// module c/1"
+    },
+    {
+      "id": 1,
+      "identifier": "/webpack/examples/code-splitting-harmony/node_modules/c/2.js",
+      "name": "./node_modules/c/2.js",
+      "index": 5,
+      "index2": 5,
+      "size": 13,
+      "cacheable": true,
+      "built": true,
+      "optional": true,
+      "prefetched": false,
+      "chunks": [
+        1
+      ],
+      "issuer": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+      "issuerId": 4,
+      "issuerName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+      "issuerPath": [
+        {
+          "id": 2,
+          "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+          "name": "./example.js"
+        },
+        {
+          "id": 4,
+          "identifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "name": "./node_modules/c lazy ^\\.\\/.*$ namespace object"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": 4,
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "module": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "type": "context element",
+          "userRequest": "./2",
+          "loc": "./2"
+        },
+        {
+          "moduleId": 4,
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+          "module": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "moduleName": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+          "type": "context element",
+          "userRequest": "./2.js",
+          "loc": "./2.js"
+        }
+      ],
+      "providedExports": null,
+      "optimizationBailout": [],
+      "depth": 2,
+      "source": "// module c/2"
+    },
+    {
+      "id": 2,
+      "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+      "name": "./example.js",
+      "index": 0,
+      "index2": 2,
+      "size": 243,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        2
+      ],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": null,
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "type": "single entry",
+          "userRequest": "/webpack/examples/code-splitting-harmony/example.js",
+          "loc": "main"
+        }
+      ],
+      "providedExports": [],
+      "optimizationBailout": [],
+      "depth": 0,
+      "source": "import a from \"a\";\n\nimport(\"b\").then(function(b) {\n\tconsole.log(\"b loaded\", b);\n})\n\nfunction loadC(name) {\n\treturn import(\"c/\" + name);\n}\n\nPromise.all([loadC(\"1\"), loadC(\"2\")]).then(function(arr) {\n\tconsole.log(\"c/1 and c/2 loaded\", arr);\n});\n"
+    },
+    {
+      "id": 3,
+      "identifier": "/webpack/examples/code-splitting-harmony/node_modules/a.js",
+      "name": "./node_modules/a.js",
+      "index": 1,
+      "index2": 0,
+      "size": 11,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        2
+      ],
+      "issuer": "/webpack/examples/code-splitting-harmony/example.js",
+      "issuerId": 2,
+      "issuerName": "./example.js",
+      "issuerPath": [
+        {
+          "id": 2,
+          "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+          "name": "./example.js"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": 2,
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/example.js",
+          "module": "./example.js",
+          "moduleName": "./example.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "a",
+          "loc": "1:0-18"
+        }
+      ],
+      "providedExports": null,
+      "optimizationBailout": [],
+      "depth": 1,
+      "source": "// module a"
+    },
+    {
+      "id": 4,
+      "identifier": "/webpack/examples/code-splitting-harmony/node_modules/c lazy /^\\.\\/.*$/ groupOptions: {} namespace object",
+      "name": "./node_modules/c lazy ^\\.\\/.*$ namespace object",
+      "index": 2,
+      "index2": 1,
+      "size": 160,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        2
+      ],
+      "issuer": "/webpack/examples/code-splitting-harmony/example.js",
+      "issuerId": 2,
+      "issuerName": "./example.js",
+      "issuerPath": [
+        {
+          "id": 2,
+          "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+          "name": "./example.js"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": 2,
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/example.js",
+          "module": "./example.js",
+          "moduleName": "./example.js",
+          "type": "import() context lazy",
+          "userRequest": "c",
+          "loc": "8:8-27"
+        }
+      ],
+      "providedExports": null,
+      "optimizationBailout": [],
+      "depth": 1
+    },
+    {
+      "id": 5,
+      "identifier": "/webpack/examples/code-splitting-harmony/node_modules/b.js",
+      "name": "./node_modules/b.js",
+      "index": 3,
+      "index2": 3,
+      "size": 11,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        3
+      ],
+      "issuer": "/webpack/examples/code-splitting-harmony/example.js",
+      "issuerId": 2,
+      "issuerName": "./example.js",
+      "issuerPath": [
+        {
+          "id": 2,
+          "identifier": "/webpack/examples/code-splitting-harmony/example.js",
+          "name": "./example.js"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": 2,
+          "moduleIdentifier": "/webpack/examples/code-splitting-harmony/example.js",
+          "module": "./example.js",
+          "moduleName": "./example.js",
+          "type": "import()",
+          "userRequest": "b",
+          "loc": "3:0-11"
+        }
+      ],
+      "providedExports": null,
+      "optimizationBailout": [],
+      "depth": 1,
+      "source": "// module b"
+    }
+  ],
+  "filteredModules": 0,
+  "children": []
+}
