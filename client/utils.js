@@ -13,3 +13,7 @@ export function walkModules(modules, cb) {
     }
   }
 }
+
+export function elementIsOutside(elem, container) {
+  return !(elem === container || container.contains(elem));
+}

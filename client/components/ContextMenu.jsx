@@ -2,6 +2,7 @@
 import {h, Component} from 'preact';
 import cls from 'classnames';
 import {store} from '../store';
+import {elementIsOutside} from '../utils';
 
 import s from './ContextMenu.css';
 
@@ -80,7 +81,7 @@ export default class ContextMenu extends Component {
   }
 
   handleDocumentMousedown = (e) => {
-    if (!this.node.contains(e.target)) {
+    if (elementIsOutside(e.target, this.node)) {
       e.preventDefault();
       e.stopPropagation();
       this.hide();
