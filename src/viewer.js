@@ -142,16 +142,16 @@ async function generateReport(bundleStats, opts) {
             reject(err);
             return;
           }
-    
+
           const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
-    
+
           mkdir.sync(path.dirname(reportFilepath));
           fs.writeFileSync(reportFilepath, reportHtml);
-    
+
           logger.info(
             `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`
           );
-    
+
           if (openBrowser) {
             opener(`file://${reportFilepath}`);
           }

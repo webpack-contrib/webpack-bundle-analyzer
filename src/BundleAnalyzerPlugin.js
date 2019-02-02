@@ -58,9 +58,9 @@ class BundleAnalyzerPlugin {
         setImmediate(async () => {
           try {
             for (let i = 0, len = actions.length; i < len; ++i) await actions[i]();
-            if (typeof callback === "function") callback();
+            if (typeof callback === 'function') callback();
           } catch (e) {
-            if (typeof callback === "function") callback(e);
+            if (typeof callback === 'function') callback(e);
           }
         });
       }
