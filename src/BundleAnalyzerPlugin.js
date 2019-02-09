@@ -57,12 +57,14 @@ class BundleAnalyzerPlugin {
         // Making analyzer logs to be after all webpack logs in the console
         setImmediate(async () => {
           try {
-            for (let i = 0, len = actions.length; i < len; ++i) await actions[i]();
+            for (let i = 0; i < actions.length; ++i) await actions[i]();
             if (typeof callback === 'function') callback();
           } catch (e) {
             if (typeof callback === 'function') callback(e);
           }
         });
+      } else {
+        if (typeof callback === 'function') callback();
       }
     };
 
