@@ -34,6 +34,7 @@ class BundleAnalyzerPlugin {
     this.compiler = compiler;
 
     const done = (stats, callback) => {
+      callback = callback || (() => {});
       stats = stats.toJson(this.opts.statsOptions);
 
       const actions = [];
@@ -57,14 +58,14 @@ class BundleAnalyzerPlugin {
         // Making analyzer logs to be after all webpack logs in the console
         setImmediate(async () => {
           try {
-            for (let i = 0; i < actions.length; ++i) await actions[i]();
-            if (typeof callback === 'function') callback();
+            await Promise.all(actions.map(action => action()));
+            callback();
           } catch (e) {
-            if (typeof callback === 'function') callback(e);
+            callback(e);
           }
         });
       } else {
-        if (typeof callback === 'function') callback();
+        callback();
       }
     };
 
