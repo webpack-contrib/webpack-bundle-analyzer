@@ -14,6 +14,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.0.4
+
 * **Bug Fix**
   * Make webpack's done hook wait until analyzer writes report or stat file ([#247](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/247), [@mareolan](https://github.com/mareolan))
 
