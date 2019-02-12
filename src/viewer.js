@@ -111,7 +111,7 @@ async function startServer(bundleStats, opts) {
   }
 }
 
-function generateReport(bundleStats, opts) {
+async function generateReport(bundleStats, opts) {
   const {
     openBrowser = true,
     reportFilename = 'report.html',
@@ -125,32 +125,43 @@ function generateReport(bundleStats, opts) {
 
   if (!chartData) return;
 
-  ejs.renderFile(
-    `${projectRoot}/views/viewer.ejs`,
-    {
-      mode: 'static',
-      chartData: JSON.stringify(chartData),
-      assetContent: getAssetContent,
-      defaultSizes: JSON.stringify(defaultSizes),
-      enableWebSocket: false
-    },
-    (err, reportHtml) => {
-      if (err) return logger.error(err);
+  await new Promise((resolve, reject) => {
+    ejs.renderFile(
+      `${projectRoot}/views/viewer.ejs`,
+      {
+        mode: 'static',
+        chartData: JSON.stringify(chartData),
+        assetContent: getAssetContent,
+        defaultSizes: JSON.stringify(defaultSizes),
+        enableWebSocket: false
+      },
+      (err, reportHtml) => {
+        try {
+          if (err) {
+            logger.error(err);
+            reject(err);
+            return;
+          }
 
-      const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
+          const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
 
-      mkdir.sync(path.dirname(reportFilepath));
-      fs.writeFileSync(reportFilepath, reportHtml);
+          mkdir.sync(path.dirname(reportFilepath));
+          fs.writeFileSync(reportFilepath, reportHtml);
 
-      logger.info(
-        `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`
-      );
+          logger.info(
+            `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`
+          );
 
-      if (openBrowser) {
-        opener(`file://${reportFilepath}`);
+          if (openBrowser) {
+            opener(`file://${reportFilepath}`);
+          }
+          resolve();
+        } catch (e) {
+          reject(e);
+        }
       }
-    }
-  );
+    );
+  });
 }
 
 function getAssetContent(filename) {

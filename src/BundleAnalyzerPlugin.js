@@ -33,7 +33,8 @@ class BundleAnalyzerPlugin {
   apply(compiler) {
     this.compiler = compiler;
 
-    const done = stats => {
+    const done = (stats, callback) => {
+      callback = callback || (() => {});
       stats = stats.toJson(this.opts.statsOptions);
 
       const actions = [];
@@ -55,14 +56,21 @@ class BundleAnalyzerPlugin {
 
       if (actions.length) {
         // Making analyzer logs to be after all webpack logs in the console
-        setImmediate(() => {
-          actions.forEach(action => action());
+        setImmediate(async () => {
+          try {
+            await Promise.all(actions.map(action => action()));
+            callback();
+          } catch (e) {
+            callback(e);
+          }
         });
+      } else {
+        callback();
       }
     };
 
     if (compiler.hooks) {
-      compiler.hooks.done.tap('webpack-bundle-analyzer', done);
+      compiler.hooks.done.tapAsync('webpack-bundle-analyzer', done);
     } else {
       compiler.plugin('done', done);
     }
@@ -108,8 +116,8 @@ class BundleAnalyzerPlugin {
     }
   }
 
-  generateStaticReport(stats) {
-    viewer.generateReport(stats, {
+  async generateStaticReport(stats) {
+    await viewer.generateReport(stats, {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename),
       bundleDir: this.getBundleDirFromCompiler(),
