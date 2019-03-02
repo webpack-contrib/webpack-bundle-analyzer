@@ -14,6 +14,12 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.1.0
+
+* **Bug Fix**
+  * Properly determine the size of the modules containing special characters ([#223](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/223), [@hulkish](https://github.com/hulkish))
+  * Update acorn to v6 ([#248](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/248), [@realityking](https://github.com/realityking))
+
 ## 3.0.4
 
 * **Bug Fix**
