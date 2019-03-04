@@ -104,7 +104,7 @@ describe('Analyzer', function () {
 
   it('should support stats files with js modules chunk', async function () {
     generateReportFrom('with-modules-chunk.json');
-    await expectValidReport({ bundleLabel: 'bundle.mjs' });
+    await expectValidReport({bundleLabel: 'bundle.mjs'});
   });
 });
 
