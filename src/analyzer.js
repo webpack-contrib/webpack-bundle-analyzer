@@ -10,6 +10,7 @@ const {parseBundle} = require('./parseUtils');
 const {createAssetsFilter} = require('./utils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/;
+const FILENAME_EXTENSIONS = /.(js|mjs)$/i;
 
 module.exports = {
   getViewerData,
@@ -29,13 +30,13 @@ function getViewerData(bundleStats, bundleDir, opts) {
     bundleStats = bundleStats.children[0];
   }
 
-  // Picking only `*.js` assets from bundle that has non-empty `chunks` array
+  // Picking only `*.js or *.mjs` assets from bundle that has non-empty `chunks` array
   bundleStats.assets = _.filter(bundleStats.assets, asset => {
     // Removing query part from filename (yes, somebody uses it for some reason and Webpack supports it)
     // See #22
     asset.name = asset.name.replace(FILENAME_QUERY_REGEXP, '');
 
-    return _.endsWith(asset.name, '.js') && !_.isEmpty(asset.chunks) && isAssetIncluded(asset.name);
+    return FILENAME_EXTENSIONS.test(asset.name) && !_.isEmpty(asset.chunks) && isAssetIncluded(asset.name);
   });
 
   // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided
