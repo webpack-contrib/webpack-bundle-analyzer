@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+* **Improvements**
+  * Add support for .mjs output files ([#252](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/252), [@jlopezxs](https://github.com/jlopezxs)))
+
 ## 3.1.0
 
 * **Bug Fix**

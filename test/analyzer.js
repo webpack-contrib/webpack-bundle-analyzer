@@ -101,6 +101,11 @@ describe('Analyzer', function () {
       expect(typeof item.parsedSize).to.equal('number');
     });
   });
+
+  it('should support stats files with js modules chunk', async function () {
+    generateReportFrom('with-modules-chunk.json');
+    await expectValidReport({bundleLabel: 'bundle.mjs'});
+  });
 });
 
 function generateReportFrom(statsFilename) {
