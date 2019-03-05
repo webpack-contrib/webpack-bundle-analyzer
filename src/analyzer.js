@@ -10,7 +10,7 @@ const {parseBundle} = require('./parseUtils');
 const {createAssetsFilter} = require('./utils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/;
-const FILENAME_EXTENSIONS = /.(js|mjs)$/i;
+const FILENAME_EXTENSIONS = /\.(js|mjs)$/i;
 
 module.exports = {
   getViewerData,
