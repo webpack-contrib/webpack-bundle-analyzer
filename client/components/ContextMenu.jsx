@@ -1,22 +1,19 @@
 /** @jsx h */
-import {h, Component} from 'preact';
+import {h} from 'preact';
 import cls from 'classnames';
+import PureComponent from '../lib/PureComponent';
 import {store} from '../store';
 import {elementIsOutside} from '../utils';
 
 import s from './ContextMenu.css';
 
-export default class ContextMenu extends Component {
+export default class ContextMenu extends PureComponent {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
     this.boundingRect = this.node.getBoundingClientRect();
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.visible || nextProps.visible;
   }
 
   componentDidUpdate(prevProps) {
@@ -98,7 +95,10 @@ export default class ContextMenu extends Component {
 
   getStyle() {
     const {boundingRect} = this;
-    if (!this.props.visible || !boundingRect) return;
+
+    // Upon the first render of this component, we don't yet know
+    // its dimensions, so can't position it yet
+    if (!boundingRect) return;
 
     const {coords} = this.props;
 
