@@ -1,0 +1,24 @@
+.item {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+  cursor: pointer;
+  margin: 0;
+  padding: 8px 14px;
+}
+
+.item:hover {
+  background: #ffefd7;
+}
+
+.disabled {
+  cursor: default;
+  color: gray;
+}
+
+.item.disabled:hover {
+  background: transparent;
+}

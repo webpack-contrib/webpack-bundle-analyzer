@@ -1,6 +1,7 @@
 /** @jsx h */
 import {h} from 'preact';
 import cls from 'classnames';
+import ContextMenuItem from './ContextMenuItem';
 import PureComponent from '../lib/PureComponent';
 import {store} from '../store';
 import {elementIsOutside} from '../utils';
@@ -8,10 +9,6 @@ import {elementIsOutside} from '../utils';
 import s from './ContextMenu.css';
 
 export default class ContextMenu extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.boundingRect = this.node.getBoundingClientRect();
   }
@@ -30,15 +27,22 @@ export default class ContextMenu extends PureComponent {
       [s.container]: true,
       [s.hidden]: !visible
     });
-    const itemClassName = cls({
-      [s.item]: true
-    });
+    const multipleChunksSelected = store.selectedChunks.length > 1;
     return (
       <ul ref={this.saveNode} className={containerClassName} style={this.getStyle()}>
-        <li className={itemClassName} onClick={this.handleClickHideChunk}>Hide chunk</li>
-        <li className={itemClassName} onClick={this.handleClickFilterToChunk}>Hide all other chunks</li>
+        <ContextMenuItem disabled={!multipleChunksSelected}
+          onClick={this.handleClickHideChunk}>
+          Hide chunk
+        </ContextMenuItem>
+        <ContextMenuItem disabled={!multipleChunksSelected}
+          onClick={this.handleClickFilterToChunk}>
+          Hide all other chunks
+        </ContextMenuItem>
         <hr/>
-        <li className={itemClassName} onClick={this.handleClickShowAllChunks}>Show all chunks</li>
+        <ContextMenuItem disabled={store.allChunksSelected}
+          onClick={this.handleClickShowAllChunks}>
+          Show all chunks
+        </ContextMenuItem>
       </ul>
     );
   }

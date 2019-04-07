@@ -16,13 +16,3 @@
   opacity: 0;
   visibility: hidden;
 }
-
-.item {
-  cursor: pointer;
-  margin: 0;
-  padding: 8px 14px;
-}
-
-.item:hover {
-  background: #ffefd7;
-}
