@@ -109,7 +109,8 @@ export default class ModulesTreemap extends Component {
           weightProp={store.activeSize}
           onMouseLeave={this.handleMouseLeaveTreemap}
           onGroupHover={this.handleTreemapGroupHover}
-          onGroupSecondaryClick={this.handleTreemapGroupSecondaryClick}/>
+          onGroupSecondaryClick={this.handleTreemapGroupSecondaryClick}
+          onResize={this.handleResize}/>
         <Tooltip visible={showTooltip}>
           {tooltipContent}
         </Tooltip>
@@ -200,6 +201,16 @@ export default class ModulesTreemap extends Component {
     this.setState({
       showChunkContextMenu: false
     });
+  }
+
+  handleResize = () => {
+    // Close any open context menu when the report is resized,
+    // so it doesn't show in an incorrect position
+    if (this.state.showChunkContextMenu) {
+      this.setState({
+        showChunkContextMenu: false
+      });
+    }
   }
 
   handleSidebarToggle = () => {

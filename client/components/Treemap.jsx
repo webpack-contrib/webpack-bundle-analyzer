@@ -149,7 +149,12 @@ export default class Treemap extends Component {
   }
 
   resize = () => {
+    const {props} = this;
     this.treemap.resize();
+
+    if (props.onResize) {
+      props.onResize();
+    }
   }
 }
 
