@@ -89,10 +89,6 @@ function getViewerData(bundleStats, bundleDir, opts) {
       });
 
     asset.tree = createModulesTree(asset.modules);
-
-    asset.parentAssetNames = getParentAssets(statAsset, bundleStats).map(
-      asset => asset.name
-    );
   }, {});
 
   return _.transform(assets, (result, asset, filename) => {
@@ -106,8 +102,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
       statSize: asset.tree.size || asset.size,
       parsedSize: asset.parsedSize,
       gzipSize: asset.gzipSize,
-      groups: _.invokeMap(asset.tree.children, 'toChartData'),
-      parentAssetNames: asset.parentAssetNames
+      groups: _.invokeMap(asset.tree.children, 'toChartData')
     });
   }, []);
 }
@@ -126,18 +121,6 @@ function getBundleModules(bundleStats) {
     .flatten()
     .uniqBy('id')
     .value();
-}
-
-function getParentAssets(statAsset, bundleStats) {
-  // Get asset objects corresponding to parent chunks of the specified asset
-  const parentChunks = _(statAsset.chunks)
-    .map(chunkId => _.find(bundleStats.chunks, {id: chunkId}))
-    .map('parents')
-    .flatten()
-    .value();
-  return bundleStats.assets.filter(asset =>
-    asset.chunks.some(chunk => parentChunks.includes(chunk))
-  );
 }
 
 function assetHasModule(statAsset, statModule) {

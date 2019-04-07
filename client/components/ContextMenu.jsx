@@ -36,7 +36,6 @@ export default class ContextMenu extends PureComponent {
     return (
       <ul ref={this.saveNode} className={containerClassName} style={this.getStyle()}>
         <li className={itemClassName} onClick={this.handleClickHideChunk}>Hide chunk</li>
-        <li className={itemClassName} onClick={this.handleClickFilterToParents}>Show parent chunks</li>
         <li className={itemClassName} onClick={this.handleClickFilterToChunk}>Hide all other chunks</li>
         <hr/>
         <li className={itemClassName} onClick={this.handleClickShowAllChunks}>Show all chunks</li>
@@ -57,16 +56,6 @@ export default class ContextMenu extends PureComponent {
     const {chunk: selectedChunk} = this.props;
     if (selectedChunk && selectedChunk.label) {
       const filteredChunks = store.allChunks.filter(chunk => chunk.label === selectedChunk.label);
-      store.selectedChunks = filteredChunks;
-    }
-    this.hide();
-  }
-
-  handleClickFilterToParents = () => {
-    const {chunk: selectedChunk} = this.props;
-    if (selectedChunk && selectedChunk.parentAssetNames) {
-      const groupAndParentAssets = [selectedChunk.label, ...selectedChunk.parentAssetNames];
-      const filteredChunks = store.allChunks.filter(chunk => groupAndParentAssets.includes(chunk.label));
       store.selectedChunks = filteredChunks;
     }
     this.hide();

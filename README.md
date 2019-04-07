@@ -161,7 +161,6 @@ The Sidebar Menu can be opened by clicking the `>` button at the top left of the
 The Chunk Context Menu can be opened by right-clicking or `Ctrl`-clicking on a specific chunk in the report. It provides the following options:
 
  * **Hide chunk:** Hides the selected chunk
- * **Show parent chunks:** Filters down to show only the chunk and its parent chunks
  * **Filter to chunk:** Hides all chunks besides the selected one
  * **Show all chunks:** Un-hides any hidden chunks, returning the report to its initial, unfiltered view
 
