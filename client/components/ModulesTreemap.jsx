@@ -246,7 +246,7 @@ export default class ModulesTreemap extends Component {
 
   handleTreemapGroupSecondaryClick = event => {
     const {group, x, y} = event;
-    if (group && this.isAChunk(group)) {
+    if (group && group.isAsset) {
       this.setState({
         selectedChunk: group,
         selectedMouseCoords: {
@@ -278,9 +278,6 @@ export default class ModulesTreemap extends Component {
 
   handleFoundModuleClick = module => this.treemap.zoomToGroup(module);
 
-  /** Tests whether specified module/group is a top-level group corresponding to a chunk */
-  isAChunk = group => !!group.parentAssetNames
-
   isModuleVisible = module => (
     this.treemap.isGroupRendered(module)
   )
@@ -300,7 +297,7 @@ export default class ModulesTreemap extends Component {
         {module.path &&
           <div>Path: <strong>{module.path}</strong></div>
         }
-        {this.isAChunk(module) &&
+        {module.isAsset &&
           <div>
             <br/>
             <strong><em>Right-click to view options related to this chunk</em></strong>
