@@ -70,8 +70,15 @@ export default class ContextMenu extends PureComponent {
     this.hide();
   }
 
+  /**
+   * Handle document-wide `mousedown` events to detect clicks
+   * outside the context menu.
+   * @param {MouseEvent} e - DOM mouse event object
+   * @returns {void}
+   */
   handleDocumentMousedown = (e) => {
-    if (elementIsOutside(e.target, this.node)) {
+    const isSecondaryClick = e.ctrlKey || e.button === 2;
+    if (!isSecondaryClick && elementIsOutside(e.target, this.node)) {
       e.preventDefault();
       e.stopPropagation();
       this.hide();
