@@ -89,6 +89,12 @@ export default class Treemap extends Component {
           };
         }
       },
+      /**
+       * Handle Foamtree's "group clicked" event
+       * @param {FoamtreeEvent} event - Foamtree event object
+       *  (see https://get.carrotsearch.com/foamtree/demo/api/index.html#event-details)
+       * @returns {void}
+       */
       onGroupClick(event) {
         preventDefault(event);
         if ((event.ctrlKey || event.secondary) && props.onGroupSecondaryClick) {
