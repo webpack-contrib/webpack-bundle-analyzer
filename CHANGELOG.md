@@ -17,7 +17,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## 3.3.0
 
  * **New Feature**
-   * Show/hide chunks using context menu ([#264](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/264), [@bregenspan](https://github.com/bregenspan)))
+   * Show/hide chunks using context menu ([#246](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/246), [@bregenspan](https://github.com/bregenspan))
 
  * **Internal**
    * Updated dev dependencies
@@ -25,7 +25,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## 3.2.0
 
  * **Improvements**
-   * Add support for .mjs output files ([#252](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/252), [@jlopezxs](https://github.com/jlopezxs)))
+   * Add support for .mjs output files ([#252](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/252), [@jlopezxs](https://github.com/jlopezxs))
 
 ## 3.1.0
 
