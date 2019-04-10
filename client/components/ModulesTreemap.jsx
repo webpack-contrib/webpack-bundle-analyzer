@@ -26,6 +26,11 @@ const SIZE_SWITCH_ITEMS = [
 
 @observer
 export default class ModulesTreemap extends Component {
+  mouseCoords = {
+    x: 0,
+    y: 0
+  };
+
   state = {
     selectedChunk: null,
     selectedMouseCoords: {x: 0, y: 0},
@@ -34,6 +39,14 @@ export default class ModulesTreemap extends Component {
     showTooltip: false,
     tooltipContent: null
   };
+
+  componentDidMount() {
+    document.addEventListener('mousemove', this.handleMouseMove, true);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousemove', this.handleMouseMove, true);
+  }
 
   render() {
     const {
@@ -245,14 +258,12 @@ export default class ModulesTreemap extends Component {
   };
 
   handleTreemapGroupSecondaryClick = event => {
-    const {group, x, y} = event;
+    const {group} = event;
+
     if (group && group.isAsset) {
       this.setState({
         selectedChunk: group,
-        selectedMouseCoords: {
-          x,
-          y
-        },
+        selectedMouseCoords: {...this.mouseCoords},
         showChunkContextMenu: true
       });
     } else {
@@ -277,6 +288,13 @@ export default class ModulesTreemap extends Component {
   };
 
   handleFoundModuleClick = module => this.treemap.zoomToGroup(module);
+
+  handleMouseMove = event => {
+    Object.assign(this.mouseCoords, {
+      x: event.pageX,
+      y: event.pageY
+    });
+  }
 
   isModuleVisible = module => (
     this.treemap.isGroupRendered(module)
