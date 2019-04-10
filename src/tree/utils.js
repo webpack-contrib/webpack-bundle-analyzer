@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const MULTI_MODULE_REGEXP = /^multi /;
+const MULTI_MODULE_REGEXP = /^multi /u;
 
 export function getModulePathParts(moduleData) {
   if (MULTI_MODULE_REGEXP.test(moduleData.identifier)) {

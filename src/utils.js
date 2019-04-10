@@ -9,7 +9,7 @@ function createAssetsFilter(excludePatterns) {
     .compact()
     .map(pattern => {
       if (typeof pattern === 'string') {
-        pattern = new RegExp(pattern);
+        pattern = new RegExp(pattern, 'u');
       }
 
       if (_.isRegExp(pattern)) {

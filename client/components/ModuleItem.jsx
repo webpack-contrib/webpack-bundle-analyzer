@@ -48,8 +48,8 @@ export default class ModuleItem extends PureComponent {
 
     if (term) {
       const regexp = (term instanceof RegExp) ?
-        new RegExp(term.source, 'ig') :
-        new RegExp(`(?:${_.escapeRegExp(term)})+`, 'i');
+        new RegExp(term.source, 'igu') :
+        new RegExp(`(?:${_.escapeRegExp(term)})+`, 'iu');
       let match;
       let lastMatch;
 

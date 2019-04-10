@@ -18,7 +18,7 @@ describe('createAssetsFilter', function () {
   });
 
   it('should allow a RegExp as a pattern', function () {
-    const filter = createAssetsFilter(/^foo/i);
+    const filter = createAssetsFilter(/^foo/iu);
     expect(filter('foo')).to.equal(false);
     expect(filter('FOO')).to.equal(false);
     expect(filter('foo-bar')).to.equal(false);
@@ -43,7 +43,7 @@ describe('createAssetsFilter', function () {
   it('should allow an array of patterns', function () {
     const filter = createAssetsFilter([
       '^foo',
-      /bar$/i,
+      /bar$/iu,
       asset => asset.includes('baz')
     ]);
     expect(filter('foo')).to.equal(false);

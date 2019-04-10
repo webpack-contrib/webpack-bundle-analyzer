@@ -9,8 +9,8 @@ const Folder = require('./tree/Folder').default;
 const {parseBundle} = require('./parseUtils');
 const {createAssetsFilter} = require('./utils');
 
-const FILENAME_QUERY_REGEXP = /\?.*$/;
-const FILENAME_EXTENSIONS = /\.(js|mjs)$/i;
+const FILENAME_QUERY_REGEXP = /\?.*$/u;
+const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
 
 module.exports = {
   getViewerData,

@@ -1,6 +1,6 @@
 const compact = require('lodash/compact');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzePlugin = require('./lib/BundleAnalyzerPlugin');
 
 module.exports = opts => {
@@ -38,22 +38,14 @@ module.exports = opts => {
     optimization: {
       minimize: !isDev,
       minimizer: [
-        new UglifyJsPlugin({
+        new TerserPlugin({
           parallel: true,
           sourceMap: true,
-          uglifyOptions: {
+          terserOptions: {
             output: {
-              comments: /copyright/i
+              comments: /copyright/iu
             },
-            compress: {
-              // Fixes bad function inlining minification.
-              // See https://github.com/webpack/webpack/issues/6760,
-              // https://github.com/webpack/webpack/issues/6567#issuecomment-369554250
-              inline: 1
-            },
-            mangle: {
-              safari10: true
-            }
+            safari10: true
           }
         })
       ]
@@ -62,8 +54,8 @@ module.exports = opts => {
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
-          exclude: /(node_modules|client\/vendor)/,
+          test: /\.jsx?$/u,
+          exclude: /(node_modules|client\/vendor)/u,
           loader: 'babel-loader',
           options: {
             babelrc: false,
@@ -76,6 +68,7 @@ module.exports = opts => {
                 ],
                 modules: false,
                 useBuiltIns: 'usage',
+                corejs: 2,
                 exclude: [
                   // Excluding unused polyfills to completely get rid of `core.js` in the resulting bundle
                   'web.dom.iterable',
@@ -96,7 +89,7 @@ module.exports = opts => {
           }
         },
         {
-          test: /\.css$/,
+          test: /\.css$/u,
           use: [
             'style-loader',
             {
@@ -119,11 +112,11 @@ module.exports = opts => {
           ]
         },
         {
-          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/u,
           loader: 'url-loader'
         },
         {
-          test: /carrotsearch\.foamtree/,
+          test: /carrotsearch\.foamtree/u,
           loader: 'exports-loader?CarrotSearchFoamTree'
         }
       ]

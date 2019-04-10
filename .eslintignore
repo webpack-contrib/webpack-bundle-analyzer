@@ -16,4 +16,7 @@ test/webpack.config.js
 # Test results
 test/output
 
+# Webpack config
+webpack.config.js
+
 samples

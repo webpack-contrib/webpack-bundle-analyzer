@@ -9,7 +9,7 @@ describe('parseBundle', function () {
   const bundles = fs
     .readdirSync(BUNDLES_DIR)
     .filter(filename => filename.endsWith('.js'))
-    .map(filename => filename.replace(/\.js$/, ''));
+    .map(filename => filename.replace(/\.js$/u, ''));
 
   bundles
     .filter(bundleName => bundleName.startsWith('valid'))

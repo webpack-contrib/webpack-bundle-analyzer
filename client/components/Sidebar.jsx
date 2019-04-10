@@ -53,8 +53,8 @@ export default class Sidebar extends Component {
           <Button type="button"
             title="Pin"
             className={s.pinButton}
-            toggle
             active={pinned}
+            toggle
             onClick={this.handlePinButtonClick}>
             <Icon name="pin" size={13}/>
           </Button>

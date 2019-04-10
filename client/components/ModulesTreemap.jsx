@@ -114,10 +114,10 @@ export default class ModulesTreemap extends Component {
         <Tooltip visible={showTooltip}>
           {tooltipContent}
         </Tooltip>
-        <ContextMenu onHide={this.handleChunkContextMenuHide}
-          visible={showChunkContextMenu}
+        <ContextMenu visible={showChunkContextMenu}
           chunk={selectedChunk}
-          coords={selectedMouseCoords}/>
+          coords={selectedMouseCoords}
+          onHide={this.handleChunkContextMenuHide}/>
       </div>
     );
   }
