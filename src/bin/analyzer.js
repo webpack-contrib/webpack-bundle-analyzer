@@ -32,7 +32,9 @@ const program = commander
     'server'
   )
   .option(
-    '-h, --host <host>',
+    // Had to make `host` parameter optional in order to let `-h` flag output help message
+    // Fixes https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/239
+    '-h, --host [host]',
     'Host that will be used in `server` mode to start HTTP server.',
     '127.0.0.1'
   )
@@ -125,7 +127,7 @@ if (mode === 'server') {
 }
 
 function showHelp(error) {
-  if (error) console.log(`\n  ${magenta(error)}`);
+  if (error) console.log(`\n  ${magenta(error)}\n`);
   program.outputHelp();
   process.exit(1);
 }
