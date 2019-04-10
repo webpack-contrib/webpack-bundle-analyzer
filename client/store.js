@@ -61,7 +61,7 @@ export class Store {
     }
 
     try {
-      return new RegExp(query, 'i');
+      return new RegExp(query, 'iu');
     } catch (err) {
       return null;
     }

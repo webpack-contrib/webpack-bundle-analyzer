@@ -7,7 +7,7 @@ const NODE_DEST = './lib';
 
 const cli = require('commander')
   .usage('<task> [options]')
-  .option('-e, --env <environment>', 'Can be `prod` or `dev`. Default is `dev`', /^(dev|prod)$/, 'dev')
+  .option('-e, --env <environment>', 'Can be `prod` or `dev`. Default is `dev`', /^(dev|prod)$/u, 'dev')
   .option('-a, --analyze', 'Analyze client bundle. If set, `env` will be set to `prod`.')
   .parse(process.argv);
 
