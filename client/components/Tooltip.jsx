@@ -9,22 +9,18 @@ export default class Tooltip extends Component {
   static marginX = 10;
   static marginY = 30;
 
-  constructor(props) {
-    super(props);
+  mouseCoords = {
+    x: 0,
+    y: 0
+  };
 
-    this.mouseCoords = {
-      x: 0,
-      y: 0
-    };
-
-    this.state = {
-      left: 0,
-      top: 0
-    };
-  }
+  state = {
+    left: 0,
+    top: 0
+  };
 
   componentDidMount() {
-    document.addEventListener('mousemove', this.onMouseMove, false);
+    document.addEventListener('mousemove', this.handleMouseMove, true);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -32,7 +28,7 @@ export default class Tooltip extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousemove', this.onMouseMove);
+    document.removeEventListener('mousemove', this.handleMouseMove, true);
   }
 
   render() {
@@ -50,6 +46,17 @@ export default class Tooltip extends Component {
       </div>
     );
   }
+
+  handleMouseMove = event => {
+    Object.assign(this.mouseCoords, {
+      x: event.pageX,
+      y: event.pageY
+    });
+
+    if (this.props.visible) {
+      this.updatePosition();
+    }
+  };
 
   saveNode = node => (this.node = node);
 
@@ -82,16 +89,5 @@ export default class Tooltip extends Component {
 
     this.setState(pos);
   }
-
-  onMouseMove = event => {
-    Object.assign(this.mouseCoords, {
-      x: event.pageX,
-      y: event.pageY
-    });
-
-    if (this.props.visible) {
-      this.updatePosition();
-    }
-  };
 
 }
