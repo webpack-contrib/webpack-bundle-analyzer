@@ -148,6 +148,22 @@ as Uglify, then this value will reflect the minified size of your code.
 
 This is the size of running the parsed bundles/modules through gzip compression.
 
+<h2 align="center">Selecting Which Chunks to Display</h2>
+
+When opened, the report displays all of the Webpack chunks for your project. It's possible to filter to a more specific list of chunks by using the sidebar or the chunk context menu.
+
+### Sidebar
+
+The Sidebar Menu can be opened by clicking the `>` button at the top left of the report. You can select or deselect chunks to display under the "Show chunks" heading there.
+
+### Chunk Context Menu
+
+The Chunk Context Menu can be opened by right-clicking or `Ctrl`-clicking on a specific chunk in the report. It provides the following options:
+
+ * **Hide chunk:** Hides the selected chunk
+ * **Hide all other chunks:** Hides all chunks besides the selected one
+ * **Show all chunks:** Un-hides any hidden chunks, returning the report to its initial, unfiltered view
+
 <h2 align="center">Troubleshooting</h2>
 
 ### I can't see all the dependencies in a chunk

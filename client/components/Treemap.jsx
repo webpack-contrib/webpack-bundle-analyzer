@@ -89,8 +89,18 @@ export default class Treemap extends Component {
           };
         }
       },
+      /**
+       * Handle Foamtree's "group clicked" event
+       * @param {FoamtreeEvent} event - Foamtree event object
+       *  (see https://get.carrotsearch.com/foamtree/demo/api/index.html#event-details)
+       * @returns {void}
+       */
       onGroupClick(event) {
         preventDefault(event);
+        if ((event.ctrlKey || event.secondary) && props.onGroupSecondaryClick) {
+          props.onGroupSecondaryClick.call(component, event);
+          return;
+        }
         component.zoomOutDisabled = false;
         this.zoom(event.group);
       },
@@ -145,7 +155,12 @@ export default class Treemap extends Component {
   }
 
   resize = () => {
+    const {props} = this;
     this.treemap.resize();
+
+    if (props.onResize) {
+      props.onResize();
+    }
   }
 }
 

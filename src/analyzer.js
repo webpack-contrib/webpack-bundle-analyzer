@@ -94,6 +94,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
   return _.transform(assets, (result, asset, filename) => {
     result.push({
       label: filename,
+      isAsset: true,
       // Not using `asset.size` here provided by Webpack because it can be very confusing when `UglifyJsPlugin` is used.
       // In this case all module sizes from stats file will represent unminified module sizes, but `asset.size` will
       // be the size of minified bundle.

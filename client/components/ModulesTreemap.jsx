@@ -11,6 +11,7 @@ import Switcher from './Switcher';
 import Sidebar from './Sidebar';
 import Checkbox from './Checkbox';
 import CheckboxList from './CheckboxList';
+import ContextMenu from './ContextMenu';
 
 import s from './ModulesTreemap.css';
 import Search from './Search';
@@ -26,13 +27,23 @@ const SIZE_SWITCH_ITEMS = [
 @observer
 export default class ModulesTreemap extends Component {
   state = {
+    selectedChunk: null,
+    selectedMouseCoords: {x: 0, y: 0},
     sidebarPinned: false,
+    showChunkContextMenu: false,
     showTooltip: false,
     tooltipContent: null
   };
 
   render() {
-    const {sidebarPinned, showTooltip, tooltipContent} = this.state;
+    const {
+      selectedChunk,
+      selectedMouseCoords,
+      sidebarPinned,
+      showChunkContextMenu,
+      showTooltip,
+      tooltipContent
+    } = this.state;
 
     return (
       <div className={s.container}>
@@ -97,10 +108,16 @@ export default class ModulesTreemap extends Component {
           highlightGroups={this.highlightedModules}
           weightProp={store.activeSize}
           onMouseLeave={this.handleMouseLeaveTreemap}
-          onGroupHover={this.handleTreemapGroupHover}/>
+          onGroupHover={this.handleTreemapGroupHover}
+          onGroupSecondaryClick={this.handleTreemapGroupSecondaryClick}
+          onResize={this.handleResize}/>
         <Tooltip visible={showTooltip}>
           {tooltipContent}
         </Tooltip>
+        <ContextMenu onHide={this.handleChunkContextMenuHide}
+          visible={showChunkContextMenu}
+          chunk={selectedChunk}
+          coords={selectedMouseCoords}/>
       </div>
     );
   }
@@ -180,6 +197,22 @@ export default class ModulesTreemap extends Component {
     store.showConcatenatedModulesContent = flag;
   }
 
+  handleChunkContextMenuHide = () => {
+    this.setState({
+      showChunkContextMenu: false
+    });
+  }
+
+  handleResize = () => {
+    // Close any open context menu when the report is resized,
+    // so it doesn't show in an incorrect position
+    if (this.state.showChunkContextMenu) {
+      this.setState({
+        showChunkContextMenu: false
+      });
+    }
+  }
+
   handleSidebarToggle = () => {
     if (this.state.sidebarPinned) {
       setTimeout(() => this.treemap.resize());
@@ -209,6 +242,25 @@ export default class ModulesTreemap extends Component {
 
   handleMouseLeaveTreemap = () => {
     this.setState({showTooltip: false});
+  };
+
+  handleTreemapGroupSecondaryClick = event => {
+    const {group, x, y} = event;
+    if (group && group.isAsset) {
+      this.setState({
+        selectedChunk: group,
+        selectedMouseCoords: {
+          x,
+          y
+        },
+        showChunkContextMenu: true
+      });
+    } else {
+      this.setState({
+        selectedChunk: null,
+        showChunkContextMenu: false
+      });
+    }
   };
 
   handleTreemapGroupHover = event => {
@@ -244,6 +296,12 @@ export default class ModulesTreemap extends Component {
         {!module.inaccurateSizes && this.renderModuleSize(module, 'gzip')}
         {module.path &&
           <div>Path: <strong>{module.path}</strong></div>
+        }
+        {module.isAsset &&
+          <div>
+            <br/>
+            <strong><em>Right-click to view options related to this chunk</em></strong>
+          </div>
         }
       </div>
     );
