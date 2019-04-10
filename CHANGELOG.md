@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Bug Fix**
+   * Fix showing help message on `-h` flag ([#260](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/260), fixes [#239](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/239))
+
 ## 3.3.0
 
  * **New Feature**
