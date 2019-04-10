@@ -14,26 +14,34 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.3.0
+
+ * **New Feature**
+   * Show/hide chunks using context menu ([#264](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/264), [@bregenspan](https://github.com/bregenspan)))
+
+ * **Internal**
+   * Updated dev dependencies
+
 ## 3.2.0
 
-* **Improvements**
-  * Add support for .mjs output files ([#252](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/252), [@jlopezxs](https://github.com/jlopezxs)))
+ * **Improvements**
+   * Add support for .mjs output files ([#252](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/252), [@jlopezxs](https://github.com/jlopezxs)))
 
 ## 3.1.0
 
-* **Bug Fix**
-  * Properly determine the size of the modules containing special characters ([#223](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/223), [@hulkish](https://github.com/hulkish))
-  * Update acorn to v6 ([#248](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/248), [@realityking](https://github.com/realityking))
+ * **Bug Fix**
+   * Properly determine the size of the modules containing special characters ([#223](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/223), [@hulkish](https://github.com/hulkish))
+   * Update acorn to v6 ([#248](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/248), [@realityking](https://github.com/realityking))
 
 ## 3.0.4
 
-* **Bug Fix**
-  * Make webpack's done hook wait until analyzer writes report or stat file ([#247](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/247), [@mareolan](https://github.com/mareolan))
+ * **Bug Fix**
+   * Make webpack's done hook wait until analyzer writes report or stat file ([#247](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/247), [@mareolan](https://github.com/mareolan))
 
 ## 3.0.3
 
-* **Bug Fix**
-  * Disable viewer websocket connection when report is generated in `static` mode ([#215](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/215), [@sebastianhaeni](https://github.com/sebastianhaeni))
+ * **Bug Fix**
+   * Disable viewer websocket connection when report is generated in `static` mode ([#215](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/215), [@sebastianhaeni](https://github.com/sebastianhaeni))
 
 ## 3.0.2
 
