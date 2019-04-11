@@ -166,22 +166,6 @@ The Chunk Context Menu can be opened by right-clicking or `Ctrl`-clicking on a s
 
 <h2 align="center">Troubleshooting</h2>
 
-### I can't see all the dependencies in a chunk
-
-This is a known caveat when `webpack.optimize.ModuleConcatenationPlugin` is used with `Webpack 3` or `webpack-bundle-analyzer < 2.11.0`.
-The way `ModuleConcatenationPlugin` works is that it merges multiple modules into a single one, and so that resulting module doesn't have edges anymore.
-`Webpack 3` didn't provide any information about concatenated modules, but `Webpack 4` started including it into a `stats` files and `webpack-bundle-analyzer 2.11.0` learned to show it.
-
-If for some reason you can't update to the latest versions try analyzing your bundle without `ModuleConcatenationPlugin`. See [issue #115](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/115) for more discussion.
-
-If you are using `Angular CLI < 6.0.0` (which is based on `Webpack 3` and uses `ModuleConcatenationPlugin`) you can build your project using the following command:
-```
-ng build --stats-json --build-optimizer=false --vendor-chunk=true
-```
-The resulting stats.json can be found at `dist/stats.json`
-
-*Please be aware, that this is not a reasonable build for production use, as it increases the build output size considerably.*
-
 ### I don't see `gzip` or `parsed` sizes, it only shows `stat` size
 
 It happens when `webpack-bundle-analyzer` analyzes files that don't actually exist in your file system, for example when you work with `webpack-dev-server` that keeps all the files in RAM. If you use `webpack-bundle-analyzer` as a plugin you won't get any errors, however if you run it via CLI you get the error message in terminal:
