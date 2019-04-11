@@ -14,6 +14,7 @@ const Logger = require('./Logger');
 const analyzer = require('./analyzer');
 
 const projectRoot = path.resolve(__dirname, '..');
+const assetsRoot = path.join(projectRoot, 'public');
 
 module.exports = {
   startServer,
@@ -169,7 +170,13 @@ async function generateReport(bundleStats, opts) {
 }
 
 function getAssetContent(filename) {
-  return fs.readFileSync(`${projectRoot}/public/${filename}`, 'utf8');
+  const assetPath = path.join(assetsRoot, filename);
+
+  if (!assetPath.startsWith(assetsRoot)) {
+    throw new Error(`"${filename}" is outside of the assets root`);
+  }
+
+  return fs.readFileSync(assetPath, 'utf8');
 }
 
 /**
