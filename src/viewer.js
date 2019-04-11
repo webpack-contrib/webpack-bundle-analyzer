@@ -53,7 +53,9 @@ async function startServer(bundleStats, opts) {
       mode: 'server',
       get chartData() { return JSON.stringify(chartData) },
       defaultSizes: JSON.stringify(defaultSizes),
-      enableWebSocket: true
+      enableWebSocket: true,
+      // Helpers
+      escapeScript
     });
   });
 
@@ -131,9 +133,11 @@ async function generateReport(bundleStats, opts) {
       {
         mode: 'static',
         chartData: JSON.stringify(chartData),
-        assetContent: getAssetContent,
         defaultSizes: JSON.stringify(defaultSizes),
-        enableWebSocket: false
+        enableWebSocket: false,
+        // Helpers
+        assetContent: getAssetContent,
+        escapeScript
       },
       (err, reportHtml) => {
         try {
@@ -166,6 +170,13 @@ async function generateReport(bundleStats, opts) {
 
 function getAssetContent(filename) {
   return fs.readFileSync(`${projectRoot}/public/${filename}`, 'utf8');
+}
+
+/**
+ * Escapes `<` characters in the string to safely use it in `<script>` tag.
+ */
+function escapeScript(value) {
+  return String(value).replace(/</gu, '\\u003c');
 }
 
 function getChartData(analyzerOpts, ...args) {

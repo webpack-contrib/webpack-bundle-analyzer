@@ -11,9 +11,9 @@
   <body>
     <div id="app"></div>
     <script>
-      window.chartData = <%- chartData %>;
-      window.defaultSizes = <%- defaultSizes %>;
-      window.enableWebSocket = <%- enableWebSocket %>;
+      window.chartData = <%- escapeScript(chartData) %>;
+      window.defaultSizes = <%- escapeScript(defaultSizes) %>;
+      window.enableWebSocket = <%- escapeScript(enableWebSocket) %>;
     </script>
   </body>
 </html>
