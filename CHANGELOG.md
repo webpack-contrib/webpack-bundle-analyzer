@@ -13,6 +13,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## UNRELEASED
 
 <!-- Add changelog entries for new changes under this section -->
+ * **Improvements**
+   * Use relative links for serving internal assets ([#261](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/261), fixes [#254](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/254))
 
  * **Improvements**
    * Properly escape embedded JS/JSON ([#262](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/262))
