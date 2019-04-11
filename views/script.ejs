@@ -1,7 +1,7 @@
 <% if (mode === 'static') { %>
   <!-- <%= filename %> -->
   <script>
-    <%- escapeScript(assetContent(filename)) %>
+    <%- assetContent(filename) %>
   </script>
 <% } else { %>
   <script src="<%= filename %>"></script>
