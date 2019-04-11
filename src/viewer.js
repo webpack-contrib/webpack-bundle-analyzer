@@ -52,11 +52,11 @@ async function startServer(bundleStats, opts) {
   app.use('/', (req, res) => {
     res.render('viewer', {
       mode: 'server',
-      get chartData() { return JSON.stringify(chartData) },
-      defaultSizes: JSON.stringify(defaultSizes),
+      get chartData() { return chartData },
+      defaultSizes,
       enableWebSocket: true,
       // Helpers
-      escapeScript
+      escapeJson
     });
   });
 
@@ -133,12 +133,12 @@ async function generateReport(bundleStats, opts) {
       `${projectRoot}/views/viewer.ejs`,
       {
         mode: 'static',
-        chartData: JSON.stringify(chartData),
-        defaultSizes: JSON.stringify(defaultSizes),
+        chartData,
+        defaultSizes,
         enableWebSocket: false,
         // Helpers
         assetContent: getAssetContent,
-        escapeScript
+        escapeJson
       },
       (err, reportHtml) => {
         try {
@@ -180,10 +180,10 @@ function getAssetContent(filename) {
 }
 
 /**
- * Escapes `<` characters in the string to safely use it in `<script>` tag.
+ * Escapes `<` characters in JSON to safely use it in `<script>` tag.
  */
-function escapeScript(value) {
-  return String(value).replace(/</gu, '\\u003c');
+function escapeJson(json) {
+  return JSON.stringify(json).replace(/</gu, '\\u003c');
 }
 
 function getChartData(analyzerOpts, ...args) {
