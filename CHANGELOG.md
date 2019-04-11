@@ -14,6 +14,11 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.3.2
+
+ * **Bug Fix**
+   * Fix regression with escaping internal assets ([#264](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/264), fixes [#263](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/263))
+
 ## 3.3.1
 
  * **Improvements**
