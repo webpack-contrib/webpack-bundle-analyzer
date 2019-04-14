@@ -61,11 +61,8 @@ module.exports = opts => {
             babelrc: false,
             presets: [
               ['@babel/preset-env', {
-                targets: [
-                  'last 2 Chrome major versions',
-                  'last 2 Firefox major versions',
-                  'last 1 Safari major version'
-                ],
+                // Target browsers are specified in .browserslistrc
+
                 modules: false,
                 useBuiltIns: 'usage',
                 corejs: 2,
@@ -105,6 +102,7 @@ module.exports = opts => {
               options: {
                 plugins: compact([
                   require('postcss-icss-values'),
+                  require('autoprefixer'),
                   !isDev && require('cssnano')()
                 ])
               }
