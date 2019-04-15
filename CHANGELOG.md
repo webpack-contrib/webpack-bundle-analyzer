@@ -14,6 +14,10 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Internal**
+   * Use Autoprefixer ([#266](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/266), [@bregenspan](https://github.com/bregenspan))
+
+
 ## 3.3.2
 
  * **Bug Fix**
