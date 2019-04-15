@@ -60,7 +60,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
       }
 
       bundlesSources[statAsset.name] = bundleInfo.src;
-      _.assign(parsedModules, bundleInfo.modules);
+      Object.assign(parsedModules, bundleInfo.modules);
     }
 
     if (_.isEmpty(bundlesSources)) {
@@ -133,7 +133,7 @@ function assetHasModule(statAsset, statModule) {
 function createModulesTree(modules) {
   const root = new Folder('.');
 
-  _.each(modules, module => root.addModule(module));
+  Object.keys(modules).forEach(key => root.addModule(modules[key]));
   root.mergeNestedFolders();
 
   return root;
