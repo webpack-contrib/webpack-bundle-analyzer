@@ -1,4 +1,4 @@
-const fs = require('fs');
+const http = require('http');
 const {exec} = require('child_process');
 
 const del = require('del');
@@ -21,16 +21,17 @@ describe('Webpack Dev Server', function () {
       cwd: ROOT
     });
 
-    const reportCheckIntervalId = setInterval(() => {
-      if (fs.existsSync(`${webpackConfig.output.path}/report.html`)) {
-        finish();
-      } else if (Date.now() - startedAt > timeout - 1000) {
-        finish(`report file wasn't found in "${webpackConfig.output.path}" directory`);
-      }
-    }, 300);
+    setTimeout(() => {
+      http.get('http://localhost:8080/report.html', (res) => {
+        if (res.statusCode === 200) {
+          finish();
+        } else if (Date.now() - startedAt > timeout - 1000) {
+          finish(`report file wasn't found in "${webpackConfig.output.path}" directory`);
+        }
+      });
+    }, 2000);
 
     function finish(errorMessage) {
-      clearInterval(reportCheckIntervalId);
       devServer.kill();
       done(errorMessage ? new Error(errorMessage) : null);
     }

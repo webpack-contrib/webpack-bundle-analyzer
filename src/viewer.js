@@ -121,7 +121,8 @@ async function generateReport(bundleStats, opts) {
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
-    excludeAssets = null
+    excludeAssets = null,
+    outputFileSystem = fs
   } = opts || {};
 
   const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
@@ -150,8 +151,11 @@ async function generateReport(bundleStats, opts) {
 
           const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
 
-          mkdir.sync(path.dirname(reportFilepath));
-          fs.writeFileSync(reportFilepath, reportHtml);
+          if (outputFileSystem === fs || outputFileSystem.constructor.name === 'NodeOutputFileSystem') {
+            outputFileSystem.writeFileSync = fs.writeFileSync.bind(outputFileSystem);
+            mkdir.sync(path.dirname(reportFilepath));
+          }
+          outputFileSystem.writeFileSync(reportFilepath, reportHtml);
 
           logger.info(
             `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`

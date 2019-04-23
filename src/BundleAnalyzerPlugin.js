@@ -120,6 +120,7 @@ class BundleAnalyzerPlugin {
     await viewer.generateReport(stats, {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename),
+      outputFileSystem: this.compiler.outputFileSystem,
       bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
       defaultSizes: this.opts.defaultSizes,
