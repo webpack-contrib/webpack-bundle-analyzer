@@ -13,7 +13,7 @@ class BundleAnalyzerPlugin {
       analyzerMode: 'server',
       analyzerHost: '127.0.0.1',
       analyzerPort: 8888,
-      bundleDir: null,
+      bundleDirOption: null,
       reportFilename: 'report.html',
       defaultSizes: 'parsed',
       openAnalyzer: true,
@@ -109,7 +109,7 @@ class BundleAnalyzerPlugin {
         openBrowser: this.opts.openAnalyzer,
         host: this.opts.analyzerHost,
         port: this.opts.analyzerPort,
-        bundleDir: this.getBundleDir(this.opts.bundleDir),
+        bundleDir: this.getBundleDir(this.opts.bundleDirOption),
         logger: this.logger,
         defaultSizes: this.opts.defaultSizes,
         excludeAssets: this.opts.excludeAssets
@@ -121,22 +121,22 @@ class BundleAnalyzerPlugin {
     await viewer.generateReport(stats, {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename),
-      bundleDir: this.getBundleDir(this.opts.bundleDir),
+      bundleDir: this.getBundleDir(this.opts.bundleDirOption),
       logger: this.logger,
       defaultSizes: this.opts.defaultSizes,
       excludeAssets: this.opts.excludeAssets
     });
   }
 
-  getBundleDir(bundleDirOpts) {
-    if (bundleDirOpts == null) { // bundleDirOpts is not provided
+  getBundleDir(bundleDirOption) {
+    if (bundleDirOption == null) { // bundleDirOption is not provided
       return getBundleDirFromCompiler();
 
-    } else if (bundleDirOpts === false) { // bundleDirOpts is explicitly turned off
+    } else if (bundleDirOption === false) { // bundleDirOption is explicitly turned off
       return null;
     }
 
-    return bundleDirOpts;
+    return bundleDirOption;
   }
 
   getBundleDirFromCompiler() {
