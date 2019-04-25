@@ -128,7 +128,13 @@ class BundleAnalyzerPlugin {
   }
 
   getBundleDirFromCompiler() {
-    return (this.compiler.outputFileSystem.constructor.name === 'MemoryFileSystem') ? null : this.compiler.outputPath;
+    switch (this.compiler.outputFileSystem.constructor.name) {
+      case 'MemoryFileSystem':
+      case 'AsyncMFS':
+        return null;
+      default:
+        return this.compiler.outputPath;
+    }
   }
 
 }
