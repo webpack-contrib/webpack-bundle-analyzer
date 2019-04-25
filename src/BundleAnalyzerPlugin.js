@@ -130,7 +130,7 @@ class BundleAnalyzerPlugin {
 
   getBundleDir(bundleDirOption) {
     if (bundleDirOption == null) { // bundleDirOption is not provided
-      return getBundleDirFromCompiler();
+      return this.getBundleDirFromCompiler();
 
     } else if (bundleDirOption === false) { // bundleDirOption is explicitly turned off
       return null;
