@@ -59,6 +59,7 @@ new BundleAnalyzerPlugin(options?: object)
 |**`analyzerMode`**|One of: `server`, `static`, `disabled`|Default: `server`. In `server` mode analyzer will start HTTP server to show bundle report. In `static` mode single HTML file with bundle report will be generated. In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`. |
 |**`analyzerHost`**|`{String}`|Default: `127.0.0.1`. Host that will be used in `server` mode to start HTTP server.|
 |**`analyzerPort`**|`{Number}`|Default: `8888`. Port that will be used in `server` mode to start HTTP server.|
+|**`bundleDirOption`**|`{null|Boolean|String}`|Default: `null`. Option defining the directory containing all generated bundles. If `null`, make `bundleDir` to be `compiler.outputPath`, or `null` if webpack-dev-server is used. otherwise if `false`, `bundleDir` will be `null`. Else, provided `bundleDirOption` will be used as `bundleDir` |
 |**`reportFilename`**|`{String}`|Default: `report.html`. Path to bundle report file that will be generated in `static` mode. It can be either an absolute path or a path relative to a bundle output directory (which is output.path in webpack config).|
 |**`defaultSizes`**|One of: `stat`, `parsed`, `gzip`|Default: `parsed`. Module sizes to show in report by default. [Size definitions](#size-definitions) section describes what these values mean.|
 |**`openAnalyzer`**|`{Boolean}`|Default: `true`. Automatically open report in default browser.|
