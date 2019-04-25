@@ -129,10 +129,12 @@ class BundleAnalyzerPlugin {
   }
 
   getBundleDir(bundleDirOption) {
-    if (bundleDirOption == null) { // bundleDirOption is not provided
+    // bundleDirOption is not provided
+    if (bundleDirOption == null) {
       return this.getBundleDirFromCompiler();
 
-    } else if (bundleDirOption === false) { // bundleDirOption is explicitly turned off
+    // bundleDirOption is explicitly turned off
+    } else if (bundleDirOption === false) {
       return null;
     }
 
