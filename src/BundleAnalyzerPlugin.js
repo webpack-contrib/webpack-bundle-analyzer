@@ -130,6 +130,9 @@ class BundleAnalyzerPlugin {
   getBundleDirFromCompiler() {
     switch (this.compiler.outputFileSystem.constructor.name) {
       case 'MemoryFileSystem':
+        
+      // Detect AsyncMFS used by Nuxt 2.5 that replaces webpack's MFS during development
+      // Related: #274
       case 'AsyncMFS':
         return null;
       default:
