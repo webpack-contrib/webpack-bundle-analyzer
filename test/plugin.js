@@ -71,6 +71,64 @@ describe('Plugin', function () {
         expect(_.map(chartData, 'label')).to.deep.equal(['bundle.js']);
       });
     });
+
+    describe('bundleDirOption', function () {
+      it('should report parsedSize and gzipSize when bundleDirOption is not provided', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+          }
+        });
+
+        await webpackCompile(config);
+
+        const chartData = await getChartDataFromReport();
+        expect(
+          chartData[0].groups.every(group => (
+            ('parsedSize' in group)
+            && ('gzipSize' in group)
+            && ('statSize' in group)
+          ))
+        ).to.be.true;
+      });
+
+      it('should report parsedSize and gzipSize when bundleDirOption is null', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+            bundleDirOption: null
+          }
+        });
+
+        await webpackCompile(config);
+
+        const chartData = await getChartDataFromReport();
+        expect(
+          chartData[0].groups.every(group => (
+            ('parsedSize' in group)
+            && ('gzipSize' in group)
+            && ('statSize' in group)
+          ))
+        ).to.be.true;
+      });
+
+      it('should report statSize only bundleDirOption is false', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+            bundleDirOption: false
+          }
+        });
+
+        await webpackCompile(config);
+
+        const chartData = await getChartDataFromReport();
+        expect(
+          chartData[0].groups.every(group => (
+            !group.parsedSize
+            && !group.gzipSize
+            && group.statSize
+          ))
+        ).to.be.true;
+      });
+    });
   });
 });
 
