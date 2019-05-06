@@ -17,6 +17,7 @@ class BundleAnalyzerPlugin {
       defaultSizes: 'parsed',
       openAnalyzer: true,
       generateStatsFile: false,
+      reportDepth: 1,
       statsFilename: 'stats.json',
       statsOptions: null,
       excludeAssets: null,
@@ -38,6 +39,10 @@ class BundleAnalyzerPlugin {
       stats = stats.toJson(this.opts.statsOptions);
 
       const actions = [];
+
+      if (this.opts.generateReportFile) {
+        actions.push(() => this.generateReportFile(stats, this.opts.reportDepth));
+      }
 
       if (this.opts.generateStatsFile) {
         actions.push(() => this.generateStatsFile(stats));
@@ -73,6 +78,37 @@ class BundleAnalyzerPlugin {
       compiler.hooks.done.tapAsync('webpack-bundle-analyzer', done);
     } else {
       compiler.plugin('done', done);
+    }
+  }
+
+  async generateReportFile(stats) {
+    const statsFilepath = path.resolve(this.compiler.outputPath, this.opts.statsFilename);
+    mkdir.sync(path.dirname(statsFilepath));
+
+    try {
+      const chartData = viewer.generateReportData(stats, {
+        bundleDir: this.getBundleDirFromCompiler(),
+        logger: this.logger,
+        defaultSizes: this.opts.defaultSizes,
+        excludeAssets: this.opts.excludeAssets,
+        reportDepth: this.opts.reportDepth
+      });
+
+      await bfj.write(statsFilepath, chartData, {
+        space: 2,
+        promises: 'ignore',
+        buffers: 'ignore',
+        maps: 'ignore',
+        iterables: 'ignore',
+        circular: 'ignore'
+      });
+      this.logger.info(
+        `${bold('Webpack Bundle Analyzer')} saved report file to ${bold(statsFilepath)}`
+      );
+    } catch (error) {
+      this.logger.error(
+        `${bold('Webpack Bundle Analyzer')} error saving report data to ${bold(statsFilepath)} : ${error}`
+      );
     }
   }
 

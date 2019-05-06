@@ -71,6 +71,34 @@ describe('Plugin', function () {
         expect(_.map(chartData, 'label')).to.deep.equal(['bundle.js']);
       });
     });
+
+    describe('generator json', function () {
+      it('should get json report', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+            analyzerMode: 'disabled',
+            generateStatsFile: true
+          }
+        });
+
+        await webpackCompile(config);
+        const {statsFilename = 'stats.json'} = config;
+        expect(fs.existsSync(`${__dirname}/output/${statsFilename}`), 'report file missing').to.be.true;
+      });
+
+      it('should shaking node_modules', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+            analyzerMode: 'disabled',
+            generateReportFile: true,
+            reportDepth: 1
+          }
+        });
+
+        await webpackCompile(config);
+        await expectValidBundleReport(config);
+      });
+    });
   });
 });
 
@@ -95,8 +123,30 @@ async function expectValidReport(opts) {
   });
 }
 
+async function expectValidBundleReport(opts) {
+  const {
+    statsFilename = 'stats.json'
+  } = opts || {};
+
+  const statsFilePath = `${__dirname}/output/${statsFilename}`;
+  const compareFilePath = `${__dirname}/stats/bundle-report/bundle-report.json`;
+
+  expect(fs.existsSync(statsFilePath), 'stats file missing').to.be.true;
+  expect(
+    getDataFromReport(statsFilePath)
+  ).to.deep.equal(
+    getDataFromReport(compareFilePath)
+  );
+}
+
 async function getChartDataFromReport(reportFilename = 'report.html') {
   return await nightmare
     .goto(`file://${__dirname}/output/${reportFilename}`)
     .evaluate(() => window.chartData);
+}
+
+function getDataFromReport(reportPath) {
+  const content = fs.readFileSync(reportPath, 'utf8');
+  const json = JSON.parse(content);
+  return json;
 }

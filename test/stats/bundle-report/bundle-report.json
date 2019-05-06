@@ -1,0 +1,69 @@
+[
+  {
+    "label": "bundle.js",
+    "isAsset": true,
+    "statSize": 141,
+    "parsedSize": 1311,
+    "gzipSize": 342,
+    "groups": [
+      {
+        "label": "src",
+        "path": "./src",
+        "statSize": 141,
+        "groups": [
+          {
+            "id": "./src/a-clone.js",
+            "label": "a-clone.js",
+            "path": "./src/a-clone.js",
+            "statSize": 29,
+            "parsedSize": 123,
+            "gzipSize": 127,
+            "groups": [
+            ]
+          },
+          {
+            "id": "./src/a.js",
+            "label": "a.js",
+            "path": "./src/a.js",
+            "statSize": 29,
+            "parsedSize": 117,
+            "gzipSize": 121,
+            "groups": [
+            ]
+          },
+          {
+            "id": "./src/b.js",
+            "label": "b.js",
+            "path": "./src/b.js",
+            "statSize": 29,
+            "parsedSize": 117,
+            "gzipSize": 121,
+            "groups": [
+            ]
+          },
+          {
+            "id": "./src/index.js",
+            "label": "index.js",
+            "path": "./src/index.js",
+            "statSize": 54,
+            "parsedSize": 271,
+            "gzipSize": 168,
+            "groups": [
+            ]
+          }
+        ],
+        "parsedSize": 628,
+        "gzipSize": 205
+      }
+    ]
+  },
+  {
+    "label": "manifest.js",
+    "isAsset": true,
+    "statSize": 6189,
+    "parsedSize": 6189,
+    "gzipSize": 1659,
+    "groups": [
+    ]
+  }
+]
