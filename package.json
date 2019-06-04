@@ -1,5 +1,5 @@
 {
-  "name": "webpack-bundle-analyzer",
+  "name": "umi-plugin-bundle-analyzer",
   "version": "3.3.2",
   "description": "Webpack plugin and CLI utility that represents bundle content as convenient interactive zoomable treemap",
   "author": "Yury Grunin <grunin.ya@ya.ru>",
