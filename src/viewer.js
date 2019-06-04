@@ -19,6 +19,7 @@ const assetsRoot = path.join(projectRoot, 'public');
 module.exports = {
   startServer,
   generateReport,
+  generateReportData,
   // deprecated
   start: startServer
 };
@@ -112,6 +113,30 @@ async function startServer(bundleStats, opts) {
       }
     });
   }
+}
+
+async function generateReportData(bundleStats, opts) {
+  const {
+    bundleDir = null,
+    logger = new Logger(),
+    excludeAssets = null,
+    reportDepth = 1
+  } = opts || {};
+
+  const crop = (data, cropLevel = Infinity) => {
+    if (!data || !data.length || cropLevel === 0) {
+      return [];;
+    }
+    return data.map(d => {
+      if (d.label.indexOf('node_modules') === 0) {
+        return {...d, groups: crop(d.groups, reportDepth)};
+      }
+      return {...d, groups: crop(d.groups, cropLevel - 1)};
+    });
+  };
+
+  const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
+  return crop(chartData);
 }
 
 async function generateReport(bundleStats, opts) {
