@@ -204,11 +204,11 @@ To get more information about it you can read [issue #147](https://github.com/we
 [node]: https://img.shields.io/node/v/umi-plugin-bundle-analyzer.svg
 [node-url]: https://nodejs.org
 
-[deps]: https://david-dm.org/webpack-contrib/umi-plugin-bundle-analyzer.svg
-[deps-url]: https://david-dm.org/webpack-contrib/umi-plugin-bundle-analyzer
+[deps]: https://david-dm.org/umijs/umi-plugin-bundle-analyzer.svg
+[deps-url]: https://david-dm.org/umijs/umi-plugin-bundle-analyzer
 
-[tests]: http://img.shields.io/travis/webpack-contrib/umi-plugin-bundle-analyzer.svg
-[tests-url]: https://travis-ci.org/webpack-contrib/umi-plugin-bundle-analyzer
+[tests]: http://img.shields.io/travis/umijs/umi-plugin-bundle-analyzer.svg
+[tests-url]: https://travis-ci.org/umijs/umi-plugin-bundle-analyzer
 
 [downloads]: https://img.shields.io/npm/dt/umi-plugin-bundle-analyzer.svg
 [downloads-url]: https://npmjs.com/package/umi-plugin-bundle-analyzer
