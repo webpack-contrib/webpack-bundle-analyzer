@@ -17,15 +17,15 @@
 
 ```bash
 # NPM
-npm install --save-dev webpack-bundle-analyzer
+npm install --save-dev umi-plugin-bundle-analyzer
 # Yarn
-yarn add -D webpack-bundle-analyzer
+yarn add -D umi-plugin-bundle-analyzer
 ```
 
 <h2 align="center">Usage (as a plugin)</h2>
 
 ```js
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('umi-plugin-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   plugins: [
@@ -79,7 +79,7 @@ command:
 webpack --profile --json > stats.json
 ```
 
-If you're on Windows and using PowerShell, you can generate the stats file with this command to [avoid BOM issues](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/47):
+If you're on Windows and using PowerShell, you can generate the stats file with this command to [avoid BOM issues](https://github.com/webpack-contrib/umi-plugin-bundle-analyzer/issues/47):
 
 ```
 webpack --profile --json | Out-file 'stats.json' -Encoding OEM
@@ -88,13 +88,13 @@ webpack --profile --json | Out-file 'stats.json' -Encoding OEM
 Then you can run the CLI tool.
 
 ```
-webpack-bundle-analyzer bundle/output/path/stats.json
+umi-plugin-bundle-analyzer bundle/output/path/stats.json
 ```
 
 <h2 align="center">Options (for CLI)</h2>
 
 ```bash
-webpack-bundle-analyzer <bundleStatsFile> [bundleDir] [options]
+umi-plugin-bundle-analyzer <bundleStatsFile> [bundleDir] [options]
 ```
 
 Arguments are documented below:
@@ -129,7 +129,7 @@ Directory containing all generated bundles.
 
 <h2 align="center" id="size-definitions">Size definitions</h2>
 
-webpack-bundle-analyzer reports three values for sizes. `defaultSizes` can be used to control which of these is shown by default. The different reported sizes are:
+umi-plugin-bundle-analyzer reports three values for sizes. `defaultSizes` can be used to control which of these is shown by default. The different reported sizes are:
 
 ### `stat`
 
@@ -168,12 +168,12 @@ The Chunk Context Menu can be opened by right-clicking or `Ctrl`-clicking on a s
 
 ### I don't see `gzip` or `parsed` sizes, it only shows `stat` size
 
-It happens when `webpack-bundle-analyzer` analyzes files that don't actually exist in your file system, for example when you work with `webpack-dev-server` that keeps all the files in RAM. If you use `webpack-bundle-analyzer` as a plugin you won't get any errors, however if you run it via CLI you get the error message in terminal:
+It happens when `umi-plugin-bundle-analyzer` analyzes files that don't actually exist in your file system, for example when you work with `webpack-dev-server` that keeps all the files in RAM. If you use `umi-plugin-bundle-analyzer` as a plugin you won't get any errors, however if you run it via CLI you get the error message in terminal:
 ```
 Couldn't parse bundle asset "your_bundle_name.bundle.js".
 Analyzer will use module sizes from stats file.
 ```
-To get more information about it you can read [issue #147](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/147).
+To get more information about it you can read [issue #147](https://github.com/webpack-contrib/umi-plugin-bundle-analyzer/issues/147).
 
 
 <h2 align="center">Maintainers</h2>
@@ -198,20 +198,20 @@ To get more information about it you can read [issue #147](https://github.com/we
 </table>
 
 
-[npm]: https://img.shields.io/npm/v/webpack-bundle-analyzer.svg
-[npm-url]: https://npmjs.com/package/webpack-bundle-analyzer
+[npm]: https://img.shields.io/npm/v/umi-plugin-bundle-analyzer.svg
+[npm-url]: https://npmjs.com/package/umi-plugin-bundle-analyzer
 
-[node]: https://img.shields.io/node/v/webpack-bundle-analyzer.svg
+[node]: https://img.shields.io/node/v/umi-plugin-bundle-analyzer.svg
 [node-url]: https://nodejs.org
 
-[deps]: https://david-dm.org/webpack-contrib/webpack-bundle-analyzer.svg
-[deps-url]: https://david-dm.org/webpack-contrib/webpack-bundle-analyzer
+[deps]: https://david-dm.org/webpack-contrib/umi-plugin-bundle-analyzer.svg
+[deps-url]: https://david-dm.org/webpack-contrib/umi-plugin-bundle-analyzer
 
-[tests]: http://img.shields.io/travis/webpack-contrib/webpack-bundle-analyzer.svg
-[tests-url]: https://travis-ci.org/webpack-contrib/webpack-bundle-analyzer
+[tests]: http://img.shields.io/travis/webpack-contrib/umi-plugin-bundle-analyzer.svg
+[tests-url]: https://travis-ci.org/webpack-contrib/umi-plugin-bundle-analyzer
 
-[downloads]: https://img.shields.io/npm/dt/webpack-bundle-analyzer.svg
-[downloads-url]: https://npmjs.com/package/webpack-bundle-analyzer
+[downloads]: https://img.shields.io/npm/dt/umi-plugin-bundle-analyzer.svg
+[downloads-url]: https://npmjs.com/package/umi-plugin-bundle-analyzer
 
 <h2 align="center">Contributing</h2>
 
