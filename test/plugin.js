@@ -86,6 +86,22 @@ describe('Plugin', function () {
         expect(fs.existsSync(`${__dirname}/output/${statsFilename}`), 'report file missing').to.be.true;
       });
 
+      it('should set output dir', async function () {
+        const bundleDir = `${__dirname}/dist`;
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+            analyzerMode: 'disabled',
+            generateReportFile: true,
+            reportDir: bundleDir,
+            reportDepth: 1
+          }
+        });
+
+        await webpackCompile(config);
+        await expectValidBundleReport(config, bundleDir);
+        del.sync(bundleDir);
+      });
+
       it('should shaking node_modules', async function () {
         const config = makeWebpackConfig({
           analyzerOpts: {
@@ -123,12 +139,12 @@ async function expectValidReport(opts) {
   });
 }
 
-async function expectValidBundleReport(opts) {
+async function expectValidBundleReport(opts, bundleDir = `${__dirname}/output`) {
   const {
     statsFilename = 'stats.json'
   } = opts || {};
 
-  const statsFilePath = `${__dirname}/output/${statsFilename}`;
+  const statsFilePath = `${bundleDir}/${statsFilename}`;
   const compareFilePath = `${__dirname}/stats/bundle-report/bundle-report.json`;
 
   expect(fs.existsSync(statsFilePath), 'stats file missing').to.be.true;
