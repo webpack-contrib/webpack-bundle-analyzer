@@ -88,9 +88,6 @@ describe('Plugin', function () {
 
       it('should set output dir', async function () {
         const bundleDir = `${__dirname}/dist`;
-        after(() => {
-          del.sync(bundleDir);
-        });
         const config = makeWebpackConfig({
           analyzerOpts: {
             analyzerMode: 'disabled',
@@ -102,6 +99,7 @@ describe('Plugin', function () {
 
         await webpackCompile(config);
         await expectValidBundleReport(config, bundleDir);
+        del.sync(bundleDir);
       });
 
       it('should shaking node_modules', async function () {
