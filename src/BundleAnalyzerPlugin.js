@@ -95,7 +95,7 @@ class BundleAnalyzerPlugin {
       });
 
       await bfj.write(statsFilepath, chartData, {
-        space: 2,
+        space: null,
         promises: 'ignore',
         buffers: 'ignore',
         maps: 'ignore',
