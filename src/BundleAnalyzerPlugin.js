@@ -41,7 +41,7 @@ class BundleAnalyzerPlugin {
       const actions = [];
 
       if (this.opts.generateReportFile) {
-        actions.push(() => this.generateReportFile(stats, this.opts.reportDepth));
+        actions.push(() => this.generateReportFile(stats));
       }
 
       if (this.opts.generateStatsFile) {
@@ -82,7 +82,8 @@ class BundleAnalyzerPlugin {
   }
 
   async generateReportFile(stats) {
-    const statsFilepath = path.resolve(this.compiler.outputPath, this.opts.statsFilename);
+    const bundleDir = this.opts.reportDir || this.getBundleDirFromCompiler();
+    const statsFilepath = path.resolve(bundleDir, this.opts.statsFilename);
     mkdir.sync(path.dirname(statsFilepath));
 
     try {
