@@ -14,7 +14,7 @@ describe('Plugin', function () {
   });
 
   beforeEach(async function () {
-    this.timeout(10000);
+    this.timeout(15000);
     await nightmare.goto('about:blank');
   });
 
