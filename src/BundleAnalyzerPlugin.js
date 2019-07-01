@@ -12,7 +12,6 @@ class BundleAnalyzerPlugin {
     this.opts = {
       analyzerMode: 'server',
       analyzerHost: '127.0.0.1',
-      analyzerPort: 8888,
       reportFilename: 'report.html',
       defaultSizes: 'parsed',
       openAnalyzer: true,
@@ -23,7 +22,8 @@ class BundleAnalyzerPlugin {
       logLevel: 'info',
       // deprecated
       startAnalyzer: true,
-      ...opts
+      ...opts,
+      analyzerPort: 'analyzerPort' in opts ? (opts.analyzerPort === 'auto' ? 0 : opts.analyzerPort) : 8888
     };
 
     this.server = null;

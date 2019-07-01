@@ -41,7 +41,6 @@ const program = commander
   .option(
     '-p, --port <n>',
     'Port that will be used in `server` mode to start HTTP server.',
-    Number,
     8888
   )
   .option(
@@ -88,8 +87,12 @@ const logger = new Logger(logLevel);
 
 if (!bundleStatsFile) showHelp('Provide path to Webpack Stats file as first argument');
 if (mode !== 'server' && mode !== 'static') showHelp('Invalid mode. Should be either `server` or `static`.');
-if (mode === 'server' && !host) showHelp('Invalid host name');
-if (mode === 'server' && isNaN(port)) showHelp('Invalid port number');
+if (mode === 'server') {
+  if (!host) showHelp('Invalid host name');
+
+  port = port === 'auto' ? 0 : Number(port);
+  if (isNaN(port)) showHelp('Invalid port. Should be a number or `auto`');
+}
 if (!SIZES.has(defaultSizes)) showHelp(`Invalid default sizes option. Possible values are: ${[...SIZES].join(', ')}`);
 
 bundleStatsFile = resolve(bundleStatsFile);
