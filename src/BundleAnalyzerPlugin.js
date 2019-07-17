@@ -35,12 +35,11 @@ class BundleAnalyzerPlugin {
 
     const done = (stats, callback) => {
       callback = callback || (() => {});
-      stats = stats.toJson(this.opts.statsOptions);
 
       const actions = [];
 
       if (this.opts.generateStatsFile) {
-        actions.push(() => this.generateStatsFile(stats));
+        actions.push(() => this.generateStatsFile(stats.toJson(this.opts.statsOptions)));
       }
 
       // Handling deprecated `startAnalyzer` flag
@@ -49,9 +48,9 @@ class BundleAnalyzerPlugin {
       }
 
       if (this.opts.analyzerMode === 'server') {
-        actions.push(() => this.startAnalyzerServer(stats));
+        actions.push(() => this.startAnalyzerServer(stats.toJson()));
       } else if (this.opts.analyzerMode === 'static') {
-        actions.push(() => this.generateStaticReport(stats));
+        actions.push(() => this.generateStaticReport(stats.toJson()));
       }
 
       if (actions.length) {
