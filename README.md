@@ -58,7 +58,7 @@ new BundleAnalyzerPlugin(options?: object)
 |:--:|:--:|:----------|
 |**`analyzerMode`**|One of: `server`, `static`, `disabled`|Default: `server`. In `server` mode analyzer will start HTTP server to show bundle report. In `static` mode single HTML file with bundle report will be generated. In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`. |
 |**`analyzerHost`**|`{String}`|Default: `127.0.0.1`. Host that will be used in `server` mode to start HTTP server.|
-|**`analyzerPort`**|`{Number}`|Default: `8888`. Port that will be used in `server` mode to start HTTP server.|
+|**`analyzerPort`**|`{Number}` or `auto`|Default: `8888`. Port that will be used in `server` mode to start HTTP server.|
 |**`reportFilename`**|`{String}`|Default: `report.html`. Path to bundle report file that will be generated in `static` mode. It can be either an absolute path or a path relative to a bundle output directory (which is output.path in webpack config).|
 |**`defaultSizes`**|One of: `stat`, `parsed`, `gzip`|Default: `parsed`. Module sizes to show in report by default. [Size definitions](#size-definitions) section describes what these values mean.|
 |**`openAnalyzer`**|`{Boolean}`|Default: `true`. Automatically open report in default browser.|
@@ -115,7 +115,7 @@ Directory containing all generated bundles.
                               In `server` mode analyzer will start HTTP server to show bundle report.
                               In `static` mode single HTML file with bundle report will be generated. (default: server)
   -h, --host <host>           Host that will be used in `server` mode to start HTTP server. (default: 127.0.0.1)
-  -p, --port <n>              Port that will be used in `server` mode to start HTTP server. (default: 8888)
+  -p, --port <n>              Port that will be used in `server` mode to start HTTP server. Should be a number or `auto` (default: 8888)
   -r, --report <file>         Path to bundle report file that will be generated in `static` mode. (default: report.html)
   -s, --default-sizes <type>  Module sizes to show in treemap by default.
                               Possible values: stat, parsed, gzip (default: parsed)
