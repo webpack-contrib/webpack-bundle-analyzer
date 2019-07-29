@@ -8,19 +8,22 @@ node_js:
   - "8"
   - "10"
   - "node"
-cache:
-  - directories:
-    - node_modules
 addons:
   apt:
     packages:
       # Required by Electron
       # https://github.com/juliangruber/electron-stream#travis
       - xvfb
-before_script:
+      # Required by Chrome >42
+      # https://github.com/electron/electron/issues/1518#issuecomment-97708181
+      - libgconf-2-4
+install:
   # Required by Electron
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - npm i -g npm
+  - npm ci
+before_script:
   # Building sources
   - npm run build
 script:
