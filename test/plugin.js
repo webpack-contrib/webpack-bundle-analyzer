@@ -2,9 +2,19 @@ const fs = require('fs');
 const del = require('del');
 const _ = require('lodash');
 
-let nightmare;
+const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
 
 describe('Plugin', function () {
+  describe('options', function () {
+    it('should be optional', function () {
+      expect(() => new BundleAnalyzerPlugin()).not.to.throw();
+    });
+  });
+});
+
+describe('Plugin', function () {
+  let nightmare;
+
   this.timeout(3000);
 
   before(function () {
@@ -72,31 +82,31 @@ describe('Plugin', function () {
       });
     });
   });
+
+  async function expectValidReport(opts) {
+    const {
+      bundleFilename = 'bundle.js',
+      reportFilename = 'report.html',
+      bundleLabel = 'bundle.js',
+      statSize = 141,
+      parsedSize = 2821,
+      gzipSize = 770
+    } = opts || {};
+
+    expect(fs.existsSync(`${__dirname}/output/${bundleFilename}`), 'bundle file missing').to.be.true;
+    expect(fs.existsSync(`${__dirname}/output/${reportFilename}`), 'report file missing').to.be.true;
+    const chartData = await getChartDataFromReport(reportFilename);
+    expect(chartData[0]).to.containSubset({
+      label: bundleLabel,
+      statSize,
+      parsedSize,
+      gzipSize
+    });
+  }
+
+  async function getChartDataFromReport(reportFilename = 'report.html') {
+    return await nightmare
+      .goto(`file://${__dirname}/output/${reportFilename}`)
+      .evaluate(() => window.chartData);
+  }
 });
-
-async function expectValidReport(opts) {
-  const {
-    bundleFilename = 'bundle.js',
-    reportFilename = 'report.html',
-    bundleLabel = 'bundle.js',
-    statSize = 141,
-    parsedSize = 2821,
-    gzipSize = 770
-  } = opts || {};
-
-  expect(fs.existsSync(`${__dirname}/output/${bundleFilename}`), 'bundle file missing').to.be.true;
-  expect(fs.existsSync(`${__dirname}/output/${reportFilename}`), 'report file missing').to.be.true;
-  const chartData = await getChartDataFromReport(reportFilename);
-  expect(chartData[0]).to.containSubset({
-    label: bundleLabel,
-    statSize,
-    parsedSize,
-    gzipSize
-  });
-}
-
-async function getChartDataFromReport(reportFilename = 'report.html') {
-  return await nightmare
-    .goto(`file://${__dirname}/output/${reportFilename}`)
-    .evaluate(() => window.chartData);
-}
