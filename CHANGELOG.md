@@ -14,6 +14,11 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.4.1
+
+* **Bug Fix**
+  * Fix regression of requiring an object to be passed to `new BundleAnalyzerPlugin()` (issue [#300](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/300), fixed in [#302](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/302) by [@jerryOnlyZRJ](https://github.com/jerryOnlyZRJ))
+
 ## 3.4.0
 
  * **Improvements**
