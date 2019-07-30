@@ -2,7 +2,17 @@ const fs = require('fs');
 const del = require('del');
 const _ = require('lodash');
 
+const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
+
 let nightmare;
+
+describe('Plugin', function () {
+  describe('options', function () {
+    it('should be optional', function () {
+      expect(() => new BundleAnalyzerPlugin()).not.to.throw();
+    });
+  });
+});
 
 describe('Plugin', function () {
   this.timeout(3000);
