@@ -8,7 +8,7 @@ const viewer = require('./viewer');
 
 class BundleAnalyzerPlugin {
 
-  constructor(opts) {
+  constructor(opts = {}) {
     this.opts = {
       analyzerMode: 'server',
       analyzerHost: '127.0.0.1',
