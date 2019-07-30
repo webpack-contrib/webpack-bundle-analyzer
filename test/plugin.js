@@ -4,8 +4,6 @@ const _ = require('lodash');
 
 const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
 
-let nightmare;
-
 describe('Plugin', function () {
   describe('options', function () {
     it('should be optional', function () {
@@ -15,6 +13,8 @@ describe('Plugin', function () {
 });
 
 describe('Plugin', function () {
+  let nightmare;
+
   this.timeout(3000);
 
   before(function () {
