@@ -32,3 +32,17 @@ function createAssetsFilter(excludePatterns) {
     return () => true;
   }
 }
+
+/**
+ * @desc get string of current time
+ * format: MM/dd/yyyy HH:mm
+ * */
+exports.getCurrentTime = function () {
+  const time = new Date();
+  const year = time.getFullYear();
+  const month = time.getMonth() + 1;
+  const day = time.getDate();
+  const hour = time.getHours();
+  const minute = time.getMinutes();
+  return `${month}/${day}/${year} ${hour}:${minute}`;
+};

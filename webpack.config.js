@@ -1,6 +1,7 @@
 const compact = require('lodash/compact');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzePlugin = require('./lib/BundleAnalyzerPlugin');
 
 module.exports = opts => {
@@ -142,6 +143,14 @@ module.exports = opts => {
           })
         );
       }
+
+      plugins.push(new CopyWebpackPlugin([
+          {
+            from: `${__dirname}/views/favicon.ico`,
+            to: `${__dirname}/public`,
+          }
+        ])
+      );
 
       return plugins;
     })([])
