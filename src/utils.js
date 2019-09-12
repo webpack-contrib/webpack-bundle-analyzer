@@ -41,9 +41,10 @@ function createAssetsFilter(excludePatterns) {
  * */
 exports.getCurrentTime = function () {
   const time = new Date();
+  const year = time.getFullYear();
   const month = MONTHS[time.getMonth()];
   const day = time.getDate();
   const hour = time.getHours();
   const minute = time.getMinutes();
-  return `${day}/${month} ${hour}:${minute}`;
+  return `${day} ${month} ${year} at ${hour}:${minute}`;
 };
