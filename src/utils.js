@@ -1,6 +1,8 @@
 const {inspect} = require('util');
 const _ = require('lodash');
 
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 exports.createAssetsFilter = createAssetsFilter;
 
 function createAssetsFilter(excludePatterns) {
@@ -35,14 +37,13 @@ function createAssetsFilter(excludePatterns) {
 
 /**
  * @desc get string of current time
- * format: MM/dd/yyyy HH:mm
+ * format: dd/MMM HH:mm
  * */
 exports.getCurrentTime = function () {
   const time = new Date();
-  const year = time.getFullYear();
-  const month = time.getMonth() + 1;
+  const month = MONTHS[time.getMonth()];
   const day = time.getDate();
   const hour = time.getHours();
   const minute = time.getMinutes();
-  return `${month}/${day}/${year} ${hour}:${minute}`;
+  return `${day}/${month} ${hour}:${minute}`;
 };
