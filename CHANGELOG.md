@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+* **Bug Fix**
+  * Fix regression in support of webpack dev server and `webpack --watch` (issue [#312](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/312), fixed in [#313](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/313) by [@gaokun](https://github.com/gaokun))
+
 ## 3.5.0
 
  * **Improvements**
