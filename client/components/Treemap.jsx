@@ -72,6 +72,12 @@ export default class Treemap extends Component {
       zoomMouseWheelDuration: 300,
       openCloseDuration: 200,
       dataObject: this.getTreemapDataObject(),
+
+      // color
+      rainbowStartColor: 'hsl(240, 12%, 21%)',
+      rainbowEndColor: 'hsl(240, 12%, 21%)',
+      rainbowSaturationCorrection: 1,
+
       titleBarDecorator(opts, props, vars) {
         vars.titleBarShown = false;
       },
