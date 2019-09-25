@@ -10,6 +10,7 @@ const opener = require('opener');
 const mkdir = require('mkdirp');
 const {bold} = require('chalk');
 
+const utils = require('./utils');
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
 
@@ -23,6 +24,8 @@ module.exports = {
   // deprecated
   start: startServer
 };
+
+const title = `${process.env.npm_package_name || 'Webpack Bundle Analyzer'} [${utils.getCurrentTime()}]`;
 
 async function startServer(bundleStats, opts) {
   const {
@@ -53,6 +56,7 @@ async function startServer(bundleStats, opts) {
   app.use('/', (req, res) => {
     res.render('viewer', {
       mode: 'server',
+      title,
       get chartData() { return chartData },
       defaultSizes,
       enableWebSocket: true,
@@ -158,6 +162,7 @@ async function generateReport(bundleStats, opts) {
       `${projectRoot}/views/viewer.ejs`,
       {
         mode: 'static',
+        title,
         chartData,
         defaultSizes,
         enableWebSocket: false,

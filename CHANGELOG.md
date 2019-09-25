@@ -14,9 +14,32 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.5.1
+
+ * **Bug Fix**
+   * Fix regression in support of webpack dev server and `webpack --watch` (issue [#312](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/312), fixed in [#313](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/313) by [@gaokun](https://github.com/gaokun))
+
+## 3.5.0
+
+ * **Improvements**
+   * Improved report title and added favicon ([#310](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/310), [@gaokun](https://github.com/gaokun))
+
+## 3.4.1
+
+ * **Bug Fix**
+   * Fix regression of requiring an object to be passed to `new BundleAnalyzerPlugin()` (issue [#300](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/300), fixed in [#302](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/302) by [@jerryOnlyZRJ](https://github.com/jerryOnlyZRJ))
+
+## 3.4.0
+
+ * **Improvements**
+   * Add `port: 'auto'` option ([#290](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/290), [@avin-kavish](https://github.com/avin-kavish))
+
+ * **Bug Fix**
+   * Avoid mutation of the generated `stats.json` ([#293](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/293), [@wood1986](https://github.com/wood1986))
+
  * **Internal**
    * Use Autoprefixer ([#266](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/266), [@bregenspan](https://github.com/bregenspan))
-
+   * Detect `AsyncMFS` to support dev-server of Nuxt 2.5 and above ([#275](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/275), [@amoshydra](https://github.com/amoshydra))
 
 ## 3.3.2
 

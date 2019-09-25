@@ -8,11 +8,10 @@ const viewer = require('./viewer');
 
 class BundleAnalyzerPlugin {
 
-  constructor(opts) {
+  constructor(opts = {}) {
     this.opts = {
       analyzerMode: 'server',
       analyzerHost: '127.0.0.1',
-      analyzerPort: 8888,
       reportFilename: 'report.html',
       defaultSizes: 'parsed',
       openAnalyzer: true,
@@ -24,7 +23,8 @@ class BundleAnalyzerPlugin {
       logLevel: 'info',
       // deprecated
       startAnalyzer: true,
-      ...opts
+      ...opts,
+      analyzerPort: 'analyzerPort' in opts ? (opts.analyzerPort === 'auto' ? 0 : opts.analyzerPort) : 8888
     };
 
     this.server = null;
@@ -36,7 +36,6 @@ class BundleAnalyzerPlugin {
 
     const done = (stats, callback) => {
       callback = callback || (() => {});
-      stats = stats.toJson(this.opts.statsOptions);
 
       const actions = [];
 
@@ -45,7 +44,7 @@ class BundleAnalyzerPlugin {
       }
 
       if (this.opts.generateStatsFile) {
-        actions.push(() => this.generateStatsFile(stats));
+        actions.push(() => this.generateStatsFile(stats.toJson(this.opts.statsOptions)));
       }
 
       // Handling deprecated `startAnalyzer` flag
@@ -54,9 +53,9 @@ class BundleAnalyzerPlugin {
       }
 
       if (this.opts.analyzerMode === 'server') {
-        actions.push(() => this.startAnalyzerServer(stats));
+        actions.push(() => this.startAnalyzerServer(stats.toJson()));
       } else if (this.opts.analyzerMode === 'static') {
-        actions.push(() => this.generateStaticReport(stats));
+        actions.push(() => this.generateStaticReport(stats.toJson()));
       }
 
       if (actions.length) {
