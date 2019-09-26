@@ -33,6 +33,8 @@ export default class CheckboxList extends PureComponent {
         this.setState({checkedItems});
         this.informAboutChange(checkedItems);
       }
+    } else if (newProps.checkedItems !== this.props.checkedItems) {
+      this.setState({checkedItems: newProps.checkedItems});
     }
   }
 

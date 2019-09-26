@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Bug Fix**
+   * Fix sidebar not showing visibility status of chunks hidden via popup menu (issue [#316](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/316) by [@gaokun](https://github.com/gaokun), fixed in [#317](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/317) by [@bregenspan](https://github.com/bregenspan))
+
 ## 3.5.1
 
  * **Bug Fix**
