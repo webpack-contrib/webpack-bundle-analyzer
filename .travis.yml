@@ -1,8 +1,8 @@
 language: node_js
 sudo: required
 branches:
-  only:
-    - master
+  except:
+    - /^v\d+\.\d+\.\d+$/
 node_js:
   - "6"
   - "8"
@@ -33,8 +33,11 @@ jobs:
     - stage: test
       script: npm run test
     - stage: release
-        node_js: lts/*
-        deploy:
-          provider: script
-          skip_cleanup: true
-          script: npx semantic-release
+      node_js: lts/*
+      # Advanced: optionally overwrite your default `script` step to skip the tests
+      # script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
