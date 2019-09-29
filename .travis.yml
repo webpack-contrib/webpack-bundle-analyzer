@@ -4,7 +4,6 @@ branches:
   except:
     - /^v\d+\.\d+\.\d+$/
 node_js:
-  - "6"
   - "8"
   - "10"
   - "node"
@@ -26,6 +25,10 @@ install:
 before_script:
   # Building sources
   - npm run build
+stages:
+  - lint
+  - test
+  - release
 jobs:
   include:
     - stage: lint
