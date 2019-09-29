@@ -1,17 +1,17 @@
 {
   "name": "umi-webpack-bundle-analyzer",
-  "version": "3.5.1",
+  "version": "0.0.0-development",
   "description": "Webpack plugin and CLI utility that represents bundle content as convenient interactive zoomable treemap",
   "author": "Yury Grunin <grunin.ya@ya.ru>",
   "license": "MIT",
-  "homepage": "https://github.com/webpack-contrib/webpack-bundle-analyzer",
-  "changelog": "https://github.com/webpack-contrib/webpack-bundle-analyzer/blob/master/CHANGELOG.md",
+  "homepage": "https://github.com/umijs/umi-webpack-bundle-analyzer",
+  "changelog": "https://github.com/umijs/umi-webpack-bundle-analyzer/blob/master/CHANGELOG.md",
   "bugs": {
-    "url": "https://github.com/webpack-contrib/webpack-bundle-analyzer/issues"
+    "url": "https://github.com/umijs/umi-webpack-bundle-analyzer/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webpack-contrib/webpack-bundle-analyzer.git"
+    "url": "https://github.com/umijs/umi-webpack-bundle-analyzer.git"
   },
   "main": "lib/index.js",
   "bin": "lib/bin/analyzer.js",
@@ -24,7 +24,8 @@
     "npm-publish": "npm run lint && npm run build && npm test && npm publish",
     "lint": "eslint --ext js,jsx .",
     "test": "mocha --exit --require @babel/register",
-    "test-dev": "mocha --watch --require @babel/register"
+    "test-dev": "mocha --watch --require @babel/register",
+    "semantic-release": "semantic-release"
   },
   "files": [
     "public",
@@ -88,7 +89,8 @@
     "url-loader": "1.1.2",
     "webpack": "4.29.6",
     "webpack-cli": "3.3.0",
-    "webpack-dev-server": "3.3.1"
+    "webpack-dev-server": "3.3.1",
+    "semantic-release": "^15.13.24"
   },
   "keywords": [
     "webpack",

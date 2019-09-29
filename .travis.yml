@@ -1,10 +1,9 @@
 language: node_js
 sudo: required
 branches:
-  only:
-    - master
+  except:
+    - /^v\d+\.\d+\.\d+$/
 node_js:
-  - "6"
   - "8"
   - "10"
   - "node"
@@ -26,6 +25,22 @@ install:
 before_script:
   # Building sources
   - npm run build
-script:
-  - npm run lint
-  - npm run test
+stages:
+  - lint
+  - test
+  - release
+jobs:
+  include:
+    - stage: lint
+      script: npm run lint
+    - stage: test
+      script: npm run test
+    - stage: release
+      node_js: lts/*
+      # Advanced: optionally overwrite your default `script` step to skip the tests
+      # script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
