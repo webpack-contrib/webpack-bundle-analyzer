@@ -27,17 +27,14 @@ before_script:
   # Building sources
   - npm run build
 jobs:
-  - stage: lint
-    script:
-      - npm run lint
-  - stage: test
-    script:
-      - npm run test
-  - stage: release
-      node_js: lts/*
-
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script:
-          - npx semantic-release
+  include:
+    - stage: lint
+      script: npm run lint
+    - stage: test
+      script: npm run test
+    - stage: release
+        node_js: lts/*
+        deploy:
+          provider: script
+          skip_cleanup: true
+          script: npx semantic-release
