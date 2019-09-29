@@ -26,6 +26,18 @@ install:
 before_script:
   # Building sources
   - npm run build
-script:
-  - npm run lint
-  - npm run test
+jobs:
+  - stage: lint
+    script:
+      - npm run lint
+  - stage: test
+    script:
+      - npm run test
+  - stage: release
+      node_js: lts/*
+
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release

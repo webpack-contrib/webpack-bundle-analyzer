@@ -32,7 +32,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
 
   // Picking only `*.js or *.mjs` assets from bundle that has non-empty `chunks` array
   bundleStats.assets = _.filter(bundleStats.assets, asset => {
-    if (/hot-update/.test(asset.name)) {
+    if (/hot-update/u.test(asset.name)) {
       return false;
     }
     // Removing query part from filename (yes, somebody uses it for some reason and Webpack supports it)
