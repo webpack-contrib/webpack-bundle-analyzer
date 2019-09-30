@@ -179,28 +179,6 @@ Analyzer will use module sizes from stats file.
 To get more information about it you can read [issue #147](https://github.com/webpack-contrib/umi-webpack-bundle-analyzer/issues/147).
 
 
-<h2 align="center">Maintainers</h2>
-
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <img width="150" height="150"
-        src="https://avatars3.githubusercontent.com/u/302213?v=4&s=150">
-        </br>
-        <a href="https://github.com/th0r">Yuriy Grunin</a>
-      </td>
-      <td align="center">
-        <img width="150" height="150"
-        src="https://avatars3.githubusercontent.com/u/482561?v=4&s=150">
-        </br>
-        <a href="https://github.com/valscion">Vesa Laakso</a>
-      </td>
-    </tr>
-  <tbody>
-</table>
-
-
 [npm]: https://img.shields.io/npm/v/umi-webpack-bundle-analyzer.svg
 [npm-url]: https://npmjs.com/package/umi-webpack-bundle-analyzer
 
