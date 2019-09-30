@@ -10,7 +10,7 @@
     <img width="200" height="200"
       src="https://webpack.js.org/assets/icon-square-big.svg">
   </a>
-  <h1>Webpack Bundle Analyzer</h1>
+  <h1>Umi Webpack Bundle Analyzer</h1>
   <p>Visualize size of webpack output files with an interactive zoomable treemap.</p>
 </div>
 
