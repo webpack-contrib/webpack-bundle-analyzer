@@ -103,11 +103,11 @@ class BundleAnalyzerPlugin {
         circular: 'ignore'
       });
       this.logger.info(
-        `${bold('Webpack Bundle Analyzer')} saved report file to ${bold(statsFilepath)}`
+        `${bold('Umi Webpack Bundle Analyzer')} saved report file to ${bold(statsFilepath)}`
       );
     } catch (error) {
       this.logger.error(
-        `${bold('Webpack Bundle Analyzer')} error saving report data to ${bold(statsFilepath)} : ${error}`
+        `${bold('Umi Webpack Bundle Analyzer')} error saving report data to ${bold(statsFilepath)} : ${error}`
       );
     }
   }
@@ -127,11 +127,11 @@ class BundleAnalyzerPlugin {
       });
 
       this.logger.info(
-        `${bold('Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
+        `${bold('Umi Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
       );
     } catch (error) {
       this.logger.error(
-        `${bold('Webpack Bundle Analyzer')} error saving stats file to ${bold(statsFilepath)}: ${error}`
+        `${bold('Umi Webpack Bundle Analyzer')} error saving stats file to ${bold(statsFilepath)}: ${error}`
       );
     }
   }
