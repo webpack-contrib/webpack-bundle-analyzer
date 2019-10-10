@@ -208,6 +208,11 @@ export default class ModulesTreemap extends Component {
 
   handleConcatenatedModulesContentToggle = flag => {
     store.showConcatenatedModulesContent = flag;
+    if (flag) {
+      window.localStorage.setItem('showConcatenatedModulesContent', '1');
+    } else {
+      window.localStorage.removeItem('showConcatenatedModulesContent');
+    }
   }
 
   handleChunkContextMenuHide = () => {
