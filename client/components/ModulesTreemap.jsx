@@ -4,7 +4,7 @@ import filesize from 'filesize';
 import {computed} from 'mobx';
 import {observer} from 'mobx-preact';
 
-import {isChunkParsed} from '../utils';
+import {isChunkParsed, localStorage} from '../utils';
 import Treemap from './Treemap';
 import Tooltip from './Tooltip';
 import Switcher from './Switcher';
@@ -209,9 +209,9 @@ export default class ModulesTreemap extends Component {
   handleConcatenatedModulesContentToggle = flag => {
     store.showConcatenatedModulesContent = flag;
     if (flag) {
-      window.localStorage.setItem('showConcatenatedModulesContent', '1');
+      localStorage.setItem('showConcatenatedModulesContent', '1');
     } else {
-      window.localStorage.removeItem('showConcatenatedModulesContent');
+      localStorage.removeItem('showConcatenatedModulesContent');
     }
   }
 

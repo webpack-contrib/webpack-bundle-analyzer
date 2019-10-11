@@ -17,3 +17,27 @@ export function walkModules(modules, cb) {
 export function elementIsOutside(elem, container) {
   return !(elem === container || container.contains(elem));
 }
+
+export const localStorage = {
+
+  getItem(k) {
+    try {
+      return window.localStorage.getItem(k);
+    } catch (x) {
+      return null;
+    }
+  },
+
+  setItem(k, v) {
+    try {
+      window.localStorage.setItem(k, v);
+    } catch (x) { /* ignored */ }
+  },
+
+  removeItem(k) {
+    try {
+      window.localStorage.removeItem(k);
+    } catch (x) { /* ignored */ }
+  }
+
+};
