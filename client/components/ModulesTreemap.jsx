@@ -4,7 +4,8 @@ import filesize from 'filesize';
 import {computed} from 'mobx';
 import {observer} from 'mobx-preact';
 
-import {isChunkParsed, localStorage} from '../utils';
+import {isChunkParsed} from '../utils';
+import localStorage from '../localStorage';
 import Treemap from './Treemap';
 import Tooltip from './Tooltip';
 import Switcher from './Switcher';

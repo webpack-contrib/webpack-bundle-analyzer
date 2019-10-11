@@ -1,5 +1,6 @@
 import {observable, computed} from 'mobx';
-import {isChunkParsed, walkModules, localStorage} from './utils';
+import {isChunkParsed, walkModules} from './utils';
+import localStorage from './localStorage';
 
 export class Store {
   cid = 0;
