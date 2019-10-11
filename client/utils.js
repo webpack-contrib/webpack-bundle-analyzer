@@ -28,16 +28,16 @@ export const localStorage = {
     }
   },
 
-  setItem(k, v) {
+  setItem(key, value) {
     try {
-      window.localStorage.setItem(k, v);
-    } catch (x) { /* ignored */ }
+      window.localStorage.setItem(`${KEY_PREFIX}.${key}`, JSON.stringify(value));
+    } catch (err) { /* ignored */ }
   },
 
-  removeItem(k) {
+  removeItem(key) {
     try {
-      window.localStorage.removeItem(k);
-    } catch (x) { /* ignored */ }
+      window.localStorage.removeItem(key);
+    } catch (err) { /* ignored */ }
   }
 
 };

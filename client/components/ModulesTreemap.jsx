@@ -209,7 +209,7 @@ export default class ModulesTreemap extends Component {
   handleConcatenatedModulesContentToggle = flag => {
     store.showConcatenatedModulesContent = flag;
     if (flag) {
-      localStorage.setItem('showConcatenatedModulesContent', '1');
+      localStorage.setItem('showConcatenatedModulesContent', true);
     } else {
       localStorage.removeItem('showConcatenatedModulesContent');
     }

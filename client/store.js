@@ -10,7 +10,7 @@ export class Store {
   @observable searchQuery = '';
   @observable defaultSize;
   @observable selectedSize;
-  @observable showConcatenatedModulesContent = localStorage.getItem('showConcatenatedModulesContent') === '1';
+  @observable showConcatenatedModulesContent = (localStorage.getItem('showConcatenatedModulesContent') === true);
 
   setModules(modules) {
     walkModules(modules, module => {
