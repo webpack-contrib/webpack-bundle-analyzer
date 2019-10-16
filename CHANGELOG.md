@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Improvement**
+   * Support webpack builds where `output.globalObject` is set to `'self'` ([#323](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/323) by [@lemonmade](https://github.com/lemonmade))
+
 ## 3.5.2
 
  * **Bug Fix**
