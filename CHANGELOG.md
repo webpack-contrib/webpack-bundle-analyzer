@@ -16,6 +16,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
  * **Improvement**
    * Support webpack builds where `output.globalObject` is set to `'self'` ([#323](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/323) by [@lemonmade](https://github.com/lemonmade))
+   * Improve readability of tooltips ([#320](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/320) by [@lorenzos](https://github.com/lorenzos))
 
 ## 3.5.2
 
