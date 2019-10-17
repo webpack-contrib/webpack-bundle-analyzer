@@ -44,7 +44,7 @@ exports.getCurrentTime = function () {
   const year = time.getFullYear();
   const month = MONTHS[time.getMonth()];
   const day = time.getDate();
-  const hour = time.getHours();
-  const minute = time.getMinutes();
+  const hour = `0${time.getHours()}`.slice(-2);
+  const minute = `0${time.getMinutes()}`.slice(-2);
   return `${day} ${month} ${year} at ${hour}:${minute}`;
 };
