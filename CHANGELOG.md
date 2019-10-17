@@ -14,8 +14,19 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
- * **Bug Fix**
+* **Bug Fix**
    * Add leading zero to hour & minute on `<title />` when needed ([#314](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/314) by [@mhxbe](https://github.com/mhxbe))
+
+## 3.6.0
+
+ * **Improvement**
+   * Support webpack builds where `output.globalObject` is set to `'self'` ([#323](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/323) by [@lemonmade](https://github.com/lemonmade))
+   * Improve readability of tooltips ([#320](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/320) by [@lorenzos](https://github.com/lorenzos))
+
+## 3.5.2
+
+ * **Bug Fix**
+   * Fix sidebar not showing visibility status of chunks hidden via popup menu (issue [#316](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/316) by [@gaokun](https://github.com/gaokun), fixed in [#317](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/317) by [@bregenspan](https://github.com/bregenspan))
 
 ## 3.5.1
 
