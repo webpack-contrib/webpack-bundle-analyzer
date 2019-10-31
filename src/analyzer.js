@@ -36,7 +36,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     // See #22
     asset.name = asset.name.replace(FILENAME_QUERY_REGEXP, '');
 
-    return FILENAME_EXTENSIONS.test(asset.name) && !_.isEmpty(asset.chunks) && isAssetIncluded(asset.name);
+    return FILENAME_EXTENSIONS.test(asset.name) && isAssetIncluded(asset.name);
   });
 
   // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided

@@ -106,6 +106,14 @@ describe('Analyzer', function () {
     generateReportFrom('with-modules-chunk.json');
     await expectValidReport({bundleLabel: 'bundle.mjs'});
   });
+
+  it('should support worker assets with empty chunks', async function () {
+    generateReportFrom('with-worker-empty-chunks.json');
+    const chartData = await getChartData();
+    expect(chartData[99]).to.containSubset({
+      label: 'blurhash.aaa4af0138af8a4c83aa.blurhash.js'
+    });
+  });
 });
 
 function generateReportFrom(statsFilename) {
