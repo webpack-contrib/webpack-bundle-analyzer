@@ -185,6 +185,8 @@ function isAsyncChunkPushExpression(node) {
     callee.object.left.object &&
     (
       callee.object.left.object.name === 'window' ||
+      // `self` is a common output.globalObject value used to support both workers and browsers
+      callee.object.left.object.name === 'self' ||
       // Webpack 4 uses `this` instead of `window`
       callee.object.left.object.type === 'ThisExpression'
     ) &&
