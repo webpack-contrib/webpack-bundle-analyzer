@@ -32,9 +32,7 @@ class TaskError extends Error {
 
 function watch() {
   gulp
-    .watch(NODE_SRC, gulp.series(cleanNodeScripts, compileNodeScripts))
-    // TODO: replace with `emitErrors: false` option after https://github.com/gulpjs/glob-watcher/pull/34 will be merged
-    .on('error', () => {});
+    .watch(NODE_SRC, gulp.series(cleanNodeScripts, compileNodeScripts));
 }
 
 function cleanViewerScripts() {
