@@ -33,7 +33,7 @@
     "views"
   ],
   "dependencies": {
-    "acorn": "^6.0.7",
+    "acorn": "^7.1.1",
     "acorn-walk": "^6.1.1",
     "bfj": "^6.1.1",
     "chalk": "^2.4.1",
