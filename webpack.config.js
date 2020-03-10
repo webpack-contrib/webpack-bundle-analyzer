@@ -28,8 +28,8 @@ module.exports = opts => {
       ],
       extensions: ['.js', '.jsx'],
       alias: {
-        'react': 'preact-compat',
-        'react-dom': 'preact-compat',
+        'react': 'preact/compat',
+        'react-dom': 'preact/compat',
         'mobx': require.resolve('mobx/lib/mobx.es6.js')
       }
     },
@@ -46,11 +46,14 @@ module.exports = opts => {
           terserOptions: {
             output: {
               comments: /copyright/iu
-            },
-            safari10: true
+            }
           }
         })
       ]
+    },
+
+    performance: {
+      hints: false
     },
 
     module: {

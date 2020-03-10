@@ -9,21 +9,33 @@ const toggleTime = parseInt(s.toggleTime);
 
 export default class Sidebar extends React.Component {
   static defaultProps = {
-    position: 'left'
+    pinned: false,
+    position: 'left',
+    autoShow: true
   };
 
   allowHide = true;
   toggling = false;
   hideContentTimeout = null;
   width = null;
-  state = {
-    visible: true,
-    pinned: false,
-    renderContent: true
-  };
+
+  constructor(props) {
+    super(props);
+
+    const {pinned, autoShow} = props;
+    const visible = pinned || autoShow;
+
+    this.state = {
+      visible,
+      pinned,
+      renderContent: visible
+    };
+  }
 
   componentDidMount() {
-    this.hideTimeoutId = setTimeout(() => this.toggleVisibility(false), 3000);
+    if (!this.state.pinned && this.props.autoShow) {
+      this.hideTimeoutId = setTimeout(() => this.toggleVisibility(false), 3000);
+    }
   }
 
   componentWillUnmount() {
@@ -35,10 +47,9 @@ export default class Sidebar extends React.Component {
     const {position, children} = this.props;
     const {visible, pinned, renderContent} = this.state;
 
-    const className = cls({
+    const className = cls(s[position], {
       [s.container]: true,
       [s.pinned]: pinned,
-      [s.left]: (position === 'left'),
       [s.hidden]: !visible,
       [s.empty]: !renderContent
     });
@@ -62,7 +73,9 @@ export default class Sidebar extends React.Component {
           title={visible ? 'Hide' : 'Show sidebar'}
           className={s.toggleButton}
           onClick={this.handleToggleButtonClick}>
-          <Icon name="arrow-right" size={10} rotate={visible ? 180 : 0}/>
+          <Icon name="arrow-right"
+            size={10}
+            rotate={this.toggleIconRotationAngle}/>
         </Button>
         {pinned && visible &&
           <div className={s.resizer} onMouseDown={this.handleResizeStart}/>
@@ -74,6 +87,16 @@ export default class Sidebar extends React.Component {
         </div>
       </div>
     );
+  }
+
+  get nodeWidth() {
+    return this.node.getBoundingClientRect().width;
+  }
+
+  get toggleIconRotationAngle() {
+    const {position} = this.props;
+    const {visible} = this.state;
+    return (position === 'left' && visible) || (position === 'right' && !visible) ? 180 : 0;
   }
 
   handleClick = () => {
@@ -103,12 +126,14 @@ export default class Sidebar extends React.Component {
 
   handlePinButtonClick = () => {
     const pinned = !this.state.pinned;
-    this.width = pinned ? this.node.getBoundingClientRect().width : null;
+    this.width = pinned ? this.nodeWidth : null;
     this.updateNodeWidth();
     this.setState({pinned});
   }
 
   handleResizeStart = event => {
+    this.width = this.nodeWidth;
+    this.updateNodeWidth();
     this.resizeInfo = {
       startPageX: event.pageX,
       initialWidth: this.width
@@ -119,7 +144,8 @@ export default class Sidebar extends React.Component {
   }
 
   handleResize = event => {
-    this.width = this.resizeInfo.initialWidth + (event.pageX - this.resizeInfo.startPageX);
+    const k = (this.state.position === 'left') ? 1 : -1;
+    this.width = this.resizeInfo.initialWidth + ((event.pageX - this.resizeInfo.startPageX) * k);
     this.updateNodeWidth();
   }
 

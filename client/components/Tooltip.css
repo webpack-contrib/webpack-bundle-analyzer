@@ -2,14 +2,14 @@
   background: #fff;
   border: 1px solid #aaa;
   opacity: 0.9;
-  white-space: nowrap;
   visibility: visible;
   border-radius: 4px;
   font: var(--main-font);
-  max-width: 500px;
+  max-width: 600px;
   padding: 5px 10px;
   position: absolute;
   transition: opacity .2s ease, visibility .2s ease;
+  word-break: break-word;
 }
 
 .hidden {

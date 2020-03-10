@@ -50,13 +50,19 @@ export default class Module extends Node {
   }
 
   toChartData() {
+    const reasonIds = _(this.data.reasons)
+      .map('moduleId')
+      .compact()
+      .value();
+
     return {
       id: this.data.id,
       label: this.name,
       path: this.path,
       statSize: this.size,
       parsedSize: this.parsedSize,
-      gzipSize: this.gzipSize
+      gzipSize: this.gzipSize,
+      reasons: [...new Set(reasonIds)]
     };
   }
 

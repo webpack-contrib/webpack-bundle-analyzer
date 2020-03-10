@@ -33,12 +33,34 @@
   transform: translateX(calc(-100% + 7px));
 }
 
+.container.right {
+  right: 0;
+}
+
+.container.right.hidden {
+  transform: translateX(calc(100% - 7px));
+}
+
 .content {
   box-sizing: border-box;
   height: 100%;
   overflow-y: auto;
   padding: 25px 20px 20px;
   width: 100%;
+}
+
+.group {
+  font: var(--main-font);
+  margin-bottom: 20px;
+}
+
+.groupLabel {
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+.right .content {
+  padding-top: 45px;
 }
 
 .empty.pinned .content {
@@ -55,29 +77,58 @@
   width: 27px;
 }
 
-.pinButton {
+.left .pinButton {
   right: 47px;
+}
+
+.right .pinButton {
+  left: 47px;
 }
 
 .toggleButton {
   padding-left: 6px;
+}
+
+.left .toggleButton {
   right: 15px;
 }
 
+.right .toggleButton {
+  left: 15px;
+}
+
 .hidden .toggleButton {
-  right: -35px;
   transition: transform .2s ease;
 }
 
-.hidden .toggleButton:hover {
+.left.hidden .toggleButton {
+  right: -35px;
+}
+
+.left.hidden .toggleButton:hover {
   transform: translateX(4px);
+}
+
+.right.hidden .toggleButton {
+  left: -35px;
+}
+
+.right.hidden .toggleButton:hover {
+  transform: translateX(-4px);
 }
 
 .resizer {
   bottom: 0;
   cursor: col-resize;
   position: absolute;
-  right: 0;
   top: 0;
   width: 7px;
+}
+
+.left .resizer {
+  right: 0;
+}
+
+.right .resizer {
+  left: 0;
 }

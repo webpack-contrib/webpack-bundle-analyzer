@@ -75,13 +75,20 @@ export default class Tooltip extends React.Component {
     };
 
     const boundingRect = this.node.getBoundingClientRect();
+    const {container} = this.props;
+    const containerRect = container ? container.getBoundingClientRect() : {
+      left: 0,
+      top: 0,
+      right: window.innerWidth,
+      bottom: window.innerHeight
+    };
 
-    if (pos.left + boundingRect.width > window.innerWidth) {
+    if (pos.left + boundingRect.width > containerRect.right) {
       // Shifting horizontally
-      pos.left = window.innerWidth - boundingRect.width;
+      pos.left = containerRect.right - boundingRect.width;
     }
 
-    if (pos.top + boundingRect.height > window.innerHeight) {
+    if (pos.top + boundingRect.height > containerRect.bottom) {
       // Flipping vertically
       pos.top = this.mouseCoords.y - Tooltip.marginY - boundingRect.height;
     }

@@ -1,23 +1,46 @@
-import {observable, computed} from 'mobx';
+import {
+  observable,
+  computed,
+  autorun,
+  reaction
+} from 'mobx';
 import {isChunkParsed, walkModules} from './utils';
 
 export class Store {
   cid = 0;
   sizes = new Set(['statSize', 'parsedSize', 'gzipSize']);
+  modulesByChunk = new Map();
 
   @observable.ref allChunks;
   @observable.shallow selectedChunks;
   @observable searchQuery = '';
   @observable defaultSize;
   @observable selectedSize;
+  @observable.ref selectedModule;
   @observable showConcatenatedModulesContent = false;
 
-  setModules(modules) {
-    walkModules(modules, module => {
-      module.cid = this.cid++;
+  constructor() {
+    reaction(() => this.selectedModule, () => {
+      console.log('Selected module:', this.selectedModule);
     });
+  }
 
-    this.allChunks = modules;
+  setChunks(chunks) {
+    this.modulesByChunk.clear();
+
+    for (const chunk of chunks) {
+      const modules = new Map();
+      this.modulesByChunk.set(chunk, modules);
+      walkModules(chunk.groups, module => {
+        module.cid = this.cid++;
+
+        if (module.id) {
+          modules.set(module.id, module);
+        }
+      });
+    }
+
+    this.allChunks = chunks;
     this.selectedChunks = this.allChunks;
   }
 
@@ -153,6 +176,43 @@ export class Store {
       (summ, module) => summ + module[this.activeSize],
       0
     );
+  }
+
+  @computed get selectedModuleReasons() {
+    if (!this.selectedModule || !this.selectedModule.reasons) return null;
+
+    const {reasons} = this.selectedModule;
+    const reasonsByChunk = [];
+
+    for (const [chunk, modules] of this.modulesByChunk.entries()) {
+      const reasonsInChunk = [];
+
+      for (const moduleId of reasons) {
+        if (modules.has(moduleId)) {
+          reasonsInChunk.push(modules.get(moduleId));
+        }
+      }
+
+      if (reasonsInChunk.length) {
+        reasonsByChunk.push({
+          chunk,
+          reasons: reasonsInChunk
+        });
+      }
+    }
+
+    reasonsByChunk.sort(({chunk: ch1}, {chunk: ch2}) => {
+      const weight1 = this.selectedChunks.includes(ch1) ? 1 : 0;
+      const weight2 = this.selectedChunks.includes(ch2) ? 1 : 0;
+
+      if (weight1 === weight2) {
+        return ch2[this.activeSize] - ch1[this.activeSize];
+      } else {
+        return weight2 - weight1;
+      }
+    });
+
+    return reasonsByChunk;
   }
 
   filterModulesForSize(modules, sizeProp) {

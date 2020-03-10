@@ -10,11 +10,6 @@
   flex: 1;
 }
 
-.sidebarGroup {
-  font: var(--main-font);
-  margin-bottom: 20px;
-}
-
 .showOption {
   margin-top: 5px;
 }
@@ -52,4 +47,14 @@
 
 .foundModulesList {
   margin-left: 7px;
+}
+
+.noSelectedModule {
+  align-items: center;
+  display: flex;
+  font: var(--main-font);
+  font-size: 12px;
+  height: 100%;
+  text-align: center;
+  width: 100%;
 }

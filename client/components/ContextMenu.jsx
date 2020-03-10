@@ -1,14 +1,12 @@
-/** @jsx h */
-import {h} from 'preact';
+import React from 'react';
 import cls from 'classnames';
 import ContextMenuItem from './ContextMenuItem';
-import PureComponent from '../lib/PureComponent';
 import {store} from '../store';
 import {elementIsOutside} from '../utils';
 
 import s from './ContextMenu.css';
 
-export default class ContextMenu extends PureComponent {
+export default class ContextMenu extends React.PureComponent {
   componentDidMount() {
     this.boundingRect = this.node.getBoundingClientRect();
   }
