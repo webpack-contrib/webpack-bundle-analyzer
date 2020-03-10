@@ -14,8 +14,13 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.6.1
+
  * **Bug Fix**
    * Add leading zero to hour & minute on `<title />` when needed ([#314](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/314) by [@mhxbe](https://github.com/mhxbe))
+   
+ * **Internal**
+   * Update some dependencies to get rid of vulnerability warnings ([#339](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/339))
 
 ## 3.6.0
 
