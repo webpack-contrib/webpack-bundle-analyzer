@@ -133,14 +133,15 @@ async function generateReport(bundleStats, opts) {
 
   if (!chartData) return;
 
-  function saveReport(content) {
-    const reportFilenameWithExtension = reportFilename
-      ? reportFilename
-      : reportFormat === 'static'
-        ? 'report.html'
-        : 'report.json';
+  const reportFilenameWithExtension = reportFilename
+    ? reportFilename
+    : reportFormat === 'static'
+      ? 'report.html'
+      : 'report.json';
 
-    const reportFilepath = path.resolve(reportFilenameWithExtension);
+  const reportFilepath = path.resolve(reportFilenameWithExtension);
+
+  function saveReport(content) {
     mkdir.sync(path.dirname(reportFilepath));
     fs.writeFileSync(reportFilepath, content);
 
