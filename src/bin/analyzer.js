@@ -28,8 +28,8 @@ const program = commander
     '-m, --mode <mode>',
     'Analyzer mode. Should be `server`,`static` or `json`.' +
       br('In `server` mode analyzer will start HTTP server to show bundle report.') +
-      br('In `static` mode single HTML file with bundle report will be generated.'),
-    br('In `json` mode single JSON file with bundle report will be generated.'),
+      br('In `static` mode single HTML file with bundle report will be generated.') +
+      br('In `json` mode single JSON file with bundle report will be generated.'),
     'server'
   )
   .option(
