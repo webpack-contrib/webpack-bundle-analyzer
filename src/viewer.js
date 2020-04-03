@@ -121,7 +121,8 @@ async function startServer(bundleStats, opts) {
 async function generateReport(bundleStats, opts) {
   const {
     openBrowser = true,
-    reportFilename = 'report.html',
+    reportFilename,
+    reportFormat = 'static',
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
@@ -131,6 +132,26 @@ async function generateReport(bundleStats, opts) {
   const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
 
   if (!chartData) return;
+
+  function saveReport(content) {
+    const reportFilenameWithExtension = reportFilename
+      ? reportFilename
+      : reportFormat === 'static'
+        ? 'report.html'
+        : 'report.json';
+
+    const reportFilepath = path.resolve(reportFilenameWithExtension);
+    mkdir.sync(path.dirname(reportFilepath));
+    fs.writeFileSync(reportFilepath, content);
+
+    logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
+  }
+
+  if (reportFormat === 'json') {
+    saveReport(JSON.stringify(chartData));
+
+    return;
+  }
 
   await new Promise((resolve, reject) => {
     ejs.renderFile(
@@ -153,14 +174,7 @@ async function generateReport(bundleStats, opts) {
             return;
           }
 
-          const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
-
-          mkdir.sync(path.dirname(reportFilepath));
-          fs.writeFileSync(reportFilepath, reportHtml);
-
-          logger.info(
-            `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`
-          );
+          saveReport(reportHtml);
 
           if (openBrowser) {
             opener(`file://${reportFilepath}`);

@@ -49,8 +49,8 @@ class BundleAnalyzerPlugin {
 
       if (this.opts.analyzerMode === 'server') {
         actions.push(() => this.startAnalyzerServer(stats.toJson()));
-      } else if (this.opts.analyzerMode === 'static') {
-        actions.push(() => this.generateStaticReport(stats.toJson()));
+      } else if (this.opts.analyzerMode === 'static' || this.opts.analyzerMode === 'json') {
+        actions.push(() => this.generateStaticReport(stats.toJson(), this.opts.analyzerMode));
       }
 
       if (actions.length) {
@@ -115,10 +115,11 @@ class BundleAnalyzerPlugin {
     }
   }
 
-  async generateStaticReport(stats) {
+  async generateStaticReport(stats, reportFormat) {
     await viewer.generateReport(stats, {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename),
+      reportFormat,
       bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
       defaultSizes: this.opts.defaultSizes,
