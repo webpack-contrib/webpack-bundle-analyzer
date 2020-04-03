@@ -122,7 +122,7 @@ if (mode === 'server') {
 } else {
   viewer.generateReport(bundleStats, {
     openBrowser,
-    reportFormat: mode === 'static' ? 'html' : 'json',
+    reportFormat: mode,
     reportFilename: reportFilename ? resolve(reportFilename) : null,
     defaultSizes,
     bundleDir,
