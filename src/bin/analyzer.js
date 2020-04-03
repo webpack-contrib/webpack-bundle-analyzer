@@ -46,8 +46,7 @@ const program = commander
   )
   .option(
     '-r, --report <file>',
-    'Path to bundle report file that will be generated in `static` mode.',
-    'report.html'
+    'Path to bundle report file that will be generated in `static` mode.'
   )
   .option(
     '-s, --default-sizes <type>',
