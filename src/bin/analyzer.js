@@ -87,7 +87,9 @@ let {
 const logger = new Logger(logLevel);
 
 if (!bundleStatsFile) showHelp('Provide path to Webpack Stats file as first argument');
-if (mode !== 'server' && mode !== 'static' && mode !== 'json') showHelp('Invalid mode. Should be either `server`,`static` or `json`.');
+if (mode !== 'server' && mode !== 'static' && mode !== 'json') {
+  showHelp('Invalid mode. Should be either `server`,`static` or `json`.');
+}
 if (mode === 'server') {
   if (!host) showHelp('Invalid host name');
 
