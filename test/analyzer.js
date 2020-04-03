@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const fs = require('fs');
+const path = require('path');
 const del = require('del');
 const childProcess = require('child_process');
 
@@ -106,18 +107,25 @@ describe('Analyzer', function () {
     generateReportFrom('with-modules-chunk.json');
     await expectValidReport({bundleLabel: 'bundle.mjs'});
   });
+
+  it('should support generating JSON output for the report', async function () {
+    const reportPath = 'output/report.json';
+
+    generateReportFrom('with-modules-in-chunks/stats.json', {format: 'json', outputFilename: reportPath});
+
+    const chartData = require(path.resolve(__dirname, reportPath));
+    expect(chartData).to.containSubset(require('./stats/with-modules-in-chunks/expected-chart-data'));
+  });
 });
 
-function generateReportFrom(statsFilename) {
-  childProcess.execSync(`../lib/bin/analyzer.js -m static -r output/report.html -O stats/${statsFilename}`, {
+function generateReportFrom(statsFilename, {format = 'static', outputFilename = 'output/report.html'} = {}) {
+  childProcess.execSync(`../lib/bin/analyzer.js -m ${format} -r ${outputFilename} -O stats/${statsFilename}`, {
     cwd: __dirname
   });
 }
 
 async function getChartData() {
-  return await nightmare
-    .goto(`file://${__dirname}/output/report.html`)
-    .evaluate(() => window.chartData);
+  return await nightmare.goto(`file://${__dirname}/output/report.html`).evaluate(() => window.chartData);
 }
 
 function forEachChartItem(chartData, cb) {
