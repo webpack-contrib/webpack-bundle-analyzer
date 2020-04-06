@@ -63,7 +63,10 @@ describe('Plugin', function () {
   it('should support webpack config with `multi` module', async function () {
     const config = makeWebpackConfig();
 
-    config.entry.bundle = ['./src/a.js', './src/b.js'];
+    config.entry.bundle = [
+      './src/a.js',
+      './src/b.js'
+    ];
 
     await webpackCompile(config);
 
