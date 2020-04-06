@@ -111,9 +111,10 @@ Directory containing all generated bundles.
 
 ```
   -V, --version               output the version number
-  -m, --mode <mode>           Analyzer mode. Should be `server` or `static`.
+  -m, --mode <mode>           Analyzer mode. Should be `server`, `static` or `json`.
                               In `server` mode analyzer will start HTTP server to show bundle report.
-                              In `static` mode single HTML file with bundle report will be generated. (default: server)
+                              In `static` mode single HTML file with bundle report will be generated.
+                              In `json` mode single JSON file with bundle report will be generated. (default: server)
   -h, --host <host>           Host that will be used in `server` mode to start HTTP server. (default: 127.0.0.1)
   -p, --port <n>              Port that will be used in `server` mode to start HTTP server. Should be a number or `auto` (default: 8888)
   -r, --report <file>         Path to bundle report file that will be generated in `static` mode. (default: report.html)
