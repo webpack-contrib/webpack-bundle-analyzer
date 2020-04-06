@@ -183,7 +183,7 @@ async function generateJSONReport(bundleStats, opts) {
   mkdir.sync(path.dirname(reportFilename));
   fs.writeFileSync(reportFilename, JSON.stringify(chartData));
 
-  logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilename)}`);
+  logger.info(`${bold('Webpack Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
 }
 
 function getAssetContent(filename) {
