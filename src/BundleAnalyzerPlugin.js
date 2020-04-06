@@ -11,7 +11,7 @@ class BundleAnalyzerPlugin {
     this.opts = {
       analyzerMode: 'server',
       analyzerHost: '127.0.0.1',
-      reportFilename,
+      reportFilename: null,
       defaultSizes: 'parsed',
       openAnalyzer: true,
       generateStatsFile: false,
