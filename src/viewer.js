@@ -154,13 +154,15 @@ async function generateReport(bundleStats, opts) {
             return;
           }
 
-          mkdir.sync(path.dirname(reportFilename));
-          fs.writeFileSync(reportFilename, reportHtml);
+          const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
 
-          logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilename)}`);
+          mkdir.sync(path.dirname(reportFilepath));
+          fs.writeFileSync(reportFilepath, reportHtml);
+
+          logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
 
           if (openBrowser) {
-            opener(`file://${reportFilename}`);
+            opener(`file://${reportFilepath}`);
           }
           resolve();
         } catch (e) {
