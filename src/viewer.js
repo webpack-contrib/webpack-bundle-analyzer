@@ -133,8 +133,6 @@ async function generateReport(bundleStats, opts) {
 
   if (!chartData) return;
 
-  const reportFilepath = path.resolve(reportFilename);
-
   await new Promise((resolve, reject) => {
     ejs.renderFile(
       `${projectRoot}/views/viewer.ejs`,
@@ -156,13 +154,13 @@ async function generateReport(bundleStats, opts) {
             return;
           }
 
-          mkdir.sync(path.dirname(reportFilepath));
-          fs.writeFileSync(reportFilepath, reportHtml);
+          mkdir.sync(path.dirname(reportFilename));
+          fs.writeFileSync(reportFilename, reportHtml);
 
-          logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
+          logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilename)}`);
 
           if (openBrowser) {
-            opener(`file://${reportFilepath}`);
+            opener(`file://${reportFilename}`);
           }
           resolve();
         } catch (e) {
@@ -180,12 +178,10 @@ async function generateJSONReport(bundleStats, opts) {
 
   if (!chartData) return;
 
-  const reportFilepath = path.resolve(reportFilename);
+  mkdir.sync(path.dirname(reportFilename));
+  fs.writeFileSync(reportFilename, JSON.stringify(chartData));
 
-  mkdir.sync(path.dirname(reportFilepath));
-  fs.writeFileSync(reportFilepath, JSON.stringify(chartData));
-
-  logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
+  logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilename)}`);
 }
 
 function getAssetContent(filename) {
