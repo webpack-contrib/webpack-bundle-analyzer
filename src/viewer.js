@@ -20,6 +20,7 @@ const assetsRoot = path.join(projectRoot, 'public');
 module.exports = {
   startServer,
   generateReport,
+  generateJSONReport,
   // deprecated
   start: startServer
 };
@@ -122,7 +123,6 @@ async function generateReport(bundleStats, opts) {
   const {
     openBrowser = true,
     reportFilename,
-    reportFormat = 'static',
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
@@ -133,26 +133,7 @@ async function generateReport(bundleStats, opts) {
 
   if (!chartData) return;
 
-  const reportFilenameWithExtension = reportFilename
-    ? reportFilename
-    : reportFormat === 'static'
-      ? 'report.html'
-      : 'report.json';
-
-  const reportFilepath = path.resolve(reportFilenameWithExtension);
-
-  function saveReport(content) {
-    mkdir.sync(path.dirname(reportFilepath));
-    fs.writeFileSync(reportFilepath, content);
-
-    logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
-  }
-
-  if (reportFormat === 'json') {
-    saveReport(JSON.stringify(chartData));
-
-    return;
-  }
+  const reportFilepath = path.resolve(reportFilename);
 
   await new Promise((resolve, reject) => {
     ejs.renderFile(
@@ -175,7 +156,10 @@ async function generateReport(bundleStats, opts) {
             return;
           }
 
-          saveReport(reportHtml);
+          mkdir.sync(path.dirname(reportFilepath));
+          fs.writeFileSync(reportFilepath, reportHtml);
+
+          logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
 
           if (openBrowser) {
             opener(`file://${reportFilepath}`);
@@ -187,6 +171,21 @@ async function generateReport(bundleStats, opts) {
       }
     );
   });
+}
+
+async function generateJSONReport(bundleStats, opts) {
+  const {reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null} = opts || {};
+
+  const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
+
+  if (!chartData) return;
+
+  const reportFilepath = path.resolve(reportFilename);
+
+  mkdir.sync(path.dirname(reportFilepath));
+  fs.writeFileSync(reportFilepath, JSON.stringify(chartData));
+
+  logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
 }
 
 function getAssetContent(filename) {
