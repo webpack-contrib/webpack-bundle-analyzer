@@ -56,7 +56,7 @@ new BundleAnalyzerPlugin(options?: object)
 
 |Name|Type|Description|
 |:--:|:--:|:----------|
-|**`analyzerMode`**|One of: `server`, `static`, `disabled`|Default: `server`. In `server` mode analyzer will start HTTP server to show bundle report. In `static` mode single HTML file with bundle report will be generated. In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`. |
+|**`analyzerMode`**|One of: `server`, `static`, `json`, `disabled`|Default: `server`. In `server` mode analyzer will start HTTP server to show bundle report. In `static` mode single HTML file with bundle report will be generated. In `json` mode single JSON file with bundle report will be generated. In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`. |
 |**`analyzerHost`**|`{String}`|Default: `127.0.0.1`. Host that will be used in `server` mode to start HTTP server.|
 |**`analyzerPort`**|`{Number}` or `auto`|Default: `8888`. Port that will be used in `server` mode to start HTTP server.|
 |**`reportFilename`**|`{String}`|Default: `report.html`. Path to bundle report file that will be generated in `static` mode. It can be either an absolute path or a path relative to a bundle output directory (which is output.path in webpack config).|
@@ -111,9 +111,10 @@ Directory containing all generated bundles.
 
 ```
   -V, --version               output the version number
-  -m, --mode <mode>           Analyzer mode. Should be `server` or `static`.
+  -m, --mode <mode>           Analyzer mode. Should be `server`, `static` or `json`.
                               In `server` mode analyzer will start HTTP server to show bundle report.
-                              In `static` mode single HTML file with bundle report will be generated. (default: server)
+                              In `static` mode single HTML file with bundle report will be generated.
+                              In `json` mode single JSON file with bundle report will be generated. (default: server)
   -h, --host <host>           Host that will be used in `server` mode to start HTTP server. (default: 127.0.0.1)
   -p, --port <n>              Port that will be used in `server` mode to start HTTP server. Should be a number or `auto` (default: 8888)
   -r, --report <file>         Path to bundle report file that will be generated in `static` mode. (default: report.html)

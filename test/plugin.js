@@ -1,7 +1,7 @@
 const fs = require('fs');
 const del = require('del');
 const _ = require('lodash');
-
+const path = require('path');
 const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
 
 describe('Plugin', function () {
@@ -47,6 +47,19 @@ describe('Plugin', function () {
     });
   });
 
+  it('should allow to generate json report', async function () {
+    const config = makeWebpackConfig({
+      analyzerOpts: {
+        analyzerMode: 'json'
+      }
+    });
+
+    await webpackCompile(config);
+
+    const chartData = await getChartDataFromJSONReport();
+    expect(chartData).to.exist;
+  });
+
   it('should support webpack config with `multi` module', async function () {
     const config = makeWebpackConfig();
 
@@ -58,11 +71,13 @@ describe('Plugin', function () {
     await webpackCompile(config);
 
     const chartData = await getChartDataFromReport();
-    expect(chartData[0].groups).to.containSubset([{
-      label: 'multi ./src/a.js ./src/b.js',
-      path: './multi ./src/a.js ./src/b.js',
-      groups: undefined
-    }]);
+    expect(chartData[0].groups).to.containSubset([
+      {
+        label: 'multi ./src/a.js ./src/b.js',
+        path: './multi ./src/a.js ./src/b.js',
+        groups: undefined
+      }
+    ]);
   });
 
   describe('options', function () {
@@ -104,9 +119,11 @@ describe('Plugin', function () {
     });
   }
 
+  function getChartDataFromJSONReport(reportFilename = 'report.json') {
+    return require(path.resolve(__dirname, `output/${reportFilename}`));
+  }
+
   async function getChartDataFromReport(reportFilename = 'report.html') {
-    return await nightmare
-      .goto(`file://${__dirname}/output/${reportFilename}`)
-      .evaluate(() => window.chartData);
+    return await nightmare.goto(`file://${__dirname}/output/${reportFilename}`).evaluate(() => window.chartData);
   }
 });

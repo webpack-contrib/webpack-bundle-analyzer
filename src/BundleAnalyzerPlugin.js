@@ -7,12 +7,11 @@ const Logger = require('./Logger');
 const viewer = require('./viewer');
 
 class BundleAnalyzerPlugin {
-
   constructor(opts = {}) {
     this.opts = {
       analyzerMode: 'server',
       analyzerHost: '127.0.0.1',
-      reportFilename: 'report.html',
+      reportFilename: null,
       defaultSizes: 'parsed',
       openAnalyzer: true,
       generateStatsFile: false,
@@ -51,6 +50,8 @@ class BundleAnalyzerPlugin {
         actions.push(() => this.startAnalyzerServer(stats.toJson()));
       } else if (this.opts.analyzerMode === 'static') {
         actions.push(() => this.generateStaticReport(stats.toJson()));
+      } else if (this.opts.analyzerMode === 'json') {
+        actions.push(() => this.generateJSONReport(stats.toJson()));
       }
 
       if (actions.length) {
@@ -115,10 +116,19 @@ class BundleAnalyzerPlugin {
     }
   }
 
+  async generateJSONReport(stats) {
+    await viewer.generateJSONReport(stats, {
+      reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename || 'report.json'),
+      bundleDir: this.getBundleDirFromCompiler(),
+      logger: this.logger,
+      excludeAssets: this.opts.excludeAssets
+    });
+  }
+
   async generateStaticReport(stats) {
     await viewer.generateReport(stats, {
       openBrowser: this.opts.openAnalyzer,
-      reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename),
+      reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename || 'report.html'),
       bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
       defaultSizes: this.opts.defaultSizes,

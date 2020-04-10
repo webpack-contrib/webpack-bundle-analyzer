@@ -20,6 +20,7 @@ const assetsRoot = path.join(projectRoot, 'public');
 module.exports = {
   startServer,
   generateReport,
+  generateJSONReport,
   // deprecated
   start: startServer
 };
@@ -121,7 +122,7 @@ async function startServer(bundleStats, opts) {
 async function generateReport(bundleStats, opts) {
   const {
     openBrowser = true,
-    reportFilename = 'report.html',
+    reportFilename,
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
@@ -158,9 +159,7 @@ async function generateReport(bundleStats, opts) {
           mkdir.sync(path.dirname(reportFilepath));
           fs.writeFileSync(reportFilepath, reportHtml);
 
-          logger.info(
-            `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`
-          );
+          logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
 
           if (openBrowser) {
             opener(`file://${reportFilepath}`);
@@ -172,6 +171,19 @@ async function generateReport(bundleStats, opts) {
       }
     );
   });
+}
+
+async function generateJSONReport(bundleStats, opts) {
+  const {reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null} = opts || {};
+
+  const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
+
+  if (!chartData) return;
+
+  mkdir.sync(path.dirname(reportFilename));
+  fs.writeFileSync(reportFilename, JSON.stringify(chartData));
+
+  logger.info(`${bold('Webpack Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
 }
 
 function getAssetContent(filename) {
