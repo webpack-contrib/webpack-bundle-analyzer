@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Improvement**
+   * Persist "Show content of concatenated modules" option ([#322](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/322) by [@lorenzos](https://github.com/lorenzos))
+
 ## 3.6.1
 
  * **Bug Fix**
