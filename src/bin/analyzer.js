@@ -26,9 +26,10 @@ const program = commander
   )
   .option(
     '-m, --mode <mode>',
-    'Analyzer mode. Should be `server` or `static`.' +
-    br('In `server` mode analyzer will start HTTP server to show bundle report.') +
-    br('In `static` mode single HTML file with bundle report will be generated.'),
+    'Analyzer mode. Should be `server`,`static` or `json`.' +
+      br('In `server` mode analyzer will start HTTP server to show bundle report.') +
+      br('In `static` mode single HTML file with bundle report will be generated.') +
+      br('In `json` mode single JSON file with bundle report will be generated.'),
     'server'
   )
   .option(
@@ -45,8 +46,7 @@ const program = commander
   )
   .option(
     '-r, --report <file>',
-    'Path to bundle report file that will be generated in `static` mode.',
-    'report.html'
+    'Path to bundle report file that will be generated in `static` mode.'
   )
   .option(
     '-s, --default-sizes <type>',
@@ -86,7 +86,9 @@ let {
 const logger = new Logger(logLevel);
 
 if (!bundleStatsFile) showHelp('Provide path to Webpack Stats file as first argument');
-if (mode !== 'server' && mode !== 'static') showHelp('Invalid mode. Should be either `server` or `static`.');
+if (mode !== 'server' && mode !== 'static' && mode !== 'json') {
+  showHelp('Invalid mode. Should be either `server`, `static` or `json`.');
+}
 if (mode === 'server') {
   if (!host) showHelp('Invalid host name');
 
@@ -118,11 +120,18 @@ if (mode === 'server') {
     excludeAssets,
     logger: new Logger(logLevel)
   });
-} else {
+} else if (mode === 'static') {
   viewer.generateReport(bundleStats, {
     openBrowser,
-    reportFilename: resolve(reportFilename),
+    reportFilename: resolve(reportFilename || 'report.html'),
     defaultSizes,
+    bundleDir,
+    excludeAssets,
+    logger: new Logger(logLevel)
+  });
+} else if (mode === 'json') {
+  viewer.generateJSONReport(bundleStats, {
+    reportFilename: resolve(reportFilename || 'report.json'),
     bundleDir,
     excludeAssets,
     logger: new Logger(logLevel)

@@ -1,0 +1,8 @@
+{
+  "ignore": {
+    "terser-webpack-plugin": {
+      "versions": ">= 2",
+      "reason": "v2 requires at least Node v8.9.0"
+    }
+  }
+}
