@@ -14,6 +14,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.7.0
+
  * **New Feature**
    * Added JSON output option (`analyzerMode: "json"` in plugin, `--mode json` in CLI) ([#341](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/341) by [@Gongreg](https://github.com/Gongreg))
 
