@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **New Feature**
+   * Added JSON output option (`analyzerMode: "json"` in plugin, `--mode json` in CLI) ([#341](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/341) by [@Gongreg](https://github.com/Gongreg))
+
  * **Improvement**
    * Persist "Show content of concatenated modules" option ([#322](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/322) by [@lorenzos](https://github.com/lorenzos))
 
