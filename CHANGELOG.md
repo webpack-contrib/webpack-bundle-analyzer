@@ -12,6 +12,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+ * **Improvement**
+   * Added support for exports.modules when webpack target = node
+
 <!-- Add changelog entries for new changes under this section -->
 
 ## 3.7.0
