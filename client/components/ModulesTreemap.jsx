@@ -115,6 +115,11 @@ export default class ModulesTreemap extends Component {
                 onChange={this.handleSelectedChunksChange}/>
             </div>
           }
+          {this.isTotalSelectedSizeVisible() &&
+            <div className={s.sidebarGroup}>
+              {this.renderSelectedChunkSize()}
+            </div>
+          }
         </Sidebar>
         <Treemap ref={this.saveTreemapRef}
           className={s.map}
@@ -161,6 +166,13 @@ export default class ModulesTreemap extends Component {
       ')'
     ];
   };
+
+  renderSelectedChunkSize = () => {
+    const {activeSize, selectedChunks} = this.store;
+    const totalSize = selectedChunks.reduce((memo, item) => (item[activeSize] + memo), 0);
+
+    return <div>Total selected size: <strong>{filesize(totalSize)}</strong></div>;
+  }
 
   @computed get sizeSwitchItems() {
     return store.hasParsedSizes ? SIZE_SWITCH_ITEMS : SIZE_SWITCH_ITEMS.slice(0, 1);
@@ -304,6 +316,10 @@ export default class ModulesTreemap extends Component {
 
   isModuleVisible = module => (
     this.treemap.isGroupRendered(module)
+  )
+
+  isTotalSelectedSizeVisible = () => (
+    store.selectedChunks.length > 1 && store.selectedChunks.length < this.chunkItems.length
   )
 
   saveTreemapRef = treemap => this.treemap = treemap;
