@@ -66,6 +66,7 @@ new BundleAnalyzerPlugin(options?: object)
 |**`statsFilename`**|`{String}`|Default: `stats.json`. Name of webpack stats JSON file that will be generated if `generateStatsFile` is `true`. It can be either an absolute path or a path relative to a bundle output directory (which is output.path in webpack config).|
 |**`statsOptions`**|`null` or `{Object}`|Default: `null`. Options for `stats.toJson()` method. For example you can exclude sources of your modules from stats file with `source: false` option. [See more options here](https://webpack.js.org/configuration/stats/). |
 |**`excludeAssets`**|`{null\|pattern\|pattern[]}` where `pattern` equals to `{String\|RegExp\|function}`|Default: `null`. Patterns that will be used to match against asset names to exclude them from the report. If pattern is a string it will be converted to RegExp via `new RegExp(str)`. If pattern is a function it should have the following signature `(assetName: string) => boolean` and should return `true` to *exclude* matching asset. If multiple patterns are provided asset should match at least one of them to be excluded. |
+|**`deterministic`**|`{Boolean}`|Default: `false`. Controls whether the output includes non-deterministic factors, such as the time the report was generated.|
 |**`logLevel`**|One of: `info`, `warn`, `error`, `silent`|Default: `info`. Used to control how much details the plugin outputs.|
 
 <h2 align="center">Usage (as a CLI utility)</h2>
@@ -123,6 +124,8 @@ Directory containing all generated bundles.
   -O, --no-open               Don't open report in default browser automatically.
   -e, --exclude <regexp>      Assets that should be excluded from the report.
                               Can be specified multiple times.
+  -d, --deterministic         Controls whether the output includes non-deterministic
+                              factors, such as the time the report was generated.
   -l, --log-level <level>     Log level.
                               Possible values: debug, info, warn, error, silent (default: info)
   -h, --help                  output usage information

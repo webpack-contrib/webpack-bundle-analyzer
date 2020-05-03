@@ -81,6 +81,53 @@ describe('Plugin', function () {
   });
 
   describe('options', function () {
+    describe('deterministic', function () {
+      const date2017 = new Date(1500000000000);
+      const date2018 = new Date(1520000000000);
+      it('should support deterministic builds', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+            deterministic: true
+          }
+        });
+
+        const firstReport = await withMockedDate(date2017, async () => {
+          await webpackCompile(config);
+          const file = await readFile(path.resolve(__dirname, 'output/report.html'));
+          return file.toString();
+        });
+
+        const secondReport = await withMockedDate(date2018, async () => {
+          await webpackCompile(config);
+          const file = await readFile(path.resolve(__dirname, 'output/report.html'));
+          return file.toString();
+        });
+
+        expect(firstReport).to.equal(secondReport);
+      });
+      it('should support non-deterministic builds', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+            deterministic: false
+          }
+        });
+
+        const firstReport = await withMockedDate(date2017, async () => {
+          await webpackCompile(config);
+          const file = await readFile(path.resolve(__dirname, 'output/report.html'));
+          return file.toString();
+        });
+
+        const secondReport = await withMockedDate(date2018, async () => {
+          await webpackCompile(config);
+          const file = await readFile(path.resolve(__dirname, 'output/report.html'));
+          return file.toString();
+        });
+
+        expect(firstReport).not.to.equal(secondReport);
+      });
+    });
+
     describe('excludeAssets', function () {
       it('should filter out assets from the report', async function () {
         const config = makeWebpackConfig({
@@ -97,6 +144,18 @@ describe('Plugin', function () {
       });
     });
   });
+
+  function readFile(file) {
+    return new Promise((resolve, reject) => {
+      fs.readFile(file, (err, data) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(data);
+        }
+      });
+    });
+  }
 
   async function expectValidReport(opts) {
     const {

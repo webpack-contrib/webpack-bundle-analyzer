@@ -65,6 +65,12 @@ const program = commander
     array()
   )
   .option(
+    '-d, --deterministic',
+    'Controls whether the output includes non-deterministic' +
+    br('factors, such as the time the report was generated.'),
+    false
+  )
+  .option(
     '-l, --log-level <level>',
     'Log level.' +
     br(`Possible values: ${[...Logger.levels].join(', ')}`),
@@ -78,6 +84,7 @@ let {
   port,
   report: reportFilename,
   defaultSizes,
+  deterministic,
   logLevel,
   open: openBrowser,
   exclude: excludeAssets,
@@ -115,6 +122,7 @@ if (mode === 'server') {
     openBrowser,
     port,
     host,
+    deterministic,
     defaultSizes,
     bundleDir,
     excludeAssets,
@@ -124,6 +132,7 @@ if (mode === 'server') {
   viewer.generateReport(bundleStats, {
     openBrowser,
     reportFilename: resolve(reportFilename || 'report.html'),
+    deterministic,
     defaultSizes,
     bundleDir,
     excludeAssets,
