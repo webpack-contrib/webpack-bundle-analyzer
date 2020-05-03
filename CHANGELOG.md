@@ -15,7 +15,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 <!-- Add changelog entries for new changes under this section -->
 
  * **New Feature**
-   * Added deterministic option (`deterministic: true` in plugin, `--deterministic` in CLI) (https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/347) by [@eoingroat](https://github.com/eoingroat)
+   * Added deterministic option (`deterministic: true` in plugin, `--deterministic` in CLI) (https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/348) by [@eoingroat](https://github.com/eoingroat)
 
 ## 3.7.0
 
