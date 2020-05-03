@@ -7,6 +7,7 @@ chai.use(require('chai-subset'));
 global.expect = chai.expect;
 global.webpackCompile = webpackCompile;
 global.makeWebpackConfig = makeWebpackConfig;
+global.withMockedDate = withMockedDate;
 
 const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
 
@@ -80,3 +81,21 @@ function makeWebpackConfig(opts) {
 function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+const realDate = global.Date;
+
+async function withMockedDate(targetDate, func) {
+  global.Date = function() {
+    return targetDate;
+  }
+  global.Date.now = realDate.now;
+  try {
+    return await func()
+  } catch(e) {
+    throw e;
+  } finally {
+    global.Date = realDate;
+  }
+}
+const date2017 = new Date(1500000000000);
+const date2018 = new Date(1520000000000);

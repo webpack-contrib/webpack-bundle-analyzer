@@ -81,6 +81,51 @@ describe('Plugin', function () {
   });
 
   describe('options', function () {
+    describe('deterministic', function () {
+      it('should support deterministic builds', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+            deterministic: true
+          }
+        });
+
+        const firstReport = await withMockedDate(date2017, async () => {
+          await webpackCompile(config);
+          const file = await fs.promises.readFile(path.resolve(__dirname, `output/report.html`));
+          return file.toString();
+        });
+
+        const secondReport = await withMockedDate(date2018, async () => {
+          await webpackCompile(config);
+          const file = await fs.promises.readFile(path.resolve(__dirname, `output/report.html`));
+          return file.toString();
+        });
+
+        expect(firstReport).to.equal(secondReport);
+      })
+      it('should support non-deterministic builds', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+            deterministic: false
+          }
+        });
+        
+        const firstReport = await withMockedDate(date2017, async () => {
+          await webpackCompile(config);
+          const file = await fs.promises.readFile(path.resolve(__dirname, `output/report.html`));
+          return file.toString();
+        });
+
+        const secondReport = await withMockedDate(date2018, async () => {
+          await webpackCompile(config);
+          const file = await fs.promises.readFile(path.resolve(__dirname, `output/report.html`));
+          return file.toString();
+        });
+
+        expect(firstReport).not.to.equal(secondReport);
+      })
+    })
+
     describe('excludeAssets', function () {
       it('should filter out assets from the report', async function () {
         const config = makeWebpackConfig({

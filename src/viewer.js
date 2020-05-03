@@ -25,7 +25,17 @@ module.exports = {
   start: startServer
 };
 
-const title = `${process.env.npm_package_name || 'Webpack Bundle Analyzer'} [${utils.getCurrentTime()}]`;
+function getTitle(opts) {
+  const {
+    deterministic = false
+  } = opts || {};
+
+  if (deterministic) {
+    return `${process.env.npm_package_name || 'Webpack Bundle Analyzer'}`;
+  } else {
+    return `${process.env.npm_package_name || 'Webpack Bundle Analyzer'} [${utils.getCurrentTime()}]`;
+  }
+}
 
 async function startServer(bundleStats, opts) {
   const {
@@ -34,6 +44,7 @@ async function startServer(bundleStats, opts) {
     openBrowser = true,
     bundleDir = null,
     logger = new Logger(),
+    deterministic = false,
     defaultSizes = 'parsed',
     excludeAssets = null
   } = opts || {};
@@ -56,7 +67,9 @@ async function startServer(bundleStats, opts) {
   app.use('/', (req, res) => {
     res.render('viewer', {
       mode: 'server',
-      title,
+      title: getTitle({
+        deterministic
+      }),
       get chartData() { return chartData },
       defaultSizes,
       enableWebSocket: true,
@@ -125,6 +138,7 @@ async function generateReport(bundleStats, opts) {
     reportFilename,
     bundleDir = null,
     logger = new Logger(),
+    deterministic = false,
     defaultSizes = 'parsed',
     excludeAssets = null
   } = opts || {};
@@ -138,7 +152,9 @@ async function generateReport(bundleStats, opts) {
       `${projectRoot}/views/viewer.ejs`,
       {
         mode: 'static',
-        title,
+        title: getTitle({
+          deterministic
+        }),
         chartData,
         defaultSizes,
         enableWebSocket: false,

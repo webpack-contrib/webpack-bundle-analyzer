@@ -19,6 +19,7 @@ class BundleAnalyzerPlugin {
       statsOptions: null,
       excludeAssets: null,
       logLevel: 'info',
+      deterministic: false,
       // deprecated
       startAnalyzer: true,
       ...opts,
@@ -109,6 +110,7 @@ class BundleAnalyzerPlugin {
         host: this.opts.analyzerHost,
         port: this.opts.analyzerPort,
         bundleDir: this.getBundleDirFromCompiler(),
+        deterministic: this.opts.deterministic,
         logger: this.logger,
         defaultSizes: this.opts.defaultSizes,
         excludeAssets: this.opts.excludeAssets
@@ -131,6 +133,7 @@ class BundleAnalyzerPlugin {
       reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename || 'report.html'),
       bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
+      deterministic: this.opts.deterministic,
       defaultSizes: this.opts.defaultSizes,
       excludeAssets: this.opts.excludeAssets
     });
