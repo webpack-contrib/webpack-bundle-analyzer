@@ -25,7 +25,7 @@ function parseBundle(bundlePath) {
     ast,
     walkState,
     {
-      AssignmentExpression(node, state,) {
+      AssignmentExpression(node, state) {
         if (state.locations) return;
 
         // Modules are stored in exports.modules:
@@ -35,7 +35,8 @@ function parseBundle(bundlePath) {
         if (
           left &&
           left.object && left.object.name === 'exports' &&
-          left.property && left.property.name === 'modules'
+          left.property && left.property.name === 'modules' &&
+          isModulesHash(right)
         ) {
           state.locations = getModulesLocations(right);
         }
