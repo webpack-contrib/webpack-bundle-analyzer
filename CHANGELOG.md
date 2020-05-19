@@ -14,6 +14,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 3.8.0
+
  * **Improvement**
    * Added support for exports.modules when webpack target = node ([#345](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/345) by [@Spikef](https://github.com/Spikef))
 
