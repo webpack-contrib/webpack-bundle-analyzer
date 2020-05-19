@@ -17,6 +17,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Bug Fix**
+   * Support any custom `globalObject` option in Webpack Config.
+
 ## 3.7.0
 
  * **New Feature**
