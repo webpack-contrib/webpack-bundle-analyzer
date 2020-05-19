@@ -198,14 +198,6 @@ function isAsyncChunkPushExpression(node) {
     callee.type === 'MemberExpression' &&
     callee.property.name === 'push' &&
     callee.object.type === 'AssignmentExpression' &&
-    callee.object.left.object &&
-    (
-      callee.object.left.object.name === 'window' ||
-      // `self` is a common output.globalObject value used to support both workers and browsers
-      callee.object.left.object.name === 'self' ||
-      // Webpack 4 uses `this` instead of `window`
-      callee.object.left.object.type === 'ThisExpression'
-    ) &&
     args.length === 1 &&
     args[0].type === 'ArrayExpression' &&
     mayBeAsyncChunkArguments(args[0].elements) &&
