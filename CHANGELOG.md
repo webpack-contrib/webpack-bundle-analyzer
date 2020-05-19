@@ -12,10 +12,10 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
- * **Improvement**
-   * Added support for exports.modules when webpack target = node
-
 <!-- Add changelog entries for new changes under this section -->
+
+ * **Improvement**
+   * Added support for exports.modules when webpack target = node ([#345](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/345) by [@Spikef](https://github.com/Spikef))
 
  * **New Feature**
    * Support [WebWorkerChunkTemplatePlugin](https://github.com/webpack/webpack/blob/c9d4ff7b054fc581c96ce0e53432d44f9dd8ca72/lib/webworker/WebWorkerChunkTemplatePlugin.js) ([#353](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/353) by [@Gongreg](https://github.com/Gongreg))
