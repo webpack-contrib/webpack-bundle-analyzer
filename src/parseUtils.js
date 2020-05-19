@@ -79,6 +79,15 @@ function parseBundle(bundlePath) {
           return;
         }
 
+        // Webpack v4 WebWorkerChunkTemplatePlugin
+        // globalObject.chunkCallbackName([<chunks>],<modules>, ...);
+        // Both globalObject and chunkCallbackName can be changed through the config, so we can't check them.
+        if (isAsyncWebWorkerChunkExpression(node)) {
+          state.locations = getModulesLocations(args[1]);
+          return;
+        }
+
+
         // Walking into arguments because some of plugins (e.g. `DedupePlugin`) or some Webpack
         // features (e.g. `umd` library output) can wrap modules list into additional IIFE.
         _.each(args, arg => c(arg, state));
@@ -209,6 +218,18 @@ function mayBeAsyncChunkArguments(args) {
   return (
     args.length >= 2 &&
     isChunkIds(args[0])
+  );
+}
+
+function isAsyncWebWorkerChunkExpression(node) {
+  const {callee, type, arguments: args} = node;
+
+  return (
+    type === 'CallExpression' &&
+    callee.type === 'MemberExpression' &&
+    args.length === 2 &&
+    isChunkIds(args[0]) &&
+    isModulesList(args[1])
   );
 }
 
