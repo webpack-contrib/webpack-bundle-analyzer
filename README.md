@@ -60,6 +60,7 @@ new BundleAnalyzerPlugin(options?: object)
 |**`analyzerHost`**|`{String}`|Default: `127.0.0.1`. Host that will be used in `server` mode to start HTTP server.|
 |**`analyzerPort`**|`{Number}` or `auto`|Default: `8888`. Port that will be used in `server` mode to start HTTP server.|
 |**`reportFilename`**|`{String}`|Default: `report.html`. Path to bundle report file that will be generated in `static` mode. It can be either an absolute path or a path relative to a bundle output directory (which is output.path in webpack config).|
+|**`reportTitle`**|`{String\|function}`|Default: function that returns pretty printed current date and time. Content of the HTML `title` element; or a function of the form `() => string` that provides the content.|
 |**`defaultSizes`**|One of: `stat`, `parsed`, `gzip`|Default: `parsed`. Module sizes to show in report by default. [Size definitions](#size-definitions) section describes what these values mean.|
 |**`openAnalyzer`**|`{Boolean}`|Default: `true`. Automatically open report in default browser.|
 |**`generateStatsFile`**|`{Boolean}`|Default: `false`. If `true`, webpack stats JSON file will be generated in bundle output directory|
@@ -118,6 +119,7 @@ Directory containing all generated bundles.
   -h, --host <host>           Host that will be used in `server` mode to start HTTP server. (default: 127.0.0.1)
   -p, --port <n>              Port that will be used in `server` mode to start HTTP server. Should be a number or `auto` (default: 8888)
   -r, --report <file>         Path to bundle report file that will be generated in `static` mode. (default: report.html)
+  -t, --title <title>         String to use in title element of html report. (default: pretty printed current date)
   -s, --default-sizes <type>  Module sizes to show in treemap by default.
                               Possible values: stat, parsed, gzip (default: parsed)
   -O, --no-open               Don't open report in default browser automatically.
