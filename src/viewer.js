@@ -10,12 +10,19 @@ const opener = require('opener');
 const mkdir = require('mkdirp');
 const {bold} = require('chalk');
 
-const utils = require('./utils');
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
 
 const projectRoot = path.resolve(__dirname, '..');
 const assetsRoot = path.join(projectRoot, 'public');
+
+function resolveTitle(reportTitle) {
+  if (typeof reportTitle === 'function') {
+    return reportTitle();
+  } else {
+    return reportTitle;
+  }
+}
 
 module.exports = {
   startServer,
@@ -25,8 +32,6 @@ module.exports = {
   start: startServer
 };
 
-const title = `${process.env.npm_package_name || 'Webpack Bundle Analyzer'} [${utils.getCurrentTime()}]`;
-
 async function startServer(bundleStats, opts) {
   const {
     port = 8888,
@@ -35,7 +40,8 @@ async function startServer(bundleStats, opts) {
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
-    excludeAssets = null
+    excludeAssets = null,
+    reportTitle
   } = opts || {};
 
   const analyzerOpts = {logger, excludeAssets};
@@ -56,7 +62,7 @@ async function startServer(bundleStats, opts) {
   app.use('/', (req, res) => {
     res.render('viewer', {
       mode: 'server',
-      title,
+      title: resolveTitle(reportTitle),
       get chartData() { return chartData },
       defaultSizes,
       enableWebSocket: true,
@@ -123,6 +129,7 @@ async function generateReport(bundleStats, opts) {
   const {
     openBrowser = true,
     reportFilename,
+    reportTitle,
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
@@ -138,7 +145,7 @@ async function generateReport(bundleStats, opts) {
       `${projectRoot}/views/viewer.ejs`,
       {
         mode: 'static',
-        title,
+        title: resolveTitle(reportTitle),
         chartData,
         defaultSizes,
         enableWebSocket: false,

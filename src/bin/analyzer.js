@@ -9,6 +9,7 @@ const {magenta} = require('chalk');
 const analyzer = require('../analyzer');
 const viewer = require('../viewer');
 const Logger = require('../Logger');
+const utils = require('../utils');
 
 const SIZES = new Set(['stat', 'parsed', 'gzip']);
 
@@ -49,6 +50,10 @@ const program = commander
     'Path to bundle report file that will be generated in `static` mode.'
   )
   .option(
+    '-t, --title <title>',
+    'String to use in title element of html report.'
+  )
+  .option(
     '-s, --default-sizes <type>',
     'Module sizes to show in treemap by default.' +
     br(`Possible values: ${[...SIZES].join(', ')}`),
@@ -77,6 +82,7 @@ let {
   host,
   port,
   report: reportFilename,
+  title: reportTitle,
   defaultSizes,
   logLevel,
   open: openBrowser,
@@ -84,6 +90,10 @@ let {
   args: [bundleStatsFile, bundleDir]
 } = program;
 const logger = new Logger(logLevel);
+
+if (typeof reportTitle === 'undefined') {
+  reportTitle = utils.defaultTitle;
+}
 
 if (!bundleStatsFile) showHelp('Provide path to Webpack Stats file as first argument');
 if (mode !== 'server' && mode !== 'static' && mode !== 'json') {
@@ -116,6 +126,7 @@ if (mode === 'server') {
     port,
     host,
     defaultSizes,
+    reportTitle,
     bundleDir,
     excludeAssets,
     logger: new Logger(logLevel)
@@ -124,6 +135,7 @@ if (mode === 'server') {
   viewer.generateReport(bundleStats, {
     openBrowser,
     reportFilename: resolve(reportFilename || 'report.html'),
+    reportTitle,
     defaultSizes,
     bundleDir,
     excludeAssets,

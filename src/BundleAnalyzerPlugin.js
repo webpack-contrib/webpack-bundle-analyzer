@@ -5,6 +5,7 @@ const {bold} = require('chalk');
 
 const Logger = require('./Logger');
 const viewer = require('./viewer');
+const utils = require('./utils');
 
 class BundleAnalyzerPlugin {
   constructor(opts = {}) {
@@ -12,6 +13,7 @@ class BundleAnalyzerPlugin {
       analyzerMode: 'server',
       analyzerHost: '127.0.0.1',
       reportFilename: null,
+      reportTitle: utils.defaultTitle,
       defaultSizes: 'parsed',
       openAnalyzer: true,
       generateStatsFile: false,
@@ -108,6 +110,7 @@ class BundleAnalyzerPlugin {
         openBrowser: this.opts.openAnalyzer,
         host: this.opts.analyzerHost,
         port: this.opts.analyzerPort,
+        reportTitle: this.opts.reportTitle,
         bundleDir: this.getBundleDirFromCompiler(),
         logger: this.logger,
         defaultSizes: this.opts.defaultSizes,
@@ -129,6 +132,7 @@ class BundleAnalyzerPlugin {
     await viewer.generateReport(stats, {
       openBrowser: this.opts.openAnalyzer,
       reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename || 'report.html'),
+      reportTitle: this.opts.reportTitle,
       bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
       defaultSizes: this.opts.defaultSizes,
