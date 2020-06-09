@@ -2,11 +2,7 @@
 ...
 
 #### Technical info
-* Webpack Bundle Analyzer version:
-* Webpack version:
-* Node.js version:
-* npm/yarn version:
-* OS:
+<!-- please include the output of npx envinfo --system --binaries --npmPackages=*webpack* --npmGlobalPackages=webpack-bundle-analyzer -->
 
 #### Debug info
 How do you use this module? As CLI utility or as plugin?
