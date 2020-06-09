@@ -25,8 +25,6 @@ class Logger {
   setLogLevel(level) {
     const levelIndex = LEVELS.indexOf(level);
 
-    if (levelIndex === -1) throw new Error(`Invalid log level "${level}". Use one of these: ${LEVELS.join(', ')}`);
-
     this.activeLevels.clear();
 
     for (const [i, level] of LEVELS.entries()) {
