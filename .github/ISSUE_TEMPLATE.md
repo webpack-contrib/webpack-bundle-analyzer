@@ -2,7 +2,17 @@
 ...
 
 #### Technical info
-<!-- please include the output of npx envinfo --system --binaries --npmPackages=*webpack* --npmGlobalPackages=webpack-bundle-analyzer -->
+
+<!--
+Please include the output of running the command below:
+
+npx envinfo --system --binaries --npmPackages=*webpack* --npmGlobalPackages=webpack-bundle-analyzer 
+
+-->
+
+<pre>
+REPLACE THIS TEXT WITH THE OUTPUT FROM THE COMMAND ABOVE
+</pre>
 
 #### Debug info
 How do you use this module? As CLI utility or as plugin?
