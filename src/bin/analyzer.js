@@ -110,7 +110,7 @@ if (!SIZES.has(defaultSizes)) {
 }
 
 if (!Logger.levels.includes(logLevel)) {
-  showHelp(`Invalid log level. Possible values are: ${[...Logger.levels].join(', ')}`);
+  showHelp(`Invalid log level "${logLevel}". Use one of these: ${[...Logger.levels].join(', ')}`);
 }
 
 bundleStatsFile = resolve(bundleStatsFile);

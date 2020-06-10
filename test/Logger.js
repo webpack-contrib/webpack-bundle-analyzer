@@ -55,12 +55,12 @@ describe('Logger', function () {
       expectLoggerLevel(logger, 'silent');
     });
 
-    it('should throw if level is invalid on instance creation', function () {
-      expect(() => new TestLogger('invalid')).to.throw(invalidLogLevelMessage('invalid'));
+    it('should not throw if level is invalid on instance creation', function () {
+      expect(() => new TestLogger('invalid')).not.to.throw(invalidLogLevelMessage('invalid'));
     });
 
-    it('should throw if level is invalid on `setLogLevel`', function () {
-      expect(() => new TestLogger().setLogLevel('invalid')).to.throw(invalidLogLevelMessage('invalid'));
+    it('should not throw if level is invalid on `setLogLevel`', function () {
+      expect(() => new TestLogger().setLogLevel('invalid')).not.to.throw(invalidLogLevelMessage('invalid'));
     });
   });
 });
