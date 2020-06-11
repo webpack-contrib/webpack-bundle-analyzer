@@ -17,7 +17,7 @@
 
 ```bash
 # NPM
-npm install --save-dev webpack-bundle-analyzer
+npm i -D webpack-bundle-analyzer
 # Yarn
 yarn add -D webpack-bundle-analyzer
 ```
