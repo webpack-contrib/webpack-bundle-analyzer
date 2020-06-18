@@ -23,7 +23,7 @@ const LEVEL_TO_CONSOLE_METHOD = new Map([
   ['warn', 'log']
 ]);
 
-const webpackLogger = require('webpack/lib/logging/runtime')
+const webpackLogger = require('webpack/lib/logging/runtime');
 
 if (webpackLogger.getLogger) LEVELS.push(...loggerMethods);
 
@@ -50,7 +50,7 @@ class Logger {
 
   _log(level, ...args) {
     if (webpackLogger.getLogger) {
-      webpackLogger.getLogger('webpack-bundle-analyzer')[level](...args)
+      webpackLogger.getLogger('webpack-bundle-analyzer')[level](...args);
     } else {
       console[LEVEL_TO_CONSOLE_METHOD.get(level) || level](...args);
     }
@@ -66,4 +66,4 @@ LEVELS.forEach(level => {
   };
 });
 
-module.exports = Logger
+module.exports = Logger;
