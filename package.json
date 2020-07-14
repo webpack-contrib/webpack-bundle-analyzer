@@ -2,7 +2,7 @@
   "name": "umi-webpack-bundle-analyzer",
   "version": "0.0.0-development",
   "description": "Webpack plugin and CLI utility that represents bundle content as convenient interactive zoomable treemap",
-  "author": "Yury Grunin <grunin.ya@ya.ru>",
+  "author": "RaoHai <surgesoft@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/umijs/umi-webpack-bundle-analyzer",
   "changelog": "https://github.com/umijs/umi-webpack-bundle-analyzer/blob/master/CHANGELOG.md",
