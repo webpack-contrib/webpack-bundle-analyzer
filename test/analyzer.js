@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const fs = require('fs');
+const path = require('path');
 const del = require('del');
 const childProcess = require('child_process');
 
@@ -106,18 +107,64 @@ describe('Analyzer', function () {
     generateReportFrom('with-modules-chunk.json');
     await expectValidReport({bundleLabel: 'bundle.mjs'});
   });
+
+  it('should support generating JSON output for the report', async function () {
+    generateJSONReportFrom('with-modules-in-chunks/stats.json');
+
+    const chartData = require(path.resolve(__dirname, 'output/report.json'));
+    expect(chartData).to.containSubset(require('./stats/with-modules-in-chunks/expected-chart-data'));
+  });
+
+  describe('options', function () {
+    describe('title', function () {
+      it('should take the --title option', async function () {
+        const reportTitle = 'A string report title';
+        generateReportFrom('with-modules-chunk.json', `--title "${reportTitle}"`);
+
+        const generatedReportTitle = await getTitleFromReport();
+
+        expect(generatedReportTitle).to.equal(reportTitle);
+      });
+      it('should take the -t option', async function () {
+        const reportTitle = 'A string report title';
+
+        generateReportFrom('with-modules-chunk.json', `-t "${reportTitle}"`);
+
+        const generatedReportTitle = await getTitleFromReport();
+
+        expect(generatedReportTitle).to.equal(reportTitle);
+      });
+      it('should use a suitable default title', async function () {
+        generateReportFrom('with-modules-chunk.json');
+
+        const generatedReportTitle = await getTitleFromReport();
+
+        expect(generatedReportTitle).to.match(/^webpack-bundle-analyzer \[.* at \d{2}:\d{2}\]/u);
+      });
+    });
+  });
 });
 
-function generateReportFrom(statsFilename) {
-  childProcess.execSync(`../lib/bin/analyzer.js -m static -r output/report.html -O stats/${statsFilename}`, {
+function generateJSONReportFrom(statsFilename) {
+  childProcess.execSync(`../lib/bin/analyzer.js -m json -r output/report.json stats/${statsFilename}`, {
     cwd: __dirname
   });
 }
 
+function generateReportFrom(statsFilename, additionalOptions = '') {
+  childProcess.execSync(
+    `../lib/bin/analyzer.js ${additionalOptions} -m static -r output/report.html -O stats/${statsFilename}`,
+    {
+      cwd: __dirname
+    });
+}
+
+async function getTitleFromReport() {
+  return await nightmare.goto(`file://${__dirname}/output/report.html`).title();
+}
+
 async function getChartData() {
-  return await nightmare
-    .goto(`file://${__dirname}/output/report.html`)
-    .evaluate(() => window.chartData);
+  return await nightmare.goto(`file://${__dirname}/output/report.html`).evaluate(() => window.chartData);
 }
 
 function forEachChartItem(chartData, cb) {

@@ -6,6 +6,7 @@ branches:
 node_js:
   - "8"
   - "10"
+  - "12"
   - "node"
 addons:
   apt:

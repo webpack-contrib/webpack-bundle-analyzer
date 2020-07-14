@@ -9,6 +9,7 @@ const {magenta} = require('chalk');
 const analyzer = require('../analyzer');
 const viewer = require('../viewer');
 const Logger = require('../Logger');
+const utils = require('../utils');
 
 const SIZES = new Set(['stat', 'parsed', 'gzip']);
 
@@ -26,9 +27,10 @@ const program = commander
   )
   .option(
     '-m, --mode <mode>',
-    'Analyzer mode. Should be `server` or `static`.' +
-    br('In `server` mode analyzer will start HTTP server to show bundle report.') +
-    br('In `static` mode single HTML file with bundle report will be generated.'),
+    'Analyzer mode. Should be `server`,`static` or `json`.' +
+      br('In `server` mode analyzer will start HTTP server to show bundle report.') +
+      br('In `static` mode single HTML file with bundle report will be generated.') +
+      br('In `json` mode single JSON file with bundle report will be generated.'),
     'server'
   )
   .option(
@@ -45,8 +47,11 @@ const program = commander
   )
   .option(
     '-r, --report <file>',
-    'Path to bundle report file that will be generated in `static` mode.',
-    'report.html'
+    'Path to bundle report file that will be generated in `static` mode.'
+  )
+  .option(
+    '-t, --title <title>',
+    'String to use in title element of html report.'
   )
   .option(
     '-s, --default-sizes <type>',
@@ -77,6 +82,7 @@ let {
   host,
   port,
   report: reportFilename,
+  title: reportTitle,
   defaultSizes,
   logLevel,
   open: openBrowser,
@@ -85,8 +91,14 @@ let {
 } = program;
 const logger = new Logger(logLevel);
 
+if (typeof reportTitle === 'undefined') {
+  reportTitle = utils.defaultTitle;
+}
+
 if (!bundleStatsFile) showHelp('Provide path to Webpack Stats file as first argument');
-if (mode !== 'server' && mode !== 'static') showHelp('Invalid mode. Should be either `server` or `static`.');
+if (mode !== 'server' && mode !== 'static' && mode !== 'json') {
+  showHelp('Invalid mode. Should be either `server`, `static` or `json`.');
+}
 if (mode === 'server') {
   if (!host) showHelp('Invalid host name');
 
@@ -114,15 +126,24 @@ if (mode === 'server') {
     port,
     host,
     defaultSizes,
+    reportTitle,
     bundleDir,
     excludeAssets,
     logger: new Logger(logLevel)
   });
-} else {
+} else if (mode === 'static') {
   viewer.generateReport(bundleStats, {
     openBrowser,
-    reportFilename: resolve(reportFilename),
+    reportFilename: resolve(reportFilename || 'report.html'),
+    reportTitle,
     defaultSizes,
+    bundleDir,
+    excludeAssets,
+    logger: new Logger(logLevel)
+  });
+} else if (mode === 'json') {
+  viewer.generateJSONReport(bundleStats, {
+    reportFilename: resolve(reportFilename || 'report.json'),
     bundleDir,
     excludeAssets,
     logger: new Logger(logLevel)

@@ -39,12 +39,15 @@ function createAssetsFilter(excludePatterns) {
  * @desc get string of current time
  * format: dd/MMM HH:mm
  * */
-exports.getCurrentTime = function () {
+exports.defaultTitle = function () {
   const time = new Date();
   const year = time.getFullYear();
   const month = MONTHS[time.getMonth()];
   const day = time.getDate();
-  const hour = time.getHours();
-  const minute = time.getMinutes();
-  return `${day} ${month} ${year} at ${hour}:${minute}`;
+  const hour = `0${time.getHours()}`.slice(-2);
+  const minute = `0${time.getMinutes()}`.slice(-2);
+
+  const currentTime = `${day} ${month} ${year} at ${hour}:${minute}`;
+
+  return `${process.env.npm_package_name || 'Webpack Bundle Analyzer'} [${currentTime}]`;
 };

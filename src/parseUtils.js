@@ -25,6 +25,22 @@ function parseBundle(bundlePath) {
     ast,
     walkState,
     {
+      AssignmentExpression(node, state) {
+        if (state.locations) return;
+
+        // Modules are stored in exports.modules:
+        // exports.modules = {};
+        const {left, right} = node;
+
+        if (
+          left &&
+          left.object && left.object.name === 'exports' &&
+          left.property && left.property.name === 'modules' &&
+          isModulesHash(right)
+        ) {
+          state.locations = getModulesLocations(right);
+        }
+      },
       CallExpression(node, state, c) {
         if (state.locations) return;
 
@@ -62,6 +78,15 @@ function parseBundle(bundlePath) {
           state.locations = getModulesLocations(args[0].elements[1]);
           return;
         }
+
+        // Webpack v4 WebWorkerChunkTemplatePlugin
+        // globalObject.chunkCallbackName([<chunks>],<modules>, ...);
+        // Both globalObject and chunkCallbackName can be changed through the config, so we can't check them.
+        if (isAsyncWebWorkerChunkExpression(node)) {
+          state.locations = getModulesLocations(args[1]);
+          return;
+        }
+
 
         // Walking into arguments because some of plugins (e.g. `DedupePlugin`) or some Webpack
         // features (e.g. `umd` library output) can wrap modules list into additional IIFE.
@@ -182,12 +207,6 @@ function isAsyncChunkPushExpression(node) {
     callee.type === 'MemberExpression' &&
     callee.property.name === 'push' &&
     callee.object.type === 'AssignmentExpression' &&
-    callee.object.left.object &&
-    (
-      callee.object.left.object.name === 'window' ||
-      // Webpack 4 uses `this` instead of `window`
-      callee.object.left.object.type === 'ThisExpression'
-    ) &&
     args.length === 1 &&
     args[0].type === 'ArrayExpression' &&
     mayBeAsyncChunkArguments(args[0].elements) &&
@@ -199,6 +218,18 @@ function mayBeAsyncChunkArguments(args) {
   return (
     args.length >= 2 &&
     isChunkIds(args[0])
+  );
+}
+
+function isAsyncWebWorkerChunkExpression(node) {
+  const {callee, type, arguments: args} = node;
+
+  return (
+    type === 'CallExpression' &&
+    callee.type === 'MemberExpression' &&
+    args.length === 2 &&
+    isChunkIds(args[0]) &&
+    isModulesList(args[1])
   );
 }
 
