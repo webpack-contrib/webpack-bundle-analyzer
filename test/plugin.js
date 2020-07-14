@@ -105,7 +105,7 @@ describe('Plugin', function () {
 
         const generatedReportTitle = await getTitleFromReport();
 
-        expect(generatedReportTitle).to.match(/^webpack-bundle-analyzer \[.* at \d{2}:\d{2}\]/u);
+        expect(generatedReportTitle).to.match(/^umi-webpack-bundle-analyzer \[.* at \d{2}:\d{2}\]/u);
       });
       it('should use a string', async function () {
         const reportTitle = 'A string report title';
