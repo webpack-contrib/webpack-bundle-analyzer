@@ -5,6 +5,7 @@ import {computed} from 'mobx';
 import {observer} from 'mobx-preact';
 
 import {isChunkParsed} from '../utils';
+import localStorage from '../localStorage';
 import Treemap from './Treemap';
 import Tooltip from './Tooltip';
 import Switcher from './Switcher';
@@ -208,6 +209,11 @@ export default class ModulesTreemap extends Component {
 
   handleConcatenatedModulesContentToggle = flag => {
     store.showConcatenatedModulesContent = flag;
+    if (flag) {
+      localStorage.setItem('showConcatenatedModulesContent', true);
+    } else {
+      localStorage.removeItem('showConcatenatedModulesContent');
+    }
   }
 
   handleChunkContextMenuHide = () => {

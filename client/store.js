@@ -1,5 +1,6 @@
 import {observable, computed} from 'mobx';
 import {isChunkParsed, walkModules} from './utils';
+import localStorage from './localStorage';
 
 export class Store {
   cid = 0;
@@ -10,7 +11,7 @@ export class Store {
   @observable searchQuery = '';
   @observable defaultSize;
   @observable selectedSize;
-  @observable showConcatenatedModulesContent = false;
+  @observable showConcatenatedModulesContent = (localStorage.getItem('showConcatenatedModulesContent') === true);
 
   setModules(modules) {
     walkModules(modules, module => {

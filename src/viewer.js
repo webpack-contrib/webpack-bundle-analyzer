@@ -10,22 +10,28 @@ const opener = require('opener');
 const mkdir = require('mkdirp');
 const {bold} = require('chalk');
 
-const utils = require('./utils');
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
 
 const projectRoot = path.resolve(__dirname, '..');
 const assetsRoot = path.join(projectRoot, 'public');
 
+function resolveTitle(reportTitle) {
+  if (typeof reportTitle === 'function') {
+    return reportTitle();
+  } else {
+    return reportTitle;
+  }
+}
+
 module.exports = {
   startServer,
   generateReport,
   generateReportData,
+  generateJSONReport,
   // deprecated
   start: startServer
 };
-
-const title = `${process.env.npm_package_name || 'Webpack Bundle Analyzer'} [${utils.getCurrentTime()}]`;
 
 async function startServer(bundleStats, opts) {
   const {
@@ -35,7 +41,8 @@ async function startServer(bundleStats, opts) {
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
-    excludeAssets = null
+    excludeAssets = null,
+    reportTitle
   } = opts || {};
 
   const analyzerOpts = {logger, excludeAssets};
@@ -56,7 +63,7 @@ async function startServer(bundleStats, opts) {
   app.use('/', (req, res) => {
     res.render('viewer', {
       mode: 'server',
-      title,
+      title: resolveTitle(reportTitle),
       get chartData() { return chartData },
       defaultSizes,
       enableWebSocket: true,
@@ -146,7 +153,8 @@ async function generateReportData(bundleStats, opts) {
 async function generateReport(bundleStats, opts) {
   const {
     openBrowser = true,
-    reportFilename = 'report.html',
+    reportFilename,
+    reportTitle,
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
@@ -162,7 +170,7 @@ async function generateReport(bundleStats, opts) {
       `${projectRoot}/views/viewer.ejs`,
       {
         mode: 'static',
-        title,
+        title: resolveTitle(reportTitle),
         chartData,
         defaultSizes,
         enableWebSocket: false,
@@ -183,9 +191,7 @@ async function generateReport(bundleStats, opts) {
           mkdir.sync(path.dirname(reportFilepath));
           fs.writeFileSync(reportFilepath, reportHtml);
 
-          logger.info(
-            `${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`
-          );
+          logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
 
           if (openBrowser) {
             opener(`file://${reportFilepath}`);
@@ -197,6 +203,19 @@ async function generateReport(bundleStats, opts) {
       }
     );
   });
+}
+
+async function generateJSONReport(bundleStats, opts) {
+  const {reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null} = opts || {};
+
+  const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
+
+  if (!chartData) return;
+
+  mkdir.sync(path.dirname(reportFilename));
+  fs.writeFileSync(reportFilename, JSON.stringify(chartData));
+
+  logger.info(`${bold('Webpack Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
 }
 
 function getAssetContent(filename) {

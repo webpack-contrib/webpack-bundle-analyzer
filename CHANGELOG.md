@@ -14,6 +14,47 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+* **New Feature**
+   * Adds option reportTitle to set title in HTML reports; default remains date of report generation ([#354](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/354)) by [@eoingroat](https://github.com/eoingroat)
+
+## 3.8.0
+
+ * **Improvement**
+   * Added support for exports.modules when webpack target = node ([#345](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/345) by [@Spikef](https://github.com/Spikef))
+
+ * **New Feature**
+   * Support [WebWorkerChunkTemplatePlugin](https://github.com/webpack/webpack/blob/c9d4ff7b054fc581c96ce0e53432d44f9dd8ca72/lib/webworker/WebWorkerChunkTemplatePlugin.js) ([#353](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/353) by [@Gongreg](https://github.com/Gongreg))
+
+ * **Bug Fix**
+   * Support any custom `globalObject` option in Webpack Config. ([#352](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/352) by [@Gongreg](https://github.com/Gongreg))
+
+## 3.7.0
+
+ * **New Feature**
+   * Added JSON output option (`analyzerMode: "json"` in plugin, `--mode json` in CLI) ([#341](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/341) by [@Gongreg](https://github.com/Gongreg))
+
+ * **Improvement**
+   * Persist "Show content of concatenated modules" option ([#322](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/322) by [@lorenzos](https://github.com/lorenzos))
+
+## 3.6.1
+
+ * **Bug Fix**
+   * Add leading zero to hour & minute on `<title />` when needed ([#314](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/314) by [@mhxbe](https://github.com/mhxbe))
+   
+ * **Internal**
+   * Update some dependencies to get rid of vulnerability warnings ([#339](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/339))
+
+## 3.6.0
+
+ * **Improvement**
+   * Support webpack builds where `output.globalObject` is set to `'self'` ([#323](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/323) by [@lemonmade](https://github.com/lemonmade))
+   * Improve readability of tooltips ([#320](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/320) by [@lorenzos](https://github.com/lorenzos))
+
+## 3.5.2
+
+ * **Bug Fix**
+   * Fix sidebar not showing visibility status of chunks hidden via popup menu (issue [#316](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/316) by [@gaokun](https://github.com/gaokun), fixed in [#317](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/317) by [@bregenspan](https://github.com/bregenspan))
+
 ## 3.5.1
 
  * **Bug Fix**
