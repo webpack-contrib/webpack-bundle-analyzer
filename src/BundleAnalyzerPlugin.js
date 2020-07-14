@@ -40,7 +40,7 @@ class BundleAnalyzerPlugin {
       const actions = [];
 
       if (this.opts.generateReportFile) {
-        actions.push(() => this.generateReportFile(stats));
+        actions.push(() => this.generateReportFile(stats.toJson()));
       }
 
       if (this.opts.generateStatsFile) {
