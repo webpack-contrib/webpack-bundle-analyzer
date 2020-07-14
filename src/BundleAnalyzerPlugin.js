@@ -91,7 +91,7 @@ class BundleAnalyzerPlugin {
         logger: this.logger,
         defaultSizes: this.opts.defaultSizes,
         excludeAssets: this.opts.excludeAssets,
-        reportDepth: Math.max(this.opts.reportDepth, 2),
+        reportDepth: Math.max(this.opts.reportDepth, 2)
       });
 
       await bfj.write(statsFilepath, chartData, {
