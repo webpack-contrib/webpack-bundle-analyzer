@@ -29,6 +29,14 @@ describe('Analyzer', function () {
     await expectValidReport();
   });
 
+  it('should generate report containing worker bundles', async function () {
+    generateReportFrom('with-worker-loader/stats.json');
+    const chartData = await getChartData();
+    expect(chartData[1]).to.containSubset({
+      label: 'bundle.worker.js'
+    });
+  });
+
   it('should support stats files with modules inside `chunks` array', async function () {
     generateReportFrom('with-modules-in-chunks/stats.json');
     const chartData = await getChartData();

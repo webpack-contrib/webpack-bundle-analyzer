@@ -27,7 +27,24 @@ function getViewerData(bundleStats, bundleDir, opts) {
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
   if (_.isEmpty(bundleStats.assets) && !_.isEmpty(bundleStats.children)) {
+    const {children} = bundleStats;
     bundleStats = bundleStats.children[0];
+    // Sometimes if there are additional child chunks produced add them as child assets,
+    // leave the 1st one as that is considered the 'root' asset.
+    for (let i = 1; i < children.length; i++) {
+      bundleStats.children[i].assets.forEach((asset) => {
+        asset.isChild = true;
+        bundleStats.assets.push(asset);
+      });
+    }
+  } else if (!_.isEmpty(bundleStats.children)) {
+    // Sometimes if there are additional child chunks produced add them as child assets
+    bundleStats.children.forEach((child) => {
+      child.assets.forEach((asset) => {
+        asset.isChild = true;
+        bundleStats.assets.push(asset);
+      });
+    });
   }
 
   // Picking only `*.js or *.mjs` assets from bundle that has non-empty `chunks` array
@@ -70,8 +87,11 @@ function getViewerData(bundleStats, bundleDir, opts) {
     }
   }
 
-  const modules = getBundleModules(bundleStats);
   const assets = _.transform(bundleStats.assets, (result, statAsset) => {
+    // If asset is a childAsset, then calculate appropriate bundle modules by looking through stats.children
+    const modules = statAsset.isChild ?
+      getBundleModules(getChildAssetBundles(bundleStats, statAsset.name)) :
+      getBundleModules(bundleStats);
     const asset = result[statAsset.name] = _.pick(statAsset, 'size');
 
     if (bundlesSources && _.has(bundlesSources, statAsset.name)) {
@@ -110,6 +130,15 @@ function getViewerData(bundleStats, bundleDir, opts) {
 function readStatsFromFile(filename) {
   return JSON.parse(
     fs.readFileSync(filename, 'utf8')
+  );
+}
+
+function getChildAssetBundles(bundleStats, assetName) {
+  return _.find(bundleStats.children, (c) =>
+    _(c.assetsByChunkName)
+      .values()
+      .flatten()
+      .includes(assetName)
   );
 }
 
