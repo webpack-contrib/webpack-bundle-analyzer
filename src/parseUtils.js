@@ -2,13 +2,22 @@ const fs = require('fs');
 const _ = require('lodash');
 const acorn = require('acorn');
 const walk = require('acorn-walk');
+const zlib = require('zlib');
 
 module.exports = {
   parseBundle
 };
 
-function parseBundle(bundlePath) {
-  const content = fs.readFileSync(bundlePath, 'utf8');
+function parseBundle(bundlePath, {decompressExtenstion = {}}) {
+  let content;
+  const decompressAlgorithm = (decompressExtenstion[bundlePath.split('.').pop()] || {}).algorithm;
+  if (decompressAlgorithm && zlib[decompressAlgorithm]) {
+    const compressedBuffer = fs.readFileSync(bundlePath);
+    const decompressedBuffer = zlib[decompressAlgorithm](compressedBuffer);
+    content = decompressedBuffer.toString();
+  } else {
+    content = fs.readFileSync(bundlePath, 'utf8');
+  }
   const ast = acorn.parse(content, {
     sourceType: 'script',
     // I believe in a bright future of ECMAScript!

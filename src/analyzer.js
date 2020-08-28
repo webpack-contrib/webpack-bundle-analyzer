@@ -17,6 +17,13 @@ module.exports = {
   readStatsFromFile
 };
 
+function isExtensionAllowed(filename, {decompressExtenstion = {}}) {
+  if (FILENAME_EXTENSIONS.test(filename)) {
+    return true;
+  }
+  return !!decompressExtenstion[filename.split('.').pop()];
+}
+
 function getViewerData(bundleStats, bundleDir, opts) {
   const {
     logger = new Logger(),
@@ -53,7 +60,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     // See #22
     asset.name = asset.name.replace(FILENAME_QUERY_REGEXP, '');
 
-    return FILENAME_EXTENSIONS.test(asset.name) && !_.isEmpty(asset.chunks) && isAssetIncluded(asset.name);
+    return isExtensionAllowed(asset.name, opts) && !_.isEmpty(asset.chunks) && isAssetIncluded(asset.name);
   });
 
   // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided
@@ -69,7 +76,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
       let bundleInfo;
 
       try {
-        bundleInfo = parseBundle(assetFile);
+        bundleInfo = parseBundle(assetFile, opts);
       } catch (err) {
         const msg = (err.code === 'ENOENT') ? 'no such file' : err.message;
         logger.warn(`Error parsing bundle asset "${assetFile}": ${msg}`);
