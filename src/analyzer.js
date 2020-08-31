@@ -27,7 +27,8 @@ function isExtensionAllowed(filename, {decompressExtenstion = {}}) {
 function getViewerData(bundleStats, bundleDir, opts) {
   const {
     logger = new Logger(),
-    excludeAssets = null
+    excludeAssets = null,
+    decompressExtenstion
   } = opts || {};
 
   const isAssetIncluded = createAssetsFilter(excludeAssets);
@@ -76,7 +77,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
       let bundleInfo;
 
       try {
-        bundleInfo = parseBundle(assetFile, opts);
+        bundleInfo = parseBundle(assetFile, {decompressExtenstion, logger});
       } catch (err) {
         const msg = (err.code === 'ENOENT') ? 'no such file' : err.message;
         logger.warn(`Error parsing bundle asset "${assetFile}": ${msg}`);

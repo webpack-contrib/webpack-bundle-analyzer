@@ -1,4 +1,5 @@
 const fs = require('fs');
+const zlib = require('zlib');
 
 const _ = require('lodash');
 const {parseBundle} = require('../lib/parseUtils');
@@ -42,6 +43,9 @@ describe('parseBundle', function () {
         const bundleFile = `${BUNDLES_DIR}/validBundleWithArrowFunction.js`;
         const compressedBundleFile = `${bundleFile}.${extension}`;
         const expectedModules = JSON.parse(fs.readFileSync(`${BUNDLES_DIR}/validBundleWithArrowFunction.modules.json`));
+        if (!zlib[algorithm]) {
+          return;
+        }
         const bundle = parseBundle(compressedBundleFile, {
           decompressExtenstion: {
             [extension]: {algorithm}

@@ -3,18 +3,23 @@ const _ = require('lodash');
 const acorn = require('acorn');
 const walk = require('acorn-walk');
 const zlib = require('zlib');
+const Logger = require('./Logger');
 
 module.exports = {
   parseBundle
 };
 
-function parseBundle(bundlePath, {decompressExtenstion = {}}) {
+function parseBundle(bundlePath, {decompressExtenstion = {}, logger = new Logger()}) {
   let content;
   const decompressAlgorithm = (decompressExtenstion[bundlePath.split('.').pop()] || {}).algorithm;
-  if (decompressAlgorithm && zlib[decompressAlgorithm]) {
-    const compressedBuffer = fs.readFileSync(bundlePath);
-    const decompressedBuffer = zlib[decompressAlgorithm](compressedBuffer);
-    content = decompressedBuffer.toString();
+  if (decompressAlgorithm) {
+    if (zlib[decompressAlgorithm]) {
+      const compressedBuffer = fs.readFileSync(bundlePath);
+      const decompressedBuffer = zlib[decompressAlgorithm](compressedBuffer);
+      content = decompressedBuffer.toString();
+    } else {
+      logger.error(`Algorithm "${decompressAlgorithm}" not available in zlib, consider upgrading node version`);
+    }
   } else {
     content = fs.readFileSync(bundlePath, 'utf8');
   }
