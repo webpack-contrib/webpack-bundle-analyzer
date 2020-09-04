@@ -10,25 +10,17 @@ const {parseBundle} = require('./parseUtils');
 const {createAssetsFilter} = require('./utils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/u;
-const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
+const FILENAME_EXTENSIONS = /\.(js|mjs|gz|br)$/iu;
 
 module.exports = {
   getViewerData,
   readStatsFromFile
 };
 
-function isExtensionAllowed(filename, {decompressExtenstion = {}}) {
-  if (FILENAME_EXTENSIONS.test(filename)) {
-    return true;
-  }
-  return !!decompressExtenstion[filename.split('.').pop()];
-}
-
 function getViewerData(bundleStats, bundleDir, opts) {
   const {
     logger = new Logger(),
-    excludeAssets = null,
-    decompressExtenstion
+    excludeAssets = null
   } = opts || {};
 
   const isAssetIncluded = createAssetsFilter(excludeAssets);
@@ -55,13 +47,13 @@ function getViewerData(bundleStats, bundleDir, opts) {
     });
   }
 
-  // Picking only `*.js or *.mjs` assets from bundle that has non-empty `chunks` array
+  // Picking only `*.js or *.mjs or *.gz or *.br` assets from bundle that has non-empty `chunks` array
   bundleStats.assets = _.filter(bundleStats.assets, asset => {
     // Removing query part from filename (yes, somebody uses it for some reason and Webpack supports it)
     // See #22
     asset.name = asset.name.replace(FILENAME_QUERY_REGEXP, '');
 
-    return isExtensionAllowed(asset.name, opts) && !_.isEmpty(asset.chunks) && isAssetIncluded(asset.name);
+    return FILENAME_EXTENSIONS.test(asset.name) && !_.isEmpty(asset.chunks) && isAssetIncluded(asset.name);
   });
 
   // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided
@@ -77,7 +69,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
       let bundleInfo;
 
       try {
-        bundleInfo = parseBundle(assetFile, {decompressExtenstion, logger});
+        bundleInfo = parseBundle(assetFile, {logger});
       } catch (err) {
         const msg = (err.code === 'ENOENT') ? 'no such file' : err.message;
         logger.warn(`Error parsing bundle asset "${assetFile}": ${msg}`);

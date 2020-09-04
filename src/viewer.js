@@ -41,11 +41,10 @@ async function startServer(bundleStats, opts) {
     logger = new Logger(),
     defaultSizes = 'parsed',
     excludeAssets = null,
-    reportTitle,
-    decompressExtenstion
+    reportTitle
   } = opts || {};
 
-  const analyzerOpts = {logger, excludeAssets, decompressExtenstion};
+  const analyzerOpts = {logger, excludeAssets};
 
   let chartData = getChartData(analyzerOpts, bundleStats, bundleDir);
 
@@ -183,10 +182,10 @@ async function generateReport(bundleStats, opts) {
 
 async function generateJSONReport(bundleStats, opts) {
   const {
-    reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null, decompressExtenstion
+    reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null
   } = opts || {};
 
-  const chartData = getChartData({logger, excludeAssets, decompressExtenstion}, bundleStats, bundleDir);
+  const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
 
   if (!chartData) return;
 

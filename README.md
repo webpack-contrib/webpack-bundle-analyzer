@@ -68,7 +68,6 @@ new BundleAnalyzerPlugin(options?: object)
 |**`statsOptions`**|`null` or `{Object}`|Default: `null`. Options for `stats.toJson()` method. For example you can exclude sources of your modules from stats file with `source: false` option. [See more options here](https://webpack.js.org/configuration/stats/). |
 |**`excludeAssets`**|`{null\|pattern\|pattern[]}` where `pattern` equals to `{String\|RegExp\|function}`|Default: `null`. Patterns that will be used to match against asset names to exclude them from the report. If pattern is a string it will be converted to RegExp via `new RegExp(str)`. If pattern is a function it should have the following signature `(assetName: string) => boolean` and should return `true` to *exclude* matching asset. If multiple patterns are provided asset should match at least one of them to be excluded. |
 |**`logLevel`**|One of: `info`, `warn`, `error`, `silent`|Default: `info`. Used to control how much details the plugin outputs.|
-|**`decompressExtenstion`**|`null` or `{Object}`|Default: `null`. Used to show stats for a compressed file, object has compressed file's extension as key and it's value is decompression algorithm of [zlib](https://nodejs.org/api/zlib.html) to use, like: `{ gz: { algorithm: 'unzipSync' } }`|
 
 <h2 align="center">Usage (as a CLI utility)</h2>
 
@@ -179,6 +178,9 @@ Analyzer will use module sizes from stats file.
 ```
 To get more information about it you can read [issue #147](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/147).
 
+### I don't see any stats for compressed files
+
+`webpack-bundle-analyzer` automatically detects files compressed with gzip(.gz) or brotli(.br), and decompresses them to generate stats. If using `compression-webpack-plugin` with `deleteOriginalAssets: true`, make sure to provide same name to output and compressed files so that correct chunk can be referred, see [issue #377](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/377#issuecomment-682347389). For brotli assets, make sure your node version is `>=11.7.0`.
 
 <h2 align="center">Maintainers</h2>
 
