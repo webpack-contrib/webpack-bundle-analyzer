@@ -180,7 +180,7 @@ To get more information about it you can read [issue #147](https://github.com/we
 
 ### I don't see any stats for compressed files
 
-`webpack-bundle-analyzer` automatically detects files compressed with gzip(.gz) or brotli(.br), and decompresses them to generate stats. If using `compression-webpack-plugin` with `deleteOriginalAssets: true`, make sure to provide same name to output and compressed files so that correct chunk can be referred, see [issue #377](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/377#issuecomment-682347389). For brotli assets, make sure your node version is `>=11.7.0`.
+`webpack-bundle-analyzer` automatically detects files compressed with gzip(.gz) or brotli(.br), and decompresses them to generate stats. If using `compression-webpack-plugin` with `deleteOriginalAssets: true`, make sure to provide same name to output and compressed files so that correct chunk can be referred, see [issue #377](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/377#issuecomment-682347389). For brotli assets, make sure your node version is `>=10.22.0`.
 
 <h2 align="center">Maintainers</h2>
 

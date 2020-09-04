@@ -5,7 +5,7 @@ const {parseBundle} = require('../lib/parseUtils');
 
 const BUNDLES_DIR = `${__dirname}/bundles`;
 const COMPRESSIONS = {
-  brotli: {extension: 'br', minVersion: '11.7.0'},
+  brotli: {extension: 'br', minVersion: '10.22.0'},
   gzip: {extension: 'gz'}
 };
 
