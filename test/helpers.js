@@ -84,5 +84,10 @@ function wait(ms) {
 
 function hasNodeVersion(version) {
   const currentVersion = process.version.split('v')[1].split('.');
-  return version.split('.').every((v, i) => Number(v) <= Number(currentVersion[i]));
+  const versions = version.split('.');
+  for (let i = 0; i < versions.length; i++) {
+    if (Number(currentVersion[i]) > Number(versions[i])) return true;
+    else if (Number(currentVersion[i]) < Number(versions[i])) return false;
+  }
+  return true;
 }
