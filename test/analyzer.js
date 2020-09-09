@@ -37,6 +37,14 @@ describe('Analyzer', function () {
     });
   });
 
+  it('should generate report when worker bundles have dynamic imports', async function () {
+    generateReportFrom('with-worker-loader-dynamic-import/stats.json');
+    const chartData = await getChartData();
+    expect(chartData[1]).to.containSubset({
+      label: '1.bundle.worker.js'
+    });
+  });
+
   it('should support stats files with modules inside `chunks` array', async function () {
     generateReportFrom('with-modules-in-chunks/stats.json');
     const chartData = await getChartData();
