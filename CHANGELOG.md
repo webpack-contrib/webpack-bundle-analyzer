@@ -14,8 +14,13 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
-* **New Feature**
-   * Adds option reportTitle to set title in HTML reports; default remains date of report generation ([#354](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/354)) by [@eoingroat](https://github.com/eoingroat)
+## 3.9.0
+
+ * **New Feature**
+   * Adds option `reportTitle` to set title in HTML reports; default remains date of report generation ([#354](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/354) by [@eoingroat](https://github.com/eoingroat))
+   
+ * **Improvement**
+    * Added capability to parse bundles that have child assets generated ([#376](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/376) by [@masterkidan](https://github.com/masterkidan) and [#378](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/378) by [@https://github.com/dabbott](https://github.com/https://github.com/dabbott))
 
 ## 3.8.0
 
