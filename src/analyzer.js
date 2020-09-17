@@ -89,9 +89,8 @@ function getViewerData(bundleStats, bundleDir, opts) {
 
   const assets = _.transform(bundleStats.assets, (result, statAsset) => {
     // If asset is a childAsset, then calculate appropriate bundle modules by looking through stats.children
-    const modules = statAsset.isChild ?
-      getBundleModules(getChildAssetBundles(bundleStats, statAsset.name)) :
-      getBundleModules(bundleStats);
+    const assetBundles = statAsset.isChild ? getChildAssetBundles(bundleStats, statAsset.name) : bundleStats;
+    const modules = assetBundles ? getBundleModules(assetBundles) : [];
     const asset = result[statAsset.name] = _.pick(statAsset, 'size');
 
     if (bundlesSources && _.has(bundlesSources, statAsset.name)) {
