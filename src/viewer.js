@@ -181,7 +181,9 @@ async function generateReport(bundleStats, opts) {
 }
 
 async function generateJSONReport(bundleStats, opts) {
-  const {reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null} = opts || {};
+  const {
+    reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null
+  } = opts || {};
 
   const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
 

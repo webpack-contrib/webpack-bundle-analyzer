@@ -2,13 +2,38 @@ const fs = require('fs');
 const _ = require('lodash');
 const acorn = require('acorn');
 const walk = require('acorn-walk');
+const zlib = require('zlib');
+const Logger = require('./Logger');
 
 module.exports = {
   parseBundle
 };
 
-function parseBundle(bundlePath) {
-  const content = fs.readFileSync(bundlePath, 'utf8');
+const COMPRESSED_EXTENSIONS = /\.(gz|br)$/iu;
+const DECOMPRESSION_ALGORITHMS = {
+  gz: 'unzipSync',
+  br: 'brotliDecompressSync'
+};
+
+function decompressBundle(bundlePath, {logger = new Logger()}) {
+  const decompressAlgorithm = DECOMPRESSION_ALGORITHMS[bundlePath.split('.').pop()];
+  if (zlib[decompressAlgorithm]) {
+    const compressedBuffer = fs.readFileSync(bundlePath);
+    const decompressedBuffer = zlib[decompressAlgorithm](compressedBuffer);
+    return decompressedBuffer.toString();
+  } else {
+    logger.warn(`Bundle "${bundlePath}" could be compressed, consider upgrading node version`);
+    return '';
+  }
+}
+
+function parseBundle(bundlePath, opts = {}) {
+  let content;
+  if (COMPRESSED_EXTENSIONS.test(bundlePath)) {
+    content = decompressBundle(bundlePath, opts);
+  } else {
+    content = fs.readFileSync(bundlePath, 'utf8');
+  }
   const ast = acorn.parse(content, {
     sourceType: 'script',
     // I believe in a bright future of ECMAScript!

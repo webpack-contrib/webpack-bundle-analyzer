@@ -10,7 +10,7 @@ const {parseBundle} = require('./parseUtils');
 const {createAssetsFilter} = require('./utils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/u;
-const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
+const FILENAME_EXTENSIONS = /\.(js|mjs|gz|br)$/iu;
 
 module.exports = {
   getViewerData,
@@ -47,7 +47,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     });
   }
 
-  // Picking only `*.js or *.mjs` assets from bundle that has non-empty `chunks` array
+  // Picking only `*.js or *.mjs or *.gz or *.br` assets from bundle that has non-empty `chunks` array
   bundleStats.assets = _.filter(bundleStats.assets, asset => {
     // Removing query part from filename (yes, somebody uses it for some reason and Webpack supports it)
     // See #22
@@ -69,7 +69,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
       let bundleInfo;
 
       try {
-        bundleInfo = parseBundle(assetFile);
+        bundleInfo = parseBundle(assetFile, {logger});
       } catch (err) {
         const msg = (err.code === 'ENOENT') ? 'no such file' : err.message;
         logger.warn(`Error parsing bundle asset "${assetFile}": ${msg}`);

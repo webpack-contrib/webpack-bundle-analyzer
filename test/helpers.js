@@ -7,6 +7,7 @@ chai.use(require('chai-subset'));
 global.expect = chai.expect;
 global.webpackCompile = webpackCompile;
 global.makeWebpackConfig = makeWebpackConfig;
+global.hasNodeVersion = hasNodeVersion;
 
 const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
 
@@ -79,4 +80,14 @@ function makeWebpackConfig(opts) {
 
 function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function hasNodeVersion(version) {
+  const currentVersion = process.version.split('v')[1].split('.');
+  const versions = version.split('.');
+  for (let i = 0; i < versions.length; i++) {
+    if (Number(currentVersion[i]) > Number(versions[i])) return true;
+    else if (Number(currentVersion[i]) < Number(versions[i])) return false;
+  }
+  return true;
 }
