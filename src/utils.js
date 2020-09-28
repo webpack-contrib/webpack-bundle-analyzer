@@ -1,5 +1,6 @@
 const {inspect} = require('util');
 const _ = require('lodash');
+const opener = require('opener');
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -50,4 +51,15 @@ exports.defaultTitle = function () {
   const currentTime = `${day} ${month} ${year} at ${hour}:${minute}`;
 
   return `${process.env.npm_package_name || 'Webpack Bundle Analyzer'} [${currentTime}]`;
+};
+
+/**
+ * Calls opener on a URI, but silently try / catches it.
+ */
+exports.open = function (uri, logger) {
+  try {
+    opener(uri);
+  } catch (err) {
+    logger.debug(`Opener failed to open "${uri}":\n${err}`);
+  }
 };

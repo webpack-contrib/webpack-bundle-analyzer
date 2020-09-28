@@ -6,12 +6,12 @@ const WebSocket = require('ws');
 const _ = require('lodash');
 const express = require('express');
 const ejs = require('ejs');
-const opener = require('opener');
 const mkdir = require('mkdirp');
 const {bold} = require('chalk');
 
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
+const {open} = require('./utils');
 
 const projectRoot = path.resolve(__dirname, '..');
 const assetsRoot = path.join(projectRoot, 'public');
@@ -85,7 +85,7 @@ async function startServer(bundleStats, opts) {
       );
 
       if (openBrowser) {
-        opener(url);
+        open(url, logger);
       }
     });
   });
@@ -169,7 +169,7 @@ async function generateReport(bundleStats, opts) {
           logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
 
           if (openBrowser) {
-            opener(`file://${reportFilepath}`);
+            open(`file://${reportFilepath}`, logger);
           }
           resolve();
         } catch (e) {

@@ -13,6 +13,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## UNRELEASED
 
 <!-- Add changelog entries for new changes under this section -->
+ * **Bug Fix**
+   * Prevent crashes when `openAnalyzer` was set to true in environments where there's no program to handle opening. ([#382](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/382) by [@wbobeirne](https://github.com/wbobeirne))
 
 ## 3.9.0
 
