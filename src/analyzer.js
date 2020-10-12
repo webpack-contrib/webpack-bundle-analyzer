@@ -49,6 +49,11 @@ function getViewerData(bundleStats, bundleDir, opts) {
 
   // Picking only `*.js or *.mjs` assets from bundle that has non-empty `chunks` array
   bundleStats.assets = _.filter(bundleStats.assets, asset => {
+    // Filter out non 'asset' type asset if type is provided (Webpack 5 add a type to indicate asset types)
+    if (asset.type && asset.type !== 'asset') {
+      return false;
+    }
+
     // Removing query part from filename (yes, somebody uses it for some reason and Webpack supports it)
     // See #22
     asset.name = asset.name.replace(FILENAME_QUERY_REGEXP, '');
