@@ -23,8 +23,9 @@
     "build": "gulp build",
     "npm-publish": "npm run lint && npm run build && npm test && npm publish",
     "lint": "eslint --ext js,jsx .",
-    "test": "mocha --exit --require @babel/register",
-    "test-dev": "mocha --watch --require @babel/register"
+    "install-test-webpack-versions": "./bin/install-test-webpack-versions.sh",
+    "test": "npm run install-test-webpack-versions && mocha --exit --require @babel/register",
+    "test-dev": "npm run install-test-webpack-versions && mocha --watch --require @babel/register"
   },
   "files": [
     "public",

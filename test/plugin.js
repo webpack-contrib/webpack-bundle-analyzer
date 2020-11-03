@@ -32,110 +32,127 @@ describe('Plugin', function () {
     del.sync(`${__dirname}/output`);
   });
 
-  it('should support webpack config with custom `jsonpFunction` name', async function () {
-    const config = makeWebpackConfig({
-      multipleChunks: true
-    });
+  forEachWebpackVersion(['4.44.2'], ({it, webpackCompile}) => {
+    // Webpack 5 doesn't support `jsonpFunction` option
+    it('should support webpack config with custom `jsonpFunction` name', async function () {
+      const config = makeWebpackConfig({
+        multipleChunks: true
+      });
 
-    config.output.jsonpFunction = 'somethingCompletelyDifferent';
+      config.output.jsonpFunction = 'somethingCompletelyDifferent';
 
-    await webpackCompile(config);
+      await webpackCompile(config);
 
-    await expectValidReport({
-      parsedSize: 1343,
-      gzipSize: 360
+      await expectValidReport({
+        parsedSize: 1343,
+        gzipSize: 360
+      });
     });
   });
 
-  it('should allow to generate json report', async function () {
-    const config = makeWebpackConfig({
-      analyzerOpts: {
-        analyzerMode: 'json'
-      }
+  forEachWebpackVersion(({it, webpackCompile}) => {
+    it('should allow to generate json report', async function () {
+      const config = makeWebpackConfig({
+        analyzerOpts: {
+          analyzerMode: 'json'
+        }
+      });
+
+      await webpackCompile(config);
+
+      const chartData = await getChartDataFromJSONReport();
+      expect(chartData).to.exist;
     });
 
-    await webpackCompile(config);
+    it('should support webpack config with `multi` module', async function () {
+      const config = makeWebpackConfig();
 
-    const chartData = await getChartDataFromJSONReport();
-    expect(chartData).to.exist;
-  });
+      config.entry.bundle = [
+        './src/a.js',
+        './src/b.js'
+      ];
 
-  it('should support webpack config with `multi` module', async function () {
-    const config = makeWebpackConfig();
+      await webpackCompile(config);
 
-    config.entry.bundle = [
-      './src/a.js',
-      './src/b.js'
-    ];
+      const chartData = await getChartDataFromReport();
+      const bundleGroup = chartData.find(group => group.label === 'bundle.js');
 
-    await webpackCompile(config);
-
-    const chartData = await getChartDataFromReport();
-    expect(chartData[0].groups).to.containSubset([
-      {
-        label: 'multi ./src/a.js ./src/b.js',
-        path: './multi ./src/a.js ./src/b.js',
-        groups: undefined
-      }
-    ]);
+      expect(bundleGroup.groups)
+        .to
+        .containSubset([
+          {
+            label: 'src',
+            path: './src',
+            groups: [
+              {
+                label: 'a.js',
+                path: './src/a.js'
+              },
+              {
+                label: 'b.js',
+                path: './src/b.js'
+              }
+            ]
+          }
+        ]);
+    });
   });
 
   describe('options', function () {
     describe('excludeAssets', function () {
-      it('should filter out assets from the report', async function () {
-        const config = makeWebpackConfig({
-          multipleChunks: true,
-          analyzerOpts: {
-            excludeAssets: 'manifest'
-          }
+      forEachWebpackVersion(({it, webpackCompile}) => {
+        it('should filter out assets from the report', async function () {
+          const config = makeWebpackConfig({
+            multipleChunks: true,
+            analyzerOpts: {
+              excludeAssets: 'manifest'
+            }
+          });
+
+          await webpackCompile(config);
+
+          const chartData = await getChartDataFromReport();
+          expect(_.map(chartData, 'label'))
+            .to
+            .deep
+            .equal(['bundle.js']);
         });
-
-        await webpackCompile(config);
-
-        const chartData = await getChartDataFromReport();
-        expect(_.map(chartData, 'label')).to.deep.equal(['bundle.js']);
       });
     });
 
     describe('reportTitle', function () {
       it('should have a sensible default', async function () {
         const config = makeWebpackConfig();
-
-        await webpackCompile(config);
-
+        await webpackCompile(config, '4.44.2');
         const generatedReportTitle = await getTitleFromReport();
-
         expect(generatedReportTitle).to.match(/^webpack-bundle-analyzer \[.* at \d{2}:\d{2}\]/u);
       });
-      it('should use a string', async function () {
+
+      it('should support a string value', async function () {
         const reportTitle = 'A string report title';
         const config = makeWebpackConfig({
           analyzerOpts: {
             reportTitle
           }
         });
-
-        await webpackCompile(config);
-
+        await webpackCompile(config, '4.44.2');
         const generatedReportTitle = await getTitleFromReport();
-
         expect(generatedReportTitle).to.equal(reportTitle);
       });
-      it('should use a function', async function () {
+
+      it('should support a function value', async function () {
         const reportTitleResult = 'A string report title';
         const config = makeWebpackConfig({
           analyzerOpts: {
             reportTitle: () => reportTitleResult
           }
         });
-
-        await webpackCompile(config);
-
+        await webpackCompile(config, '4.44.2');
         const generatedReportTitle = await getTitleFromReport();
-
         expect(generatedReportTitle).to.equal(reportTitleResult);
       });
-      it('should propogate an error in a function', async function () {
+
+      it('should propagate an error in a function', async function () {
         const reportTitleError = new Error();
         const config = makeWebpackConfig({
           analyzerOpts: {
@@ -145,7 +162,7 @@ describe('Plugin', function () {
 
         let error = null;
         try {
-          await webpackCompile(config);
+          await webpackCompile(config, '4.44.2');
         } catch (e) {
           error = e;
         }
