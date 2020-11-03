@@ -18,13 +18,54 @@ function parseBundle(bundlePath) {
   });
 
   const walkState = {
-    locations: null
+    locations: null,
+    expressionStatementDepth: 0
   };
 
   walk.recursive(
     ast,
     walkState,
     {
+      ExpressionStatement(node, state, c) {
+        if (state.locations) return;
+
+        state.expressionStatementDepth++;
+
+        if (
+          // Webpack 5 stores modules in the the top-level IIFE
+          state.expressionStatementDepth === 1 &&
+          ast.body.includes(node) &&
+          isIIFE(node)
+        ) {
+          const fn = getIIFECallExpression(node);
+
+          if (
+            // It should not contain neither arguments
+            fn.arguments.length === 0 &&
+            // ...nor parameters
+            fn.callee.params.length === 0
+          ) {
+            // Modules are stored in the very first variable as hash
+            const {body} = fn.callee.body;
+
+            if (
+              body.length &&
+              body[0].type === 'VariableDeclaration' &&
+              body[0].declarations.length &&
+              body[0].declarations[0].type === 'VariableDeclarator' &&
+              body[0].declarations[0].init.type === 'ObjectExpression'
+            ) {
+              state.locations = getModulesLocations(body[0].declarations[0].init);
+            }
+          }
+        }
+
+        if (!state.locations) {
+          c(node.expression, state);
+        }
+
+        state.expressionStatementDepth--;
+      },
       AssignmentExpression(node, state) {
         if (state.locations) return;
 
@@ -109,6 +150,24 @@ function parseBundle(bundlePath) {
     src: content,
     modules
   };
+}
+
+function isIIFE(node) {
+  return (
+    node.type === 'ExpressionStatement' &&
+    (
+      node.expression.type === 'CallExpression' ||
+      (node.expression.type === 'UnaryExpression' && node.expression.argument.type === 'CallExpression')
+    )
+  );
+}
+
+function getIIFECallExpression(node) {
+  if (node.expression.type === 'UnaryExpression') {
+    return node.expression.argument;
+  } else {
+    return node.expression;
+  }
 }
 
 function isModulesList(node) {
