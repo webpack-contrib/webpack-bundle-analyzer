@@ -3,6 +3,14 @@
     "mobx": {
       "versions": ">=6",
       "reason": "v6 drops decorators"
+    },
+    "mobx-react": {
+      "versions": ">=7",
+      "reason": "v7 requires MobX v6"
+    },
+    "webpack-cli": {
+      "versions": ">=4",
+      "reason": "Current version of Webpack Dev Server doesn't work with v4"
     }
   }
 }
