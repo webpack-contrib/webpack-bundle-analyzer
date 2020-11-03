@@ -1,5 +1,4 @@
-/** @jsx h */
-import {h, Component} from 'preact';
+import {Component} from 'preact';
 import cls from 'classnames';
 
 import s from './Tooltip.css';

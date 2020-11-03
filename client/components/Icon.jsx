@@ -1,16 +1,17 @@
-/** @jsx h */
-import {h} from 'preact';
 import cls from 'classnames';
 import s from './Icon.css';
 import PureComponent from '../lib/PureComponent';
 
+import iconArrowRight from '../assets/icon-arrow-right.svg';
+import iconPin from '../assets/icon-pin.svg';
+
 const ICONS = {
   'arrow-right': {
-    src: require('../assets/icon-arrow-right.svg'),
+    src: iconArrowRight,
     size: [7, 13]
   },
   'pin': {
-    src: require('../assets/icon-pin.svg'),
+    src: iconPin,
     size: [12, 18]
   }
 };

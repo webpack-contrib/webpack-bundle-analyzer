@@ -1,6 +1,3 @@
-/** @jsx h */
-import {h} from 'preact';
-
 import CheckboxListItem from './CheckboxListItem';
 import s from './CheckboxList.css';
 import PureComponent from '../lib/PureComponent';
