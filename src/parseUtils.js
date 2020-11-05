@@ -45,17 +45,19 @@ function parseBundle(bundlePath) {
             // ...nor parameters
             fn.callee.params.length === 0
           ) {
-            // Modules are stored in the very first variable as hash
-            const {body} = fn.callee.body;
+            // Modules are stored in the very first variable declaration as hash
+            const firstVariableDeclaration = fn.callee.body.body.find(node => node.type === 'VariableDeclaration');
 
-            if (
-              body.length &&
-              body[0].type === 'VariableDeclaration' &&
-              body[0].declarations.length &&
-              body[0].declarations[0].type === 'VariableDeclarator' &&
-              body[0].declarations[0].init.type === 'ObjectExpression'
-            ) {
-              state.locations = getModulesLocations(body[0].declarations[0].init);
+            if (firstVariableDeclaration) {
+              for (const declaration of firstVariableDeclaration.declarations) {
+                if (declaration.init) {
+                  state.locations = getModulesLocations(declaration.init);
+
+                  if (state.locations) {
+                    break;
+                  }
+                }
+              }
             }
           }
         }
@@ -66,6 +68,7 @@ function parseBundle(bundlePath) {
 
         state.expressionStatementDepth--;
       },
+
       AssignmentExpression(node, state) {
         if (state.locations) return;
 
@@ -82,6 +85,7 @@ function parseBundle(bundlePath) {
           state.locations = getModulesLocations(right);
         }
       },
+
       CallExpression(node, state, c) {
         if (state.locations) return;
 
@@ -147,9 +151,29 @@ function parseBundle(bundlePath) {
   }
 
   return {
+    modules,
     src: content,
-    modules
+    runtimeSrc: getBundleRuntime(content, walkState.locations)
   };
+}
+
+/**
+ * Returns bundle source except modules
+ */
+function getBundleRuntime(content, modulesLocations) {
+  const sortedLocations = _(modulesLocations)
+    .values()
+    .sortBy('start');
+
+  let result = '';
+  let lastIndex = 0;
+
+  for (const {start, end} of sortedLocations) {
+    result += content.slice(lastIndex, start);
+    lastIndex = end;
+  }
+
+  return result + content.slice(lastIndex, content.length);
 }
 
 function isIIFE(node) {
