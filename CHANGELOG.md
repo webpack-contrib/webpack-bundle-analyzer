@@ -27,6 +27,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
   
  * **Internal**
    * Updated dependencies
+   * Added support for multiple Webpack versions in tests
 
 ## 3.9.0
 
