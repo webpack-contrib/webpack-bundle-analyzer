@@ -124,6 +124,30 @@ describe('Analyzer', function () {
     await expectValidReport({bundleLabel: 'bundle.mjs'});
   });
 
+  it('should properly parse extremely optimized bundle from webpack 5', async function () {
+    generateReportFrom('extremely-optimized-webpack-5-bundle/stats.json');
+    const chartData = await getChartData();
+    expect(chartData).to.containSubset(
+      require('./stats/extremely-optimized-webpack-5-bundle/expected-chart-data')
+    );
+  });
+
+  it('should properly parse webpack 5 bundle with single entry', async function () {
+    generateReportFrom('webpack-5-bundle-with-single-entry/stats.json');
+    const chartData = await getChartData();
+    expect(chartData).to.containSubset(
+      require('./stats/webpack-5-bundle-with-single-entry/expected-chart-data')
+    );
+  });
+
+  it('should properly parse webpack 5 bundle with multiple entries', async function () {
+    generateReportFrom('webpack-5-bundle-with-multiple-entries/stats.json');
+    const chartData = await getChartData();
+    expect(chartData).to.containSubset(
+      require('./stats/webpack-5-bundle-with-multiple-entries/expected-chart-data')
+    );
+  });
+
   it('should support generating JSON output for the report', async function () {
     generateJSONReportFrom('with-modules-in-chunks/stats.json');
 

@@ -92,10 +92,12 @@ function getViewerData(bundleStats, bundleDir, opts) {
     const assetBundles = statAsset.isChild ? getChildAssetBundles(bundleStats, statAsset.name) : bundleStats;
     const modules = assetBundles ? getBundleModules(assetBundles) : [];
     const asset = result[statAsset.name] = _.pick(statAsset, 'size');
+    const assetSources = bundlesSources && _.has(bundlesSources, statAsset.name) ?
+      bundlesSources[statAsset.name] : null;
 
-    if (bundlesSources && _.has(bundlesSources, statAsset.name)) {
-      asset.parsedSize = Buffer.byteLength(bundlesSources[statAsset.name].src);
-      asset.gzipSize = gzipSize.sync(bundlesSources[statAsset.name].src);
+    if (assetSources) {
+      asset.parsedSize = Buffer.byteLength(assetSources.src);
+      asset.gzipSize = gzipSize.sync(assetSources.src);
     }
 
     // Picking modules from current bundle script
@@ -116,11 +118,11 @@ function getViewerData(bundleStats, bundleDir, opts) {
       // Webpack 5 changed bundle format and now entry modules are concatenated and located at the end on the it.
       // Because of this they basically become a concatenated module, for which we can't even precisely determine its
       // parsed source as it's located in the same scope as all Webpack runtime helpers.
-      if (unparsedEntryModules.length) {
+      if (unparsedEntryModules.length && assetSources) {
         if (unparsedEntryModules.length === 1) {
           // So if there is only one entry we consider its parsed source to be all the bundle code excluding code
           // from parsed modules.
-          unparsedEntryModules[0].parsedSrc = bundlesSources[statAsset.name].runtimeSrc;
+          unparsedEntryModules[0].parsedSrc = assetSources.runtimeSrc;
         } else {
           // If there are multiple entry points we move all of them under synthetic concatenated module.
           _.pullAll(assetModules, unparsedEntryModules);
@@ -129,7 +131,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
             name: './entry modules',
             modules: unparsedEntryModules,
             size: unparsedEntryModules.reduce((totalSize, module) => totalSize + module.size, 0),
-            parsedSrc: bundlesSources[statAsset.name].runtimeSrc
+            parsedSrc: assetSources.runtimeSrc
           });
         }
       }
