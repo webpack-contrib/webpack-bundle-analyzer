@@ -115,7 +115,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
         }
       }
 
-      // Webpack 5 changed bundle format and now entry modules are concatenated and located at the end on the it.
+      // Webpack 5 changed bundle format and now entry modules are concatenated and located at the end of it.
       // Because of this they basically become a concatenated module, for which we can't even precisely determine its
       // parsed source as it's located in the same scope as all Webpack runtime helpers.
       if (unparsedEntryModules.length && assetSources) {
