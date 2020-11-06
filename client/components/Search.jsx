@@ -1,5 +1,3 @@
-/** @jsx h */
-import {h} from 'preact';
 import _ from 'lodash';
 
 import s from './Search.css';

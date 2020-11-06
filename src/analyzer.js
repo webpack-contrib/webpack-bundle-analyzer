@@ -76,7 +76,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
         continue;
       }
 
-      bundlesSources[statAsset.name] = bundleInfo.src;
+      bundlesSources[statAsset.name] = _.pick(bundleInfo, 'src', 'runtimeSrc');
       _.assign(parsedModules, bundleInfo.modules);
     }
 
@@ -92,21 +92,52 @@ function getViewerData(bundleStats, bundleDir, opts) {
     const assetBundles = statAsset.isChild ? getChildAssetBundles(bundleStats, statAsset.name) : bundleStats;
     const modules = assetBundles ? getBundleModules(assetBundles) : [];
     const asset = result[statAsset.name] = _.pick(statAsset, 'size');
+    const assetSources = bundlesSources && _.has(bundlesSources, statAsset.name) ?
+      bundlesSources[statAsset.name] : null;
 
-    if (bundlesSources && _.has(bundlesSources, statAsset.name)) {
-      asset.parsedSize = Buffer.byteLength(bundlesSources[statAsset.name]);
-      asset.gzipSize = gzipSize.sync(bundlesSources[statAsset.name]);
+    if (assetSources) {
+      asset.parsedSize = Buffer.byteLength(assetSources.src);
+      asset.gzipSize = gzipSize.sync(assetSources.src);
     }
 
     // Picking modules from current bundle script
-    asset.modules = _(modules)
-      .filter(statModule => assetHasModule(statAsset, statModule))
-      .each(statModule => {
-        if (parsedModules) {
-          statModule.parsedSrc = parsedModules[statModule.id];
-        }
-      });
+    const assetModules = modules.filter(statModule => assetHasModule(statAsset, statModule));
 
+    // Adding parsed sources
+    if (parsedModules) {
+      const unparsedEntryModules = [];
+
+      for (const statModule of assetModules) {
+        if (parsedModules[statModule.id]) {
+          statModule.parsedSrc = parsedModules[statModule.id];
+        } else if (isEntryModule(statModule)) {
+          unparsedEntryModules.push(statModule);
+        }
+      }
+
+      // Webpack 5 changed bundle format and now entry modules are concatenated and located at the end of it.
+      // Because of this they basically become a concatenated module, for which we can't even precisely determine its
+      // parsed source as it's located in the same scope as all Webpack runtime helpers.
+      if (unparsedEntryModules.length && assetSources) {
+        if (unparsedEntryModules.length === 1) {
+          // So if there is only one entry we consider its parsed source to be all the bundle code excluding code
+          // from parsed modules.
+          unparsedEntryModules[0].parsedSrc = assetSources.runtimeSrc;
+        } else {
+          // If there are multiple entry points we move all of them under synthetic concatenated module.
+          _.pullAll(assetModules, unparsedEntryModules);
+          assetModules.unshift({
+            identifier: './entry modules',
+            name: './entry modules',
+            modules: unparsedEntryModules,
+            size: unparsedEntryModules.reduce((totalSize, module) => totalSize + module.size, 0),
+            parsedSrc: assetSources.runtimeSrc
+          });
+        }
+      }
+    }
+
+    asset.modules = assetModules;
     asset.tree = createModulesTree(asset.modules);
   }, {});
 
@@ -148,6 +179,8 @@ function getBundleModules(bundleStats) {
     .compact()
     .flatten()
     .uniqBy('id')
+    // Filtering out Webpack's runtime modules as they don't have ids and can't be parsed (introduced in Webpack 5)
+    .reject(isRuntimeModule)
     .value();
 }
 
@@ -156,6 +189,14 @@ function assetHasModule(statAsset, statModule) {
   return _.some(statModule.chunks, moduleChunk =>
     _.includes(statAsset.chunks, moduleChunk)
   );
+}
+
+function isEntryModule(statModule) {
+  return statModule.depth === 0;
+}
+
+function isRuntimeModule(statModule) {
+  return statModule.moduleType === 'runtime';
 }
 
 function createModulesTree(modules) {

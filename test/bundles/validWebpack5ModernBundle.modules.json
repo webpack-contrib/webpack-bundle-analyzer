@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "631": "r=>{r.exports=\"module a\"}",
+    "85": "r=>{r.exports=\"module a\"}",
+    "326": "r=>{r.exports=\"module b\"}"
+  }
+}

@@ -13,8 +13,21 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## UNRELEASED
 
 <!-- Add changelog entries for new changes under this section -->
+
+## 4.0.0
+
+ * **Breaking change**
+   * Dropped support for Node.js 6 and 8. Minimal required version now is v10.13.0
+
+ * **Improvement**
+   * Support for Webpack 5
+ 
  * **Bug Fix**
    * Prevent crashes when `openAnalyzer` was set to true in environments where there's no program to handle opening. ([#382](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/382) by [@wbobeirne](https://github.com/wbobeirne))
+  
+ * **Internal**
+   * Updated dependencies
+   * Added support for multiple Webpack versions in tests
 
 ## 3.9.0
 

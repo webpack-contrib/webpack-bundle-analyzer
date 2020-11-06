@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "631": "function(o){o.exports=\"module a\"}",
+    "85": "function(o){o.exports=\"module a\"}",
+    "326": "function(o){o.exports=\"module b\"}"
+  }
+}

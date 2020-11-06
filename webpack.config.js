@@ -28,6 +28,9 @@ module.exports = opts => {
       ],
       extensions: ['.js', '.jsx'],
       alias: {
+        react: 'preact/compat',
+        'react-dom/test-utils': 'preact/test-utils',
+        'react-dom': 'preact/compat',
         mobx: require.resolve('mobx/lib/mobx.es6.js')
       }
     },
@@ -35,12 +38,14 @@ module.exports = opts => {
     devtool: isDev ? 'eval' : 'source-map',
     watch: isDev,
 
+    performance: {
+      hints: false
+    },
     optimization: {
       minimize: !isDev,
       minimizer: [
         new TerserPlugin({
           parallel: true,
-          sourceMap: true,
           terserOptions: {
             output: {
               comments: /copyright/iu
@@ -73,7 +78,10 @@ module.exports = opts => {
                 ],
                 debug: true
               }],
-              '@babel/preset-react'
+              ['@babel/preset-react', {
+                runtime: 'automatic',
+                importSource: 'preact'
+              }]
             ],
             plugins: [
               'lodash',
@@ -92,19 +100,22 @@ module.exports = opts => {
             {
               loader: 'css-loader',
               options: {
-                modules: true,
-                localIdentName: '[name]__[local]',
+                modules: {
+                  localIdentName: '[name]__[local]'
+                },
                 importLoaders: 1
               }
             },
             {
               loader: 'postcss-loader',
               options: {
-                plugins: compact([
-                  require('postcss-icss-values'),
-                  require('autoprefixer'),
-                  !isDev && require('cssnano')()
-                ])
+                postcssOptions: {
+                  plugins: compact([
+                    require('postcss-icss-values'),
+                    require('autoprefixer'),
+                    !isDev && require('cssnano')()
+                  ])
+                }
               }
             }
           ]
@@ -115,7 +126,11 @@ module.exports = opts => {
         },
         {
           test: /carrotsearch\.foamtree/u,
-          loader: 'exports-loader?CarrotSearchFoamTree'
+          loader: 'exports-loader',
+          options: {
+            type: 'commonjs',
+            exports: 'single window.CarrotSearchFoamTree'
+          }
         }
       ]
     },

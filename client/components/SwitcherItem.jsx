@@ -1,6 +1,3 @@
-/** @jsx h */
-import {h} from 'preact';
-
 import Button from './Button';
 import PureComponent from '../lib/PureComponent';
 

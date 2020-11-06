@@ -1,5 +1,4 @@
-/** @jsx h */
-import {h, Component} from 'preact';
+import {Component} from 'preact';
 import FoamTree from 'carrotsearch.foamtree';
 
 export default class Treemap extends Component {

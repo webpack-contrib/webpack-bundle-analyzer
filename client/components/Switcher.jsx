@@ -1,6 +1,3 @@
-/** @jsx h */
-import {h} from 'preact';
-
 import SwitcherItem from './SwitcherItem';
 import s from './Switcher.css';
 import PureComponent from '../lib/PureComponent';
