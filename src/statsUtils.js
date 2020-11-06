@@ -1,8 +1,6 @@
 const {createWriteStream} = require('fs');
 const {Readable} = require('stream');
 
-const _ = require('lodash');
-
 class StatsSerializeStream extends Readable {
   constructor(stats) {
     super();
@@ -49,7 +47,7 @@ class StatsSerializeStream extends Readable {
 
       this._indentLevel--;
       yield obj.length ? `\n${this._indent}]` : ']';
-    } else if (_.isPlainObject(obj)) {
+    } else {
       yield '{';
       this._indentLevel++;
 
