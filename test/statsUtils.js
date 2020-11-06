@@ -1,7 +1,7 @@
 const {StatsSerializeStream} = require('../lib/statsUtils');
 
 describe('StatsSerializeStream', () => {
-  it('should properly stringify a primitives', function () {
+  it('should properly stringify primitives', function () {
     expectProperJson(0);
     expectProperJson(1);
     expectProperJson(-1);
@@ -30,7 +30,7 @@ describe('StatsSerializeStream', () => {
     expectProperJson({a: 1, 'foo-bar': null, undef: undefined, '"Гусь!"': true});
   });
 
-  it('should properly stringify complex objects', function () {
+  it('should properly stringify complex structures', function () {
     expectProperJson({
       foo: [],
       bar: {
