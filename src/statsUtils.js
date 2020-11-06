@@ -32,7 +32,7 @@ class StatsSerializeStream extends Readable {
   * _stringify(obj) {
     if (typeof obj === 'string' || typeof obj === 'number' || typeof obj === 'boolean' || obj === null) {
       yield JSON.stringify(obj);
-    } else if (_.isArray(obj)) {
+    } else if (Array.isArray(obj)) {
       yield '[';
       this._indentLevel++;
 
