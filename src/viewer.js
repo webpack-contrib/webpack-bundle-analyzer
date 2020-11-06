@@ -187,7 +187,7 @@ async function generateJSONReport(bundleStats, opts) {
   if (!chartData) return;
 
   await fs.promises.mkdir(path.dirname(reportFilename), { recursive: true });
-  await fs.promises.writeFileSync(reportFilename, JSON.stringify(chartData));
+  await fs.promises.writeFile(reportFilename, JSON.stringify(chartData));
 
   logger.info(`${bold('Webpack Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
 }

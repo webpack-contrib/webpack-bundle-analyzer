@@ -1,4 +1,4 @@
-const fs = reqiore('fs');
+const fs = require('fs');
 const path = require('path');
 const {bold} = require('chalk');
 
