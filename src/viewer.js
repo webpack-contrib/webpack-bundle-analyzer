@@ -162,7 +162,7 @@ async function generateReport(bundleStats, opts) {
 
           const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
 
-          fs.mkdirSync(path.dirname(reportFilepath), { recursive: true });
+          fs.mkdirSync(path.dirname(reportFilepath), {recursive: true});
           fs.writeFileSync(reportFilepath, reportHtml);
 
           logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
@@ -186,7 +186,7 @@ async function generateJSONReport(bundleStats, opts) {
 
   if (!chartData) return;
 
-  await fs.promises.mkdir(path.dirname(reportFilename), { recursive: true });
+  await fs.promises.mkdir(path.dirname(reportFilename), {recursive: true});
   await fs.promises.writeFile(reportFilename, JSON.stringify(chartData));
 
   logger.info(`${bold('Webpack Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
