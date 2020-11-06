@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Improvement**
+   * Significantly speed up generation of `stats.json` file (see `generateStatsFile` option).
+
 ## 4.0.0
 
  * **Breaking change**
