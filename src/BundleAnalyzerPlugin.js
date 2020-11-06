@@ -1,4 +1,3 @@
-const bfj = require('bfj');
 const path = require('path');
 const mkdir = require('mkdirp');
 const {bold} = require('chalk');
@@ -6,6 +5,7 @@ const {bold} = require('chalk');
 const Logger = require('./Logger');
 const viewer = require('./viewer');
 const utils = require('./utils');
+const {writeStats} = require('./statsUtils');
 
 class BundleAnalyzerPlugin {
   constructor(opts = {}) {
@@ -83,14 +83,7 @@ class BundleAnalyzerPlugin {
     mkdir.sync(path.dirname(statsFilepath));
 
     try {
-      await bfj.write(statsFilepath, stats, {
-        space: 2,
-        promises: 'ignore',
-        buffers: 'ignore',
-        maps: 'ignore',
-        iterables: 'ignore',
-        circular: 'ignore'
-      });
+      await writeStats(stats, statsFilepath);
 
       this.logger.info(
         `${bold('Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
