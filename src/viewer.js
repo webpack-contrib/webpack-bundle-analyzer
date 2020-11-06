@@ -6,7 +6,6 @@ const WebSocket = require('ws');
 const _ = require('lodash');
 const express = require('express');
 const ejs = require('ejs');
-const mkdir = require('mkdirp');
 const {bold} = require('chalk');
 
 const Logger = require('./Logger');
@@ -163,7 +162,7 @@ async function generateReport(bundleStats, opts) {
 
           const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
 
-          mkdir.sync(path.dirname(reportFilepath));
+          fs.mkdirSync(path.dirname(reportFilepath), { recursive: true });
           fs.writeFileSync(reportFilepath, reportHtml);
 
           logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
@@ -187,8 +186,8 @@ async function generateJSONReport(bundleStats, opts) {
 
   if (!chartData) return;
 
-  mkdir.sync(path.dirname(reportFilename));
-  fs.writeFileSync(reportFilename, JSON.stringify(chartData));
+  await fs.promises.mkdir(path.dirname(reportFilename), { recursive: true });
+  await fs.promises.writeFileSync(reportFilename, JSON.stringify(chartData));
 
   logger.info(`${bold('Webpack Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
 }
