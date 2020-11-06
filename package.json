@@ -72,6 +72,7 @@
     "eslint-config-th0r-react": "2.0.1",
     "eslint-plugin-react": "7.21.5",
     "exports-loader": "1.1.1",
+    "globby": "11.0.1",
     "gulp": "4.0.2",
     "gulp-babel": "8.0.0",
     "mobx": "5.15.7",
