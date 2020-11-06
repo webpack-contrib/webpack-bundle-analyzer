@@ -25,7 +25,7 @@
     "lint": "eslint --ext js,jsx .",
     "install-test-webpack-versions": "./bin/install-test-webpack-versions.sh",
     "test": "npm run install-test-webpack-versions && mocha --exit --require @babel/register",
-    "test-dev": "npm run install-test-webpack-versions && mocha --watch --require @babel/register"
+    "test-dev": "npm run install-test-webpack-versions && mocha --watch --watch-ignore test/output --require @babel/register"
   },
   "files": [
     "public",
