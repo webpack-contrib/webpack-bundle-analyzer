@@ -13,6 +13,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## UNRELEASED
 
 <!-- Add changelog entries for new changes under this section -->
+ * **Bug Fix**
+   * Fix `non-asset` assets causing analyze failure. ([##385](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/385) by [@ZKHelloworld](https://github.com/ZKHelloworld))
 
 ## 4.1.0
 

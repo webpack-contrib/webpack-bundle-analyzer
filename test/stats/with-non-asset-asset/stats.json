@@ -1,0 +1,500 @@
+{
+  "hash": "a00ccf8c892bb7cacd85",
+  "version": "5.1.0",
+  "time": 279,
+  "builtAt": 1602608505481,
+  "publicPath": "auto",
+  "outputPath": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/stats/with-non-asset-chunk",
+  "assetsByChunkName": {
+    "main": [
+      "bundle.js"
+    ]
+  },
+  "assets": [
+    {
+      "type": "hidden assets",
+      "filteredChildren": 1,
+      "size": 29
+    },
+    {
+      "type": "asset",
+      "name": "bundle.js",
+      "size": 237,
+      "chunkNames": [
+        "main"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "emitted": true,
+      "comparedForEmit": false,
+      "cached": false,
+      "info": {
+        "minimized": true,
+        "size": 237
+      },
+      "related": {},
+      "chunks": [
+        179
+      ],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": false
+    }
+  ],
+  "chunks": [
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 141,
+      "sizes": {
+        "javascript": 141
+      },
+      "names": [
+        "main"
+      ],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "bundle.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "368fad705e34fecd2ddf",
+      "childrenByOrder": {},
+      "id": 179,
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "request": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js"
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "identifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+      "name": "./test/src/index.js",
+      "nameForCondition": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+      "index": 0,
+      "preOrderIndex": 0,
+      "index2": 3,
+      "postOrderIndex": 3,
+      "size": 54,
+      "sizes": {
+        "javascript": 54
+      },
+      "cacheable": true,
+      "built": true,
+      "codeGenerated": true,
+      "cached": false,
+      "optional": false,
+      "orphan": false,
+      "issuer": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "profile": {
+        "total": 44,
+        "resolving": 28,
+        "restoring": 0,
+        "building": 16,
+        "integration": 0,
+        "storing": 0,
+        "additionalResolving": 0,
+        "additionalIntegration": 0,
+        "factory": 28,
+        "dependencies": 0
+      },
+      "id": 755,
+      "issuerId": null,
+      "chunks": [
+        179
+      ],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "resolvedModuleIdentifier": null,
+          "resolvedModule": null,
+          "type": "entry",
+          "active": true,
+          "explanation": "",
+          "userRequest": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+          "loc": "main",
+          "moduleId": null,
+          "resolvedModuleId": null
+        }
+      ],
+      "usedExports": [],
+      "providedExports": null,
+      "optimizationBailout": [
+        "ModuleConcatenation bailout: Module is not an ECMAScript module"
+      ],
+      "depth": 0
+    },
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "identifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/a.js",
+      "name": "./test/src/a.js",
+      "nameForCondition": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/a.js",
+      "index": 1,
+      "preOrderIndex": 1,
+      "index2": 0,
+      "postOrderIndex": 0,
+      "size": 29,
+      "sizes": {
+        "javascript": 29
+      },
+      "cacheable": true,
+      "built": true,
+      "codeGenerated": true,
+      "cached": false,
+      "optional": false,
+      "orphan": false,
+      "issuer": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+      "issuerName": "./test/src/index.js",
+      "issuerPath": [
+        {
+          "identifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+          "name": "./test/src/index.js",
+          "profile": {
+            "total": 44,
+            "resolving": 28,
+            "restoring": 0,
+            "building": 16,
+            "integration": 0,
+            "storing": 0,
+            "additionalResolving": 0,
+            "additionalIntegration": 0,
+            "factory": 28,
+            "dependencies": 0
+          },
+          "id": 755
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "profile": {
+        "total": 0,
+        "resolving": 0,
+        "restoring": 0,
+        "building": 0,
+        "integration": 0,
+        "storing": 0,
+        "additionalResolving": 0,
+        "additionalIntegration": 0,
+        "factory": 0,
+        "dependencies": 0
+      },
+      "id": 296,
+      "issuerId": 755,
+      "chunks": [
+        179
+      ],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/a.js",
+          "module": "./test/src/a.js",
+          "moduleName": "./test/src/a.js",
+          "resolvedModuleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/a.js",
+          "resolvedModule": "./test/src/a.js",
+          "type": "cjs self exports reference",
+          "active": true,
+          "explanation": "",
+          "userRequest": null,
+          "loc": "1:0-14",
+          "moduleId": 296,
+          "resolvedModuleId": 296
+        },
+        {
+          "moduleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+          "module": "./test/src/index.js",
+          "moduleName": "./test/src/index.js",
+          "resolvedModuleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+          "resolvedModule": "./test/src/index.js",
+          "type": "cjs require",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./a",
+          "loc": "1:0-14",
+          "moduleId": 755,
+          "resolvedModuleId": 755
+        }
+      ],
+      "usedExports": null,
+      "providedExports": null,
+      "optimizationBailout": [
+        "CommonJS bailout: module.exports is used directly at 1:0-14",
+        "ModuleConcatenation bailout: Module is not an ECMAScript module"
+      ],
+      "depth": 1
+    },
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "identifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/b.js",
+      "name": "./test/src/b.js",
+      "nameForCondition": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/b.js",
+      "index": 2,
+      "preOrderIndex": 2,
+      "index2": 1,
+      "postOrderIndex": 1,
+      "size": 29,
+      "sizes": {
+        "javascript": 29
+      },
+      "cacheable": true,
+      "built": true,
+      "codeGenerated": true,
+      "cached": false,
+      "optional": false,
+      "orphan": false,
+      "issuer": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+      "issuerName": "./test/src/index.js",
+      "issuerPath": [
+        {
+          "identifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+          "name": "./test/src/index.js",
+          "profile": {
+            "total": 44,
+            "resolving": 28,
+            "restoring": 0,
+            "building": 16,
+            "integration": 0,
+            "storing": 0,
+            "additionalResolving": 0,
+            "additionalIntegration": 0,
+            "factory": 28,
+            "dependencies": 0
+          },
+          "id": 755
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "profile": {
+        "total": 0,
+        "resolving": 0,
+        "restoring": 0,
+        "building": 0,
+        "integration": 0,
+        "storing": 0,
+        "additionalResolving": 0,
+        "additionalIntegration": 0,
+        "factory": 0,
+        "dependencies": 0
+      },
+      "id": 260,
+      "issuerId": 755,
+      "chunks": [
+        179
+      ],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/b.js",
+          "module": "./test/src/b.js",
+          "moduleName": "./test/src/b.js",
+          "resolvedModuleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/b.js",
+          "resolvedModule": "./test/src/b.js",
+          "type": "cjs self exports reference",
+          "active": true,
+          "explanation": "",
+          "userRequest": null,
+          "loc": "1:0-14",
+          "moduleId": 260,
+          "resolvedModuleId": 260
+        },
+        {
+          "moduleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+          "module": "./test/src/index.js",
+          "moduleName": "./test/src/index.js",
+          "resolvedModuleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+          "resolvedModule": "./test/src/index.js",
+          "type": "cjs require",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./b",
+          "loc": "2:0-14",
+          "moduleId": 755,
+          "resolvedModuleId": 755
+        }
+      ],
+      "usedExports": null,
+      "providedExports": null,
+      "optimizationBailout": [
+        "CommonJS bailout: module.exports is used directly at 1:0-14",
+        "ModuleConcatenation bailout: Module is not an ECMAScript module"
+      ],
+      "depth": 1
+    },
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "identifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/a-clone.js",
+      "name": "./test/src/a-clone.js",
+      "nameForCondition": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/a-clone.js",
+      "index": 3,
+      "preOrderIndex": 3,
+      "index2": 2,
+      "postOrderIndex": 2,
+      "size": 29,
+      "sizes": {
+        "javascript": 29
+      },
+      "cacheable": true,
+      "built": true,
+      "codeGenerated": true,
+      "cached": false,
+      "optional": false,
+      "orphan": false,
+      "issuer": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+      "issuerName": "./test/src/index.js",
+      "issuerPath": [
+        {
+          "identifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+          "name": "./test/src/index.js",
+          "profile": {
+            "total": 44,
+            "resolving": 28,
+            "restoring": 0,
+            "building": 16,
+            "integration": 0,
+            "storing": 0,
+            "additionalResolving": 0,
+            "additionalIntegration": 0,
+            "factory": 28,
+            "dependencies": 0
+          },
+          "id": 755
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "profile": {
+        "total": 0,
+        "resolving": 0,
+        "restoring": 0,
+        "building": 0,
+        "integration": 0,
+        "storing": 0,
+        "additionalResolving": 0,
+        "additionalIntegration": 0,
+        "factory": 0,
+        "dependencies": 0
+      },
+      "id": 146,
+      "issuerId": 755,
+      "chunks": [
+        179
+      ],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/a-clone.js",
+          "module": "./test/src/a-clone.js",
+          "moduleName": "./test/src/a-clone.js",
+          "resolvedModuleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/a-clone.js",
+          "resolvedModule": "./test/src/a-clone.js",
+          "type": "cjs self exports reference",
+          "active": true,
+          "explanation": "",
+          "userRequest": null,
+          "loc": "1:0-14",
+          "moduleId": 146,
+          "resolvedModuleId": 146
+        },
+        {
+          "moduleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+          "module": "./test/src/index.js",
+          "moduleName": "./test/src/index.js",
+          "resolvedModuleIdentifier": "/Users/zhengkenghong/Projects/Other/webpack-bundle-analyzer/test/src/index.js",
+          "resolvedModule": "./test/src/index.js",
+          "type": "cjs require",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./a-clone",
+          "loc": "3:0-20",
+          "moduleId": 755,
+          "resolvedModuleId": 755
+        }
+      ],
+      "usedExports": null,
+      "providedExports": null,
+      "optimizationBailout": [
+        "CommonJS bailout: module.exports is used directly at 1:0-14",
+        "ModuleConcatenation bailout: Module is not an ECMAScript module"
+      ],
+      "depth": 1
+    }
+  ],
+  "entrypoints": {
+    "main": {
+      "name": "main",
+      "chunks": [
+        179
+      ],
+      "assets": [
+        {
+          "name": "bundle.js",
+          "size": 237
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": 237,
+      "auxiliaryAssets": [],
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {},
+      "childAssets": {},
+      "isOverSizeLimit": false
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "name": "main",
+      "chunks": [
+        179
+      ],
+      "assets": [
+        {
+          "name": "bundle.js",
+          "size": 237
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": 237,
+      "auxiliaryAssets": [],
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {},
+      "childAssets": {},
+      "isOverSizeLimit": false
+    }
+  },
+  "errors": [],
+  "errorsCount": 0,
+  "warnings": [],
+  "warningsCount": 0,
+  "children": []
+}

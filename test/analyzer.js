@@ -155,6 +155,11 @@ describe('Analyzer', function () {
     expect(chartData).to.containSubset(require('./stats/with-modules-in-chunks/expected-chart-data'));
   });
 
+  it('should support stats files with non-asset asset', async function () {
+    generateReportFrom('with-non-asset-asset/stats.json');
+    await expectValidReport({bundleLabel: 'bundle.js'});
+  });
+
   describe('options', function () {
     describe('title', function () {
       it('should take the --title option', async function () {
