@@ -1,5 +1,5 @@
+const fs = require('fs');
 const path = require('path');
-const mkdir = require('mkdirp');
 const {bold} = require('chalk');
 
 const Logger = require('./Logger');
@@ -80,7 +80,7 @@ class BundleAnalyzerPlugin {
 
   async generateStatsFile(stats) {
     const statsFilepath = path.resolve(this.compiler.outputPath, this.opts.statsFilename);
-    mkdir.sync(path.dirname(statsFilepath));
+    await fs.promises.mkdir(path.dirname(statsFilepath), {recursive: true});
 
     try {
       await writeStats(stats, statsFilepath);
