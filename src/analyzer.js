@@ -134,7 +134,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
           unparsedEntryModules[0].parsedSrc = assetSources.runtimeSrc;
         } else {
           // If there are multiple entry points we move all of them under synthetic concatenated module.
-          assetModules = assetModules.filter(m => !unparsedEntryModules.includes(m))
+          assetModules = assetModules.filter(m => !unparsedEntryModules.includes(m));
           assetModules.unshift({
             identifier: './entry modules',
             name: './entry modules',

@@ -144,7 +144,7 @@ function parseBundle(bundlePath) {
   if (walkState.locations) {
     Object.entries(walkState.locations).forEach(
       ([path, loc]) => {
-        modules[path] = content.slice(loc.start, loc.end)
+        modules[path] = content.slice(loc.start, loc.end);
       }
     );
   }
