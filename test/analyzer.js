@@ -37,6 +37,18 @@ describe('Analyzer', function () {
     });
   });
 
+  it('should generate report for array webpack.config.js', async function () {
+    generateReportFrom('with-array-config/stats.json');
+    const chartData = await getChartData();
+    expect(chartData).to.have.lengthOf(2);
+    expect(chartData[0]).to.containSubset({
+      label: 'config-1-main.js'
+    });
+    expect(chartData[1]).to.containSubset({
+      label: 'config-2-main.js'
+    });
+  });
+
   it('should generate report when worker bundles have dynamic imports', async function () {
     generateReportFrom('with-worker-loader-dynamic-import/stats.json');
     const chartData = await getChartData();

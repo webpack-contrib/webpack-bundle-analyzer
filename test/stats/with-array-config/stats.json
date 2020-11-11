@@ -1,0 +1,338 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.44.2",
+  "hash": "a30aaa779dd06e8979b1a30aaa779dd06e8979b1",
+  "children": [
+    {
+      "errors": [],
+      "warnings": [],
+      "hash": "a30aaa779dd06e8979b1",
+      "time": 105,
+      "builtAt": 1605088887042,
+      "publicPath": "",
+      "outputPath": "/webpack-bundle-analyzer-example/",
+      "assetsByChunkName": {
+        "main": "config-1-main.js"
+      },
+      "assets": [
+        {
+          "name": "config-1-main.js",
+          "size": 948,
+          "chunks": [0],
+          "chunkNames": ["main"],
+          "info": {},
+          "emitted": true
+        }
+      ],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "main": {
+          "chunks": [0],
+          "assets": ["config-1-main.js"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "main": {
+          "chunks": [0],
+          "assets": ["config-1-main.js"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "chunks": [
+        {
+          "id": 0,
+          "rendered": true,
+          "initial": true,
+          "entry": true,
+          "size": 20,
+          "names": ["main"],
+          "files": ["config-1-main.js"],
+          "hash": "0e20b5164c4e5cda6fe0",
+          "siblings": [],
+          "parents": [],
+          "children": [],
+          "childrenByOrder": {},
+          "modules": [
+            {
+              "id": 0,
+              "identifier": "/webpack-bundle-analyzer-example/src/index.js",
+              "name": "./src/index.js",
+              "index": 0,
+              "index2": 0,
+              "size": 20,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [0],
+              "issuer": null,
+              "issuerId": null,
+              "issuerName": null,
+              "issuerPath": null,
+              "profile": {
+                "factory": 35,
+                "building": 38
+              },
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [],
+              "reasons": [
+                {
+                  "moduleId": null,
+                  "moduleIdentifier": null,
+                  "module": null,
+                  "moduleName": null,
+                  "type": "single entry",
+                  "userRequest": "./src/index.js",
+                  "loc": "main"
+                }
+              ],
+              "usedExports": true,
+              "providedExports": null,
+              "optimizationBailout": [
+                "ModuleConcatenation bailout: Module is not an ECMAScript module"
+              ],
+              "depth": 0,
+              "source": "console.log('ABC');\n"
+            }
+          ],
+          "filteredModules": 0,
+          "origins": [
+            {
+              "module": "",
+              "moduleIdentifier": "",
+              "moduleName": "",
+              "loc": "main",
+              "request": "./src/index.js",
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/webpack-bundle-analyzer-example/src/index.js",
+          "name": "./src/index.js",
+          "index": 0,
+          "index2": 0,
+          "size": 20,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [0],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "profile": {
+            "factory": 35,
+            "building": 38
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./src/index.js",
+              "loc": "main"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": null,
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 0,
+          "source": "console.log('ABC');\n"
+        }
+      ],
+      "filteredModules": 0,
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": []
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "hash": "a30aaa779dd06e8979b1",
+      "time": 88,
+      "builtAt": 1605088887043,
+      "publicPath": "",
+      "outputPath": "/webpack-bundle-analyzer-example/",
+      "assetsByChunkName": {
+        "main": "config-2-main.js"
+      },
+      "assets": [
+        {
+          "name": "config-2-main.js",
+          "size": 948,
+          "chunks": [0],
+          "chunkNames": ["main"],
+          "info": {},
+          "emitted": true
+        }
+      ],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "main": {
+          "chunks": [0],
+          "assets": ["config-2-main.js"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "main": {
+          "chunks": [0],
+          "assets": ["config-2-main.js"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "chunks": [
+        {
+          "id": 0,
+          "rendered": true,
+          "initial": true,
+          "entry": true,
+          "size": 20,
+          "names": ["main"],
+          "files": ["config-2-main.js"],
+          "hash": "0e20b5164c4e5cda6fe0",
+          "siblings": [],
+          "parents": [],
+          "children": [],
+          "childrenByOrder": {},
+          "modules": [
+            {
+              "id": 0,
+              "identifier": "/webpack-bundle-analyzer-example/src/index.js",
+              "name": "./src/index.js",
+              "index": 0,
+              "index2": 0,
+              "size": 20,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [0],
+              "issuer": null,
+              "issuerId": null,
+              "issuerName": null,
+              "issuerPath": null,
+              "profile": {
+                "factory": 29,
+                "building": 9
+              },
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [],
+              "reasons": [
+                {
+                  "moduleId": null,
+                  "moduleIdentifier": null,
+                  "module": null,
+                  "moduleName": null,
+                  "type": "single entry",
+                  "userRequest": "./src/index.js",
+                  "loc": "main"
+                }
+              ],
+              "usedExports": true,
+              "providedExports": null,
+              "optimizationBailout": [
+                "ModuleConcatenation bailout: Module is not an ECMAScript module"
+              ],
+              "depth": 0,
+              "source": "console.log('ABC');\n"
+            }
+          ],
+          "filteredModules": 0,
+          "origins": [
+            {
+              "module": "",
+              "moduleIdentifier": "",
+              "moduleName": "",
+              "loc": "main",
+              "request": "./src/index.js",
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/webpack-bundle-analyzer-example/src/index.js",
+          "name": "./src/index.js",
+          "index": 0,
+          "index2": 0,
+          "size": 20,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [0],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "profile": {
+            "factory": 29,
+            "building": 9
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./src/index.js",
+              "loc": "main"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": null,
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 0,
+          "source": "console.log('ABC');\n"
+        }
+      ],
+      "filteredModules": 0,
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": []
+    }
+  ]
+}
