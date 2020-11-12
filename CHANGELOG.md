@@ -14,7 +14,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
  * **Bug Fix**
-   * Fix `non-asset` assets causing analyze failure. ([##385](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/385) by [@ZKHelloworld](https://github.com/ZKHelloworld))
+   * Prevent crashes for bundles generated from webpack array configs. ([#394](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/394) by [@ctavan](https://github.com/ctavan))
+   * Fix `non-asset` assets causing analyze failure. ([#385](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/385) by [@ZKHelloworld](https://github.com/ZKHelloworld))
 
 ## 4.1.0
 

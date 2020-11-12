@@ -32,7 +32,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     // Sometimes if there are additional child chunks produced add them as child assets,
     // leave the 1st one as that is considered the 'root' asset.
     for (let i = 1; i < children.length; i++) {
-      bundleStats.children[i].assets.forEach((asset) => {
+      children[i].assets.forEach((asset) => {
         asset.isChild = true;
         bundleStats.assets.push(asset);
       });
