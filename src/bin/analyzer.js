@@ -2,7 +2,6 @@
 
 const {resolve, dirname} = require('path');
 
-const _ = require('lodash');
 const commander = require('commander');
 const {magenta} = require('chalk');
 
@@ -157,7 +156,7 @@ function showHelp(error) {
 }
 
 function br(str) {
-  return `\n${_.repeat(' ', 28)}${str}`;
+  return `\n${' '.repeat(28)}${str}`;
 }
 
 function array() {

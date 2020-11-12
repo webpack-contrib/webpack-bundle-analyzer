@@ -48,7 +48,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
   }
 
   // Picking only `*.js or *.mjs` assets from bundle that has non-empty `chunks` array
-  bundleStats.assets = _.filter(bundleStats.assets, asset => {
+  bundleStats.assets = bundleStats.assets.filter(asset => {
     // Filter out non 'asset' type asset if type is provided (Webpack 5 add a type to indicate asset types)
     if (asset.type && asset.type !== 'asset') {
       return false;
@@ -82,7 +82,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
       }
 
       bundlesSources[statAsset.name] = _.pick(bundleInfo, 'src', 'runtimeSrc');
-      _.assign(parsedModules, bundleInfo.modules);
+      Object.assign(parsedModules, bundleInfo.modules);
     }
 
     if (_.isEmpty(bundlesSources)) {
@@ -92,7 +92,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     }
   }
 
-  const assets = _.transform(bundleStats.assets, (result, statAsset) => {
+  const assets = bundleStats.assets.reduce((result, statAsset) => {
     // If asset is a childAsset, then calculate appropriate bundle modules by looking through stats.children
     const assetBundles = statAsset.isChild ? getChildAssetBundles(bundleStats, statAsset.name) : bundleStats;
     const modules = assetBundles ? getBundleModules(assetBundles) : [];
@@ -144,22 +144,21 @@ function getViewerData(bundleStats, bundleDir, opts) {
 
     asset.modules = assetModules;
     asset.tree = createModulesTree(asset.modules);
+    return result;
   }, {});
 
-  return _.transform(assets, (result, asset, filename) => {
-    result.push({
-      label: filename,
-      isAsset: true,
-      // Not using `asset.size` here provided by Webpack because it can be very confusing when `UglifyJsPlugin` is used.
-      // In this case all module sizes from stats file will represent unminified module sizes, but `asset.size` will
-      // be the size of minified bundle.
-      // Using `asset.size` only if current asset doesn't contain any modules (resulting size equals 0)
-      statSize: asset.tree.size || asset.size,
-      parsedSize: asset.parsedSize,
-      gzipSize: asset.gzipSize,
-      groups: _.invokeMap(asset.tree.children, 'toChartData')
-    });
-  }, []);
+  return Object.entries(assets).map(([filename, asset]) => ({
+    label: filename,
+    isAsset: true,
+    // Not using `asset.size` here provided by Webpack because it can be very confusing when `UglifyJsPlugin` is used.
+    // In this case all module sizes from stats file will represent unminified module sizes, but `asset.size` will
+    // be the size of minified bundle.
+    // Using `asset.size` only if current asset doesn't contain any modules (resulting size equals 0)
+    statSize: asset.tree.size || asset.size,
+    parsedSize: asset.parsedSize,
+    gzipSize: asset.gzipSize,
+    groups: _.invokeMap(asset.tree.children, 'toChartData')
+  }));
 }
 
 function readStatsFromFile(filename) {
@@ -169,7 +168,7 @@ function readStatsFromFile(filename) {
 }
 
 function getChildAssetBundles(bundleStats, assetName) {
-  return _.find(bundleStats.children, (c) =>
+  return bundleStats.children.find((c) =>
     _(c.assetsByChunkName)
       .values()
       .flatten()
@@ -191,8 +190,8 @@ function getBundleModules(bundleStats) {
 
 function assetHasModule(statAsset, statModule) {
   // Checking if this module is the part of asset chunks
-  return _.some(statModule.chunks, moduleChunk =>
-    _.includes(statAsset.chunks, moduleChunk)
+  return statModule.chunks.some(moduleChunk =>
+    statAsset.chunks.includes(moduleChunk)
   );
 }
 
@@ -207,7 +206,7 @@ function isRuntimeModule(statModule) {
 function createModulesTree(modules) {
   const root = new Folder('.');
 
-  _.each(modules, module => root.addModule(module));
+  modules.forEach(module => root.addModule(module));
   root.mergeNestedFolders();
 
   return root;

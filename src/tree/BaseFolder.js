@@ -62,7 +62,7 @@ export default class BaseFolder extends Node {
   walk(walker, state = {}, deep = true) {
     let stopped = false;
 
-    _.each(this.children, child => {
+    Object.values(this.children).forEach(child => {
       if (deep && child.walk) {
         state = child.walk(walker, state, stop);
       } else {
