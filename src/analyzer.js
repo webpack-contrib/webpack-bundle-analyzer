@@ -168,7 +168,7 @@ function readStatsFromFile(filename) {
 }
 
 function getChildAssetBundles(bundleStats, assetName) {
-  return bundleStats.children.find((c) =>
+  return (bundleStats.children || []).find((c) =>
     _(c.assetsByChunkName)
       .values()
       .flatten()

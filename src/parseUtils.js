@@ -343,8 +343,9 @@ function getModulesLocations(node) {
       node.elements;
 
     return modulesNodes.reduce((result, moduleNode, i) => {
-      if (!moduleNode) return result;
-      result[i + minId] = getModuleLocation(moduleNode);
+      if (moduleNode) {
+        result[i + minId] = getModuleLocation(moduleNode);
+      }
       return result;
     }, {});
   }
