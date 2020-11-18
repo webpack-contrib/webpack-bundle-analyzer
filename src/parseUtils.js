@@ -135,7 +135,7 @@ function parseBundle(bundlePath) {
 
         // Walking into arguments because some of plugins (e.g. `DedupePlugin`) or some Webpack
         // features (e.g. `umd` library output) can wrap modules list into additional IIFE.
-        _.each(args, arg => c(arg, state));
+        args.forEach(arg => c(arg, state));
       }
     }
   );
@@ -161,9 +161,8 @@ function parseBundle(bundlePath) {
  * Returns bundle source except modules
  */
 function getBundleRuntime(content, modulesLocations) {
-  const sortedLocations = _(modulesLocations)
-    .values()
-    .sortBy('start');
+  const sortedLocations = Object.values(modulesLocations || {})
+    .sort((a, b) => a.start - b.start);
 
   let result = '';
   let lastIndex = 0;
@@ -214,8 +213,8 @@ function isSimpleModulesList(node) {
 function isModulesHash(node) {
   return (
     node.type === 'ObjectExpression' &&
-    _(node.properties)
-      .map('value')
+    node.properties
+      .map(node => node.value)
       .every(isModuleWrapper)
   );
 }
@@ -223,7 +222,7 @@ function isModulesHash(node) {
 function isModulesArray(node) {
   return (
     node.type === 'ArrayExpression' &&
-    _.every(node.elements, elem =>
+    node.elements.every(elem =>
       // Some of array items may be skipped because there is no module with such id
       !elem ||
       isModuleWrapper(elem)
@@ -276,7 +275,7 @@ function isChunkIds(node) {
   // Array of numeric or string ids. Chunk IDs are strings when NamedChunksPlugin is used
   return (
     node.type === 'ArrayExpression' &&
-    _.every(node.elements, isModuleId)
+    node.elements.every(isModuleId)
   );
 }
 
@@ -321,10 +320,11 @@ function getModulesLocations(node) {
     // Modules hash
     const modulesNodes = node.properties;
 
-    return _.transform(modulesNodes, (result, moduleNode) => {
+    return modulesNodes.reduce((result, moduleNode) => {
       const moduleId = moduleNode.key.name || moduleNode.key.value;
 
       result[moduleId] = getModuleLocation(moduleNode.value);
+      return result;
     }, {});
   }
 
@@ -342,9 +342,11 @@ function getModulesLocations(node) {
       node.arguments[0].elements :
       node.elements;
 
-    return _.transform(modulesNodes, (result, moduleNode, i) => {
-      if (!moduleNode) return;
-      result[i + minId] = getModuleLocation(moduleNode);
+    return modulesNodes.reduce((result, moduleNode, i) => {
+      if (moduleNode) {
+        result[i + minId] = getModuleLocation(moduleNode);
+      }
+      return result;
     }, {});
   }
 
