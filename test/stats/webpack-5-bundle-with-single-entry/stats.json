@@ -1,0 +1,584 @@
+{
+  "hash": "a27a519140b2590a60d9",
+  "version": "5.3.2",
+  "time": 152,
+  "builtAt": 1604594809350,
+  "publicPath": "auto",
+  "outputPath": "/Volumes/Work/webpack-bundle-analyzer/test/dist",
+  "assetsByChunkName": {
+    "main": [
+      "bundle.js"
+    ]
+  },
+  "assets": [
+    {
+      "type": "asset",
+      "name": "bundle.js",
+      "size": 253,
+      "chunkNames": [
+        "main"
+      ],
+      "chunkIdHints": [
+      ],
+      "auxiliaryChunkNames": [
+      ],
+      "auxiliaryChunkIdHints": [
+      ],
+      "emitted": true,
+      "comparedForEmit": false,
+      "cached": false,
+      "info": {
+        "javascriptModule": false,
+        "minimized": true,
+        "size": 253
+      },
+      "related": {
+      },
+      "chunks": [
+        179
+      ],
+      "auxiliaryChunks": [
+      ],
+      "isOverSizeLimit": false
+    }
+  ],
+  "chunks": [
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 142,
+      "sizes": {
+        "javascript": 142
+      },
+      "names": [
+        "main"
+      ],
+      "idHints": [
+      ],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "bundle.js"
+      ],
+      "auxiliaryFiles": [
+      ],
+      "hash": "27f85d7f2fb13dec2ad9",
+      "childrenByOrder": {
+      },
+      "id": 179,
+      "siblings": [
+      ],
+      "parents": [
+      ],
+      "children": [
+      ],
+      "modules": [
+        {
+          "type": "module",
+          "moduleType": "javascript/auto",
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/a.js",
+          "name": "./src/a.js",
+          "nameForCondition": "/Volumes/Work/webpack-bundle-analyzer/test/src/a.js",
+          "index": 1,
+          "preOrderIndex": 1,
+          "index2": 0,
+          "postOrderIndex": 0,
+          "size": 40,
+          "sizes": {
+            "javascript": 40
+          },
+          "cacheable": true,
+          "built": true,
+          "codeGenerated": true,
+          "cached": false,
+          "optional": false,
+          "orphan": false,
+          "dependent": true,
+          "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "issuerName": "./src/index.js",
+          "issuerPath": [
+            {
+              "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "name": "./src/index.js",
+              "id": 138
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": 85,
+          "issuerId": 138,
+          "chunks": [
+            179
+          ],
+          "assets": [
+          ],
+          "reasons": [
+            {
+              "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "resolvedModuleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "resolvedModule": "./src/index.js",
+              "type": "harmony side effect evaluation",
+              "active": false,
+              "explanation": "",
+              "userRequest": "./a",
+              "loc": "1:0-20",
+              "moduleId": 138,
+              "resolvedModuleId": 138
+            },
+            {
+              "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "resolvedModuleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "resolvedModule": "./src/index.js",
+              "type": "harmony import specifier",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./a",
+              "loc": "4:12-13",
+              "moduleId": 138,
+              "resolvedModuleId": 138
+            }
+          ],
+          "usedExports": [
+            "default"
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [
+          ],
+          "depth": 1
+        },
+        {
+          "type": "module",
+          "moduleType": "javascript/auto",
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/b.js",
+          "name": "./src/b.js",
+          "nameForCondition": "/Volumes/Work/webpack-bundle-analyzer/test/src/b.js",
+          "index": 2,
+          "preOrderIndex": 2,
+          "index2": 1,
+          "postOrderIndex": 1,
+          "size": 40,
+          "sizes": {
+            "javascript": 40
+          },
+          "cacheable": true,
+          "built": true,
+          "codeGenerated": true,
+          "cached": false,
+          "optional": false,
+          "orphan": false,
+          "dependent": true,
+          "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "issuerName": "./src/index.js",
+          "issuerPath": [
+            {
+              "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "name": "./src/index.js",
+              "id": 138
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": 326,
+          "issuerId": 138,
+          "chunks": [
+            179
+          ],
+          "assets": [
+          ],
+          "reasons": [
+            {
+              "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "resolvedModuleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "resolvedModule": "./src/index.js",
+              "type": "harmony side effect evaluation",
+              "active": false,
+              "explanation": "",
+              "userRequest": "./b",
+              "loc": "2:0-20",
+              "moduleId": 138,
+              "resolvedModuleId": 138
+            },
+            {
+              "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "module": "./src/index.js",
+              "moduleName": "./src/index.js",
+              "resolvedModuleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+              "resolvedModule": "./src/index.js",
+              "type": "harmony import specifier",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./b",
+              "loc": "4:15-16",
+              "moduleId": 138,
+              "resolvedModuleId": 138
+            }
+          ],
+          "usedExports": [
+            "default"
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [
+          ],
+          "depth": 1
+        },
+        {
+          "type": "module",
+          "moduleType": "javascript/auto",
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "name": "./src/index.js",
+          "nameForCondition": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "index": 0,
+          "preOrderIndex": 0,
+          "index2": 2,
+          "postOrderIndex": 2,
+          "size": 62,
+          "sizes": {
+            "javascript": 62
+          },
+          "cacheable": true,
+          "built": true,
+          "codeGenerated": true,
+          "cached": false,
+          "optional": false,
+          "orphan": false,
+          "dependent": false,
+          "issuer": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": 138,
+          "issuerId": null,
+          "chunks": [
+            179
+          ],
+          "assets": [
+          ],
+          "reasons": [
+            {
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "resolvedModuleIdentifier": null,
+              "resolvedModule": null,
+              "type": "entry",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./src/index.js",
+              "loc": "main",
+              "moduleId": null,
+              "resolvedModuleId": null
+            }
+          ],
+          "usedExports": [
+          ],
+          "providedExports": [
+          ],
+          "optimizationBailout": [
+          ],
+          "depth": 0
+        }
+      ],
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "request": "./src/index.js"
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+      "name": "./src/index.js",
+      "nameForCondition": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+      "index": 0,
+      "preOrderIndex": 0,
+      "index2": 2,
+      "postOrderIndex": 2,
+      "size": 62,
+      "sizes": {
+        "javascript": 62
+      },
+      "cacheable": true,
+      "built": true,
+      "codeGenerated": true,
+      "cached": false,
+      "optional": false,
+      "orphan": false,
+      "issuer": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": 138,
+      "issuerId": null,
+      "chunks": [
+        179
+      ],
+      "assets": [
+      ],
+      "reasons": [
+        {
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "resolvedModuleIdentifier": null,
+          "resolvedModule": null,
+          "type": "entry",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./src/index.js",
+          "loc": "main",
+          "moduleId": null,
+          "resolvedModuleId": null
+        }
+      ],
+      "usedExports": [
+      ],
+      "providedExports": [
+      ],
+      "optimizationBailout": [
+      ],
+      "depth": 0
+    },
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/a.js",
+      "name": "./src/a.js",
+      "nameForCondition": "/Volumes/Work/webpack-bundle-analyzer/test/src/a.js",
+      "index": 1,
+      "preOrderIndex": 1,
+      "index2": 0,
+      "postOrderIndex": 0,
+      "size": 40,
+      "sizes": {
+        "javascript": 40
+      },
+      "cacheable": true,
+      "built": true,
+      "codeGenerated": true,
+      "cached": false,
+      "optional": false,
+      "orphan": false,
+      "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+      "issuerName": "./src/index.js",
+      "issuerPath": [
+        {
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "name": "./src/index.js",
+          "id": 138
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": 85,
+      "issuerId": 138,
+      "chunks": [
+        179
+      ],
+      "assets": [
+      ],
+      "reasons": [
+        {
+          "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "resolvedModuleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "resolvedModule": "./src/index.js",
+          "type": "harmony side effect evaluation",
+          "active": false,
+          "explanation": "",
+          "userRequest": "./a",
+          "loc": "1:0-20",
+          "moduleId": 138,
+          "resolvedModuleId": 138
+        },
+        {
+          "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "resolvedModuleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "resolvedModule": "./src/index.js",
+          "type": "harmony import specifier",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./a",
+          "loc": "4:12-13",
+          "moduleId": 138,
+          "resolvedModuleId": 138
+        }
+      ],
+      "usedExports": [
+        "default"
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [
+      ],
+      "depth": 1
+    },
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/b.js",
+      "name": "./src/b.js",
+      "nameForCondition": "/Volumes/Work/webpack-bundle-analyzer/test/src/b.js",
+      "index": 2,
+      "preOrderIndex": 2,
+      "index2": 1,
+      "postOrderIndex": 1,
+      "size": 40,
+      "sizes": {
+        "javascript": 40
+      },
+      "cacheable": true,
+      "built": true,
+      "codeGenerated": true,
+      "cached": false,
+      "optional": false,
+      "orphan": false,
+      "issuer": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+      "issuerName": "./src/index.js",
+      "issuerPath": [
+        {
+          "identifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "name": "./src/index.js",
+          "id": 138
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": 326,
+      "issuerId": 138,
+      "chunks": [
+        179
+      ],
+      "assets": [
+      ],
+      "reasons": [
+        {
+          "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "resolvedModuleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "resolvedModule": "./src/index.js",
+          "type": "harmony side effect evaluation",
+          "active": false,
+          "explanation": "",
+          "userRequest": "./b",
+          "loc": "2:0-20",
+          "moduleId": 138,
+          "resolvedModuleId": 138
+        },
+        {
+          "moduleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "module": "./src/index.js",
+          "moduleName": "./src/index.js",
+          "resolvedModuleIdentifier": "/Volumes/Work/webpack-bundle-analyzer/test/src/index.js",
+          "resolvedModule": "./src/index.js",
+          "type": "harmony import specifier",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./b",
+          "loc": "4:15-16",
+          "moduleId": 138,
+          "resolvedModuleId": 138
+        }
+      ],
+      "usedExports": [
+        "default"
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [
+      ],
+      "depth": 1
+    }
+  ],
+  "entrypoints": {
+    "main": {
+      "name": "main",
+      "chunks": [
+        179
+      ],
+      "assets": [
+        {
+          "name": "bundle.js",
+          "size": 253
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": 253,
+      "auxiliaryAssets": [
+      ],
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {
+      },
+      "childAssets": {
+      },
+      "isOverSizeLimit": false
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "name": "main",
+      "chunks": [
+        179
+      ],
+      "assets": [
+        {
+          "name": "bundle.js",
+          "size": 253
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": 253,
+      "auxiliaryAssets": [
+      ],
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {
+      },
+      "childAssets": {
+      },
+      "isOverSizeLimit": false
+    }
+  },
+  "errors": [
+  ],
+  "errorsCount": 0,
+  "warnings": [
+  ],
+  "warningsCount": 0,
+  "children": [
+  ]
+}

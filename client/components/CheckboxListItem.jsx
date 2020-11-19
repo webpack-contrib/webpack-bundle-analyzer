@@ -1,5 +1,4 @@
-/** @jsx h */
-import {h, Component} from 'preact';
+import {Component} from 'preact';
 
 import Checkbox from './Checkbox';
 import CheckboxList from './CheckboxList';
@@ -21,8 +20,8 @@ export default class CheckboxListItem extends Component {
   renderLabel() {
     const {children, item} = this.props;
 
-    if (children && children.length) {
-      return children[0](item);
+    if (children) {
+      return children(item);
     }
 
     return (item === CheckboxList.ALL_ITEM) ? 'All' : item.label;

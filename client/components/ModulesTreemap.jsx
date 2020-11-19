@@ -1,8 +1,7 @@
-/** @jsx h */
-import {h, Component} from 'preact';
+import {Component} from 'preact';
 import filesize from 'filesize';
 import {computed} from 'mobx';
-import {observer} from 'mobx-preact';
+import {observer} from 'mobx-react';
 
 import {isChunkParsed} from '../utils';
 import localStorage from '../localStorage';

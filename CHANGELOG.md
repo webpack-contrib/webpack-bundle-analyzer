@@ -14,7 +14,28 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
  * **Bug Fix**
+   * Prevent crashes for bundles generated from webpack array configs. ([#394](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/394) by [@ctavan](https://github.com/ctavan))
+   * Fix `non-asset` assets causing analyze failure. ([#385](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/385) by [@ZKHelloworld](https://github.com/ZKHelloworld))
+
+## 4.1.0
+
+ * **Improvement**
+   * Significantly speed up generation of `stats.json` file (see `generateStatsFile` option).
+
+## 4.0.0
+
+ * **Breaking change**
+   * Dropped support for Node.js 6 and 8. Minimal required version now is v10.13.0
+
+ * **Improvement**
+   * Support for Webpack 5
+ 
+ * **Bug Fix**
    * Prevent crashes when `openAnalyzer` was set to true in environments where there's no program to handle opening. ([#382](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/382) by [@wbobeirne](https://github.com/wbobeirne))
+  
+ * **Internal**
+   * Updated dependencies
+   * Added support for multiple Webpack versions in tests
 
 ## 3.9.0
 

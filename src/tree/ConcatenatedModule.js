@@ -15,7 +15,7 @@ export default class ConcatenatedModule extends Module {
   }
 
   fillContentModules() {
-    _.each(this.data.modules, moduleData => this.addContentModule(moduleData));
+    this.data.modules.forEach(moduleData => this.addContentModule(moduleData));
   }
 
   addContentModule(moduleData) {
@@ -28,7 +28,7 @@ export default class ConcatenatedModule extends Module {
     const [folders, fileName] = [pathParts.slice(0, -1), _.last(pathParts)];
     let currentFolder = this;
 
-    _.each(folders, folderName => {
+    folders.forEach(folderName => {
       let childFolder = currentFolder.getChild(folderName);
 
       if (!childFolder) {

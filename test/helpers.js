@@ -1,3 +1,4 @@
+const {readdirSync} = require('fs');
 const chai = require('chai');
 const webpack = require('webpack');
 const _ = require('lodash');
@@ -7,10 +8,70 @@ chai.use(require('chai-subset'));
 global.expect = chai.expect;
 global.webpackCompile = webpackCompile;
 global.makeWebpackConfig = makeWebpackConfig;
+global.forEachWebpackVersion = forEachWebpackVersion;
 
 const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
 
-async function webpackCompile(config) {
+const getAvailableWebpackVersions = _.memoize(() =>
+  readdirSync(`${__dirname}/webpack-versions`, {withFileTypes: true})
+    .filter(entry => entry.isDirectory())
+    .map(dir => dir.name)
+);
+
+function forEachWebpackVersion(versions, cb) {
+  const availableVersions = getAvailableWebpackVersions();
+
+  if (_.isFunction(versions)) {
+    cb = versions;
+    versions = availableVersions;
+  } else {
+    const notFoundVersions = versions.filter(version => !availableVersions.includes(version));
+
+    if (notFoundVersions.length) {
+      throw new Error(
+        `These Webpack versions are not currently available for testing: ${notFoundVersions.join(', ')}\n` +
+        'You need to install them manually into "test/webpack-versions" directory.'
+      );
+    }
+  }
+
+  for (const version of versions) {
+    const itFn = function (testDescription, ...args) {
+      return it.call(this, `${testDescription} (Webpack ${version})`, ...args);
+    };
+
+    itFn.only = function (testDescription, ...args) {
+      return it.only.call(this, `${testDescription} (Webpack ${version})`, ...args);
+    };
+
+    cb({
+      it: itFn,
+      version,
+      webpackCompile: _.partial(webpackCompile, _, version)
+    });
+  }
+}
+
+async function webpackCompile(config, version) {
+  if (version === undefined || version === null) {
+    throw new Error('Webpack version is not specified');
+  }
+
+  if (!getAvailableWebpackVersions().includes(version)) {
+    throw new Error(`Webpack version "${version}" is not available for testing`);
+  }
+
+  let webpack;
+
+  try {
+    webpack = require(`./webpack-versions/${version}/node_modules/webpack`);
+  } catch (err) {
+    throw new Error(
+      `Error requiring Webpack ${version}:\n${err}\n\n` +
+      'Try running "npm run install-test-webpack-versions".'
+    );
+  }
+
   await new Promise((resolve, reject) => {
     webpack(config, (err, stats) => {
       if (err) {

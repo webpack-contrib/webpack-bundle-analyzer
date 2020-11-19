@@ -1,4 +1,4 @@
-const {inspect} = require('util');
+const {inspect, types} = require('util');
 const _ = require('lodash');
 const opener = require('opener');
 
@@ -15,11 +15,11 @@ function createAssetsFilter(excludePatterns) {
         pattern = new RegExp(pattern, 'u');
       }
 
-      if (_.isRegExp(pattern)) {
+      if (types.isRegExp(pattern)) {
         return (asset) => pattern.test(asset);
       }
 
-      if (!_.isFunction(pattern)) {
+      if (typeof pattern !== 'function') {
         throw new TypeError(
           `Pattern should be either string, RegExp or a function, but "${inspect(pattern, {depth: 0})}" got.`
         );
@@ -30,7 +30,7 @@ function createAssetsFilter(excludePatterns) {
     .value();
 
   if (excludeFunctions.length) {
-    return (asset) => _.every(excludeFunctions, fn => fn(asset) !== true);
+    return (asset) => excludeFunctions.every(fn => fn(asset) !== true);
   } else {
     return () => true;
   }
