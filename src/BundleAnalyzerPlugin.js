@@ -134,8 +134,12 @@ class BundleAnalyzerPlugin {
   }
 
   getBundleDirFromCompiler() {
+    // On Webpack 4.x, compiler.outputFileSystem is a class instance
     if (this.compiler.outputFileSystem.constructor) {
       switch (this.compiler.outputFileSystem.constructor.name) {
+        // Detect memory-fs
+        // var MemoryFileSystem = require("memory-fs")
+        // compiler.outputFileSystem = new MemoryFileSystem()
         case 'MemoryFileSystem':
           return null;
         // Detect AsyncMFS used by Nuxt 2.5 that replaces webpack's MFS during development
@@ -144,6 +148,8 @@ class BundleAnalyzerPlugin {
           return null;
       }
     }
+    // TODO Can we check the outputFileSystem is graceful-fs or memfs on webpack 5.x?
+    // If avaliable, we can return null if the outputFileSystem is memfs.
     return this.compiler.outputPath;
   }
 
