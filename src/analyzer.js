@@ -181,14 +181,12 @@ function getBundleModules(bundleStats) {
   return (bundleStats.chunks || [])
     .reduce((result, item) => result.concat(item.modules), [])
     .concat(bundleStats.modules)
+    .filter(item => item != null)
+    // Filtering out Webpack's runtime modules as they don't have ids and can't be parsed (introduced in Webpack 5)
+    .filter(item => !isRuntimeModule(item))
+    // deduplicate modules
     .reduce((result, item) => {
-      if (
-        item != null &&
-        // Filtering out Webpack's runtime modules as they don't have ids and can't be parsed (introduced in Webpack 5)
-        !isRuntimeModule(item) &&
-        // deduplicate modules
-        !result.some(m => m.id === item.id)
-      ) {
+      if (!result.some(m => m.id === item.id)) {
         result.push(item);
       }
       return result;
