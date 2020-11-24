@@ -26,6 +26,10 @@ function getAssetContent(filename) {
   return fs.readFileSync(assetPath, 'utf8');
 }
 
+function html(strings, ...values) {
+  return strings.map((string, index) => `${string}${values[index] || ''}`).join('')
+}
+
 function getScript(filename, mode) {
   if (mode === 'static') {
     return `<!-- ${_.escape(filename)} -->
@@ -36,7 +40,7 @@ function getScript(filename, mode) {
 }
 
 function renderViewer({title, enableWebSocket, chartData, defaultSizes, mode} = {}) {
-  return `<!DOCTYPE html>
+  return html`<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8"/>
