@@ -27,7 +27,7 @@ function getAssetContent(filename) {
 }
 
 function html(strings, ...values) {
-  return strings.map((string, index) => `${string}${values[index] || ''}`).join('')
+  return strings.map((string, index) => `${string}${values[index] || ''}`).join('');
 }
 
 function getScript(filename, mode) {
