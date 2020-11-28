@@ -4,7 +4,6 @@ const http = require('http');
 
 const WebSocket = require('ws');
 const _ = require('lodash');
-const express = require('express');
 const {bold} = require('chalk');
 
 const Logger = require('./Logger');
@@ -13,6 +12,7 @@ const {open} = require('./utils');
 const {renderViewer} = require('./template');
 
 const projectRoot = path.resolve(__dirname, '..');
+const viewsRoot = path.join(projectRoot, 'views');
 
 function resolveTitle(reportTitle) {
   if (typeof reportTitle === 'function') {
@@ -48,22 +48,32 @@ async function startServer(bundleStats, opts) {
 
   if (!chartData) return;
 
-  const app = express();
-  app.use(express.static(`${projectRoot}/public`));
+  const serveStaticMiddleware = serveStatic(`${projectRoot}/public`);
 
-  app.get('/', (req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    const html = renderViewer({
-      mode: 'server',
-      title: resolveTitle(reportTitle),
-      chartData,
-      defaultSizes,
-      enableWebSocket: true
-    });
-    return res.end(html);
+  const server = http.createServer((req, res) => {
+    if (req.method === 'GET' && req.url === '/') {
+      const html = renderViewer({
+        mode: 'server',
+        title: resolveTitle(reportTitle),
+        chartData,
+        defaultSizes,
+        enableWebSocket: true
+      });
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.end(html);
+    } else {
+      serveStaticMiddleware(req, res, err => {
+        if (err) {
+          console.error(err.stack || err.toString());
+          res.writeHead(500);
+          res.end();
+        } else {
+          res.writeHead(404);
+          res.end();
+        }
+      });
+    }
   });
-
-  const server = http.createServer(app);
 
   await new Promise(resolve => {
     server.listen(port, host, () => {
