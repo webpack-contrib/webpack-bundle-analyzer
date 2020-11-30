@@ -13,6 +13,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 ## UNRELEASED
 
 <!-- Add changelog entries for new changes under this section -->
+
+## 4.2.0
+
  * **Improvement**
    * A  number of improvements to reduce the number of dependencies ([#391](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/391), [#396](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/396), [#397](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/397))
 
