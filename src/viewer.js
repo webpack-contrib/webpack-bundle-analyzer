@@ -3,7 +3,7 @@ const fs = require('fs');
 const http = require('http');
 
 const WebSocket = require('ws');
-const serveStatic = require('serve-static');
+const sirv = require('sirv');
 const _ = require('lodash');
 const {bold} = require('chalk');
 
@@ -48,7 +48,9 @@ async function startServer(bundleStats, opts) {
 
   if (!chartData) return;
 
-  const serveStaticMiddleware = serveStatic(`${projectRoot}/public`);
+  const sirvMiddleware = sirv(`${projectRoot}/public`, {
+    dev: true
+  });
 
   const server = http.createServer((req, res) => {
     if (req.method === 'GET' && req.url === '/') {
@@ -62,7 +64,7 @@ async function startServer(bundleStats, opts) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(html);
     } else {
-      serveStaticMiddleware(req, res, err => {
+      sirvMiddleware(req, res, err => {
         if (err) {
           console.error(err.stack || err.toString());
           res.writeHead(500);
