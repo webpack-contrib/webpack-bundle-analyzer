@@ -149,7 +149,6 @@ async function generateReport(bundleStats, opts) {
   if (openBrowser) {
     open(`file://${reportFilepath}`, logger);
   }
-  });
 }
 
 async function generateJSONReport(bundleStats, opts) {
