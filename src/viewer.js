@@ -132,29 +132,23 @@ async function generateReport(bundleStats, opts) {
 
   if (!chartData) return;
 
-  await new Promise((resolve, reject) => {
-    try {
-      const reportHtml = renderViewer({
-        mode: 'static',
-        title: resolveTitle(reportTitle),
-        chartData,
-        defaultSizes,
-        enableWebSocket: false
-      });
-      const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
+  const reportHtml = renderViewer({
+    mode: 'static',
+    title: resolveTitle(reportTitle),
+    chartData,
+    defaultSizes,
+    enableWebSocket: false
+  });
+  const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
 
-      fs.mkdirSync(path.dirname(reportFilepath), {recursive: true});
-      fs.writeFileSync(reportFilepath, reportHtml);
+  fs.mkdirSync(path.dirname(reportFilepath), {recursive: true});
+  fs.writeFileSync(reportFilepath, reportHtml);
 
-      logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
+  logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
 
-      if (openBrowser) {
-        open(`file://${reportFilepath}`, logger);
-      }
-      resolve();
-    } catch (e) {
-      reject(e);
-    }
+  if (openBrowser) {
+    open(`file://${reportFilepath}`, logger);
+  }
   });
 }
 
