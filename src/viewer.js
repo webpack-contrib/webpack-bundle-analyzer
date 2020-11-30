@@ -13,7 +13,6 @@ const {open} = require('./utils');
 const {renderViewer} = require('./template');
 
 const projectRoot = path.resolve(__dirname, '..');
-const viewsRoot = path.join(projectRoot, 'views');
 
 function resolveTitle(reportTitle) {
   if (typeof reportTitle === 'function') {
