@@ -3,6 +3,7 @@ const fs = require('fs');
 const http = require('http');
 
 const WebSocket = require('ws');
+const serveStatic = require('serve-static');
 const _ = require('lodash');
 const {bold} = require('chalk');
 
