@@ -30,15 +30,13 @@
   "files": [
     "public",
     "lib",
-    "src",
-    "views"
+    "src"
   ],
   "dependencies": {
     "acorn": "^8.0.4",
     "acorn-walk": "^8.0.0",
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
-    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "filesize": "^6.1.0",
     "gzip-size": "^6.0.0",

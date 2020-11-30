@@ -5,15 +5,14 @@ const http = require('http');
 const WebSocket = require('ws');
 const _ = require('lodash');
 const express = require('express');
-const ejs = require('ejs');
 const {bold} = require('chalk');
 
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
 const {open} = require('./utils');
+const {renderViewer} = require('./template');
 
 const projectRoot = path.resolve(__dirname, '..');
-const assetsRoot = path.join(projectRoot, 'public');
 
 function resolveTitle(reportTitle) {
   if (typeof reportTitle === 'function') {
@@ -50,24 +49,18 @@ async function startServer(bundleStats, opts) {
   if (!chartData) return;
 
   const app = express();
-
-  // Explicitly using our `ejs` dependency to render templates
-  // Fixes #17
-  app.engine('ejs', require('ejs').renderFile);
-  app.set('view engine', 'ejs');
-  app.set('views', `${projectRoot}/views`);
   app.use(express.static(`${projectRoot}/public`));
 
-  app.use('/', (req, res) => {
-    res.render('viewer', {
+  app.get('/', (req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    const html = renderViewer({
       mode: 'server',
       title: resolveTitle(reportTitle),
-      get chartData() { return chartData },
+      chartData,
       defaultSizes,
-      enableWebSocket: true,
-      // Helpers
-      escapeJson
+      enableWebSocket: true
     });
+    return res.end(html);
   });
 
   const server = http.createServer(app);
@@ -139,44 +132,23 @@ async function generateReport(bundleStats, opts) {
 
   if (!chartData) return;
 
-  await new Promise((resolve, reject) => {
-    ejs.renderFile(
-      `${projectRoot}/views/viewer.ejs`,
-      {
-        mode: 'static',
-        title: resolveTitle(reportTitle),
-        chartData,
-        defaultSizes,
-        enableWebSocket: false,
-        // Helpers
-        assetContent: getAssetContent,
-        escapeJson
-      },
-      (err, reportHtml) => {
-        try {
-          if (err) {
-            logger.error(err);
-            reject(err);
-            return;
-          }
-
-          const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
-
-          fs.mkdirSync(path.dirname(reportFilepath), {recursive: true});
-          fs.writeFileSync(reportFilepath, reportHtml);
-
-          logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
-
-          if (openBrowser) {
-            open(`file://${reportFilepath}`, logger);
-          }
-          resolve();
-        } catch (e) {
-          reject(e);
-        }
-      }
-    );
+  const reportHtml = renderViewer({
+    mode: 'static',
+    title: resolveTitle(reportTitle),
+    chartData,
+    defaultSizes,
+    enableWebSocket: false
   });
+  const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
+
+  fs.mkdirSync(path.dirname(reportFilepath), {recursive: true});
+  fs.writeFileSync(reportFilepath, reportHtml);
+
+  logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
+
+  if (openBrowser) {
+    open(`file://${reportFilepath}`, logger);
+  }
 }
 
 async function generateJSONReport(bundleStats, opts) {
@@ -190,23 +162,6 @@ async function generateJSONReport(bundleStats, opts) {
   await fs.promises.writeFile(reportFilename, JSON.stringify(chartData));
 
   logger.info(`${bold('Webpack Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
-}
-
-function getAssetContent(filename) {
-  const assetPath = path.join(assetsRoot, filename);
-
-  if (!assetPath.startsWith(assetsRoot)) {
-    throw new Error(`"${filename}" is outside of the assets root`);
-  }
-
-  return fs.readFileSync(assetPath, 'utf8');
-}
-
-/**
- * Escapes `<` characters in JSON to safely use it in `<script>` tag.
- */
-function escapeJson(json) {
-  return JSON.stringify(json).replace(/</gu, '\\u003c');
 }
 
 function getChartData(analyzerOpts, ...args) {
