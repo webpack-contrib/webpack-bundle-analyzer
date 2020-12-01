@@ -14,6 +14,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+ * **Improvement**
+   * Replace express with builtin node server, reducing number of dependencies ([#398](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/398) by [@TrySound](https://github.com/TrySound))
+
 ## 4.2.0
 
  * **Improvement**
