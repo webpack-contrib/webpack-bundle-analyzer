@@ -3,8 +3,8 @@ const fs = require('fs');
 const http = require('http');
 
 const WebSocket = require('ws');
+const sirv = require('sirv');
 const _ = require('lodash');
-const express = require('express');
 const {bold} = require('chalk');
 
 const Logger = require('./Logger');
@@ -48,22 +48,26 @@ async function startServer(bundleStats, opts) {
 
   if (!chartData) return;
 
-  const app = express();
-  app.use(express.static(`${projectRoot}/public`));
-
-  app.get('/', (req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    const html = renderViewer({
-      mode: 'server',
-      title: resolveTitle(reportTitle),
-      chartData,
-      defaultSizes,
-      enableWebSocket: true
-    });
-    return res.end(html);
+  const sirvMiddleware = sirv(`${projectRoot}/public`, {
+    // disables caching and traverse the file system on every request
+    dev: true
   });
 
-  const server = http.createServer(app);
+  const server = http.createServer((req, res) => {
+    if (req.method === 'GET' && req.url === '/') {
+      const html = renderViewer({
+        mode: 'server',
+        title: resolveTitle(reportTitle),
+        chartData,
+        defaultSizes,
+        enableWebSocket: true
+      });
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.end(html);
+    } else {
+      sirvMiddleware(req, res);
+    }
+  });
 
   await new Promise(resolve => {
     server.listen(port, host, () => {
