@@ -49,6 +49,7 @@ async function startServer(bundleStats, opts) {
   if (!chartData) return;
 
   const sirvMiddleware = sirv(`${projectRoot}/public`, {
+    // disables caching and traverse the file system on every request
     dev: true
   });
 
@@ -64,16 +65,7 @@ async function startServer(bundleStats, opts) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(html);
     } else {
-      sirvMiddleware(req, res, err => {
-        if (err) {
-          console.error(err.stack || err.toString());
-          res.writeHead(500);
-          res.end();
-        } else {
-          res.writeHead(404);
-          res.end();
-        }
-      });
+      sirvMiddleware(req, res);
     }
   });
 
