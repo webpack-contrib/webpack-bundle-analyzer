@@ -13,7 +13,7 @@ jobs:
           - '12'
           - '14'
     runs-on: ubuntu-latest
-    name: Tests on node ${{ matrix.node }}
+    name: Tests on Node.js v${{ matrix.node }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
