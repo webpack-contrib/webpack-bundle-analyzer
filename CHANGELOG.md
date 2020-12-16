@@ -14,9 +14,14 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 <!-- Add changelog entries for new changes under this section -->
 
+## 4.3.0
+
  * **Improvement**
    * Replace express with builtin node server, reducing number of dependencies ([#398](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/398) by [@TrySound](https://github.com/TrySound))
    * Move `filesize` to dev dependencies, reducing number of dependencies ([#401](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/401) by [@realityking](https://github.com/realityking))
+   
+ * **Internal**
+   * Replace Travis with GitHub actions ([#402](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/402) by [@valscion](https://github.com/valscion))
 
 ## 4.2.0
 
