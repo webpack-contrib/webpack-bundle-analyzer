@@ -178,6 +178,9 @@ Analyzer will use module sizes from stats file.
 ```
 To get more information about it you can read [issue #147](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/147).
 
+### Other tools
+
+- [Statoscope](https://github.com/smelukov/statoscope/blob/master/packages/ui-webpack/README.md) - Webpack bundle analyzing tool to find out why a certain module was bundled (and more features, including interactive treemap)
 
 <h2 align="center">Maintainers</h2>
 
