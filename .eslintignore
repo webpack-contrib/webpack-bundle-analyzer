@@ -5,9 +5,6 @@ node_modules
 lib
 public
 
-# Vendor code
-client/vendor
-
 # Test fixtures
 test/bundles
 test/stats
