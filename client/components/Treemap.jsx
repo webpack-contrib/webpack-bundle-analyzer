@@ -62,6 +62,7 @@ export default class Treemap extends Component {
       maxGroupLevelsDrawn: Infinity,
       maxGroupLabelLevelsDrawn: Infinity,
       maxGroupLevelsAttached: Infinity,
+      wireframeLabelDrawing: 'always',
       groupMinDiameter: 0,
       groupLabelVerticalPadding: 0.2,
       rolloutDuration: 0,
