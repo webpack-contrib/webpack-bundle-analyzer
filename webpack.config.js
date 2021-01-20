@@ -22,9 +22,6 @@ module.exports = opts => {
     },
 
     resolve: {
-      modules: [
-        'node_modules'
-      ],
       extensions: ['.js', '.jsx'],
       alias: {
         react: 'preact/compat',
