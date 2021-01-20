@@ -16,6 +16,10 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
   * Keep treemap labels visible during zooming animations for better user experience ([#414](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/414) by [@
     stanislawosinski](https://github.com/stanislawosinski))
     
+* **Bug Fix**
+  * Don't show an empty tooltip when hovering over the FoamTree attribution group or between top-level groups ([#413](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/413) by [@
+    stanislawosinski](https://github.com/stanislawosinski))
+
 ## 4.3.0
 
  * **Improvement**
