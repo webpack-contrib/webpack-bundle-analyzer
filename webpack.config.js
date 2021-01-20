@@ -59,7 +59,7 @@ module.exports = opts => {
       rules: [
         {
           test: /\.jsx?$/u,
-          exclude: /(node_modules)/u,
+          exclude: /node_modules/u,
           loader: 'babel-loader',
           options: {
             babelrc: false,
