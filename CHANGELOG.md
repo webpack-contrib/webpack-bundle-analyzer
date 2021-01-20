@@ -12,8 +12,10 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
-<!-- Add changelog entries for new changes under this section -->
-
+* **Improvement**
+  * Keep treemap labels visible during zooming animations for better user experience ([#414](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/414) by [@
+    stanislawosinski](https://github.com/stanislawosinski))
+    
 ## 4.3.0
 
  * **Improvement**
