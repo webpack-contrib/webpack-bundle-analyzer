@@ -62,6 +62,7 @@ export default class Treemap extends Component {
       maxGroupLevelsDrawn: Infinity,
       maxGroupLabelLevelsDrawn: Infinity,
       maxGroupLevelsAttached: Infinity,
+      wireframeLabelDrawing: 'always',
       groupMinDiameter: 0,
       groupLabelVerticalPadding: 0.2,
       rolloutDuration: 0,
@@ -105,9 +106,12 @@ export default class Treemap extends Component {
       },
       onGroupDoubleClick: preventDefault,
       onGroupHover(event) {
-        // Ignoring hovering on `FoamTree` branding group
-        if (event.group && event.group.attribution) {
+        // Ignoring hovering on `FoamTree` branding group and the root group
+        if (event.group && (event.group.attribution || event.group === this.get('dataObject'))) {
           event.preventDefault();
+          if (props.onMouseLeave) {
+            props.onMouseLeave.call(component, event);
+          }
           return;
         }
 
