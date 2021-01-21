@@ -22,10 +22,6 @@ module.exports = opts => {
     },
 
     resolve: {
-      modules: [
-        `${__dirname}/client/vendor`,
-        'node_modules'
-      ],
       extensions: ['.js', '.jsx'],
       alias: {
         react: 'preact/compat',
@@ -60,7 +56,7 @@ module.exports = opts => {
       rules: [
         {
           test: /\.jsx?$/u,
-          exclude: /(node_modules|client\/vendor)/u,
+          exclude: /node_modules/u,
           loader: 'babel-loader',
           options: {
             babelrc: false,
