@@ -1,6 +1,6 @@
 const {inspect, types} = require('util');
 const _ = require('lodash');
-const opener = require('opener');
+const opener = require('better-opn');
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
