@@ -30,7 +30,7 @@ export default class Folder extends BaseFolder {
     const [folders, fileName] = [pathParts.slice(0, -1), _.last(pathParts)];
     let currentFolder = this;
 
-    _.each(folders, folderName => {
+    folders.forEach(folderName => {
       let childNode = currentFolder.getChild(folderName);
 
       if (

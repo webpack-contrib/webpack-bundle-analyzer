@@ -179,7 +179,32 @@ It happens when `umi-webpack-bundle-analyzer` analyzes files that don't actually
 Couldn't parse bundle asset "your_bundle_name.bundle.js".
 Analyzer will use module sizes from stats file.
 ```
-To get more information about it you can read [issue #147](https://github.com/webpack-contrib/umi-webpack-bundle-analyzer/issues/147).
+To get more information about it you can read [issue #147](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/147).
+
+<h2 align="center">Other tools</h2>
+
+- [Statoscope](https://github.com/smelukov/statoscope/blob/master/packages/ui-webpack/README.md) - Webpack bundle analyzing tool to find out why a certain module was bundled (and more features, including interactive treemap)
+
+<h2 align="center">Maintainers</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars3.githubusercontent.com/u/302213?v=4&s=150">
+        </br>
+        <a href="https://github.com/th0r">Yuriy Grunin</a>
+      </td>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars3.githubusercontent.com/u/482561?v=4&s=150">
+        </br>
+        <a href="https://github.com/valscion">Vesa Laakso</a>
+      </td>
+    </tr>
+  <tbody>
+</table>
 
 
 [npm]: https://img.shields.io/npm/v/umi-webpack-bundle-analyzer.svg

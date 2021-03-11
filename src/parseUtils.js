@@ -18,13 +18,57 @@ function parseBundle(bundlePath) {
   });
 
   const walkState = {
-    locations: null
+    locations: null,
+    expressionStatementDepth: 0
   };
 
   walk.recursive(
     ast,
     walkState,
     {
+      ExpressionStatement(node, state, c) {
+        if (state.locations) return;
+
+        state.expressionStatementDepth++;
+
+        if (
+          // Webpack 5 stores modules in the the top-level IIFE
+          state.expressionStatementDepth === 1 &&
+          ast.body.includes(node) &&
+          isIIFE(node)
+        ) {
+          const fn = getIIFECallExpression(node);
+
+          if (
+            // It should not contain neither arguments
+            fn.arguments.length === 0 &&
+            // ...nor parameters
+            fn.callee.params.length === 0
+          ) {
+            // Modules are stored in the very first variable declaration as hash
+            const firstVariableDeclaration = fn.callee.body.body.find(node => node.type === 'VariableDeclaration');
+
+            if (firstVariableDeclaration) {
+              for (const declaration of firstVariableDeclaration.declarations) {
+                if (declaration.init) {
+                  state.locations = getModulesLocations(declaration.init);
+
+                  if (state.locations) {
+                    break;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        if (!state.locations) {
+          c(node.expression, state);
+        }
+
+        state.expressionStatementDepth--;
+      },
+
       AssignmentExpression(node, state) {
         if (state.locations) return;
 
@@ -41,6 +85,7 @@ function parseBundle(bundlePath) {
           state.locations = getModulesLocations(right);
         }
       },
+
       CallExpression(node, state, c) {
         if (state.locations) return;
 
@@ -90,7 +135,7 @@ function parseBundle(bundlePath) {
 
         // Walking into arguments because some of plugins (e.g. `DedupePlugin`) or some Webpack
         // features (e.g. `umd` library output) can wrap modules list into additional IIFE.
-        _.each(args, arg => c(arg, state));
+        args.forEach(arg => c(arg, state));
       }
     }
   );
@@ -106,9 +151,46 @@ function parseBundle(bundlePath) {
   }
 
   return {
+    modules,
     src: content,
-    modules
+    runtimeSrc: getBundleRuntime(content, walkState.locations)
   };
+}
+
+/**
+ * Returns bundle source except modules
+ */
+function getBundleRuntime(content, modulesLocations) {
+  const sortedLocations = Object.values(modulesLocations || {})
+    .sort((a, b) => a.start - b.start);
+
+  let result = '';
+  let lastIndex = 0;
+
+  for (const {start, end} of sortedLocations) {
+    result += content.slice(lastIndex, start);
+    lastIndex = end;
+  }
+
+  return result + content.slice(lastIndex, content.length);
+}
+
+function isIIFE(node) {
+  return (
+    node.type === 'ExpressionStatement' &&
+    (
+      node.expression.type === 'CallExpression' ||
+      (node.expression.type === 'UnaryExpression' && node.expression.argument.type === 'CallExpression')
+    )
+  );
+}
+
+function getIIFECallExpression(node) {
+  if (node.expression.type === 'UnaryExpression') {
+    return node.expression.argument;
+  } else {
+    return node.expression;
+  }
 }
 
 function isModulesList(node) {
@@ -131,8 +213,8 @@ function isSimpleModulesList(node) {
 function isModulesHash(node) {
   return (
     node.type === 'ObjectExpression' &&
-    _(node.properties)
-      .map('value')
+    node.properties
+      .map(node => node.value)
       .every(isModuleWrapper)
   );
 }
@@ -140,7 +222,7 @@ function isModulesHash(node) {
 function isModulesArray(node) {
   return (
     node.type === 'ArrayExpression' &&
-    _.every(node.elements, elem =>
+    node.elements.every(elem =>
       // Some of array items may be skipped because there is no module with such id
       !elem ||
       isModuleWrapper(elem)
@@ -193,7 +275,7 @@ function isChunkIds(node) {
   // Array of numeric or string ids. Chunk IDs are strings when NamedChunksPlugin is used
   return (
     node.type === 'ArrayExpression' &&
-    _.every(node.elements, isModuleId)
+    node.elements.every(isModuleId)
   );
 }
 
@@ -238,10 +320,11 @@ function getModulesLocations(node) {
     // Modules hash
     const modulesNodes = node.properties;
 
-    return _.transform(modulesNodes, (result, moduleNode) => {
+    return modulesNodes.reduce((result, moduleNode) => {
       const moduleId = moduleNode.key.name || moduleNode.key.value;
 
       result[moduleId] = getModuleLocation(moduleNode.value);
+      return result;
     }, {});
   }
 
@@ -259,9 +342,11 @@ function getModulesLocations(node) {
       node.arguments[0].elements :
       node.elements;
 
-    return _.transform(modulesNodes, (result, moduleNode, i) => {
-      if (!moduleNode) return;
-      result[i + minId] = getModuleLocation(moduleNode);
+    return modulesNodes.reduce((result, moduleNode, i) => {
+      if (moduleNode) {
+        result[i + minId] = getModuleLocation(moduleNode);
+      }
+      return result;
     }, {});
   }
 

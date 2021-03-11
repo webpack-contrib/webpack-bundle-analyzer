@@ -1,5 +1,3 @@
-/** @jsx h */
-import {h} from 'preact';
 import cls from 'classnames';
 import s from './ContextMenuItem.css';
 

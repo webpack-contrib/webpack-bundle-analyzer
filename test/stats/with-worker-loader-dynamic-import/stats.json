@@ -1,0 +1,745 @@
+{
+  "errors": [
+  ],
+  "warnings": [
+  ],
+  "version": "4.44.1",
+  "hash": "6a922406d27e1f958522",
+  "time": 108,
+  "builtAt": 1599686616770,
+  "publicPath": "",
+  "outputPath": "/Users/devinabbott/Projects/wba-test/dist",
+  "assetsByChunkName": {
+    "main": "bundle.js"
+  },
+  "assets": [
+    {
+      "name": "1.bundle.worker.js",
+      "size": 110,
+      "chunks": [
+      ],
+      "chunkNames": [
+      ],
+      "info": {
+      },
+      "emitted": true
+    },
+    {
+      "name": "bundle.js",
+      "size": 951,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "info": {
+      },
+      "emitted": true
+    },
+    {
+      "name": "bundle.worker.js",
+      "size": 1230,
+      "chunks": [
+      ],
+      "chunkNames": [
+      ],
+      "info": {
+      },
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "main": {
+      "chunks": [
+        0
+      ],
+      "assets": [
+        "bundle.js"
+      ],
+      "children": {
+      },
+      "childAssets": {
+      }
+    }
+  },
+  "namedChunkGroups": {
+    "main": {
+      "chunks": [
+        0
+      ],
+      "assets": [
+        "bundle.js"
+      ],
+      "children": {
+      },
+      "childAssets": {
+      }
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 128,
+      "names": [
+        "main"
+      ],
+      "files": [
+        "bundle.js"
+      ],
+      "hash": "198ac11aa4df509d7a86",
+      "siblings": [
+      ],
+      "parents": [
+      ],
+      "children": [
+      ],
+      "childrenByOrder": {
+      },
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/Users/devinabbott/Projects/wba-test/index.js d7f0419a44af2953980a1e234962b7cb",
+          "name": "./index.js + 1 modules",
+          "index": 0,
+          "index2": 1,
+          "size": 128,
+          "cacheable": false,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [
+          ],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./index.js",
+              "loc": "main"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": [
+          ],
+          "optimizationBailout": [
+          ],
+          "depth": 0,
+          "modules": [
+            {
+              "id": null,
+              "identifier": "/Users/devinabbott/Projects/wba-test/index.js",
+              "name": "./index.js",
+              "index": 0,
+              "index2": 1,
+              "size": 31,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+              ],
+              "issuer": null,
+              "issuerId": null,
+              "issuerName": null,
+              "issuerPath": null,
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [
+              ],
+              "reasons": [
+                {
+                  "moduleId": null,
+                  "moduleIdentifier": null,
+                  "module": null,
+                  "moduleName": null,
+                  "type": "single entry",
+                  "userRequest": "./index.js",
+                  "loc": "main"
+                }
+              ],
+              "usedExports": true,
+              "providedExports": [
+              ],
+              "optimizationBailout": [
+                "ModuleConcatenation bailout: Module is an entry point"
+              ],
+              "depth": 0,
+              "source": "import worker from \"./worker\";\n"
+            },
+            {
+              "id": null,
+              "identifier": "/Users/devinabbott/Projects/wba-test/node_modules/worker-loader/dist/cjs.js!/Users/devinabbott/Projects/wba-test/worker.js",
+              "name": "./worker.js",
+              "index": 1,
+              "index2": 0,
+              "size": 97,
+              "cacheable": false,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+              ],
+              "issuer": "/Users/devinabbott/Projects/wba-test/index.js",
+              "issuerId": null,
+              "issuerName": "./index.js",
+              "issuerPath": [
+                {
+                  "id": null,
+                  "identifier": "/Users/devinabbott/Projects/wba-test/index.js",
+                  "name": "./index.js"
+                }
+              ],
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [
+              ],
+              "reasons": [
+                {
+                  "moduleId": null,
+                  "moduleIdentifier": "/Users/devinabbott/Projects/wba-test/index.js",
+                  "module": "./index.js",
+                  "moduleName": "./index.js",
+                  "type": "harmony side effect evaluation",
+                  "userRequest": "./worker",
+                  "loc": "1:0-30"
+                }
+              ],
+              "usedExports": false,
+              "providedExports": [
+                "default"
+              ],
+              "optimizationBailout": [
+              ],
+              "depth": 1,
+              "source": "export default function() {\n  return new Worker(__webpack_public_path__ + \"bundle.worker.js\");\n}\n"
+            }
+          ],
+          "filteredModules": 0
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "request": "./index.js",
+          "reasons": [
+          ]
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": 0,
+      "identifier": "/Users/devinabbott/Projects/wba-test/index.js d7f0419a44af2953980a1e234962b7cb",
+      "name": "./index.js + 1 modules",
+      "index": 0,
+      "index2": 1,
+      "size": 128,
+      "cacheable": false,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "assets": [
+      ],
+      "reasons": [
+        {
+          "moduleId": null,
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "type": "single entry",
+          "userRequest": "./index.js",
+          "loc": "main"
+        }
+      ],
+      "usedExports": true,
+      "providedExports": [
+      ],
+      "optimizationBailout": [
+      ],
+      "depth": 0,
+      "modules": [
+        {
+          "id": null,
+          "identifier": "/Users/devinabbott/Projects/wba-test/index.js",
+          "name": "./index.js",
+          "index": 0,
+          "index2": 1,
+          "size": 31,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+          ],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [
+          ],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./index.js",
+              "loc": "main"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": [
+          ],
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is an entry point"
+          ],
+          "depth": 0,
+          "source": "import worker from \"./worker\";\n"
+        },
+        {
+          "id": null,
+          "identifier": "/Users/devinabbott/Projects/wba-test/node_modules/worker-loader/dist/cjs.js!/Users/devinabbott/Projects/wba-test/worker.js",
+          "name": "./worker.js",
+          "index": 1,
+          "index2": 0,
+          "size": 97,
+          "cacheable": false,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+          ],
+          "issuer": "/Users/devinabbott/Projects/wba-test/index.js",
+          "issuerId": null,
+          "issuerName": "./index.js",
+          "issuerPath": [
+            {
+              "id": null,
+              "identifier": "/Users/devinabbott/Projects/wba-test/index.js",
+              "name": "./index.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [
+          ],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": "/Users/devinabbott/Projects/wba-test/index.js",
+              "module": "./index.js",
+              "moduleName": "./index.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./worker",
+              "loc": "1:0-30"
+            }
+          ],
+          "usedExports": false,
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [
+          ],
+          "depth": 1,
+          "source": "export default function() {\n  return new Worker(__webpack_public_path__ + \"bundle.worker.js\");\n}\n"
+        }
+      ],
+      "filteredModules": 0
+    }
+  ],
+  "filteredModules": 0,
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [
+      ],
+      "filteredEntries": 2,
+      "debug": false
+    }
+  },
+  "children": [
+    {
+      "errors": [
+      ],
+      "warnings": [
+      ],
+      "publicPath": "",
+      "outputPath": "/Users/devinabbott/Projects/wba-test/dist",
+      "assetsByChunkName": {
+        "worker": "bundle.worker.js"
+      },
+      "assets": [
+        {
+          "name": "1.bundle.worker.js",
+          "size": 110,
+          "chunks": [
+            1
+          ],
+          "chunkNames": [
+          ],
+          "info": {
+          },
+          "emitted": true
+        },
+        {
+          "name": "bundle.worker.js",
+          "size": 1230,
+          "chunks": [
+            0
+          ],
+          "chunkNames": [
+            "worker"
+          ],
+          "info": {
+          },
+          "emitted": true
+        }
+      ],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "worker": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "bundle.worker.js"
+          ],
+          "children": {
+          },
+          "childAssets": {
+          }
+        }
+      },
+      "namedChunkGroups": {
+        "worker": {
+          "chunks": [
+            0
+          ],
+          "assets": [
+            "bundle.worker.js"
+          ],
+          "children": {
+          },
+          "childAssets": {
+          }
+        }
+      },
+      "chunks": [
+        {
+          "id": 0,
+          "rendered": true,
+          "initial": true,
+          "entry": true,
+          "size": 44,
+          "names": [
+            "worker"
+          ],
+          "files": [
+            "bundle.worker.js"
+          ],
+          "hash": "b4762f21c1a5d6d1a430",
+          "siblings": [
+          ],
+          "parents": [
+          ],
+          "children": [
+            1
+          ],
+          "childrenByOrder": {
+          },
+          "modules": [
+            {
+              "id": 0,
+              "identifier": "/Users/devinabbott/Projects/wba-test/worker.js",
+              "name": "./worker.js",
+              "index": 0,
+              "index2": 0,
+              "size": 44,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "issuer": null,
+              "issuerId": null,
+              "issuerName": null,
+              "issuerPath": null,
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [
+              ],
+              "reasons": [
+                {
+                  "moduleId": null,
+                  "moduleIdentifier": null,
+                  "module": null,
+                  "moduleName": null,
+                  "type": "single entry",
+                  "userRequest": "!!/Users/devinabbott/Projects/wba-test/worker.js",
+                  "loc": "worker"
+                }
+              ],
+              "usedExports": true,
+              "providedExports": [
+                "default"
+              ],
+              "optimizationBailout": [
+                "ModuleConcatenation bailout: Module is an entry point"
+              ],
+              "depth": 0,
+              "source": "import(\"./worker-dep\");\n\nexport default {};\n"
+            }
+          ],
+          "filteredModules": 0,
+          "origins": [
+            {
+              "module": "",
+              "moduleIdentifier": "",
+              "moduleName": "",
+              "loc": "worker",
+              "request": "!!/Users/devinabbott/Projects/wba-test/worker.js",
+              "reasons": [
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "rendered": true,
+          "initial": false,
+          "entry": false,
+          "size": 23,
+          "names": [
+          ],
+          "files": [
+            "1.bundle.worker.js"
+          ],
+          "hash": "72bd0d9c0a92a4a4dbf3",
+          "siblings": [
+          ],
+          "parents": [
+            0
+          ],
+          "children": [
+          ],
+          "childrenByOrder": {
+          },
+          "modules": [
+            {
+              "id": 1,
+              "identifier": "/Users/devinabbott/Projects/wba-test/worker-dep.js",
+              "name": "./worker-dep.js",
+              "index": 1,
+              "index2": 1,
+              "size": 23,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                1
+              ],
+              "issuer": "/Users/devinabbott/Projects/wba-test/worker.js",
+              "issuerId": 0,
+              "issuerName": "./worker.js",
+              "issuerPath": [
+                {
+                  "id": 0,
+                  "identifier": "/Users/devinabbott/Projects/wba-test/worker.js",
+                  "name": "./worker.js"
+                }
+              ],
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "assets": [
+              ],
+              "reasons": [
+                {
+                  "moduleId": 0,
+                  "moduleIdentifier": "/Users/devinabbott/Projects/wba-test/worker.js",
+                  "module": "./worker.js",
+                  "moduleName": "./worker.js",
+                  "type": "import()",
+                  "userRequest": "./worker-dep",
+                  "loc": "1:0-22"
+                }
+              ],
+              "usedExports": true,
+              "providedExports": [
+                "foo"
+              ],
+              "optimizationBailout": [
+                "ModuleConcatenation bailout: Module is referenced from these modules with unsupported syntax: ./worker.js (referenced with import())"
+              ],
+              "depth": 1,
+              "source": "export const foo = 42;\n"
+            }
+          ],
+          "filteredModules": 0,
+          "origins": [
+            {
+              "moduleId": 0,
+              "module": "/Users/devinabbott/Projects/wba-test/worker.js",
+              "moduleIdentifier": "/Users/devinabbott/Projects/wba-test/worker.js",
+              "moduleName": "./worker.js",
+              "loc": "1:0-22",
+              "request": "./worker-dep",
+              "reasons": [
+              ]
+            }
+          ]
+        }
+      ],
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/Users/devinabbott/Projects/wba-test/worker.js",
+          "name": "./worker.js",
+          "index": 0,
+          "index2": 0,
+          "size": 44,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [
+          ],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "!!/Users/devinabbott/Projects/wba-test/worker.js",
+              "loc": "worker"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is an entry point"
+          ],
+          "depth": 0,
+          "source": "import(\"./worker-dep\");\n\nexport default {};\n"
+        },
+        {
+          "id": 1,
+          "identifier": "/Users/devinabbott/Projects/wba-test/worker-dep.js",
+          "name": "./worker-dep.js",
+          "index": 1,
+          "index2": 1,
+          "size": 23,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            1
+          ],
+          "issuer": "/Users/devinabbott/Projects/wba-test/worker.js",
+          "issuerId": 0,
+          "issuerName": "./worker.js",
+          "issuerPath": [
+            {
+              "id": 0,
+              "identifier": "/Users/devinabbott/Projects/wba-test/worker.js",
+              "name": "./worker.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "assets": [
+          ],
+          "reasons": [
+            {
+              "moduleId": 0,
+              "moduleIdentifier": "/Users/devinabbott/Projects/wba-test/worker.js",
+              "module": "./worker.js",
+              "moduleName": "./worker.js",
+              "type": "import()",
+              "userRequest": "./worker-dep",
+              "loc": "1:0-22"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": [
+            "foo"
+          ],
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is referenced from these modules with unsupported syntax: ./worker.js (referenced with import())"
+          ],
+          "depth": 1,
+          "source": "export const foo = 42;\n"
+        }
+      ],
+      "filteredModules": 0,
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [
+          ],
+          "filteredEntries": 5,
+          "debug": false
+        }
+      },
+      "children": [
+      ],
+      "name": "worker-loader worker.js"
+    }
+  ]
+}

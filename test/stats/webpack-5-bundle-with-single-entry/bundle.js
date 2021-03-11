@@ -1,0 +1,1 @@
+!function(){"use strict";var o,t,n={85:function(o,t){t.Z="module a"},326:function(o,t){t.Z="module b"}},r={};function e(o){if(r[o])return r[o].exports;var t=r[o]={exports:{}};return n[o](t,t.exports,e),t.exports}o=e(85),t=e(326),console.log(o.Z,t.Z)}();

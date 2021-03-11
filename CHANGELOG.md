@@ -12,10 +12,65 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
-<!-- Add changelog entries for new changes under this section -->
+## 4.4.0
 
-* **New Feature**
-   * Adds option reportTitle to set title in HTML reports; default remains date of report generation ([#354](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/354)) by [@eoingroat](https://github.com/eoingroat)
+ * **Improvement**
+   * Keep treemap labels visible during zooming animations for better user experience ([#414](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/414) by [@
+     stanislawosinski](https://github.com/stanislawosinski))
+     
+ * **Bug Fix**
+   * Don't show an empty tooltip when hovering over the FoamTree attribution group or between top-level groups ([#413](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/413) by [@
+     stanislawosinski](https://github.com/stanislawosinski))
+ 
+ * **Internal**
+   * Upgrade FoamTree to version 3.5.0, replace vendor dependency with an NPM package ([#412](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/412) by [@
+     stanislawosinski](https://github.com/stanislawosinski))
+    
+## 4.3.0
+
+ * **Improvement**
+   * Replace express with builtin node server, reducing number of dependencies ([#398](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/398) by [@TrySound](https://github.com/TrySound))
+   * Move `filesize` to dev dependencies, reducing number of dependencies ([#401](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/401) by [@realityking](https://github.com/realityking))
+   
+ * **Internal**
+   * Replace Travis with GitHub actions ([#402](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/402) by [@valscion](https://github.com/valscion))
+
+## 4.2.0
+
+ * **Improvement**
+   * A  number of improvements to reduce the number of dependencies ([#391](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/391), [#396](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/396), [#397](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/397))
+
+ * **Bug Fix**
+   * Prevent crashes for bundles generated from webpack array configs. ([#394](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/394) by [@ctavan](https://github.com/ctavan))
+   * Fix `non-asset` assets causing analyze failure. ([#385](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/385) by [@ZKHelloworld](https://github.com/ZKHelloworld))
+
+## 4.1.0
+
+ * **Improvement**
+   * Significantly speed up generation of `stats.json` file (see `generateStatsFile` option).
+
+## 4.0.0
+
+ * **Breaking change**
+   * Dropped support for Node.js 6 and 8. Minimal required version now is v10.13.0
+
+ * **Improvement**
+   * Support for Webpack 5
+ 
+ * **Bug Fix**
+   * Prevent crashes when `openAnalyzer` was set to true in environments where there's no program to handle opening. ([#382](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/382) by [@wbobeirne](https://github.com/wbobeirne))
+  
+ * **Internal**
+   * Updated dependencies
+   * Added support for multiple Webpack versions in tests
+
+## 3.9.0
+
+ * **New Feature**
+   * Adds option `reportTitle` to set title in HTML reports; default remains date of report generation ([#354](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/354) by [@eoingroat](https://github.com/eoingroat))
+   
+ * **Improvement**
+    * Added capability to parse bundles that have child assets generated ([#376](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/376) by [@masterkidan](https://github.com/masterkidan) and [#378](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/378) by [@https://github.com/dabbott](https://github.com/https://github.com/dabbott))
 
 ## 3.8.0
 

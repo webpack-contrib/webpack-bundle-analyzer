@@ -1,6 +1,4 @@
-/** @jsx h */
 import _ from 'lodash';
-import {h} from 'preact';
 import filesize from 'filesize';
 import cls from 'classnames';
 

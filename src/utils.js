@@ -1,5 +1,6 @@
-const {inspect} = require('util');
+const {inspect, types} = require('util');
 const _ = require('lodash');
+const opener = require('opener');
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -14,11 +15,11 @@ function createAssetsFilter(excludePatterns) {
         pattern = new RegExp(pattern, 'u');
       }
 
-      if (_.isRegExp(pattern)) {
+      if (types.isRegExp(pattern)) {
         return (asset) => pattern.test(asset);
       }
 
-      if (!_.isFunction(pattern)) {
+      if (typeof pattern !== 'function') {
         throw new TypeError(
           `Pattern should be either string, RegExp or a function, but "${inspect(pattern, {depth: 0})}" got.`
         );
@@ -29,7 +30,7 @@ function createAssetsFilter(excludePatterns) {
     .value();
 
   if (excludeFunctions.length) {
-    return (asset) => _.every(excludeFunctions, fn => fn(asset) !== true);
+    return (asset) => excludeFunctions.every(fn => fn(asset) !== true);
   } else {
     return () => true;
   }
@@ -50,4 +51,15 @@ exports.defaultTitle = function () {
   const currentTime = `${day} ${month} ${year} at ${hour}:${minute}`;
 
   return `${process.env.npm_package_name || 'Webpack Bundle Analyzer'} [${currentTime}]`;
+};
+
+/**
+ * Calls opener on a URI, but silently try / catches it.
+ */
+exports.open = function (uri, logger) {
+  try {
+    opener(uri);
+  } catch (err) {
+    logger.debug(`Opener failed to open "${uri}":\n${err}`);
+  }
 };
