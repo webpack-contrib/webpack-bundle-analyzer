@@ -6,7 +6,7 @@
 <!--
 Please include the output of running the command below:
 
-npx envinfo --system --binaries --npmPackages=*webpack* --npmGlobalPackages=webpack-bundle-analyzer 
+npx envinfo --system --binaries --npmPackages='*webpack*' --npmGlobalPackages=webpack-bundle-analyzer 
 
 -->
 
