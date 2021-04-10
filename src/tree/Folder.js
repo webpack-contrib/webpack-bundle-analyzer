@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import gzipSize from 'gzip-size';
+import {gzipSize} from '../sizeUtils';
 
 import Module from './Module';
 import BaseFolder from './BaseFolder';
@@ -14,7 +14,7 @@ export default class Folder extends BaseFolder {
 
   get gzipSize() {
     if (!_.has(this, '_gzipSize')) {
-      this._gzipSize = this.src ? gzipSize.sync(this.src) : 0;
+      this._gzipSize = this.src ? gzipSize(this.src) : 0;
     }
 
     return this._gzipSize;

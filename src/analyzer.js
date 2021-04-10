@@ -2,12 +2,12 @@ const fs = require('fs');
 const path = require('path');
 
 const _ = require('lodash');
-const gzipSize = require('gzip-size');
 
 const Logger = require('./Logger');
 const Folder = require('./tree/Folder').default;
 const {parseBundle} = require('./parseUtils');
 const {createAssetsFilter} = require('./utils');
+const {gzipSize} = require('./sizeUtils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/u;
 const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
@@ -102,7 +102,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
 
     if (assetSources) {
       asset.parsedSize = Buffer.byteLength(assetSources.src);
-      asset.gzipSize = gzipSize.sync(assetSources.src);
+      asset.gzipSize = gzipSize(assetSources.src);
     }
 
     // Picking modules from current bundle script
