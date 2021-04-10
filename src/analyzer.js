@@ -20,7 +20,8 @@ module.exports = {
 function getViewerData(bundleStats, bundleDir, opts) {
   const {
     logger = new Logger(),
-    excludeAssets = null
+    excludeAssets = null,
+    compressedSize = gzipSize
   } = opts || {};
 
   const isAssetIncluded = createAssetsFilter(excludeAssets);
@@ -102,7 +103,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
 
     if (assetSources) {
       asset.parsedSize = Buffer.byteLength(assetSources.src);
-      asset.gzipSize = gzipSize(assetSources.src);
+      asset.gzipSize = compressedSize(assetSources.src);
     }
 
     // Picking modules from current bundle script
@@ -143,7 +144,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     }
 
     asset.modules = assetModules;
-    asset.tree = createModulesTree(asset.modules);
+    asset.tree = createModulesTree(asset.modules, {compressedSize});
     return result;
   }, {});
 
@@ -203,8 +204,8 @@ function isRuntimeModule(statModule) {
   return statModule.moduleType === 'runtime';
 }
 
-function createModulesTree(modules) {
-  const root = new Folder('.');
+function createModulesTree(modules, opts) {
+  const root = new Folder('.', opts);
 
   modules.forEach(module => root.addModule(module));
   root.mergeNestedFolders();

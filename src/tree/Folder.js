@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import {gzipSize} from '../sizeUtils';
 
 import Module from './Module';
 import BaseFolder from './BaseFolder';
@@ -8,13 +7,18 @@ import {getModulePathParts} from './utils';
 
 export default class Folder extends BaseFolder {
 
+  constructor(name, opts) {
+    super(name);
+    this.opts = opts;
+  }
+
   get parsedSize() {
     return this.src ? this.src.length : 0;
   }
 
   get gzipSize() {
     if (!_.has(this, '_gzipSize')) {
-      this._gzipSize = this.src ? gzipSize(this.src) : 0;
+      this._gzipSize = this.src ? this.opts.compressedSize(this.src) : 0;
     }
 
     return this._gzipSize;
@@ -42,7 +46,7 @@ export default class Folder extends BaseFolder {
         // See `test/stats/with-invalid-dynamic-require.json` as an example.
         !(childNode instanceof Folder)
       ) {
-        childNode = currentFolder.addChildFolder(new Folder(folderName));
+        childNode = currentFolder.addChildFolder(new Folder(folderName, this.opts));
       }
 
       currentFolder = childNode;
