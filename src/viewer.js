@@ -22,6 +22,10 @@ function resolveTitle(reportTitle) {
   }
 }
 
+function resolveDefaultSizes(defaultSizes) {
+  return defaultSizes === 'compressed' ? 'gzip' : defaultSizes;
+}
+
 module.exports = {
   startServer,
   generateReport,
@@ -59,7 +63,7 @@ async function startServer(bundleStats, opts) {
         mode: 'server',
         title: resolveTitle(reportTitle),
         chartData,
-        defaultSizes,
+        defaultSizes: resolveDefaultSizes(defaultSizes),
         enableWebSocket: true
       });
       res.writeHead(200, {'Content-Type': 'text/html'});
@@ -140,7 +144,7 @@ async function generateReport(bundleStats, opts) {
     mode: 'static',
     title: resolveTitle(reportTitle),
     chartData,
-    defaultSizes,
+    defaultSizes: resolveDefaultSizes(defaultSizes),
     enableWebSocket: false
   });
   const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);

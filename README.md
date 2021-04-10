@@ -61,7 +61,7 @@ new BundleAnalyzerPlugin(options?: object)
 |**`analyzerPort`**|`{Number}` or `auto`|Default: `8888`. Port that will be used in `server` mode to start HTTP server.|
 |**`reportFilename`**|`{String}`|Default: `report.html`. Path to bundle report file that will be generated in `static` mode. It can be either an absolute path or a path relative to a bundle output directory (which is output.path in webpack config).|
 |**`reportTitle`**|`{String\|function}`|Default: function that returns pretty printed current date and time. Content of the HTML `title` element; or a function of the form `() => string` that provides the content.|
-|**`defaultSizes`**|One of: `stat`, `parsed`, `gzip`|Default: `parsed`. Module sizes to show in report by default. [Size definitions](#size-definitions) section describes what these values mean.|
+|**`defaultSizes`**|One of: `stat`, `parsed`, `compressed`|Default: `parsed`. Module sizes to show in report by default. [Size definitions](#size-definitions) section describes what these values mean.|
 |**`openAnalyzer`**|`{Boolean}`|Default: `true`. Automatically open report in default browser.|
 |**`generateStatsFile`**|`{Boolean}`|Default: `false`. If `true`, webpack stats JSON file will be generated in bundle output directory|
 |**`statsFilename`**|`{String}`|Default: `stats.json`. Name of webpack stats JSON file that will be generated if `generateStatsFile` is `true`. It can be either an absolute path or a path relative to a bundle output directory (which is output.path in webpack config).|
@@ -121,7 +121,7 @@ Directory containing all generated bundles.
   -r, --report <file>         Path to bundle report file that will be generated in `static` mode. (default: report.html)
   -t, --title <title>         String to use in title element of html report. (default: pretty printed current date)
   -s, --default-sizes <type>  Module sizes to show in treemap by default.
-                              Possible values: stat, parsed, gzip (default: parsed)
+                              Possible values: stat, parsed, compressed (default: parsed)
   -O, --no-open               Don't open report in default browser automatically.
   -e, --exclude <regexp>      Assets that should be excluded from the report.
                               Can be specified multiple times.
@@ -147,9 +147,9 @@ It is called "stat size" because it's obtained from Webpack's
 This is the "output" size of your files. If you're using a Webpack plugin such
 as Uglify, then this value will reflect the minified size of your code.
 
-### `gzip`
+### `compressed`
 
-This is the size of running the parsed bundles/modules through gzip compression.
+This is the size of running the parsed bundles/modules through compression.
 
 <h2 align="center">Selecting Which Chunks to Display</h2>
 
@@ -169,7 +169,7 @@ The Chunk Context Menu can be opened by right-clicking or `Ctrl`-clicking on a s
 
 <h2 align="center">Troubleshooting</h2>
 
-### I don't see `gzip` or `parsed` sizes, it only shows `stat` size
+### I don't see `compressed` or `parsed` sizes, it only shows `stat` size
 
 It happens when `webpack-bundle-analyzer` analyzes files that don't actually exist in your file system, for example when you work with `webpack-dev-server` that keeps all the files in RAM. If you use `webpack-bundle-analyzer` as a plugin you won't get any errors, however if you run it via CLI you get the error message in terminal:
 ```
