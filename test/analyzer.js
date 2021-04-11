@@ -136,7 +136,7 @@ describe('Analyzer', function () {
     const chartData = await getChartData();
     const invalidChunk = _.find(chartData, {label: 'invalid-chunk.js'});
     expect(invalidChunk).to.exist;
-    expect(invalidChunk.statSize).to.equal(24);
+    expect(invalidChunk.statSize).to.equal(586);
     forEachChartItem([invalidChunk], item => {
       expect(typeof item.statSize).to.equal('number');
       expect(item.parsedSize).to.be.undefined;
