@@ -26,7 +26,7 @@ describe('Analyzer', function () {
 
   it('should support stats files with all the information in `children` array', async function () {
     generateReportFrom('with-children-array.json');
-    await expectValidReport();
+    return expectValidReport();
   });
 
   it('should generate report containing worker bundles', async function () {
