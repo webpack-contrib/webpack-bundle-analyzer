@@ -131,6 +131,23 @@ describe('Analyzer', function () {
     });
   });
 
+  it('should gracefully process missing chunks', async function () {
+    generateReportFrom('with-missing-module-chunks/stats.json');
+    const chartData = await getChartData();
+    const invalidChunk = _.find(chartData, {label: 'invalid-chunk.js'});
+    expect(invalidChunk).to.exist;
+    expect(invalidChunk.statSize).to.equal(568);
+    forEachChartItem([invalidChunk], item => {
+      expect(typeof item.statSize).to.equal('number');
+      expect(item.parsedSize).to.be.undefined;
+    });
+    const validChunk = _.find(chartData, {label: 'valid-chunk.js'});
+    forEachChartItem([validChunk], item => {
+      expect(typeof item.statSize).to.equal('number');
+      expect(typeof item.parsedSize).to.equal('number');
+    });
+  });
+
   it('should support stats files with js modules chunk', async function () {
     generateReportFrom('with-modules-chunk.json');
     await expectValidReport({bundleLabel: 'bundle.mjs'});

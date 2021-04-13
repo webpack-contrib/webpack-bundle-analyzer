@@ -190,7 +190,7 @@ function getBundleModules(bundleStats) {
 
 function assetHasModule(statAsset, statModule) {
   // Checking if this module is the part of asset chunks
-  return statModule.chunks.some(moduleChunk =>
+  return (statModule.chunks || []).some(moduleChunk =>
     statAsset.chunks.includes(moduleChunk)
   );
 }
