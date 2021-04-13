@@ -170,6 +170,45 @@ describe('Plugin', function () {
         expect(error).to.equal(reportTitleError);
       });
     });
+
+    describe('compressionAlgorithm', function () {
+      it('should default to gzip', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {}
+        });
+        await webpackCompile(config, '4.44.2');
+        await expectValidReport({
+          parsedSize: 1311,
+          gzipSize: 342
+        });
+      });
+
+      it('should support gzip', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+            compressionAlgorithm: 'gzip'
+          }
+        });
+        await webpackCompile(config, '4.44.2');
+        await expectValidReport({
+          parsedSize: 1311,
+          gzipSize: 342
+        });
+      });
+
+      it('should support brotli', async function () {
+        const config = makeWebpackConfig({
+          analyzerOpts: {
+            compressionAlgorithm: 'brotli'
+          }
+        });
+        await webpackCompile(config, '4.44.2');
+        await expectValidReport({
+          parsedSize: 1311,
+          gzipSize: 302
+        });
+      });
+    });
   });
 
   async function expectValidReport(opts) {

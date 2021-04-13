@@ -7,10 +7,15 @@ const Logger = require('./Logger');
 const Folder = require('./tree/Folder').default;
 const {parseBundle} = require('./parseUtils');
 const {createAssetsFilter} = require('./utils');
-const {gzipSize} = require('./sizeUtils');
+const {gzipSize, brotliSize} = require('./sizeUtils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/u;
 const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
+
+const COMPRESSED_SIZE = {
+  gzip: gzipSize,
+  brotli: brotliSize
+};
 
 module.exports = {
   getViewerData,
@@ -21,10 +26,13 @@ function getViewerData(bundleStats, bundleDir, opts) {
   const {
     logger = new Logger(),
     excludeAssets = null,
-    compressedSize = gzipSize
+    compressionAlgorithm
   } = opts || {};
 
   const isAssetIncluded = createAssetsFilter(excludeAssets);
+
+  const compressedSize = COMPRESSED_SIZE[compressionAlgorithm];
+  if (!compressedSize) throw new Error(`Unsupported compression algorithm: ${compressionAlgorithm}.`);
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
   if (_.isEmpty(bundleStats.assets) && !_.isEmpty(bundleStats.children)) {

@@ -13,6 +13,8 @@ const utils = require('../utils');
 const SIZES = new Set(['stat', 'parsed', 'compressed']);
 const ACCEPTED_SIZES = new Set([...SIZES, 'gzip']);
 
+const ALGORITHMS = new Set(['gzip', 'brotli']);
+
 const program = commander
   .version(require('../../package.json').version)
   .usage(
@@ -60,6 +62,12 @@ const program = commander
     'parsed'
   )
   .option(
+    '--compression-algorithm <type>',
+    'Compression algorithm that will be used to calculate the compressed module sizes.' +
+      br(`Possible values: ${[...ALGORITHMS].join(', ')}`),
+    'gzip'
+  )
+  .option(
     '-O, --no-open',
     "Don't open report in default browser automatically."
   )
@@ -84,6 +92,7 @@ let {
   report: reportFilename,
   title: reportTitle,
   defaultSizes,
+  compressionAlgorithm,
   logLevel,
   open: openBrowser,
   exclude: excludeAssets,
@@ -108,6 +117,9 @@ if (mode === 'server') {
 if (!ACCEPTED_SIZES.has(defaultSizes)) {
   showHelp(`Invalid default sizes option. Possible values are: ${[...SIZES].join(', ')}`);
 }
+if (!ALGORITHMS.has(compressionAlgorithm)) {
+  showHelp(`Invalid compression algorithm option. Possible values are: ${[...ALGORITHMS].join(', ')}`);
+}
 
 bundleStatsFile = resolve(bundleStatsFile);
 
@@ -128,6 +140,7 @@ if (mode === 'server') {
     port,
     host,
     defaultSizes,
+    compressionAlgorithm,
     reportTitle,
     bundleDir,
     excludeAssets,
@@ -139,6 +152,7 @@ if (mode === 'server') {
     reportFilename: resolve(reportFilename || 'report.html'),
     reportTitle,
     defaultSizes,
+    compressionAlgorithm,
     bundleDir,
     excludeAssets,
     logger: new Logger(logLevel)
@@ -146,6 +160,7 @@ if (mode === 'server') {
 } else if (mode === 'json') {
   viewer.generateJSONReport(bundleStats, {
     reportFilename: resolve(reportFilename || 'report.json'),
+    compressionAlgorithm,
     bundleDir,
     excludeAssets,
     logger: new Logger(logLevel)
@@ -159,7 +174,7 @@ function showHelp(error) {
 }
 
 function br(str) {
-  return `\n${' '.repeat(28)}${str}`;
+  return `\n${' '.repeat(32)}${str}`;
 }
 
 function array() {
