@@ -7,7 +7,7 @@ const childProcess = require('child_process');
 let nightmare;
 
 describe('Analyzer', function () {
-  this.timeout(5000);
+  this.timeout(15000);
 
   before(function () {
     const Nightmare = require('nightmare');
