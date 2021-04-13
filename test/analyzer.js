@@ -7,7 +7,7 @@ const childProcess = require('child_process');
 let nightmare;
 
 describe('Analyzer', function () {
-  this.timeout(5000);
+  this.timeout(15000);
 
   before(function () {
     const Nightmare = require('nightmare');
@@ -26,7 +26,7 @@ describe('Analyzer', function () {
 
   it('should support stats files with all the information in `children` array', async function () {
     generateReportFrom('with-children-array.json');
-    return expectValidReport();
+    await expectValidReport();
   });
 
   it('should generate report containing worker bundles', async function () {
