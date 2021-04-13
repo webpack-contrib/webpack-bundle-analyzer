@@ -15,7 +15,7 @@ describe('Plugin', function () {
 describe('Plugin', function () {
   let nightmare;
 
-  this.timeout(4000);
+  this.timeout(5000);
 
   before(function () {
     const Nightmare = require('nightmare');
