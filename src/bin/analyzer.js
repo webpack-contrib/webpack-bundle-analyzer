@@ -10,8 +10,7 @@ const viewer = require('../viewer');
 const Logger = require('../Logger');
 const utils = require('../utils');
 
-const SIZES = new Set(['stat', 'parsed', 'compressed']);
-const ACCEPTED_SIZES = new Set([...SIZES, 'gzip']);
+const SIZES = new Set(['stat', 'parsed', 'gzip', 'brotli']);
 
 const ALGORITHMS = new Set(['gzip', 'brotli']);
 
@@ -114,7 +113,7 @@ if (mode === 'server') {
   port = port === 'auto' ? 0 : Number(port);
   if (isNaN(port)) showHelp('Invalid port. Should be a number or `auto`');
 }
-if (!ACCEPTED_SIZES.has(defaultSizes)) {
+if (!SIZES.has(defaultSizes)) {
   showHelp(`Invalid default sizes option. Possible values are: ${[...SIZES].join(', ')}`);
 }
 if (!ALGORITHMS.has(compressionAlgorithm)) {

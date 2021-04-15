@@ -22,8 +22,9 @@ function resolveTitle(reportTitle) {
   }
 }
 
-function resolveDefaultSizes(defaultSizes) {
-  return defaultSizes === 'compressed' ? 'gzip' : defaultSizes;
+function resolveDefaultSizes(defaultSizes, compressionAlgorithm) {
+  if (['gzip', 'brotli'].includes(defaultSizes)) return compressionAlgorithm;
+  return defaultSizes;
 }
 
 module.exports = {
@@ -64,7 +65,7 @@ async function startServer(bundleStats, opts) {
         mode: 'server',
         title: resolveTitle(reportTitle),
         chartData,
-        defaultSizes: resolveDefaultSizes(defaultSizes),
+        defaultSizes: resolveDefaultSizes(defaultSizes, compressionAlgorithm),
         compressionAlgorithm,
         enableWebSocket: true
       });
@@ -147,7 +148,7 @@ async function generateReport(bundleStats, opts) {
     mode: 'static',
     title: resolveTitle(reportTitle),
     chartData,
-    defaultSizes: resolveDefaultSizes(defaultSizes),
+    defaultSizes: resolveDefaultSizes(defaultSizes, compressionAlgorithm),
     compressionAlgorithm,
     enableWebSocket: false
   });
