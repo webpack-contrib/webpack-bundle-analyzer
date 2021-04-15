@@ -12,6 +12,7 @@ class BundleAnalyzerPlugin {
     this.opts = {
       analyzerMode: 'server',
       analyzerHost: '127.0.0.1',
+      compressionAlgorithm: 'gzip',
       reportFilename: null,
       reportTitle: utils.defaultTitle,
       defaultSizes: 'parsed',

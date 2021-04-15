@@ -39,7 +39,7 @@ function getScript(filename, mode) {
   }
 }
 
-function renderViewer({title, enableWebSocket, chartData, defaultSizes, compressedSizeLabel, mode} = {}) {
+function renderViewer({title, enableWebSocket, chartData, defaultSizes, compressionAlgorithm, mode} = {}) {
   return html`<!DOCTYPE html>
 <html>
   <head>
@@ -59,7 +59,7 @@ function renderViewer({title, enableWebSocket, chartData, defaultSizes, compress
     <script>
       window.chartData = ${escapeJson(chartData)};
       window.defaultSizes = ${escapeJson(defaultSizes)};
-      window.compressedSizeLabel = ${escapeJson(compressedSizeLabel)};
+      window.compressionAlgorithm = ${escapeJson(compressionAlgorithm)};
     </script>
   </body>
 </html>`;

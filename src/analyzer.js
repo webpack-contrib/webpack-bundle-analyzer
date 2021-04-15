@@ -7,15 +7,10 @@ const Logger = require('./Logger');
 const Folder = require('./tree/Folder').default;
 const {parseBundle} = require('./parseUtils');
 const {createAssetsFilter} = require('./utils');
-const {gzipSize, brotliSize} = require('./sizeUtils');
+const {compressedSize} = require('./sizeUtils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/u;
 const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
-
-const COMPRESSED_SIZE = {
-  gzip: gzipSize,
-  brotli: brotliSize
-};
 
 module.exports = {
   getViewerData,
@@ -30,9 +25,6 @@ function getViewerData(bundleStats, bundleDir, opts) {
   } = opts || {};
 
   const isAssetIncluded = createAssetsFilter(excludeAssets);
-
-  const compressedSize = COMPRESSED_SIZE[compressionAlgorithm];
-  if (!compressedSize) throw new Error(`Unsupported compression algorithm: ${compressionAlgorithm}.`);
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
   if (_.isEmpty(bundleStats.assets) && !_.isEmpty(bundleStats.children)) {
@@ -111,7 +103,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
 
     if (assetSources) {
       asset.parsedSize = Buffer.byteLength(assetSources.src);
-      asset.gzipSize = compressedSize(assetSources.src);
+      asset[`${compressionAlgorithm}Size`] = compressedSize(compressionAlgorithm, assetSources.src);
     }
 
     // Picking modules from current bundle script
@@ -152,7 +144,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     }
 
     asset.modules = assetModules;
-    asset.tree = createModulesTree(asset.modules, {compressedSize});
+    asset.tree = createModulesTree(asset.modules, {compressionAlgorithm});
     return result;
   }, {});
 
@@ -166,6 +158,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     statSize: asset.tree.size || asset.size,
     parsedSize: asset.parsedSize,
     gzipSize: asset.gzipSize,
+    brotliSize: asset.brotliSize,
     groups: _.invokeMap(asset.tree.children, 'toChartData')
   }));
 }

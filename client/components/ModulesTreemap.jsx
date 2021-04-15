@@ -19,11 +19,15 @@ import {store} from '../store';
 import ModulesList from './ModulesList';
 
 function allSizeSwitchItems() {
-  return [
+  const items = [
     {label: 'Stat', prop: 'statSize'},
-    {label: 'Parsed', prop: 'parsedSize'},
-    {label: window.compressedSizeLabel, prop: 'gzipSize'}
+    {label: 'Parsed', prop: 'parsedSize'}
   ];
+
+  if (window.compressionAlgorithm === 'gzip') items.push({label: 'Gzipped', prop: 'gzipSize'});
+  if (window.compressionAlgorithm === 'brotli') items.push({label: 'Brotli', prop: 'brotliSize'});
+
+  return items;
 }
 
 @observer
@@ -319,7 +323,7 @@ export default class ModulesTreemap extends Component {
         <br/>
         {this.renderModuleSize(module, 'stat')}
         {!module.inaccurateSizes && this.renderModuleSize(module, 'parsed')}
-        {!module.inaccurateSizes && this.renderModuleSize(module, 'gzip')}
+        {!module.inaccurateSizes && this.renderModuleSize(module, window.compressionAlgorithm)}
         {module.path &&
           <div>Path: <strong>{module.path}</strong></div>
         }

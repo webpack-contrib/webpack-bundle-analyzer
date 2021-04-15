@@ -4,6 +4,7 @@ import Module from './Module';
 import BaseFolder from './BaseFolder';
 import ConcatenatedModule from './ConcatenatedModule';
 import {getModulePathParts} from './utils';
+import {compressedSize} from '../sizeUtils';
 
 export default class Folder extends BaseFolder {
 
@@ -17,11 +18,20 @@ export default class Folder extends BaseFolder {
   }
 
   get gzipSize() {
-    if (!_.has(this, '_gzipSize')) {
-      this._gzipSize = this.src ? this.opts.compressedSize(this.src) : 0;
+    return this.opts.compressionAlgorithm === 'gzip' ? this.compressedSize('gzip') : undefined;
+  }
+
+  get brotliSize() {
+    return this.opts.compressionAlgorithm === 'brotli' ? this.compressedSize('brotli') : undefined;
+  }
+
+  compressedSize(compressionAlgorithm) {
+    const key = `_${compressionAlgorithm}Size`;
+    if (!_.has(this, key)) {
+      this[key] = this.src ? compressedSize(compressionAlgorithm, this.src) : 0;
     }
 
-    return this._gzipSize;
+    return this[key];
   }
 
   addModule(moduleData) {
@@ -53,7 +63,7 @@ export default class Folder extends BaseFolder {
     });
 
     const ModuleConstructor = moduleData.modules ? ConcatenatedModule : Module;
-    const module = new ModuleConstructor(fileName, moduleData, this);
+    const module = new ModuleConstructor(fileName, moduleData, this, this.opts);
     currentFolder.addChildModule(module);
   }
 
@@ -61,7 +71,8 @@ export default class Folder extends BaseFolder {
     return {
       ...super.toChartData(),
       parsedSize: this.parsedSize,
-      gzipSize: this.gzipSize
+      gzipSize: this.gzipSize,
+      brotliSize: this.brotliSize
     };
   }
 

@@ -205,7 +205,8 @@ describe('Plugin', function () {
         await webpackCompile(config, '4.44.2');
         await expectValidReport({
           parsedSize: 1311,
-          gzipSize: 302
+          gzipSize: undefined,
+          brotliSize: 302
         });
       });
     });
@@ -218,8 +219,8 @@ describe('Plugin', function () {
       bundleLabel = 'bundle.js',
       statSize = 141,
       parsedSize = 2821,
-      gzipSize = 770
-    } = opts || {};
+      gzipSize
+    } = {gzipSize: 770, ...opts};
 
     expect(fs.existsSync(`${__dirname}/output/${bundleFilename}`), 'bundle file missing').to.be.true;
     expect(fs.existsSync(`${__dirname}/output/${reportFilename}`), 'report file missing').to.be.true;

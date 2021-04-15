@@ -220,17 +220,17 @@ describe('Analyzer', function () {
     describe('compression algorithm', function () {
       it('should accept --compression-algorithm brotli', async function () {
         generateReportFrom('with-modules-chunk.json', '--compression-algorithm brotli');
-        expect(await getCompressedSizeLabel()).to.equal('Brotli');
+        expect(await getCompressionAlgorithm()).to.equal('brotli');
       });
 
       it('should accept --compression-algorithm gzip', async function () {
         generateReportFrom('with-modules-chunk.json', '--compression-algorithm gzip');
-        expect(await getCompressedSizeLabel()).to.equal('Gzipped');
+        expect(await getCompressionAlgorithm()).to.equal('gzip');
       });
 
       it('should default to gzip', async function () {
         generateReportFrom('with-modules-chunk.json');
-        expect(await getCompressedSizeLabel()).to.equal('Gzipped');
+        expect(await getCompressionAlgorithm()).to.equal('gzip');
       });
     });
   });
@@ -258,9 +258,9 @@ async function getChartData() {
   return await nightmare.goto(`file://${__dirname}/output/report.html`).evaluate(() => window.chartData);
 }
 
-async function getCompressedSizeLabel() {
+async function getCompressionAlgorithm() {
   return await nightmare.goto(`file://${__dirname}/output/report.html`).evaluate(
-    () => window.compressedSizeLabel);
+    () => window.compressionAlgorithm);
 }
 
 function forEachChartItem(chartData, cb) {

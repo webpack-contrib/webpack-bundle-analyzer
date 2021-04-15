@@ -26,10 +26,6 @@ function resolveDefaultSizes(defaultSizes) {
   return defaultSizes === 'compressed' ? 'gzip' : defaultSizes;
 }
 
-function resolveCompressedSizeLabel(compressionAlgorithm) {
-  return {gzip: 'Gzipped', brotli: 'Brotli'}[compressionAlgorithm];
-}
-
 module.exports = {
   startServer,
   generateReport,
@@ -48,7 +44,7 @@ async function startServer(bundleStats, opts) {
     defaultSizes = 'parsed',
     excludeAssets = null,
     reportTitle,
-    compressionAlgorithm = 'gzip'
+    compressionAlgorithm
   } = opts || {};
 
   const analyzerOpts = {logger, excludeAssets, compressionAlgorithm};
@@ -69,7 +65,7 @@ async function startServer(bundleStats, opts) {
         title: resolveTitle(reportTitle),
         chartData,
         defaultSizes: resolveDefaultSizes(defaultSizes),
-        compressedSizeLabel: resolveCompressedSizeLabel(compressionAlgorithm),
+        compressionAlgorithm,
         enableWebSocket: true
       });
       res.writeHead(200, {'Content-Type': 'text/html'});
@@ -136,7 +132,7 @@ async function generateReport(bundleStats, opts) {
     openBrowser = true,
     reportFilename,
     reportTitle,
-    compressionAlgorithm = 'gzip',
+    compressionAlgorithm,
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
@@ -152,7 +148,7 @@ async function generateReport(bundleStats, opts) {
     title: resolveTitle(reportTitle),
     chartData,
     defaultSizes: resolveDefaultSizes(defaultSizes),
-    compressedSizeLabel: resolveCompressedSizeLabel(compressionAlgorithm),
+    compressionAlgorithm,
     enableWebSocket: false
   });
   const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
@@ -169,7 +165,7 @@ async function generateReport(bundleStats, opts) {
 
 async function generateJSONReport(bundleStats, opts) {
   const {reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null,
-    compressionAlgorithm = 'gzip'} = opts || {};
+    compressionAlgorithm} = opts || {};
 
   const chartData = getChartData({logger, excludeAssets, compressionAlgorithm}, bundleStats, bundleDir);
 
