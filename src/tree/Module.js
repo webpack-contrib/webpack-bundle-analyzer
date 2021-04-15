@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {compressedSize} from '../sizeUtils';
+import {getCompressedSize} from '../sizeUtils';
 
 import Node from './Node';
 
@@ -34,17 +34,17 @@ export default class Module extends Node {
   }
 
   get gzipSize() {
-    return this.opts.compressionAlgorithm === 'gzip' ? this.compressedSize('gzip') : undefined;
+    return this.opts.compressionAlgorithm === 'gzip' ? this.getCompressedSize('gzip') : undefined;
   }
 
   get brotliSize() {
-    return this.opts.compressionAlgorithm === 'brotli' ? this.compressedSize('brotli') : undefined;
+    return this.opts.compressionAlgorithm === 'brotli' ? this.getCompressedSize('brotli') : undefined;
   }
 
-  compressedSize(compressionAlgorithm) {
+  getCompressedSize(compressionAlgorithm) {
     const key = `_${compressionAlgorithm}Size`;
     if (!_.has(this, key)) {
-      this[key] = this.src ? compressedSize(compressionAlgorithm, this.src) : undefined;
+      this[key] = this.src ? getCompressedSize(compressionAlgorithm, this.src) : undefined;
     }
 
     return this[key];

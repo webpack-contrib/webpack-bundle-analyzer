@@ -5,7 +5,7 @@ const COMPRESSED_SIZE = {
   brotli: brotliSize
 };
 
-export function compressedSize(compressionAlgorithm, input) {
+export function getCompressedSize(compressionAlgorithm, input) {
   const fn = COMPRESSED_SIZE[compressionAlgorithm];
   if (!fn) throw new Error(`Unsupported compression algorithm: ${compressionAlgorithm}.`);
   return fn(input);

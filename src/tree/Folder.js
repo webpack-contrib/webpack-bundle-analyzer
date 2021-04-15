@@ -4,7 +4,7 @@ import Module from './Module';
 import BaseFolder from './BaseFolder';
 import ConcatenatedModule from './ConcatenatedModule';
 import {getModulePathParts} from './utils';
-import {compressedSize} from '../sizeUtils';
+import {getCompressedSize} from '../sizeUtils';
 
 export default class Folder extends BaseFolder {
 
@@ -18,17 +18,17 @@ export default class Folder extends BaseFolder {
   }
 
   get gzipSize() {
-    return this.opts.compressionAlgorithm === 'gzip' ? this.compressedSize('gzip') : undefined;
+    return this.opts.compressionAlgorithm === 'gzip' ? this.getCompressedSize('gzip') : undefined;
   }
 
   get brotliSize() {
-    return this.opts.compressionAlgorithm === 'brotli' ? this.compressedSize('brotli') : undefined;
+    return this.opts.compressionAlgorithm === 'brotli' ? this.getCompressedSize('brotli') : undefined;
   }
 
-  compressedSize(compressionAlgorithm) {
+  getCompressedSize(compressionAlgorithm) {
     const key = `_${compressionAlgorithm}Size`;
     if (!_.has(this, key)) {
-      this[key] = this.src ? compressedSize(compressionAlgorithm, this.src) : 0;
+      this[key] = this.src ? getCompressedSize(compressionAlgorithm, this.src) : 0;
     }
 
     return this[key];
