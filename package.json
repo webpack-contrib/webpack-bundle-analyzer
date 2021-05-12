@@ -77,7 +77,7 @@
     "mobx-react": "6.3.1",
     "mocha": "8.2.1",
     "nightmare": "3.0.2",
-    "postcss": "8.1.6",
+    "postcss": "8.2.10",
     "postcss-icss-values": "2.0.2",
     "postcss-loader": "4.0.4",
     "preact": "10.5.5",
