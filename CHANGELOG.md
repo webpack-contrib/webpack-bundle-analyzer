@@ -12,6 +12,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+## 4.4.2
+
  * **Bug Fix**
    * Fix failure with `compiler.outputFileSystem.constructor` being `undefined` ([#447](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/447) by [@kedarv](https://github.com/kedarv) and [@alexander-akait](https://github.com/alexander-akait))
      * **NOTE:** This fix doesn't have added test coverage so the fix might break in future versions unless test coverage is added later.
