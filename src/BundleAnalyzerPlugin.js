@@ -136,7 +136,7 @@ class BundleAnalyzerPlugin {
   getBundleDirFromCompiler() {
     if (typeof this.compiler.outputFileSystem.constructor === 'undefined') {
       return this.compiler.outputPath;
-    }    
+    }
     switch (this.compiler.outputFileSystem.constructor.name) {
       case 'MemoryFileSystem':
         return null;
