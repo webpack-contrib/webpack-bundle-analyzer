@@ -80,7 +80,7 @@ export default class ModulesTreemap extends Component {
             }
           </div>
           <div className={s.sidebarGroup}>
-            <select onChange={this.handleSearchModeChange}>
+            <select onChange={this.handleSearchModeChange} className={s.searchMode}>
               <option value={SEARCH_MODE.MODULES}>
                 Modules
               </option>
