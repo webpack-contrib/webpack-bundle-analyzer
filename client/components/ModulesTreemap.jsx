@@ -38,7 +38,7 @@ export default class ModulesTreemap extends Component {
     sidebarPinned: false,
     showChunkContextMenu: false,
     showTooltip: false,
-    tooltipContent: null,
+    tooltipContent: null
   };
 
   componentDidMount() {
@@ -56,7 +56,7 @@ export default class ModulesTreemap extends Component {
       sidebarPinned,
       showChunkContextMenu,
       showTooltip,
-      tooltipContent,
+      tooltipContent
     } = this.state;
 
     return (
