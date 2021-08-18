@@ -12,19 +12,31 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+## 4.4.2
+
+ * **Bug Fix**
+   * Fix failure with `compiler.outputFileSystem.constructor` being `undefined` ([#447](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/447) by [@kedarv](https://github.com/kedarv) and [@alexander-akait](https://github.com/alexander-akait))
+     * **NOTE:** This fix doesn't have added test coverage so the fix might break in future versions unless test coverage is added later.
+
+## 4.4.1
+
+ * **Bug Fix**
+   * Fix missing module chunks ([#433](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/433) by [@deanshub](https://github.com/deanshub))
+
+ * **Internal**
+   * Fix tests timing out in CI ([#435](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/435) by [@deanshub](https://github.com/deanshub))
+   * Fix command in issue template ([#428](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/428) by [@cncolder](https://github.com/cncolder))
+
 ## 4.4.0
 
  * **Improvement**
-   * Keep treemap labels visible during zooming animations for better user experience ([#414](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/414) by [@
-     stanislawosinski](https://github.com/stanislawosinski))
+   * Keep treemap labels visible during zooming animations for better user experience ([#414](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/414) by [@stanislawosinski](https://github.com/stanislawosinski))
      
  * **Bug Fix**
-   * Don't show an empty tooltip when hovering over the FoamTree attribution group or between top-level groups ([#413](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/413) by [@
-     stanislawosinski](https://github.com/stanislawosinski))
+   * Don't show an empty tooltip when hovering over the FoamTree attribution group or between top-level groups ([#413](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/413) by [@stanislawosinski](https://github.com/stanislawosinski))
  
  * **Internal**
-   * Upgrade FoamTree to version 3.5.0, replace vendor dependency with an NPM package ([#412](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/412) by [@
-     stanislawosinski](https://github.com/stanislawosinski))
+   * Upgrade FoamTree to version 3.5.0, replace vendor dependency with an NPM package ([#412](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/412) by [@stanislawosinski](https://github.com/stanislawosinski))
     
 ## 4.3.0
 
