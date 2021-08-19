@@ -72,7 +72,7 @@ class BundleAnalyzerPlugin {
     };
 
     if (compiler.hooks) {
-      compiler.hooks.done.tapAsync('webpack-bundle-analyzer', done);
+      compiler.hooks.done.tapAsync('wix-webpack-bundle-analyzer', done);
     } else {
       compiler.plugin('done', done);
     }
@@ -134,6 +134,9 @@ class BundleAnalyzerPlugin {
   }
 
   getBundleDirFromCompiler() {
+    if (typeof this.compiler.outputFileSystem.constructor === 'undefined') {
+      return this.compiler.outputPath;
+    }
     switch (this.compiler.outputFileSystem.constructor.name) {
       case 'MemoryFileSystem':
         return null;

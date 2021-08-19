@@ -168,7 +168,7 @@ export class Store {
           };
         }
 
-        module.weight = module[sizeProp];
+        module.weight = Math.abs(module[sizeProp]);
         filteredModules.push(module);
       }
 

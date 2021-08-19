@@ -1,0 +1,35 @@
+# This workflow will do a clean install of node dependencies, and publish the package to the npm registry
+
+name: Publish Webpack-Bundle-Analyzer Package
+
+on:
+  push:
+    branches:
+      -master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Setup .npmrc file to publish to npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build the application
+        run: yarn build
+
+      - name: Publish to npm
+        run: npm publish --access public
+
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
