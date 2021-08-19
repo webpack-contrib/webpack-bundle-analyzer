@@ -72,7 +72,7 @@ class BundleAnalyzerPlugin {
     };
 
     if (compiler.hooks) {
-      compiler.hooks.done.tapAsync('webpack-bundle-analyzer', done);
+      compiler.hooks.done.tapAsync('wix-webpack-bundle-analyzer', done);
     } else {
       compiler.plugin('done', done);
     }
