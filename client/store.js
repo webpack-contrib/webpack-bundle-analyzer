@@ -1,20 +1,21 @@
-import {observable, computed} from 'mobx';
-import {isChunkParsed, walkModules} from './utils';
-import localStorage from './localStorage';
+import { observable, computed } from "mobx";
+import { isChunkParsed, walkModules } from "./utils";
+import localStorage from "./localStorage";
 
 export class Store {
   cid = 0;
-  sizes = new Set(['statSize', 'parsedSize', 'gzipSize']);
+  sizes = new Set(["statSize", "parsedSize", "gzipSize"]);
 
   @observable.ref allChunks;
   @observable.shallow selectedChunks;
-  @observable searchQuery = '';
+  @observable searchQuery = "";
   @observable defaultSize;
   @observable selectedSize;
-  @observable showConcatenatedModulesContent = (localStorage.getItem('showConcatenatedModulesContent') === true);
+  @observable showConcatenatedModulesContent =
+    localStorage.getItem("showConcatenatedModulesContent") === true;
 
   setModules(modules) {
-    walkModules(modules, module => {
+    walkModules(modules, (module) => {
       module.cid = this.cid++;
     });
 
@@ -30,14 +31,14 @@ export class Store {
     const activeSize = this.selectedSize || this.defaultSize;
 
     if (!this.hasParsedSizes || !this.sizes.has(activeSize)) {
-      return 'statSize';
+      return "statSize";
     }
 
     return activeSize;
   }
 
   @computed get visibleChunks() {
-    const visibleChunks = this.allChunks.filter(chunk =>
+    const visibleChunks = this.allChunks.filter((chunk) =>
       this.selectedChunks.includes(chunk)
     );
 
@@ -49,9 +50,10 @@ export class Store {
   }
 
   @computed get totalChunksSize() {
-    return this.allChunks.reduce((totalSize, chunk) =>
-      totalSize + (chunk[this.activeSize] || 0),
-    0);
+    return this.allChunks.reduce(
+      (totalSize, chunk) => totalSize + (chunk[this.activeSize] || 0),
+      0
+    );
   }
 
   @computed get searchQueryRegexp() {
@@ -62,7 +64,7 @@ export class Store {
     }
 
     try {
-      return new RegExp(query, 'iu');
+      return new RegExp(query, "iu");
     } catch (err) {
       return null;
     }
@@ -80,10 +82,10 @@ export class Store {
     const query = this.searchQueryRegexp;
 
     return this.visibleChunks
-      .map(chunk => {
+      .map((chunk) => {
         let foundGroups = [];
 
-        walkModules(chunk.groups, module => {
+        walkModules(chunk.groups, (module) => {
           let weight = 0;
 
           /**
@@ -106,30 +108,34 @@ export class Store {
             weight += 1;
           }
 
-          const foundModules = foundGroups[weight - 1] = foundGroups[weight - 1] || [];
+          const foundModules = (foundGroups[weight - 1] =
+            foundGroups[weight - 1] || []);
           foundModules.push(module);
         });
 
-        const {activeSize} = this;
+        const { activeSize } = this;
 
         // Filtering out missing groups
         foundGroups = foundGroups.filter(Boolean).reverse();
         // Sorting each group by active size
-        foundGroups.forEach(modules =>
+        foundGroups.forEach((modules) =>
           modules.sort((m1, m2) => m2[activeSize] - m1[activeSize])
         );
 
         return {
           chunk,
-          modules: [].concat(...foundGroups)
+          modules: [].concat(...foundGroups),
         };
       })
-      .filter(result => result.modules.length > 0)
+      .filter((result) => result.modules.length > 0)
       .sort((c1, c2) => c1.modules.length - c2.modules.length);
   }
 
   @computed get foundModules() {
-    return this.foundModulesByChunk.reduce((arr, chunk) => arr.concat(chunk.modules), []);
+    return this.foundModulesByChunk.reduce(
+      (arr, chunk) => arr.concat(chunk.modules),
+      []
+    );
   }
 
   @computed get hasFoundModules() {
@@ -139,7 +145,7 @@ export class Store {
   @computed get hasConcatenatedModules() {
     let result = false;
 
-    walkModules(this.visibleChunks, module => {
+    walkModules(this.visibleChunks, (module) => {
       if (module.concatenated) {
         result = true;
         return false;
@@ -160,15 +166,18 @@ export class Store {
     return modules.reduce((filteredModules, module) => {
       if (module[sizeProp]) {
         if (module.groups) {
-          const showContent = (!module.concatenated || this.showConcatenatedModulesContent);
+          const showContent =
+            !module.concatenated || this.showConcatenatedModulesContent;
 
           module = {
             ...module,
-            groups: showContent ? this.filterModulesForSize(module.groups, sizeProp) : null
+            groups: showContent
+              ? this.filterModulesForSize(module.groups, sizeProp)
+              : null,
           };
         }
 
-        module.weight = module[sizeProp];
+        module.weight = Math.abs(module[sizeProp]);
         filteredModules.push(module);
       }
 
