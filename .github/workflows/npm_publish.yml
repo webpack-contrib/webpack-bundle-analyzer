@@ -4,8 +4,7 @@ name: Publish Webpack-Bundle-Analyzer Package
 
 on:
   push:
-    branches:
-      -master
+    branches: [main]
 
 jobs:
   build:
