@@ -29,7 +29,7 @@ export default class Search extends PureComponent {
             className={s.input}
             type="text"
             value={query}
-            placeholder="Enter regexp"
+            placeholder="Enter regexp:"
             onInput={this.handleValueChange}
             onBlur={this.handleInputBlur}
             onKeyDown={this.handleKeyDown}/>
