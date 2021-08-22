@@ -5,15 +5,16 @@ name: Publish Webpack-Bundle-Analyzer Package
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
-  build:
+  release:
+    name: publish
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.1.1
 
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v2
@@ -29,7 +30,6 @@ jobs:
 
       - name: Publish to npm
         run: npm publish --access public
-
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
