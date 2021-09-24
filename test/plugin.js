@@ -2,6 +2,7 @@ const fs = require('fs');
 const del = require('del');
 const _ = require('lodash');
 const path = require('path');
+const puppeteer = require('puppeteer');
 const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
 
 describe('Plugin', function () {
@@ -13,23 +14,20 @@ describe('Plugin', function () {
 });
 
 describe('Plugin', function () {
-  let nightmare;
-
+  let browser;
   this.timeout(15000);
 
-  before(function () {
-    const Nightmare = require('nightmare');
-    nightmare = Nightmare();
+  before(async function () {
+    browser = await puppeteer.launch();
     del.sync(`${__dirname}/output`);
-  });
-
-  beforeEach(async function () {
-    this.timeout(10000);
-    await nightmare.goto('about:blank');
   });
 
   afterEach(function () {
     del.sync(`${__dirname}/output`);
+  });
+
+  after(async function () {
+    browser.close();
   });
 
   forEachWebpackVersion(['4.44.2'], ({it, webpackCompile}) => {
@@ -198,10 +196,14 @@ describe('Plugin', function () {
   }
 
   async function getTitleFromReport(reportFilename = 'report.html') {
-    return await nightmare.goto(`file://${__dirname}/output/${reportFilename}`).title();
+    const page = await browser.newPage();
+    await page.goto(`file://${__dirname}/output/${reportFilename}`);
+    return await page.title();
   }
 
   async function getChartDataFromReport(reportFilename = 'report.html') {
-    return await nightmare.goto(`file://${__dirname}/output/${reportFilename}`).evaluate(() => window.chartData);
+    const page = await browser.newPage();
+    await page.goto(`file://${__dirname}/output/${reportFilename}`);
+    return await page.evaluate(() => window.chartData);
   }
 });
