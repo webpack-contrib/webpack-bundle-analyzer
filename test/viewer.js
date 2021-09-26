@@ -1,3 +1,6 @@
+const chai = require('chai');
+chai.use(require('chai-subset'));
+const {expect} = chai;
 const crypto = require('crypto');
 const net = require('net');
 

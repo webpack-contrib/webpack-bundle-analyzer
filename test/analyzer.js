@@ -1,3 +1,6 @@
+const chai = require('chai');
+chai.use(require('chai-subset'));
+const {expect} = chai;
 const _ = require('lodash');
 const fs = require('fs');
 const path = require('path');
