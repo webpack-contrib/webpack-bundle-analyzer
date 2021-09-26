@@ -8,23 +8,23 @@ const puppeteer = require('puppeteer');
 let browser;
 
 describe('Analyzer', function () {
-  this.timeout(15000);
+  jest.setTimeout(15000);
 
-  before(async function () {
+  beforeAll(async function () {
     browser = await puppeteer.launch();
     del.sync(`${__dirname}/output`);
   });
 
   beforeEach(async function () {
-    this.timeout(15000);
+    jest.setTimeout(15000);
   });
 
   afterEach(function () {
     del.sync(`${__dirname}/output`);
   });
 
-  after(async function () {
-    browser.close();
+  afterAll(async function () {
+    await browser.close();
   });
 
   it('should support stats files with all the information in `children` array', async function () {

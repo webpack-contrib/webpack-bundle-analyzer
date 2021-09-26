@@ -15,9 +15,9 @@ describe('Plugin', function () {
 
 describe('Plugin', function () {
   let browser;
-  this.timeout(15000);
+  jest.setTimeout(15000);
 
-  before(async function () {
+  beforeAll(async function () {
     browser = await puppeteer.launch();
     del.sync(`${__dirname}/output`);
   });
@@ -26,8 +26,8 @@ describe('Plugin', function () {
     del.sync(`${__dirname}/output`);
   });
 
-  after(async function () {
-    browser.close();
+  afterAll(async function () {
+    await browser.close();
   });
 
   forEachWebpackVersion(['4.44.2'], ({it, webpackCompile}) => {
