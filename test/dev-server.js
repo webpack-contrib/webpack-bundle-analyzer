@@ -11,11 +11,11 @@ describe('Webpack Dev Server', function () {
   beforeAll(deleteOutputDirectory);
   afterEach(deleteOutputDirectory);
 
-  it('should save report file to the output directory', function (done) {
-    const timeout = 15000;
-    const startedAt = Date.now();
+  const timeout = 15000;
+  jest.setTimeout(timeout);
 
-    jest.setTimeout(timeout);
+  it('should save report file to the output directory', function (done) {
+    const startedAt = Date.now();
 
     const devServer = exec(`${__dirname}/../node_modules/.bin/webpack-dev-server --config ${WEBPACK_CONFIG_PATH}`, {
       cwd: ROOT
