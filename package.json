@@ -24,8 +24,8 @@
     "npm-publish": "npm run lint && npm run build && npm test && npm publish",
     "lint": "eslint --ext js,jsx .",
     "install-test-webpack-versions": "./bin/install-test-webpack-versions.sh",
-    "test": "npm run install-test-webpack-versions && mocha --exit --require @babel/register",
-    "test-dev": "npm run install-test-webpack-versions && mocha --watch --watch-ignore test/output --require @babel/register"
+    "test": "npm run install-test-webpack-versions && jest --runInBand",
+    "test-dev": "npm run install-test-webpack-versions && jest --watch --runInBand"
   },
   "files": [
     "public",
@@ -50,7 +50,6 @@
     "@babel/plugin-transform-runtime": "7.14.3",
     "@babel/preset-env": "7.14.2",
     "@babel/preset-react": "7.13.13",
-    "@babel/register": "7.13.16",
     "@babel/runtime": "7.14.0",
     "@carrotsearch/foamtree": "3.5.0",
     "autoprefixer": "10.2.5",
@@ -72,9 +71,9 @@
     "globby": "11.0.3",
     "gulp": "4.0.2",
     "gulp-babel": "8.0.0",
+    "jest": "27.2.2",
     "mobx": "5.15.7",
     "mobx-react": "6.3.1",
-    "mocha": "8.4.0",
     "postcss": "8.3.0",
     "postcss-icss-values": "2.0.2",
     "postcss-loader": "5.3.0",

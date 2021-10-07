@@ -29,10 +29,8 @@ jobs:
       - name: Build sources
         run: npm run build
 
-      - name: Run tests with xvfb available
-        uses: GabrielBB/xvfb-action@v1
-        with:
-          run: npm run test
+      - name: Run tests
+        run: npm run test
 
   lint:
     runs-on: ubuntu-latest
