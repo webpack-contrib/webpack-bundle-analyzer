@@ -51,9 +51,9 @@ export default class Module extends Node {
 
   toChartData() {
     const reasonsNames = _(this.data.reasons)
-    .map('module')
-    .compact()
-    .value();
+      .map('module')
+      .compact()
+      .value();
 
     return {
       id: this.data.id,
