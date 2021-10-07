@@ -1,5 +1,5 @@
 const fs = require('fs');
-const {exec} = require('child_process');
+const {spawn} = require('child_process');
 
 const del = require('del');
 
@@ -17,7 +17,7 @@ describe('Webpack Dev Server', function () {
   it('should save report file to the output directory', function (done) {
     const startedAt = Date.now();
 
-    const devServer = exec(`${__dirname}/../node_modules/.bin/webpack-dev-server --config ${WEBPACK_CONFIG_PATH}`, {
+    const devServer = spawn(`${__dirname}/../node_modules/.bin/webpack-dev-server`, ['--config', WEBPACK_CONFIG_PATH], {
       cwd: ROOT
     });
 
