@@ -1,6 +1,6 @@
 {
   "name": "wix-webpack-bundle-analyzer",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "description": "Webpack plugin and CLI utility that represents bundle content as convenient interactive zoomable treemap",
   "author": "Yury Grunin <grunin.ya@ya.ru>",
   "license": "MIT",
