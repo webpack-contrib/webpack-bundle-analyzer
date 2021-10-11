@@ -29,8 +29,7 @@
   },
   "files": [
     "public",
-    "lib",
-    "src"
+    "lib"
   ],
   "dependencies": {
     "acorn": "^8.0.4",
