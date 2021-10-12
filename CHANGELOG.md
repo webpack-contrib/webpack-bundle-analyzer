@@ -12,6 +12,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+## 4.5.0
+
  * **Improvement**
    * Stop publishing src folder to npm ([#478](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/478) by [@wood1986](https://github.com/wood1986))
 
