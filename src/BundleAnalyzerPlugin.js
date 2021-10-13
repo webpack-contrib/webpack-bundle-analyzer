@@ -1,4 +1,3 @@
-const fs = require('fs');
 const path = require('path');
 const {bold} = require('chalk');
 
@@ -6,6 +5,7 @@ const Logger = require('./Logger');
 const viewer = require('./viewer');
 const utils = require('./utils');
 const {writeStats} = require('./statsUtils');
+const PLUGIN_NAME = 'webpack-bundle-analyzer';
 
 class BundleAnalyzerPlugin {
   constructor(opts = {}) {
@@ -35,6 +35,8 @@ class BundleAnalyzerPlugin {
     this.compiler = compiler;
 
     const done = (stats, callback) => {
+      const isWebpack5 = !!compiler.webpack;
+      this.fs = isWebpack5 ? compiler.outputFileSystem : require('fs');
       callback = callback || (() => {});
 
       const actions = [];
@@ -72,7 +74,10 @@ class BundleAnalyzerPlugin {
     };
 
     if (compiler.hooks) {
-      compiler.hooks.done.tapAsync('webpack-bundle-analyzer', done);
+      compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
+        this.logger = compilation.getLogger(PLUGIN_NAME);
+      });
+      compiler.hooks.done.tapAsync(PLUGIN_NAME, done);
     } else {
       compiler.plugin('done', done);
     }
@@ -80,7 +85,7 @@ class BundleAnalyzerPlugin {
 
   async generateStatsFile(stats) {
     const statsFilepath = path.resolve(this.compiler.outputPath, this.opts.statsFilename);
-    await fs.promises.mkdir(path.dirname(statsFilepath), {recursive: true});
+    await this.fs.promises.mkdir(path.dirname(statsFilepath), {recursive: true});
 
     try {
       await writeStats(stats, statsFilepath);
@@ -117,7 +122,8 @@ class BundleAnalyzerPlugin {
       reportFilename: path.resolve(this.compiler.outputPath, this.opts.reportFilename || 'report.json'),
       bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
-      excludeAssets: this.opts.excludeAssets
+      excludeAssets: this.opts.excludeAssets,
+      fs: this.fs
     });
   }
 
@@ -129,7 +135,8 @@ class BundleAnalyzerPlugin {
       bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
       defaultSizes: this.opts.defaultSizes,
-      excludeAssets: this.opts.excludeAssets
+      excludeAssets: this.opts.excludeAssets,
+      fs: this.fs
     });
   }
 

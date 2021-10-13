@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const http = require('http');
 
 const WebSocket = require('ws');
@@ -20,6 +19,14 @@ function resolveTitle(reportTitle) {
   } else {
     return reportTitle;
   }
+}
+
+function writeToFs(fs, dest, data) {
+  // older version webpack uses memory-fs whose mkdirSync does not support {recursive: true}
+  fs.mkdirpSync
+    ? fs.mkdirpSync(path.dirname(dest))
+    : fs.mkdirSync(path.dirname(dest), {recursive: true});
+  fs.writeFileSync(dest, data);
 }
 
 module.exports = {
@@ -129,7 +136,8 @@ async function generateReport(bundleStats, opts) {
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
-    excludeAssets = null
+    excludeAssets = null,
+    fs
   } = opts || {};
 
   const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
@@ -145,8 +153,7 @@ async function generateReport(bundleStats, opts) {
   });
   const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
 
-  fs.mkdirSync(path.dirname(reportFilepath), {recursive: true});
-  fs.writeFileSync(reportFilepath, reportHtml);
+  writeToFs(fs, reportFilepath, reportHtml);
 
   logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
 
@@ -156,14 +163,13 @@ async function generateReport(bundleStats, opts) {
 }
 
 async function generateJSONReport(bundleStats, opts) {
-  const {reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null} = opts || {};
+  const {reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null, fs} = opts || {};
 
   const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
 
   if (!chartData) return;
 
-  await fs.promises.mkdir(path.dirname(reportFilename), {recursive: true});
-  await fs.promises.writeFile(reportFilename, JSON.stringify(chartData));
+  writeToFs(fs, reportFilename, JSON.stringify(chartData));
 
   logger.info(`${bold('Webpack Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
 }

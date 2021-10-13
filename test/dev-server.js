@@ -1,42 +1,58 @@
 const fs = require('fs');
-const {spawn} = require('child_process');
-
-const del = require('del');
-
 const ROOT = `${__dirname}/dev-server`;
 const WEBPACK_CONFIG_PATH = `${ROOT}/webpack.config.js`;
 const webpackConfig = require(WEBPACK_CONFIG_PATH);
+const DevServer = require('webpack-dev-server');
+const webpack = require('webpack');
 
 describe('Webpack Dev Server', function () {
-  beforeAll(deleteOutputDirectory);
-  afterEach(deleteOutputDirectory);
-
-  const timeout = 15000;
-  jest.setTimeout(timeout);
-
-  it('should save report file to the output directory', function (done) {
-    const startedAt = Date.now();
-
-    const devServer = spawn(`${__dirname}/../node_modules/.bin/webpack-dev-server`, ['--config', WEBPACK_CONFIG_PATH], {
-      cwd: ROOT
+  it('should save report file to memory file system when writeToDisk is empty', async function () {
+    expect.assertions(2);
+    const compiler = webpack(webpackConfig);
+    const devServer = await new Promise((resolve) => {
+      const devServerOptions = {host: '127.0.0.1', port: 8080};
+      const devServer = new DevServer(compiler, devServerOptions);
+      devServer.listen(devServerOptions.port, devServerOptions.host, () => {
+        resolve(devServer);
+      });
+    });
+    await new Promise((resolve) => {
+      compiler.hooks.afterDone.tap('webpack-bundle-analyzer', resolve);
+    });
+    const path = `${webpackConfig.output.path}/report.html`;
+    expect(compiler.outputFileSystem.existsSync(path)).toBeTruthy();
+    expect(fs.existsSync(path)).toBeFalsy();
+    compiler.outputFileSystem.unlinkSync(path);
+    await new Promise((resolve) => {
+      devServer.close(() => {
+        resolve();
+      });
     });
 
-    const reportCheckIntervalId = setInterval(() => {
-      if (fs.existsSync(`${webpackConfig.output.path}/report.html`)) {
-        finish();
-      } else if (Date.now() - startedAt > timeout - 1000) {
-        finish(`report file wasn't found in "${webpackConfig.output.path}" directory`);
-      }
-    }, 300);
+  });
 
-    function finish(errorMessage) {
-      clearInterval(reportCheckIntervalId);
-      devServer.kill();
-      done(errorMessage ? new Error(errorMessage) : null);
-    }
+  it.skip('should save report file to the output directory when writeToDisk is true', async function () {
+    expect.assertions(2);
+    const compiler = webpack(webpackConfig);
+    const devServer = await new Promise((resolve) => {
+      const devServerOptions = {host: '127.0.0.1', port: 8080, writeToDisk: true};
+      const devServer = new DevServer(compiler, devServerOptions);
+      devServer.listen(devServerOptions.port, devServerOptions.host, () => {
+        resolve(devServer);
+      });
+    });
+    await new Promise((resolve) => {
+      compiler.hooks.afterDone.tap('webpack-bundle-analyzer', resolve);
+    });
+    const path = `${webpackConfig.output.path}/report.html`;
+    expect(compiler.outputFileSystem.existsSync(path)).toBeTruthy();
+    expect(fs.existsSync(path)).toBeTruthy();
+    compiler.outputFileSystem.unlinkSync(path);
+    return await new Promise((resolve) => {
+      devServer.close(() => {
+        resolve();
+      });
+    });
   });
 });
 
-function deleteOutputDirectory() {
-  del.sync(webpackConfig.output.path);
-}
