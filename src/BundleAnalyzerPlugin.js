@@ -85,7 +85,7 @@ class BundleAnalyzerPlugin {
 
   async generateStatsFile(stats) {
     const statsFilepath = path.resolve(this.compiler.outputPath, this.opts.statsFilename);
-    await this.fs.promises.mkdir(path.dirname(statsFilepath), {recursive: true});
+    utils.mkdirpSync(this.fs, statsFilepath);
 
     try {
       await writeStats(stats, statsFilepath);

@@ -8,7 +8,7 @@ const {bold} = require('chalk');
 
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
-const {open} = require('./utils');
+const {open, mkdirpSync} = require('./utils');
 const {renderViewer} = require('./template');
 
 const projectRoot = path.resolve(__dirname, '..');
@@ -19,14 +19,6 @@ function resolveTitle(reportTitle) {
   } else {
     return reportTitle;
   }
-}
-
-function writeToFs(fs, dest, data) {
-  // older version webpack uses memory-fs whose mkdirSync does not support {recursive: true}
-  fs.mkdirpSync
-    ? fs.mkdirpSync(path.dirname(dest))
-    : fs.mkdirSync(path.dirname(dest), {recursive: true});
-  fs.writeFileSync(dest, data);
 }
 
 module.exports = {
@@ -153,7 +145,8 @@ async function generateReport(bundleStats, opts) {
   });
   const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
 
-  writeToFs(fs, reportFilepath, reportHtml);
+  mkdirpSync(fs, reportFilepath, reportHtml);
+  fs.writeFileSync(reportFilepath, reportHtml);
 
   logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
 
@@ -169,7 +162,8 @@ async function generateJSONReport(bundleStats, opts) {
 
   if (!chartData) return;
 
-  writeToFs(fs, reportFilename, JSON.stringify(chartData));
+  mkdirpSync(fs, reportFilename);
+  fs.writeFileSync(reportFilename, JSON.stringify(chartData));
 
   logger.info(`${bold('Webpack Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
 }
