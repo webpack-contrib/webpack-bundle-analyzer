@@ -50,8 +50,8 @@ export default class Module extends Node {
   }
 
   toChartData() {
-    const reasonIds = _(this.data.reasons)
-      .map('module')
+    const reasonNames = _(this.data.reasons)
+      .map('moduleName')
       .compact()
       .value();
 
@@ -62,7 +62,7 @@ export default class Module extends Node {
       statSize: this.size,
       parsedSize: this.parsedSize,
       gzipSize: this.gzipSize,
-      reasons: [...new Set(reasonIds)]
+      reasons: [...new Set(reasonNames)]
     };
   }
 
