@@ -66,7 +66,7 @@
     "eslint-config-th0r": "2.0.0",
     "eslint-config-th0r-react": "2.0.1",
     "eslint-plugin-react": "7.23.2",
-    "filesize": "^6.3.0",
+    "filesize": "^8.0.6",
     "globby": "11.0.3",
     "gulp": "4.0.2",
     "gulp-babel": "8.0.0",
