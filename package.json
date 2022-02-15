@@ -1,6 +1,6 @@
 {
-  "name": "webpack-bundle-analyzer",
-  "version": "4.5.0",
+  "name": "@speedy-js/webpack-bundle-analyzer",
+  "version": "4.5.1",
   "description": "Webpack plugin and CLI utility that represents bundle content as convenient interactive zoomable treemap",
   "author": "Yury Grunin <grunin.ya@ya.ru>",
   "license": "MIT",
@@ -14,6 +14,7 @@
     "url": "git+https://github.com/webpack-contrib/webpack-bundle-analyzer.git"
   },
   "main": "lib/index.js",
+  "types": "index.d.ts",
   "bin": "lib/bin/analyzer.js",
   "engines": {
     "node": ">= 10.13.0"
@@ -28,8 +29,8 @@
     "test-dev": "npm run install-test-webpack-versions && jest --watch --runInBand"
   },
   "files": [
-    "public",
-    "lib"
+    "lib",
+    "index.d.ts"
   ],
   "dependencies": {
     "acorn": "^8.0.4",
@@ -51,9 +52,11 @@
     "@babel/preset-react": "7.13.13",
     "@babel/runtime": "7.14.0",
     "@carrotsearch/foamtree": "3.5.0",
+    "@types/ws": "8.2.2",
     "autoprefixer": "10.2.5",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.2.2",
+    "babel-plugin-inline-import": "3.0.0",
     "babel-plugin-lodash": "3.3.4",
     "chai": "4.3.4",
     "chai-subset": "1.6.0",
@@ -97,5 +100,9 @@
     "treemap",
     "zoomable",
     "zoom"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
 }

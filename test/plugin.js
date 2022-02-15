@@ -126,7 +126,7 @@ describe('Plugin', function () {
         const config = makeWebpackConfig();
         await webpackCompile(config, '4.44.2');
         const generatedReportTitle = await getTitleFromReport();
-        expect(generatedReportTitle).to.match(/^webpack-bundle-analyzer \[.* at \d{2}:\d{2}\]/u);
+        expect(generatedReportTitle).to.match(/^@speedy-js\/webpack-bundle-analyzer \[.* at \d{2}:\d{2}\]/u);
       });
 
       it('should support a string value', async function () {

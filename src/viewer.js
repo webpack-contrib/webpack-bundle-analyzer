@@ -3,7 +3,6 @@ const fs = require('fs');
 const http = require('http');
 
 const WebSocket = require('ws');
-const sirv = require('sirv');
 const _ = require('lodash');
 const {bold} = require('chalk');
 
@@ -12,7 +11,8 @@ const analyzer = require('./analyzer');
 const {open} = require('./utils');
 const {renderViewer} = require('./template');
 
-const projectRoot = path.resolve(__dirname, '..');
+import viewerScript from '../public/viewer.js';
+import viewerScriptMap from '../public/viewer.js.map';
 
 function resolveTitle(reportTitle) {
   if (typeof reportTitle === 'function') {
@@ -48,11 +48,6 @@ async function startServer(bundleStats, opts) {
 
   if (!chartData) return;
 
-  const sirvMiddleware = sirv(`${projectRoot}/public`, {
-    // disables caching and traverse the file system on every request
-    dev: true
-  });
-
   const server = http.createServer((req, res) => {
     if (req.method === 'GET' && req.url === '/') {
       const html = renderViewer({
@@ -64,8 +59,15 @@ async function startServer(bundleStats, opts) {
       });
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(html);
+    } else if (req.method === 'GET' && req.url === '/viewer.js') {
+      res.writeHead(200, {'Content-Type': 'text/javascript'});
+      res.end(viewerScript);
+    } else if (req.method === 'GET' && req.url === '/viewer.js.map') {
+      res.writeHead(200, {'Content-Type': 'text/javascript'});
+      res.end(viewerScriptMap);
     } else {
-      sirvMiddleware(req, res);
+      res.writeHead(404);
+      res.end();
     }
   });
 

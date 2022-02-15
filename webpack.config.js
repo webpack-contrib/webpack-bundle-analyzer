@@ -1,7 +1,6 @@
 const compact = require('lodash/compact');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-const BundleAnalyzePlugin = require('./lib/BundleAnalyzerPlugin');
 
 module.exports = opts => {
   opts = Object.assign({
@@ -121,9 +120,9 @@ module.exports = opts => {
 
     plugins: (plugins => {
       if (!isDev) {
-        if (opts.analyze) {
+        if (opts.analyze && false) {
           plugins.push(
-            new BundleAnalyzePlugin({
+            new require('./lib/BundleAnalyzerPlugin')({
               generateStatsFile: true
             })
           );

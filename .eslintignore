@@ -17,3 +17,5 @@ test/output
 webpack.config.js
 
 samples
+
+index.d.ts

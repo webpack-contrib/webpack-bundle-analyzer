@@ -17,7 +17,7 @@ if (task === 'build' || cli.analyze) {
 }
 
 gulp.task('clean', gulp.parallel(cleanNodeScripts, cleanViewerScripts));
-gulp.task('build', gulp.series('clean', compileNodeScripts, compileViewerScripts));
+gulp.task('build', gulp.series('clean', compileViewerScripts, compileNodeScripts));
 gulp.task('watch', gulp.series('build', watch));
 gulp.task('default', gulp.task('watch'));
 
