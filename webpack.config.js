@@ -30,7 +30,7 @@ module.exports = opts => {
       }
     },
 
-    devtool: isDev ? 'eval' : 'source-map',
+    devtool: isDev ? 'eval' : false,
     watch: isDev,
 
     performance: {

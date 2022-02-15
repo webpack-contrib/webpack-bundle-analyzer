@@ -12,7 +12,6 @@ const {open} = require('./utils');
 const {renderViewer} = require('./template');
 
 import viewerScript from '../public/viewer.js';
-import viewerScriptMap from '../public/viewer.js.map';
 
 function resolveTitle(reportTitle) {
   if (typeof reportTitle === 'function') {
@@ -62,9 +61,6 @@ async function startServer(bundleStats, opts) {
     } else if (req.method === 'GET' && req.url === '/viewer.js') {
       res.writeHead(200, {'Content-Type': 'text/javascript'});
       res.end(viewerScript);
-    } else if (req.method === 'GET' && req.url === '/viewer.js.map') {
-      res.writeHead(200, {'Content-Type': 'text/javascript'});
-      res.end(viewerScriptMap);
     } else {
       res.writeHead(404);
       res.end();
