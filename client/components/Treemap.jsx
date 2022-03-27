@@ -193,7 +193,7 @@ export default class Treemap extends Component {
    * Finds patterns across all chunk names to identify the unique "name" part.
    */
   findChunkNamePartIndex() {
-    const splitChunkNames = this.props.data.map((chunk) => chunk.label.split(/[^a-z0-9]/u));
+    const splitChunkNames = this.props.data.map((chunk) => chunk.label.split(/[^a-z0-9]/iu));
     const mostParts = Math.max(...splitChunkNames.map((parts) => parts.length));
     const namePart = {
       index: 0,
@@ -217,7 +217,7 @@ export default class Treemap extends Component {
           if (/[a-z]/u.test(part) && /[0-9]/u.test(part) && part.length === lastChunkPart.length) {
             identifierVotes.hash++;
           }
-          if (/^[0-9]+$/u.test(part) || /^[0-9]+$/u.test(part)) {
+          if (/^[a-z]+$/iu.test(part) || /^[0-9]+$/u.test(part)) {
             identifierVotes.name++;
           }
         }
@@ -232,7 +232,7 @@ export default class Treemap extends Component {
   }
 
   getChunkNamePart(chunkLabel) {
-    return chunkLabel.split(/[^a-z0-9]/u)[this.chunkNamePartIndex] || chunkLabel;
+    return chunkLabel.split(/[^a-z0-9]/iu)[this.chunkNamePartIndex] || chunkLabel;
   }
 }
 
