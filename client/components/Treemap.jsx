@@ -194,12 +194,12 @@ export default class Treemap extends Component {
    */
   findChunkNamePartIndex() {
     const splitChunkNames = this.props.data.map((chunk) => chunk.label.split(/[^a-z0-9]/iu));
-    const mostParts = Math.max(...splitChunkNames.map((parts) => parts.length));
+    const longestSplitName = Math.max(...splitChunkNames.map((parts) => parts.length));
     const namePart = {
       index: 0,
       votes: 0
     };
-    for (let i = mostParts - 1; i >= 0; i--) {
+    for (let i = longestSplitName - 1; i >= 0; i--) {
       const identifierVotes = {
         name: 0,
         hash: 0,
@@ -208,18 +208,15 @@ export default class Treemap extends Component {
       let lastChunkPart = '';
       for (const splitChunkName of splitChunkNames) {
         const part = splitChunkName[i];
-        if (part === undefined) {
+        if (part === undefined || part === '') {
           continue;
         }
         if (part === lastChunkPart) {
           identifierVotes.ext++;
-        } else {
-          if (/[a-z]/u.test(part) && /[0-9]/u.test(part) && part.length === lastChunkPart.length) {
-            identifierVotes.hash++;
-          }
-          if (/^[a-z]+$/iu.test(part) || /^[0-9]+$/u.test(part)) {
-            identifierVotes.name++;
-          }
+        } else if (/[a-z]/u.test(part) && /[0-9]/u.test(part) && part.length === lastChunkPart.length) {
+          identifierVotes.hash++;
+        } else if (/^[a-z]+$/iu.test(part) || /^[0-9]+$/u.test(part)) {
+          identifierVotes.name++;
         }
         lastChunkPart = part;
       }
