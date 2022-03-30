@@ -21,7 +21,8 @@ import ModulesList from './ModulesList';
 const SIZE_SWITCH_ITEMS = [
   {label: 'Stat', prop: 'statSize'},
   {label: 'Parsed', prop: 'parsedSize'},
-  {label: 'Gzipped', prop: 'gzipSize'}
+  {label: 'Gzipped', prop: 'gzipSize'},
+  {label: 'Brotli', prop: 'brotliSize'}
 ];
 
 @observer
@@ -162,7 +163,9 @@ export default class ModulesTreemap extends Component {
   };
 
   @computed get sizeSwitchItems() {
-    return store.hasParsedSizes ? SIZE_SWITCH_ITEMS : SIZE_SWITCH_ITEMS.slice(0, 1);
+    return store.hasParsedSizes ?
+      SIZE_SWITCH_ITEMS.filter(item => item.label !== "Brotli") : 
+      SIZE_SWITCH_ITEMS.slice(0, 1);
   }
 
   @computed get activeSizeItem() {
@@ -317,6 +320,7 @@ export default class ModulesTreemap extends Component {
         {this.renderModuleSize(module, 'stat')}
         {!module.inaccurateSizes && this.renderModuleSize(module, 'parsed')}
         {!module.inaccurateSizes && this.renderModuleSize(module, 'gzip')}
+        {!module.inaccurateSizes && this.renderModuleSize(module, 'brotli')}
         {module.path &&
           <div>Path: <strong>{module.path}</strong></div>
         }
