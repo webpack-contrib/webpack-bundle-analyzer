@@ -3,7 +3,6 @@ chai.use(require('chai-subset'));
 const {expect} = chai;
 const fs = require('fs');
 
-const _ = require('lodash');
 const {parseBundle} = require('../lib/parseUtils');
 
 const BUNDLES_DIR = `${__dirname}/bundles`;
@@ -17,7 +16,7 @@ describe('parseBundle', function () {
   bundles
     .filter(bundleName => bundleName.startsWith('valid'))
     .forEach(bundleName => {
-      it(`should parse ${_.lowerCase(bundleName)}`, function () {
+      it(`should parse ${bundleName.toLocaleLowerCase()}`, function () {
         const bundleFile = `${BUNDLES_DIR}/${bundleName}.js`;
         const bundle = parseBundle(bundleFile);
         const expectedModules = JSON.parse(fs.readFileSync(`${BUNDLES_DIR}/${bundleName}.modules.json`));

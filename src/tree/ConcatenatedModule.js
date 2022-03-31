@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import Module from './Module';
 import ContentModule from './ContentModule';
 import ContentFolder from './ContentFolder';
@@ -41,7 +39,7 @@ export default class ConcatenatedModule extends Module {
       return;
     }
 
-    const [folders, fileName] = [pathParts.slice(0, -1), _.last(pathParts)];
+    const [folders, fileName] = [pathParts.slice(0, -1), pathParts[pathParts.length - 1]];
     let currentFolder = this;
 
     folders.forEach(folderName => {
@@ -75,14 +73,14 @@ export default class ConcatenatedModule extends Module {
   }
 
   mergeNestedFolders() {
-    _.invokeMap(this.children, 'mergeNestedFolders');
+    this.children.forEach(child => child.mergeNestedFolders());
   }
 
   toChartData() {
     return {
       ...super.toChartData(),
       concatenated: true,
-      groups: _.invokeMap(this.children, 'toChartData')
+      groups: this.children.map(i => i.toChartData())
     };
   }
 

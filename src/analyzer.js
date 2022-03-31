@@ -27,7 +27,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
   const isAssetIncluded = createAssetsFilter(excludeAssets);
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
-  if (_.isEmpty(bundleStats.assets) && !_.isEmpty(bundleStats.children)) {
+  if (bundleStats.assets.length === 0 && bundleStats.children.length > 0) {
     const {children} = bundleStats;
     bundleStats = bundleStats.children[0];
     // Sometimes if there are additional child chunks produced add them as child assets,
@@ -38,7 +38,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
         bundleStats.assets.push(asset);
       });
     }
-  } else if (!_.isEmpty(bundleStats.children)) {
+  } else if (bundleStats.children.length > 0) {
     // Sometimes if there are additional child chunks produced add them as child assets
     bundleStats.children.forEach((child) => {
       child.assets.forEach((asset) => {
@@ -59,7 +59,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     // See #22
     asset.name = asset.name.replace(FILENAME_QUERY_REGEXP, '');
 
-    return FILENAME_EXTENSIONS.test(asset.name) && !_.isEmpty(asset.chunks) && isAssetIncluded(asset.name);
+    return FILENAME_EXTENSIONS.test(asset.name) && asset.chunks.length > 0 && isAssetIncluded(asset.name);
   });
 
   // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided
@@ -82,11 +82,14 @@ function getViewerData(bundleStats, bundleDir, opts) {
         continue;
       }
 
-      bundlesSources[statAsset.name] = _.pick(bundleInfo, 'src', 'runtimeSrc');
+      bundlesSources[statAsset.name] = {
+        src: bundleInfo.src,
+        runtimeSrc: bundleInfo.runtimeSrc
+      };
       Object.assign(parsedModules, bundleInfo.modules);
     }
 
-    if (_.isEmpty(bundlesSources)) {
+    if (Object.keys(bundlesSources).length === 0) {
       bundlesSources = null;
       parsedModules = null;
       logger.warn('\nNo bundles were parsed. Analyzer will show only original module sizes from stats file.\n');
@@ -97,8 +100,10 @@ function getViewerData(bundleStats, bundleDir, opts) {
     // If asset is a childAsset, then calculate appropriate bundle modules by looking through stats.children
     const assetBundles = statAsset.isChild ? getChildAssetBundles(bundleStats, statAsset.name) : bundleStats;
     const modules = assetBundles ? getBundleModules(assetBundles) : [];
-    const asset = result[statAsset.name] = _.pick(statAsset, 'size');
-    const assetSources = bundlesSources && _.has(bundlesSources, statAsset.name) ?
+    const asset = result[statAsset.name] = {
+      size: statAsset.size
+    };
+    const assetSources = bundlesSources && Object.prototype.hasOwnProperty.call(bundlesSources, statAsset.name) ?
       bundlesSources[statAsset.name] : null;
 
     if (assetSources) {
@@ -159,7 +164,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     statSize: asset.tree.size || asset.size,
     parsedSize: asset.parsedSize,
     gzipSize: asset.gzipSize,
-    groups: _.invokeMap(asset.tree.children, 'toChartData'),
+    groups: asset.tree.children.map(i => i.toChartData()),
     isInitialByEntrypoint: chunkToInitialByEntrypoint[filename] ?? {}
   }));
 }

@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 const MULTI_MODULE_REGEXP = /^multi /u;
 
 export function getModulePathParts(moduleData) {
@@ -7,14 +5,10 @@ export function getModulePathParts(moduleData) {
     return [moduleData.identifier];
   }
 
-  const parsedPath = _
-  // Removing loaders from module path: they're joined by `!` and the last part is a raw module path
-    .last(moduleData.name.split('!'))
-    // Splitting module path into parts
+  const loaders = moduleData.name.split('!');
+  const parsedPath = loaders[loaders.length - 1]
     .split('/')
-    // Removing first `.`
     .slice(1)
-    // Replacing `~` with `node_modules`
     .map(part => (part === '~' ? 'node_modules' : part));
 
   return parsedPath.length ? parsedPath : null;
