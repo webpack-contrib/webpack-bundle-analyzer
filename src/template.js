@@ -2,6 +2,8 @@
 const path = require('path');
 const fs = require('fs');
 
+import viewerScript from '../public/viewer.js';
+
 const _ = require('lodash');
 
 const projectRoot = path.resolve(__dirname, '..');
@@ -51,7 +53,10 @@ function renderViewer({title, enableWebSocket, chartData, defaultSizes, mode} = 
     <script>
       window.enableWebSocket = ${escapeJson(enableWebSocket)};
     </script>
-    ${getScript('viewer.js', mode)}
+    <!-- ${_.escape('viewer.js')} -->
+    <script>
+      ${viewerScript}
+    </script>
   </head>
 
   <body>
