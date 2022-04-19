@@ -50,7 +50,7 @@ exports.defaultTitle = function () {
 
   const currentTime = `${day} ${month} ${year} at ${hour}:${minute}`;
 
-  return `${process.env.npm_package_name || 'Webpack Bundle Analyzer'} [${currentTime}]`;
+  return `${process.env.npm_package_name || 'Speedy Bundle Analyzer'} [${currentTime}]`;
 };
 
 /**

@@ -86,11 +86,11 @@ class BundleAnalyzerPlugin {
       await writeStats(stats, statsFilepath);
 
       this.logger.info(
-        `${bold('Webpack Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
+        `${bold('Speedy Bundle Analyzer')} saved stats file to ${bold(statsFilepath)}`
       );
     } catch (error) {
       this.logger.error(
-        `${bold('Webpack Bundle Analyzer')} error saving stats file to ${bold(statsFilepath)}: ${error}`
+        `${bold('Speedy Bundle Analyzer')} error saving stats file to ${bold(statsFilepath)}: ${error}`
       );
     }
   }

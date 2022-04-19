@@ -74,7 +74,7 @@ async function startServer(bundleStats, opts) {
       const url = `http://${host}:${server.address().port}`;
 
       logger.info(
-        `${bold('Webpack Bundle Analyzer')} is started at ${bold(url)}\n` +
+        `${bold('Speedy Bundle Analyzer')} is started at ${bold(url)}\n` +
         `Use ${bold('Ctrl+C')} to close it`
       );
 
@@ -146,7 +146,7 @@ async function generateReport(bundleStats, opts) {
   fs.mkdirSync(path.dirname(reportFilepath), {recursive: true});
   fs.writeFileSync(reportFilepath, reportHtml);
 
-  logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
+  logger.info(`${bold('Speedy Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
 
   if (openBrowser) {
     open(`file://${reportFilepath}`, logger);
@@ -163,7 +163,7 @@ async function generateJSONReport(bundleStats, opts) {
   await fs.promises.mkdir(path.dirname(reportFilename), {recursive: true});
   await fs.promises.writeFile(reportFilename, JSON.stringify(chartData));
 
-  logger.info(`${bold('Webpack Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
+  logger.info(`${bold('Speedy Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
 }
 
 function getChartData(analyzerOpts, ...args) {
@@ -173,7 +173,7 @@ function getChartData(analyzerOpts, ...args) {
   try {
     chartData = analyzer.getViewerData(...args, analyzerOpts);
   } catch (err) {
-    logger.error(`Could't analyze webpack bundle:\n${err}`);
+    logger.error(`Could't analyze Speedy bundle:\n${err}`);
     logger.debug(err.stack);
     chartData = null;
   }

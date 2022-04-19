@@ -114,7 +114,7 @@ let bundleStats;
 try {
   bundleStats = analyzer.readStatsFromFile(bundleStatsFile);
 } catch (err) {
-  logger.error(`Couldn't read webpack bundle stats from "${bundleStatsFile}":\n${err}`);
+  logger.error(`Couldn't read Speedy bundle stats from "${bundleStatsFile}":\n${err}`);
   logger.debug(err.stack);
   process.exit(1);
 }
