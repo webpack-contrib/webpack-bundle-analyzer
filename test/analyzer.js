@@ -7,6 +7,7 @@ const path = require('path');
 const del = require('del');
 const childProcess = require('child_process');
 const puppeteer = require('puppeteer');
+const {getChunkToInitialByEntrypoint} = require('../src/analyzer');
 
 let browser;
 
@@ -223,6 +224,55 @@ describe('Analyzer', function () {
       });
     });
   });
+});
+
+
+describe('getChunkToInitialByEntrypoint', function () {
+  it('should map chunks correctly to entrypoints', function () {
+    const bundleStats = {
+      entrypoints: {
+        'A': {
+          name: 'A',
+          assets: [
+            {
+              name: 'chunkA.js'
+            }
+          ]
+        },
+        'B': {
+          name: 'B',
+          assets: [
+            {
+              name: 'chunkA.js'
+            },
+            {
+              name: 'chunkB.js'
+            }
+          ]
+        }
+      }
+    };
+    expect(JSON.stringify(getChunkToInitialByEntrypoint(bundleStats))).to.equal(JSON.stringify({
+      'chunkA.js': {'A': true, 'B': true},
+      'chunkB.js': {'B': true}
+    }));
+  });
+
+  it('should handle when bundlestats is null or undefined ', function () {
+    expect(JSON.stringify(getChunkToInitialByEntrypoint(null))).to.equal(JSON.stringify({}));
+    expect(JSON.stringify(getChunkToInitialByEntrypoint(undefined))).to.equal(JSON.stringify({}));
+  });
+
+  it('should handle when bundlestats is emoty', function () {
+    const bundleStatsWithoutEntryPoints = {};
+    expect(JSON.stringify(getChunkToInitialByEntrypoint(bundleStatsWithoutEntryPoints))).to.equal(JSON.stringify({}));
+  });
+
+  it('should handle when entrypoints is empty', function () {
+    const bundleStatsEmptyEntryPoint = {entrypoints: {}};
+    expect(JSON.stringify(getChunkToInitialByEntrypoint(bundleStatsEmptyEntryPoint))).to.equal(JSON.stringify({}));
+  });
+
 });
 
 function generateJSONReportFrom(statsFilename) {

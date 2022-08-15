@@ -81,7 +81,7 @@ export default class ModulesTreemap extends Component {
           </div>
           <div className={s.sidebarGroup}>
             <Dropdown label="Filter to initial chunks"
-              options={this.entrypoints}/>
+              options={store.entrypoints}/>
           </div>
           <div className={s.sidebarGroup}>
             <Search label="Search modules"
@@ -165,10 +165,6 @@ export default class ModulesTreemap extends Component {
       ')'
     ];
   };
-
-  @computed get entrypoints() {
-    return Object.keys(store.entrypointsToChunksMap);
-  }
 
   @computed get sizeSwitchItems() {
     return store.hasParsedSizes ? SIZE_SWITCH_ITEMS : SIZE_SWITCH_ITEMS.slice(0, 1);

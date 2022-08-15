@@ -10,9 +10,6 @@ export default class Dropdown extends PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = {
-      selectedOption: DEFAULT_DROPDOWN_SELECTION
-    };
   }
 
   render() {
@@ -24,7 +21,7 @@ export default class Dropdown extends PureComponent {
           {label}:
         </div>
         <div>
-          <select className={s.select} name={label} id={label} onChange={this.handleSelection}>
+          <select className={s.select} id={label} name={label} onChange={this.handleSelection}>
             <DropdownOption value={DEFAULT_DROPDOWN_SELECTION}/>
             {options.map(option =>
               <DropdownOption value={option}/>
@@ -43,22 +40,6 @@ export default class Dropdown extends PureComponent {
       return;
     }
 
-    this.setState({selectedOption: selected}, () => {
-      store.selectedChunks = [];
-      for (const chunk of store.allChunks) {
-        if (store.entrypointsToChunksMap[this.state.selectedOption].has(chunk.label)) {
-          store.selectedChunks.push(chunk);
-        }
-      }
-    });
-
-    // this.setState({selectedOption: selected}, () => {
-    //   store.selectedChunks = [];
-    //   for (const chunk of store.allChunks) {
-    //     if (chunk.label in store.entrypointsToChunksMap[this.state.selectedOption]) {
-    //       store.selectedChunks.push(chunk);
-    //     }
-    //   }
-    // });
+    store.selectedChunks = store.allChunks.filter(chunk => chunk.isInitialByEntrypoint[selected] ?? false);
   }
 }

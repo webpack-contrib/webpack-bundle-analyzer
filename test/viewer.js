@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const net = require('net');
 
 const Logger = require('../lib/Logger');
-const {getEntrypointsToChunksMap, startServer} = require('../lib/viewer.js');
+const {getEntrypoints, startServer} = require('../lib/viewer.js');
 
 describe('WebSocket server', function () {
   it('should not crash when an error is emitted on the websocket', function (done) {
@@ -70,36 +70,46 @@ describe('WebSocket server', function () {
   });
 });
 
-describe('getEntrypointsToChunksMap', function () {
-  it('should map entrypoints correctly to chuks', function () {
+describe('getEntrypoints', () => {
+  it('should get all entrypoints', () => {
     const bundleStats = {
       entrypoints: {
-        'entrypoint': {
-          name: 'entrypoint',
+        'A': {
+          name: 'A',
           assets: [
             {
-              name: 'chunk.js'
+              name: 'chunkA.js'
+            }
+          ]
+        },
+        'B': {
+          name: 'B',
+          assets: [
+            {
+              name: 'chunkA.js'
             },
             {
-              name: 'chunk.css'
+              name: 'chunkB.js'
             }
           ]
         }
       }
     };
-    expect(JSON.stringify(getEntrypointsToChunksMap(bundleStats))).to.equal(JSON.stringify({
-      'entrypoint': ['chunk.js']
-    }));
+    expect(JSON.stringify(getEntrypoints(bundleStats))).to.equal(JSON.stringify(['A', 'B']));
   });
 
-  it('should handle when bundle stats does not have entrypoints', function () {
+  it('should handle when bundlestats is null or undefined ', function () {
+    expect(JSON.stringify(getEntrypoints(null))).to.equal(JSON.stringify([]));
+    expect(JSON.stringify(getEntrypoints(undefined))).to.equal(JSON.stringify([]));
+  });
+
+  it('should handle when bundlestats is emoty', function () {
     const bundleStatsWithoutEntryPoints = {};
-    expect(JSON.stringify(getEntrypointsToChunksMap(bundleStatsWithoutEntryPoints))).to.equal(JSON.stringify({}));
+    expect(JSON.stringify(getEntrypoints(bundleStatsWithoutEntryPoints))).to.equal(JSON.stringify([]));
   });
 
   it('should handle when entrypoints is empty', function () {
     const bundleStatsEmptyEntryPoint = {entrypoints: {}};
-    expect(JSON.stringify(getEntrypointsToChunksMap(bundleStatsEmptyEntryPoint))).to.equal(JSON.stringify({}));
+    expect(JSON.stringify(getEntrypoints(bundleStatsEmptyEntryPoint))).to.equal(JSON.stringify([]));
   });
-
 });

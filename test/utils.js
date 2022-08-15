@@ -1,7 +1,7 @@
 const chai = require('chai');
 chai.use(require('chai-subset'));
 const {expect} = chai;
-const {createAssetsFilter, isJsFile} = require('../lib/utils');
+const {createAssetsFilter} = require('../lib/utils');
 
 describe('createAssetsFilter', function () {
 
@@ -56,17 +56,4 @@ describe('createAssetsFilter', function () {
     expect(filter('bar-foo')).to.equal(true);
   });
 
-});
-
-describe('isJsFile', function () {
-  it('should recognize .js files', function () {
-    expect(isJsFile('file.js')).to.equal(true);
-    expect(isJsFile('file.ts')).to.equal(false);
-    expect(isJsFile('file.css')).to.equal(false);
-  });
-
-  it('should filter out .js files', function () {
-    const DUMMY_FILES = ['file.js', 'file.css', 'file.ts'];
-    expect(DUMMY_FILES.filter(isJsFile).join()).to.equal(['file.js'].join());
-  });
 });
