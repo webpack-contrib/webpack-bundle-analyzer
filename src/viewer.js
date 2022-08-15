@@ -9,7 +9,7 @@ const {bold} = require('chalk');
 
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
-const {open} = require('./utils');
+const {isJsFile, open} = require('./utils');
 const {renderViewer} = require('./template');
 
 const projectRoot = path.resolve(__dirname, '..');
@@ -26,6 +26,7 @@ module.exports = {
   startServer,
   generateReport,
   generateJSONReport,
+  getEntrypointsToChunksMap,
   // deprecated
   start: startServer
 };
@@ -45,8 +46,9 @@ async function startServer(bundleStats, opts) {
   const analyzerOpts = {logger, excludeAssets};
 
   let chartData = getChartData(analyzerOpts, bundleStats, bundleDir);
+  const entrypointsToChunksMap = getEntrypointsToChunksMap(bundleStats);
 
-  if (!chartData) return;
+  if (!chartData || !entrypointsToChunksMap) return;
 
   const sirvMiddleware = sirv(`${projectRoot}/public`, {
     // disables caching and traverse the file system on every request
@@ -59,6 +61,7 @@ async function startServer(bundleStats, opts) {
         mode: 'server',
         title: resolveTitle(reportTitle),
         chartData,
+        entrypointsToChunksMap,
         defaultSizes,
         enableWebSocket: true
       });
@@ -133,6 +136,7 @@ async function generateReport(bundleStats, opts) {
   } = opts || {};
 
   const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
+  const entrypointsToChunksMap = getEntrypointsToChunksMap(bundleStats);
 
   if (!chartData) return;
 
@@ -140,6 +144,7 @@ async function generateReport(bundleStats, opts) {
     mode: 'static',
     title: resolveTitle(reportTitle),
     chartData,
+    entrypointsToChunksMap,
     defaultSizes,
     enableWebSocket: false
   });
@@ -186,4 +191,22 @@ function getChartData(analyzerOpts, ...args) {
   }
 
   return chartData;
+}
+
+function getEntrypointsToChunksMap(bundleStats) {
+  if (bundleStats === null || bundleStats === undefined) {
+    return {};
+  }
+
+  return Object.values(bundleStats.entrypoints || {}).reduce((entrypointsToChunksMap, entrypoint) => {
+    if (!(entrypoint.name in entrypointsToChunksMap)) {
+      entrypointsToChunksMap[entrypoint.name] = [];
+    }
+    entrypoint.assets.forEach(asset => {
+      if (isJsFile(asset.name)) {
+        entrypointsToChunksMap[entrypoint.name].push(asset.name);
+      }
+    });
+    return entrypointsToChunksMap;
+  }, {});
 }

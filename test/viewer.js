@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const net = require('net');
 
 const Logger = require('../lib/Logger');
-const {startServer} = require('../lib/viewer.js');
+const {getEntrypointsToChunksMap, startServer} = require('../lib/viewer.js');
 
 describe('WebSocket server', function () {
   it('should not crash when an error is emitted on the websocket', function (done) {
@@ -68,4 +68,38 @@ describe('WebSocket server', function () {
       })
       .catch(done);
   });
+});
+
+describe('getEntrypointsToChunksMap', function () {
+  it('should map entrypoints correctly to chuks', function () {
+    const bundleStats = {
+      entrypoints: {
+        'entrypoint': {
+          name: 'entrypoint',
+          assets: [
+            {
+              name: 'chunk.js'
+            },
+            {
+              name: 'chunk.css'
+            }
+          ]
+        }
+      }
+    };
+    expect(JSON.stringify(getEntrypointsToChunksMap(bundleStats))).to.equal(JSON.stringify({
+      'entrypoint': ['chunk.js']
+    }));
+  });
+
+  it('should handle when bundle stats does not have entrypoints', function () {
+    const bundleStatsWithoutEntryPoints = {};
+    expect(JSON.stringify(getEntrypointsToChunksMap(bundleStatsWithoutEntryPoints))).to.equal(JSON.stringify({}));
+  });
+
+  it('should handle when entrypoints is empty', function () {
+    const bundleStatsEmptyEntryPoint = {entrypoints: {}};
+    expect(JSON.stringify(getEntrypointsToChunksMap(bundleStatsEmptyEntryPoint))).to.equal(JSON.stringify({}));
+  });
+
 });

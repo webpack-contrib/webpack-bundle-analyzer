@@ -17,6 +17,7 @@ import s from './ModulesTreemap.css';
 import Search from './Search';
 import {store} from '../store';
 import ModulesList from './ModulesList';
+import Dropdown from './Dropdown';
 
 const SIZE_SWITCH_ITEMS = [
   {label: 'Stat', prop: 'statSize'},
@@ -77,6 +78,10 @@ export default class ModulesTreemap extends Component {
                 </Checkbox>
               </div>
             }
+          </div>
+          <div className={s.sidebarGroup}>
+            <Dropdown label="Filter to initial chunks"
+              options={this.entrypoints}/>
           </div>
           <div className={s.sidebarGroup}>
             <Search label="Search modules"
@@ -160,6 +165,10 @@ export default class ModulesTreemap extends Component {
       ')'
     ];
   };
+
+  @computed get entrypoints() {
+    return Object.keys(store.entrypointsToChunksMap);
+  }
 
   @computed get sizeSwitchItems() {
     return store.hasParsedSizes ? SIZE_SWITCH_ITEMS : SIZE_SWITCH_ITEMS.slice(0, 1);

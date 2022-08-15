@@ -22,6 +22,18 @@ export class Store {
     this.selectedChunks = this.allChunks;
   }
 
+  setEntrypoints(_entrypointsToChunksMap) {
+    // this.entrypointsToChunksMap = {};
+    // Object.entries(entrypointsToChunksMap).forEach(([entrypoint, chunkList]) => {
+    //   this.entrypointsToChunksMap[entrypoint] = new Set(chunkList);
+    // });
+
+    this.entrypointsToChunksMap = Object.entries(_entrypointsToChunksMap).reduce((entrypointsToChunksMap, [entrypoint, chunks]) => {
+      entrypointsToChunksMap[entrypoint] = new Set(chunks);
+      return entrypointsToChunksMap;
+    }, {});
+  }
+
   @computed get hasParsedSizes() {
     return this.allChunks.some(isChunkParsed);
   }

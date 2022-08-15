@@ -63,3 +63,8 @@ exports.open = function (uri, logger) {
     logger.debug(`Opener failed to open "${uri}":\n${err}`);
   }
 };
+
+exports.isJsFile = function (fileName) {
+  const JS_REGEX = /\.js$/u;
+  return JS_REGEX.test(fileName);
+};
