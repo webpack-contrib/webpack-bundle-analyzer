@@ -40,7 +40,7 @@ async function startServer(bundleStats, opts) {
     defaultSizes = 'parsed',
     excludeAssets = null,
     reportTitle,
-    logInfo
+    analyzerUrl
   } = opts || {};
 
   const analyzerOpts = {logger, excludeAssets};
@@ -74,9 +74,10 @@ async function startServer(bundleStats, opts) {
     server.listen(port, host, () => {
       resolve();
 
-      const url = logInfo({
-        host,
-        port: server.address().port
+      const url = analyzerUrl({
+        listenPort: port,
+        listenHost: host,
+        boundAddress: server.address()
       });
 
       logger.info(

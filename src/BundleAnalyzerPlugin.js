@@ -23,7 +23,7 @@ class BundleAnalyzerPlugin {
       logLevel: 'info',
       // deprecated
       startAnalyzer: true,
-      logInfo: utils.defaultLogInfo,
+      analyzerUrl: utils.defaultAnalyzerUrl,
       ...opts,
       analyzerPort: 'analyzerPort' in opts ? (opts.analyzerPort === 'auto' ? 0 : opts.analyzerPort) : 8888
     };
@@ -109,7 +109,7 @@ class BundleAnalyzerPlugin {
         logger: this.logger,
         defaultSizes: this.opts.defaultSizes,
         excludeAssets: this.opts.excludeAssets,
-        logInfo: this.opts.logInfo
+        analyzerUrl: this.opts.analyzerUrl
       });
     }
   }

@@ -53,13 +53,9 @@ exports.defaultTitle = function () {
   return `${process.env.npm_package_name || 'Webpack Bundle Analyzer'} [${currentTime}]`;
 };
 
-exports.defaultLogInfo = function (options) {
-  const {host, port} = options;
-  const url = `http://${host}:${port}`;
-  return (
-    `${bold("Webpack Bundle Analyzer")} is started at ${bold(url)}\n` +
-    `Use ${bold("Ctrl+C")} to close it`
-  );
+exports.defaultAnalyzerUrl = function (options) {
+  const {listenHost, boundAddress} = options;
+  return `http://${listenHost}:${boundAddress.port}`;
 };
 
 /**

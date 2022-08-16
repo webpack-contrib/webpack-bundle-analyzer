@@ -17,7 +17,7 @@ describe('WebSocket server', function () {
       openBrowser: false,
       logger: new Logger('silent'),
       port: 0,
-      logInfo: () => ''
+      analyzerUrl: () => ''
     };
 
     startServer(bundleStats, options)
