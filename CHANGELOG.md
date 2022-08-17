@@ -12,6 +12,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+* **New Feature** 
+  * Support outputting different URL in server mode ([#520](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/520) by [@southorange1228](https://github.com/southorange1228))
+
 ## 4.5.0
 
  * **Improvement**

@@ -53,6 +53,11 @@ exports.defaultTitle = function () {
   return `${process.env.npm_package_name || 'Webpack Bundle Analyzer'} [${currentTime}]`;
 };
 
+exports.defaultAnalyzerUrl = function (options) {
+  const {listenHost, boundAddress} = options;
+  return `http://${listenHost}:${boundAddress.port}`;
+};
+
 /**
  * Calls opener on a URI, but silently try / catches it.
  */
