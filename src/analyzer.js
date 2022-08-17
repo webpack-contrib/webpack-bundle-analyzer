@@ -216,7 +216,7 @@ function createModulesTree(modules) {
 }
 
 function getChunkToInitialByEntrypoint(bundleStats) {
-  if (bundleStats === null || bundleStats === undefined) {
+  if (bundleStats == null) {
     return {};
   }
   const chunkToEntrypointInititalMap = {};

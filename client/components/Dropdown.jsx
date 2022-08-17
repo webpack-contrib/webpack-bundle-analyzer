@@ -1,5 +1,4 @@
 import PureComponent from '../lib/PureComponent';
-import DropdownOption from './DropdownOption';
 
 import s from './Dropdown.css';
 import {store} from '../store';
@@ -22,9 +21,9 @@ export default class Dropdown extends PureComponent {
         </div>
         <div>
           <select className={s.select} id={label} name={label} onChange={this.handleSelection}>
-            <DropdownOption value={DEFAULT_DROPDOWN_SELECTION}/>
+            <option value={DEFAULT_DROPDOWN_SELECTION}>{DEFAULT_DROPDOWN_SELECTION}</option>
             {options.map(option =>
-              <DropdownOption value={option}/>
+              <option key={option} value={option}>{option}</option>
             )}
           </select>
         </div>
