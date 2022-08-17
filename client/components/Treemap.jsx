@@ -86,7 +86,7 @@ export default class Treemap extends Component {
         variables.groupColor = {
           model: 'hsla',
           h: Math.round(Math.abs(hash) % 360),
-          s: 100,
+          s: 60,
           l: 50,
           a: 0.9
         };
