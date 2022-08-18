@@ -13,7 +13,6 @@ const FILENAME_QUERY_REGEXP = /\?.*$/u;
 const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
 
 module.exports = {
-  getChunkToInitialByEntrypoint,
   getViewerData,
   readStatsFromFile
 };
