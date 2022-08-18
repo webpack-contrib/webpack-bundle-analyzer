@@ -138,7 +138,7 @@ describe('Analyzer', function () {
     });
   });
 
-  it('should gracefully process missing chunks', async function () {
+  it('should gracefully process missing module chunks', async function () {
     generateReportFrom('with-missing-module-chunks/stats.json');
     const chartData = await getChartData();
     const invalidChunk = _.find(chartData, {label: 'invalid-chunk.js'});
