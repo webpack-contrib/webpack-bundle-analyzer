@@ -14,6 +14,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 * **New Feature** 
   * Support outputting different URL in server mode ([#520](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/520) by [@southorange1228](https://github.com/southorange1228))
+  * Use deterministic chunk colors (#[501](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/501) by [@CreativeTechGuy](https://github.com/CreativeTechGuy))
 
 ## 4.5.0
 
