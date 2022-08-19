@@ -9,9 +9,10 @@ jobs:
     strategy:
       matrix:
         node:
-          - '10'
           - '12'
           - '14'
+          - '16'
+          - '18'
     runs-on: ubuntu-latest
     name: Tests on Node.js v${{ matrix.node }}
     steps:
