@@ -128,7 +128,8 @@ if (mode === 'server') {
     reportTitle,
     bundleDir,
     excludeAssets,
-    logger: new Logger(logLevel)
+    logger: new Logger(logLevel),
+    analyzerUrl: utils.defaultAnalyzerUrl
   });
 } else if (mode === 'static') {
   viewer.generateReport(bundleStats, {

@@ -12,6 +12,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+* **Bug Fix** 
+  * fix outputting different URL in cli mode ([#524](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/524) by [@southorange1228](https://github.com/southorange1228))
+
 ## 4.6.0
 
 * **New Feature** 
