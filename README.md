@@ -1,6 +1,5 @@
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
-[![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
 [![downloads][downloads]][downloads-url]
 
@@ -210,9 +209,6 @@ To get more information about it you can read [issue #147](https://github.com/we
 
 [node]: https://img.shields.io/node/v/webpack-bundle-analyzer.svg
 [node-url]: https://nodejs.org
-
-[deps]: https://david-dm.org/webpack-contrib/webpack-bundle-analyzer.svg
-[deps-url]: https://david-dm.org/webpack-contrib/webpack-bundle-analyzer
 
 [tests]: http://img.shields.io/travis/webpack-contrib/webpack-bundle-analyzer.svg
 [tests-url]: https://travis-ci.org/webpack-contrib/webpack-bundle-analyzer
