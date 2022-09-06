@@ -269,8 +269,9 @@ async function getChartData() {
 }
 
 async function getCompressionAlgorithm() {
-  return await nightmare.goto(`file://${__dirname}/output/report.html`).evaluate(
-    () => window.compressionAlgorithm);
+  const page = await browser.newPage();
+  await page.goto(`file://${__dirname}/output/report.html`);
+  return await page.evaluate(() => window.compressionAlgorithm);
 }
 
 function forEachChartItem(chartData, cb) {
