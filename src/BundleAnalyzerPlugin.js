@@ -24,6 +24,7 @@ class BundleAnalyzerPlugin {
       logLevel: 'info',
       // deprecated
       startAnalyzer: true,
+      analyzerUrl: utils.defaultAnalyzerUrl,
       ...opts,
       analyzerPort: 'analyzerPort' in opts ? (opts.analyzerPort === 'auto' ? 0 : opts.analyzerPort) : 8888
     };
@@ -109,7 +110,8 @@ class BundleAnalyzerPlugin {
         bundleDir: this.getBundleDirFromCompiler(),
         logger: this.logger,
         defaultSizes: this.opts.defaultSizes,
-        excludeAssets: this.opts.excludeAssets
+        excludeAssets: this.opts.excludeAssets,
+        analyzerUrl: this.opts.analyzerUrl
       });
     }
   }
@@ -138,6 +140,9 @@ class BundleAnalyzerPlugin {
   }
 
   getBundleDirFromCompiler() {
+    if (typeof this.compiler.outputFileSystem.constructor === 'undefined') {
+      return this.compiler.outputPath;
+    }
     switch (this.compiler.outputFileSystem.constructor.name) {
       case 'MemoryFileSystem':
         return null;

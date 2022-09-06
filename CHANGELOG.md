@@ -12,6 +12,33 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+## 4.6.1
+
+* **Bug Fix**
+  * fix outputting different URL in cli mode ([#524](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/524) by [@southorange1228](https://github.com/southorange1228))
+
+## 4.6.0
+
+* **New Feature** 
+  * Support outputting different URL in server mode ([#520](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/520) by [@southorange1228](https://github.com/southorange1228))
+  * Use deterministic chunk colors (#[501](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/501) by [@CreativeTechGuy](https://github.com/CreativeTechGuy))
+
+## 4.5.0
+
+ * **Improvement**
+   * Stop publishing src folder to npm ([#478](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/478) by [@wood1986](https://github.com/wood1986))
+
+* **Internal**
+  * Update some dependencies ([#448](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/448))
+  * Replace nightmare with Puppeteer ([#469](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/469) by [@valscion](https://github.com/valscion))
+  * Replace Mocha with Jest ([#470](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/470) by [@valscion](https://github.com/valscion))
+
+## 4.4.2
+
+ * **Bug Fix**
+   * Fix failure with `compiler.outputFileSystem.constructor` being `undefined` ([#447](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/447) by [@kedarv](https://github.com/kedarv) and [@alexander-akait](https://github.com/alexander-akait))
+     * **NOTE:** This fix doesn't have added test coverage so the fix might break in future versions unless test coverage is added later.
+
 ## 4.4.1
 
  * **Bug Fix**

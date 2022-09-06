@@ -1,11 +1,7 @@
 const {readdirSync} = require('fs');
-const chai = require('chai');
 const webpack = require('webpack');
 const _ = require('lodash');
 
-chai.use(require('chai-subset'));
-
-global.expect = chai.expect;
 global.webpackCompile = webpackCompile;
 global.makeWebpackConfig = makeWebpackConfig;
 global.forEachWebpackVersion = forEachWebpackVersion;

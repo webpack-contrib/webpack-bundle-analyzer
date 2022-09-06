@@ -1,27 +1,33 @@
+const chai = require('chai');
+chai.use(require('chai-subset'));
+const {expect} = chai;
 const _ = require('lodash');
 const fs = require('fs');
 const path = require('path');
 const del = require('del');
 const childProcess = require('child_process');
+const puppeteer = require('puppeteer');
 
-let nightmare;
+let browser;
 
 describe('Analyzer', function () {
-  this.timeout(15000);
+  jest.setTimeout(15000);
 
-  before(function () {
-    const Nightmare = require('nightmare');
-    nightmare = Nightmare();
+  beforeAll(async function () {
+    browser = await puppeteer.launch();
     del.sync(`${__dirname}/output`);
   });
 
   beforeEach(async function () {
-    this.timeout(15000);
-    await nightmare.goto('about:blank');
+    jest.setTimeout(15000);
   });
 
   afterEach(function () {
     del.sync(`${__dirname}/output`);
+  });
+
+  afterAll(async function () {
+    await browser.close();
   });
 
   it('should support stats files with all the information in `children` array', async function () {
@@ -251,11 +257,15 @@ function generateReportFrom(statsFilename, additionalOptions = '') {
 }
 
 async function getTitleFromReport() {
-  return await nightmare.goto(`file://${__dirname}/output/report.html`).title();
+  const page = await browser.newPage();
+  await page.goto(`file://${__dirname}/output/report.html`);
+  return await page.title();
 }
 
 async function getChartData() {
-  return await nightmare.goto(`file://${__dirname}/output/report.html`).evaluate(() => window.chartData);
+  const page = await browser.newPage();
+  await page.goto(`file://${__dirname}/output/report.html`);
+  return await page.evaluate(() => window.chartData);
 }
 
 async function getCompressionAlgorithm() {

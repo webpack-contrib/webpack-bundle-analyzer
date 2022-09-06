@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
 
@@ -29,10 +29,8 @@ jobs:
       - name: Build sources
         run: npm run build
 
-      - name: Run tests with xvfb available
-        uses: GabrielBB/xvfb-action@v1
-        with:
-          run: npm run test
+      - name: Run tests
+        run: npm run test
 
   lint:
     runs-on: ubuntu-latest
@@ -41,7 +39,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: '14.x'
 

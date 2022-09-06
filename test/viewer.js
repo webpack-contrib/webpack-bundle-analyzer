@@ -1,3 +1,6 @@
+const chai = require('chai');
+chai.use(require('chai-subset'));
+const {expect} = chai;
 const crypto = require('crypto');
 const net = require('net');
 
@@ -13,7 +16,8 @@ describe('WebSocket server', function () {
     const options = {
       openBrowser: false,
       logger: new Logger('silent'),
-      port: 0
+      port: 0,
+      analyzerUrl: () => ''
     };
 
     startServer(bundleStats, options)

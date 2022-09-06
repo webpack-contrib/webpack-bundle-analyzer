@@ -1,3 +1,6 @@
+const chai = require('chai');
+chai.use(require('chai-subset'));
+const {expect} = chai;
 const path = require('path');
 const {readFileSync} = require('fs');
 const globby = require('globby');
