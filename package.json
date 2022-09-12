@@ -34,6 +34,7 @@
   "dependencies": {
     "acorn": "^8.0.4",
     "acorn-walk": "^8.0.0",
+    "brotli-size": "^4.0.0",
     "chalk": "^4.1.0",
     "commander": "^7.2.0",
     "gzip-size": "^6.0.0",
