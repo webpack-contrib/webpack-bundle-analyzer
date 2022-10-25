@@ -103,7 +103,7 @@ describe('getEntrypoints', () => {
     expect(JSON.stringify(getEntrypoints(undefined))).to.equal(JSON.stringify([]));
   });
 
-  it('should handle when bundlestats is emoty', function () {
+  it('should handle when bundlestats is empty', function () {
     const bundleStatsWithoutEntryPoints = {};
     expect(JSON.stringify(getEntrypoints(bundleStatsWithoutEntryPoints))).to.equal(JSON.stringify([]));
   });
