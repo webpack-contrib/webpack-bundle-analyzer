@@ -1,6 +1,5 @@
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
-[![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
 [![downloads][downloads]][downloads-url]
 
@@ -59,6 +58,7 @@ new BundleAnalyzerPlugin(options?: object)
 |**`analyzerMode`**|One of: `server`, `static`, `json`, `disabled`|Default: `server`. In `server` mode analyzer will start HTTP server to show bundle report. In `static` mode single HTML file with bundle report will be generated. In `json` mode single JSON file with bundle report will be generated. In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`. |
 |**`analyzerHost`**|`{String}`|Default: `127.0.0.1`. Host that will be used in `server` mode to start HTTP server.|
 |**`analyzerPort`**|`{Number}` or `auto`|Default: `8888`. Port that will be used in `server` mode to start HTTP server.|
+|**`analyzerUrl`**|`{Function}` called with `{ listenHost: string, listenHost: string, boundAddress: server.address}`. [server.address comes from Node.js](https://nodejs.org/api/net.html#serveraddress)| Default: `http://${listenHost}:${boundAddress.port}`. The URL printed to console with server mode.|
 |**`reportFilename`**|`{String}`|Default: `report.html`. Path to bundle report file that will be generated in `static` mode. It can be either an absolute path or a path relative to a bundle output directory (which is output.path in webpack config).|
 |**`reportTitle`**|`{String\|function}`|Default: function that returns pretty printed current date and time. Content of the HTML `title` element; or a function of the form `() => string` that provides the content.|
 |**`defaultSizes`**|One of: `stat`, `parsed`, `gzip`|Default: `parsed`. Module sizes to show in report by default. [Size definitions](#size-definitions) section describes what these values mean.|
@@ -209,9 +209,6 @@ To get more information about it you can read [issue #147](https://github.com/we
 
 [node]: https://img.shields.io/node/v/webpack-bundle-analyzer.svg
 [node-url]: https://nodejs.org
-
-[deps]: https://david-dm.org/webpack-contrib/webpack-bundle-analyzer.svg
-[deps-url]: https://david-dm.org/webpack-contrib/webpack-bundle-analyzer
 
 [tests]: http://img.shields.io/travis/webpack-contrib/webpack-bundle-analyzer.svg
 [tests-url]: https://travis-ci.org/webpack-contrib/webpack-bundle-analyzer
