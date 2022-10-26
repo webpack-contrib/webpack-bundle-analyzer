@@ -26,6 +26,7 @@ module.exports = {
   startServer,
   generateReport,
   generateJSONReport,
+  getEntrypoints,
   // deprecated
   start: startServer
 };
@@ -46,6 +47,7 @@ async function startServer(bundleStats, opts) {
   const analyzerOpts = {logger, excludeAssets};
 
   let chartData = getChartData(analyzerOpts, bundleStats, bundleDir);
+  const entrypoints = getEntrypoints(bundleStats);
 
   if (!chartData) return;
 
@@ -60,6 +62,7 @@ async function startServer(bundleStats, opts) {
         mode: 'server',
         title: resolveTitle(reportTitle),
         chartData,
+        entrypoints,
         defaultSizes,
         enableWebSocket: true
       });
@@ -138,6 +141,7 @@ async function generateReport(bundleStats, opts) {
   } = opts || {};
 
   const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
+  const entrypoints = getEntrypoints(bundleStats);
 
   if (!chartData) return;
 
@@ -145,6 +149,7 @@ async function generateReport(bundleStats, opts) {
     mode: 'static',
     title: resolveTitle(reportTitle),
     chartData,
+    entrypoints,
     defaultSizes,
     enableWebSocket: false
   });
@@ -191,4 +196,11 @@ function getChartData(analyzerOpts, ...args) {
   }
 
   return chartData;
+}
+
+function getEntrypoints(bundleStats) {
+  if (bundleStats === null || bundleStats === undefined) {
+    return [];
+  }
+  return Object.values(bundleStats.entrypoints || {}).map(entrypoint => entrypoint.name);
 }

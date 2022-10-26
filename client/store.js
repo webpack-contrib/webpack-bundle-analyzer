@@ -22,6 +22,10 @@ export class Store {
     this.selectedChunks = this.allChunks;
   }
 
+  setEntrypoints(entrypoints) {
+    this.entrypoints = entrypoints;
+  }
+
   @computed get hasParsedSizes() {
     return this.allChunks.some(isChunkParsed);
   }

@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const net = require('net');
 
 const Logger = require('../lib/Logger');
-const {startServer} = require('../lib/viewer.js');
+const {getEntrypoints, startServer} = require('../lib/viewer.js');
 
 describe('WebSocket server', function () {
   it('should not crash when an error is emitted on the websocket', function (done) {
@@ -68,5 +68,49 @@ describe('WebSocket server', function () {
         });
       })
       .catch(done);
+  });
+});
+
+describe('getEntrypoints', () => {
+  it('should get all entrypoints', () => {
+    const bundleStats = {
+      entrypoints: {
+        'A': {
+          name: 'A',
+          assets: [
+            {
+              name: 'chunkA.js'
+            }
+          ]
+        },
+        'B': {
+          name: 'B',
+          assets: [
+            {
+              name: 'chunkA.js'
+            },
+            {
+              name: 'chunkB.js'
+            }
+          ]
+        }
+      }
+    };
+    expect(JSON.stringify(getEntrypoints(bundleStats))).to.equal(JSON.stringify(['A', 'B']));
+  });
+
+  it('should handle when bundlestats is null or undefined ', function () {
+    expect(JSON.stringify(getEntrypoints(null))).to.equal(JSON.stringify([]));
+    expect(JSON.stringify(getEntrypoints(undefined))).to.equal(JSON.stringify([]));
+  });
+
+  it('should handle when bundlestats is empty', function () {
+    const bundleStatsWithoutEntryPoints = {};
+    expect(JSON.stringify(getEntrypoints(bundleStatsWithoutEntryPoints))).to.equal(JSON.stringify([]));
+  });
+
+  it('should handle when entrypoints is empty', function () {
+    const bundleStatsEmptyEntryPoint = {entrypoints: {}};
+    expect(JSON.stringify(getEntrypoints(bundleStatsEmptyEntryPoint))).to.equal(JSON.stringify([]));
   });
 });

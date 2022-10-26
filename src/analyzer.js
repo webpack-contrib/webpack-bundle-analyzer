@@ -147,6 +147,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     return result;
   }, {});
 
+  const chunkToInitialByEntrypoint = getChunkToInitialByEntrypoint(bundleStats);
   return Object.entries(assets).map(([filename, asset]) => ({
     label: filename,
     isAsset: true,
@@ -157,7 +158,8 @@ function getViewerData(bundleStats, bundleDir, opts) {
     statSize: asset.tree.size || asset.size,
     parsedSize: asset.parsedSize,
     gzipSize: asset.gzipSize,
-    groups: _.invokeMap(asset.tree.children, 'toChartData')
+    groups: _.invokeMap(asset.tree.children, 'toChartData'),
+    isInitialByEntrypoint: chunkToInitialByEntrypoint[filename] ?? {}
   }));
 }
 
@@ -211,3 +213,17 @@ function createModulesTree(modules) {
 
   return root;
 }
+
+function getChunkToInitialByEntrypoint(bundleStats) {
+  if (bundleStats == null) {
+    return {};
+  }
+  const chunkToEntrypointInititalMap = {};
+  Object.values(bundleStats.entrypoints || {}).forEach((entrypoint) => {
+    for (const asset of entrypoint.assets) {
+      chunkToEntrypointInititalMap[asset.name] = chunkToEntrypointInititalMap[asset.name] ?? {};
+      chunkToEntrypointInititalMap[asset.name][entrypoint.name] = true;
+    }
+  });
+  return chunkToEntrypointInititalMap;
+};

@@ -137,7 +137,7 @@ describe('Analyzer', function () {
     });
   });
 
-  it('should gracefully process missing chunks', async function () {
+  it('should gracefully process missing module chunks', async function () {
     generateReportFrom('with-missing-module-chunks/stats.json');
     const chartData = await getChartData();
     const invalidChunk = _.find(chartData, {label: 'invalid-chunk.js'});
@@ -193,6 +193,20 @@ describe('Analyzer', function () {
   it('should support stats files with non-asset asset', async function () {
     generateReportFrom('with-non-asset-asset/stats.json');
     await expectValidReport({bundleLabel: 'bundle.js'});
+  });
+
+  it('should map chunks correctly to entrypoints', async function () {
+    generateReportFrom('with-multiple-entrypoints/stats.json');
+    const chartData = await getChartData();
+    expect(chartData).to.containSubset(
+      require('./stats/with-multiple-entrypoints/expected-chart-data')
+    );
+  });
+
+  it('should return empty chartData if there are no entrypoints', async function () {
+    generateReportFrom('with-no-entrypoints/stats.json');
+    const chartData = await getChartData();
+    expect(chartData).to.be.empty;
   });
 
   describe('options', function () {

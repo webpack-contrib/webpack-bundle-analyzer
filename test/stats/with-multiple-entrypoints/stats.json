@@ -1,0 +1,5075 @@
+{
+    "hash": "063fb032f6c5983a9ddf",
+    "version": "5.74.0",
+    "time": 2660,
+    "builtAt": 1660834599531,
+    "publicPath": "auto",
+    "outputPath": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/dist",
+    "assetsByChunkName": {
+      "app": [
+        "app.js"
+      ],
+      "page1": [
+        "page1.js"
+      ],
+      "react-vendors": [
+        "react-vendors.js"
+      ],
+      "other-vendors": [
+        "other-vendors.js"
+      ],
+      "runtime": [
+        "runtime.js"
+      ]
+    },
+    "assets": [
+      {
+        "type": "asset",
+        "name": "react-vendors.js",
+        "size": 130522,
+        "emitted": false,
+        "comparedForEmit": true,
+        "cached": false,
+        "info": {
+          "javascriptModule": false,
+          "minimized": true,
+          "related": {
+            "license": "react-vendors.js.LICENSE.txt"
+          },
+          "size": 130522
+        },
+        "chunkNames": [
+          "react-vendors"
+        ],
+        "chunkIdHints": [],
+        "auxiliaryChunkNames": [],
+        "auxiliaryChunkIdHints": [],
+        "filteredRelated": 0,
+        "related": [
+          {
+            "type": "license",
+            "name": "react-vendors.js.LICENSE.txt",
+            "size": 788,
+            "emitted": false,
+            "comparedForEmit": true,
+            "cached": false,
+            "info": {
+              "extractedComments": true,
+              "size": 788
+            },
+            "chunkNames": [],
+            "chunkIdHints": [],
+            "auxiliaryChunkNames": [],
+            "auxiliaryChunkIdHints": [],
+            "related": {},
+            "chunks": [],
+            "auxiliaryChunks": [],
+            "isOverSizeLimit": false
+          }
+        ],
+        "chunks": [
+          "react-vendors"
+        ],
+        "auxiliaryChunks": [],
+        "isOverSizeLimit": false
+      },
+      {
+        "type": "asset",
+        "name": "other-vendors.js",
+        "size": 79779,
+        "emitted": false,
+        "comparedForEmit": true,
+        "cached": false,
+        "info": {
+          "javascriptModule": false,
+          "minimized": true,
+          "related": {
+            "license": "other-vendors.js.LICENSE.txt"
+          },
+          "size": 79779
+        },
+        "chunkNames": [
+          "other-vendors"
+        ],
+        "chunkIdHints": [],
+        "auxiliaryChunkNames": [],
+        "auxiliaryChunkIdHints": [],
+        "filteredRelated": 0,
+        "related": [
+          {
+            "type": "license",
+            "name": "other-vendors.js.LICENSE.txt",
+            "size": 336,
+            "emitted": false,
+            "comparedForEmit": true,
+            "cached": false,
+            "info": {
+              "extractedComments": true,
+              "size": 336
+            },
+            "chunkNames": [],
+            "chunkIdHints": [],
+            "auxiliaryChunkNames": [],
+            "auxiliaryChunkIdHints": [],
+            "related": {},
+            "chunks": [],
+            "auxiliaryChunks": [],
+            "isOverSizeLimit": false
+          }
+        ],
+        "chunks": [
+          "other-vendors"
+        ],
+        "auxiliaryChunks": [],
+        "isOverSizeLimit": false
+      },
+      {
+        "type": "asset",
+        "name": "runtime.js",
+        "size": 3205,
+        "emitted": false,
+        "comparedForEmit": true,
+        "cached": false,
+        "info": {
+          "javascriptModule": false,
+          "minimized": true,
+          "size": 3205
+        },
+        "chunkNames": [
+          "runtime"
+        ],
+        "chunkIdHints": [],
+        "auxiliaryChunkNames": [],
+        "auxiliaryChunkIdHints": [],
+        "related": {},
+        "chunks": [
+          "runtime"
+        ],
+        "auxiliaryChunks": [],
+        "isOverSizeLimit": false
+      },
+      {
+        "type": "asset",
+        "name": "page1.js",
+        "size": 333,
+        "emitted": false,
+        "comparedForEmit": true,
+        "cached": false,
+        "info": {
+          "javascriptModule": false,
+          "minimized": true,
+          "size": 333
+        },
+        "chunkNames": [
+          "page1"
+        ],
+        "chunkIdHints": [],
+        "auxiliaryChunkNames": [],
+        "auxiliaryChunkIdHints": [],
+        "related": {},
+        "chunks": [
+          "page1"
+        ],
+        "auxiliaryChunks": [],
+        "isOverSizeLimit": false
+      },
+      {
+        "type": "asset",
+        "name": "app.js",
+        "size": 274,
+        "emitted": false,
+        "comparedForEmit": true,
+        "cached": false,
+        "info": {
+          "javascriptModule": false,
+          "minimized": true,
+          "size": 274
+        },
+        "chunkNames": [
+          "app"
+        ],
+        "chunkIdHints": [],
+        "auxiliaryChunkNames": [],
+        "auxiliaryChunkIdHints": [],
+        "related": {},
+        "chunks": [
+          "app"
+        ],
+        "auxiliaryChunks": [],
+        "isOverSizeLimit": false
+      },
+      {
+        "type": "asset",
+        "name": "lazy_js.js",
+        "size": 226,
+        "emitted": false,
+        "comparedForEmit": true,
+        "cached": false,
+        "info": {
+          "javascriptModule": false,
+          "minimized": true,
+          "size": 226
+        },
+        "chunkNames": [],
+        "chunkIdHints": [],
+        "auxiliaryChunkNames": [],
+        "auxiliaryChunkIdHints": [],
+        "related": {},
+        "chunks": [
+          "lazy_js"
+        ],
+        "auxiliaryChunks": [],
+        "isOverSizeLimit": false
+      }
+    ],
+    "chunks": [
+      {
+        "rendered": true,
+        "initial": true,
+        "entry": false,
+        "recorded": false,
+        "size": 116,
+        "sizes": {
+          "javascript": 116
+        },
+        "names": [
+          "app"
+        ],
+        "idHints": [],
+        "runtime": [
+          "runtime"
+        ],
+        "files": [
+          "app.js"
+        ],
+        "auxiliaryFiles": [],
+        "hash": "e1d2a5315887c375256c",
+        "childrenByOrder": {},
+        "id": "app",
+        "siblings": [],
+        "parents": [
+          "other-vendors",
+          "runtime"
+        ],
+        "children": [
+          "page1"
+        ],
+        "modules": [
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 116,
+            "sizes": {
+              "javascript": 116
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "name": "./app.js",
+            "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "index": 14,
+            "preOrderIndex": 14,
+            "index2": 14,
+            "postOrderIndex": 14,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "issuer": null,
+            "issuerName": null,
+            "issuerPath": null,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 389,
+            "issuerId": null,
+            "chunks": [
+              "app"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": null,
+                "module": null,
+                "moduleName": null,
+                "resolvedModuleIdentifier": null,
+                "resolvedModule": null,
+                "type": "entry",
+                "active": true,
+                "explanation": "",
+                "userRequest": "./app.js",
+                "loc": "app",
+                "moduleId": null,
+                "resolvedModuleId": null
+              }
+            ],
+            "usedExports": [],
+            "providedExports": [],
+            "optimizationBailout": [
+              "Statement (ExpressionStatement) with side effects in source code at 4:0-37",
+              "ModuleConcatenation bailout: Cannot concat with ./node_modules/isomorphic-fetch/fetch-npm-browserify.js: Module is not an ECMAScript module",
+              "ModuleConcatenation bailout: Cannot concat with ./node_modules/lodash/lodash.js: Module is not an ECMAScript module"
+            ],
+            "depth": 0
+          }
+        ],
+        "origins": [
+          {
+            "module": "",
+            "moduleIdentifier": "",
+            "moduleName": "",
+            "loc": "app",
+            "request": "./app.js"
+          }
+        ]
+      },
+      {
+        "rendered": true,
+        "initial": false,
+        "entry": false,
+        "recorded": false,
+        "size": 98,
+        "sizes": {
+          "javascript": 98
+        },
+        "names": [],
+        "idHints": [],
+        "runtime": [
+          "runtime"
+        ],
+        "files": [
+          "lazy_js.js"
+        ],
+        "auxiliaryFiles": [],
+        "hash": "29208135d57b1902b932",
+        "childrenByOrder": {},
+        "id": "lazy_js",
+        "siblings": [],
+        "parents": [
+          "page1"
+        ],
+        "children": [],
+        "modules": [
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 98,
+            "sizes": {
+              "javascript": 98
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+            "name": "./lazy.js",
+            "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+            "index": 16,
+            "preOrderIndex": 16,
+            "index2": 16,
+            "postOrderIndex": 16,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "issuerName": "./page1.js",
+            "issuerPath": [
+              {
+                "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "name": "./page1.js",
+                "id": 832
+              }
+            ],
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 401,
+            "issuerId": 832,
+            "chunks": [
+              "lazy_js"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "module": "./page1.js",
+                "moduleName": "./page1.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "resolvedModule": "./page1.js",
+                "type": "import()",
+                "active": true,
+                "explanation": "",
+                "userRequest": "./lazy",
+                "loc": "7:0-16",
+                "moduleId": 832,
+                "resolvedModuleId": 832
+              }
+            ],
+            "usedExports": true,
+            "providedExports": [],
+            "optimizationBailout": [
+              "Statement (ExpressionStatement) with side effects in source code at 4:0-31",
+              "ModuleConcatenation bailout: Cannot concat with ./node_modules/lodash/lodash.js: Module is not an ECMAScript module",
+              "ModuleConcatenation bailout: Cannot concat with ./node_modules/prop-types/index.js: Module is not an ECMAScript module"
+            ],
+            "depth": 1
+          }
+        ],
+        "origins": [
+          {
+            "module": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "moduleName": "./page1.js",
+            "loc": "7:0-16",
+            "request": "./lazy",
+            "moduleId": 832
+          }
+        ]
+      },
+      {
+        "rendered": true,
+        "initial": true,
+        "entry": false,
+        "recorded": false,
+        "size": 561135,
+        "sizes": {
+          "javascript": 561135
+        },
+        "names": [
+          "other-vendors"
+        ],
+        "idHints": [],
+        "runtime": [
+          "runtime"
+        ],
+        "files": [
+          "other-vendors.js"
+        ],
+        "auxiliaryFiles": [],
+        "hash": "42c7e47a63870103194c",
+        "childrenByOrder": {},
+        "id": "other-vendors",
+        "siblings": [
+          "runtime"
+        ],
+        "parents": [],
+        "children": [
+          "app"
+        ],
+        "modules": [
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 233,
+            "sizes": {
+              "javascript": 233
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "name": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "index": 12,
+            "preOrderIndex": 12,
+            "index2": 12,
+            "postOrderIndex": 12,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": true,
+            "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "issuerName": "./app.js",
+            "issuerPath": [
+              {
+                "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+                "name": "./app.js",
+                "id": 389
+              }
+            ],
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 301,
+            "issuerId": 389,
+            "chunks": [
+              "other-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+                "module": "./app.js",
+                "moduleName": "./app.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+                "resolvedModule": "./app.js",
+                "type": "harmony side effect evaluation",
+                "active": true,
+                "explanation": "",
+                "userRequest": "isomorphic-fetch",
+                "loc": "1:0-47",
+                "moduleId": 389,
+                "resolvedModuleId": 389
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+                "module": "./app.js",
+                "moduleName": "./app.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+                "resolvedModule": "./app.js",
+                "type": "harmony import specifier",
+                "active": true,
+                "explanation": "",
+                "userRequest": "isomorphic-fetch",
+                "loc": "4:12-27",
+                "moduleId": 389,
+                "resolvedModuleId": 389
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "module": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "moduleName": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "resolvedModule": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "6:0-14",
+                "moduleId": 301,
+                "resolvedModuleId": 301
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+                "module": "./other-vendors.js",
+                "moduleName": "./other-vendors.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+                "resolvedModule": "./other-vendors.js",
+                "type": "harmony side effect evaluation",
+                "active": true,
+                "explanation": "",
+                "userRequest": "isomorphic-fetch",
+                "loc": "2:0-47",
+                "moduleId": 830,
+                "resolvedModuleId": 830
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+                "module": "./other-vendors.js",
+                "moduleName": "./other-vendors.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+                "resolvedModule": "./other-vendors.js",
+                "type": "harmony import specifier",
+                "active": true,
+                "explanation": "",
+                "userRequest": "isomorphic-fetch",
+                "loc": "5:20-35",
+                "moduleId": 830,
+                "resolvedModuleId": 830
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "module": "./page1.js",
+                "moduleName": "./page1.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "resolvedModule": "./page1.js",
+                "type": "harmony side effect evaluation",
+                "active": true,
+                "explanation": "",
+                "userRequest": "isomorphic-fetch",
+                "loc": "1:0-47",
+                "moduleId": 832,
+                "resolvedModuleId": 832
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "module": "./page1.js",
+                "moduleName": "./page1.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "resolvedModule": "./page1.js",
+                "type": "harmony import specifier",
+                "active": true,
+                "explanation": "",
+                "userRequest": "isomorphic-fetch",
+                "loc": "5:12-27",
+                "moduleId": 832,
+                "resolvedModuleId": 832
+              }
+            ],
+            "usedExports": null,
+            "providedExports": null,
+            "optimizationBailout": [
+              "CommonJS bailout: module.exports is used directly at 6:0-14",
+              "Statement (ExpressionStatement) with side effects in source code at 5:0-24",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 1
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 544098,
+            "sizes": {
+              "javascript": 544098
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "name": "./node_modules/lodash/lodash.js",
+            "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "index": 11,
+            "preOrderIndex": 11,
+            "index2": 10,
+            "postOrderIndex": 10,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": true,
+            "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "issuerName": "./app.js",
+            "issuerPath": [
+              {
+                "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+                "name": "./app.js",
+                "id": 389
+              }
+            ],
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 486,
+            "issuerId": 389,
+            "chunks": [
+              "other-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+                "module": "./app.js",
+                "moduleName": "./app.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+                "resolvedModule": "./app.js",
+                "type": "harmony side effect evaluation",
+                "active": true,
+                "explanation": "",
+                "userRequest": "lodash",
+                "loc": "2:0-28",
+                "moduleId": 389,
+                "resolvedModuleId": 389
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+                "module": "./app.js",
+                "moduleName": "./app.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+                "resolvedModule": "./app.js",
+                "type": "harmony import specifier",
+                "active": true,
+                "explanation": "",
+                "userRequest": "lodash",
+                "loc": "4:29-35",
+                "moduleId": 389,
+                "resolvedModuleId": 389
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+                "module": "./lazy.js",
+                "moduleName": "./lazy.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+                "resolvedModule": "./lazy.js",
+                "type": "harmony side effect evaluation",
+                "active": true,
+                "explanation": "",
+                "userRequest": "lodash",
+                "loc": "1:0-28",
+                "moduleId": 401,
+                "resolvedModuleId": 401
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+                "module": "./lazy.js",
+                "moduleName": "./lazy.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+                "resolvedModule": "./lazy.js",
+                "type": "harmony import specifier",
+                "active": true,
+                "explanation": "",
+                "userRequest": "lodash",
+                "loc": "4:12-18",
+                "moduleId": 401,
+                "resolvedModuleId": 401
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "module": "./node_modules/lodash/lodash.js",
+                "moduleName": "./node_modules/lodash/lodash.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "resolvedModule": "./node_modules/lodash/lodash.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "439:50-57",
+                "moduleId": 486,
+                "resolvedModuleId": 486
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "module": "./node_modules/lodash/lodash.js",
+                "moduleName": "./node_modules/lodash/lodash.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "resolvedModule": "./node_modules/lodash/lodash.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "439:62-78",
+                "moduleId": 486,
+                "resolvedModuleId": 486
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "module": "./node_modules/lodash/lodash.js",
+                "moduleName": "./node_modules/lodash/lodash.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "resolvedModule": "./node_modules/lodash/lodash.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "439:82-89",
+                "moduleId": 486,
+                "resolvedModuleId": 486
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "module": "./node_modules/lodash/lodash.js",
+                "moduleName": "./node_modules/lodash/lodash.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "resolvedModule": "./node_modules/lodash/lodash.js",
+                "type": "module decorator",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "442:63-69",
+                "moduleId": 486,
+                "resolvedModuleId": 486
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "module": "./node_modules/lodash/lodash.js",
+                "moduleName": "./node_modules/lodash/lodash.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "resolvedModule": "./node_modules/lodash/lodash.js",
+                "type": "module decorator",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "442:74-80",
+                "moduleId": 486,
+                "resolvedModuleId": 486
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "module": "./node_modules/lodash/lodash.js",
+                "moduleName": "./node_modules/lodash/lodash.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "resolvedModule": "./node_modules/lodash/lodash.js",
+                "type": "module decorator",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "442:93-99",
+                "moduleId": 486,
+                "resolvedModuleId": 486
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "module": "./node_modules/lodash/lodash.js",
+                "moduleName": "./node_modules/lodash/lodash.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+                "resolvedModule": "./node_modules/lodash/lodash.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "17209:7-11",
+                "moduleId": 486,
+                "resolvedModuleId": 486
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+                "module": "./other-vendors.js",
+                "moduleName": "./other-vendors.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+                "resolvedModule": "./other-vendors.js",
+                "type": "harmony side effect evaluation",
+                "active": true,
+                "explanation": "",
+                "userRequest": "lodash",
+                "loc": "1:0-28",
+                "moduleId": 830,
+                "resolvedModuleId": 830
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+                "module": "./other-vendors.js",
+                "moduleName": "./other-vendors.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+                "resolvedModule": "./other-vendors.js",
+                "type": "harmony import specifier",
+                "active": true,
+                "explanation": "",
+                "userRequest": "lodash",
+                "loc": "5:12-18",
+                "moduleId": 830,
+                "resolvedModuleId": 830
+              }
+            ],
+            "usedExports": null,
+            "providedExports": null,
+            "optimizationBailout": [
+              "CommonJS bailout: this is used directly at 17209:7-11",
+              "CommonJS bailout: exports is used directly at 439:50-57",
+              "CommonJS bailout: exports is used directly at 439:82-89",
+              "Statement (ExpressionStatement) with side effects in source code at 9:1-17209:14",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 1
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 16658,
+            "sizes": {
+              "javascript": 16658
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/whatwg-fetch/fetch.js",
+            "name": "./node_modules/whatwg-fetch/fetch.js",
+            "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/whatwg-fetch/fetch.js",
+            "index": 13,
+            "preOrderIndex": 13,
+            "index2": 11,
+            "postOrderIndex": 11,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": true,
+            "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "issuerName": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "issuerPath": [
+              {
+                "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+                "name": "./app.js",
+                "id": 389
+              },
+              {
+                "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "name": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "id": 301
+              }
+            ],
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 147,
+            "issuerId": 301,
+            "chunks": [
+              "other-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "module": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "moduleName": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "resolvedModule": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+                "type": "cjs require",
+                "active": true,
+                "explanation": "",
+                "userRequest": "whatwg-fetch",
+                "loc": "5:0-23",
+                "moduleId": 301,
+                "resolvedModuleId": 301
+              }
+            ],
+            "usedExports": true,
+            "providedExports": [
+              "DOMException",
+              "Headers",
+              "Request",
+              "Response",
+              "fetch"
+            ],
+            "optimizationBailout": [
+              "Statement (VariableDeclaration) with side effects in source code at 1:0-4:43"
+            ],
+            "depth": 2
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 146,
+            "sizes": {
+              "javascript": 146
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+            "name": "./other-vendors.js",
+            "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+            "index": 10,
+            "preOrderIndex": 10,
+            "index2": 13,
+            "postOrderIndex": 13,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "issuer": null,
+            "issuerName": null,
+            "issuerPath": null,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 830,
+            "issuerId": null,
+            "chunks": [
+              "other-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": null,
+                "module": null,
+                "moduleName": null,
+                "resolvedModuleIdentifier": null,
+                "resolvedModule": null,
+                "type": "entry",
+                "active": true,
+                "explanation": "",
+                "userRequest": "./other-vendors",
+                "loc": "other-vendors",
+                "moduleId": null,
+                "resolvedModuleId": null
+              }
+            ],
+            "usedExports": [],
+            "providedExports": [],
+            "optimizationBailout": [
+              "Statement (ExpressionStatement) with side effects in source code at 5:0-37",
+              "ModuleConcatenation bailout: Cannot concat with ./node_modules/isomorphic-fetch/fetch-npm-browserify.js: Module is not an ECMAScript module",
+              "ModuleConcatenation bailout: Cannot concat with ./node_modules/lodash/lodash.js: Module is not an ECMAScript module"
+            ],
+            "depth": 0
+          }
+        ],
+        "origins": [
+          {
+            "module": "",
+            "moduleIdentifier": "",
+            "moduleName": "",
+            "loc": "other-vendors",
+            "request": "./other-vendors"
+          }
+        ]
+      },
+      {
+        "rendered": true,
+        "initial": true,
+        "entry": false,
+        "recorded": false,
+        "size": 176,
+        "sizes": {
+          "javascript": 176
+        },
+        "names": [
+          "page1"
+        ],
+        "idHints": [],
+        "runtime": [
+          "runtime"
+        ],
+        "files": [
+          "page1.js"
+        ],
+        "auxiliaryFiles": [],
+        "hash": "8c687168d86bd60e3873",
+        "childrenByOrder": {},
+        "id": "page1",
+        "siblings": [],
+        "parents": [
+          "app",
+          "react-vendors",
+          "runtime"
+        ],
+        "children": [
+          "lazy_js"
+        ],
+        "modules": [
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 176,
+            "sizes": {
+              "javascript": 176
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "name": "./page1.js",
+            "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "index": 15,
+            "preOrderIndex": 15,
+            "index2": 15,
+            "postOrderIndex": 15,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "issuer": null,
+            "issuerName": null,
+            "issuerPath": null,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 832,
+            "issuerId": null,
+            "chunks": [
+              "page1"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": null,
+                "module": null,
+                "moduleName": null,
+                "resolvedModuleIdentifier": null,
+                "resolvedModule": null,
+                "type": "entry",
+                "active": true,
+                "explanation": "",
+                "userRequest": "./page1.js",
+                "loc": "page1",
+                "moduleId": null,
+                "resolvedModuleId": null
+              }
+            ],
+            "usedExports": [],
+            "providedExports": [],
+            "optimizationBailout": [
+              "Statement (ExpressionStatement) with side effects in source code at 5:0-46",
+              "ModuleConcatenation bailout: Cannot concat with ./node_modules/isomorphic-fetch/fetch-npm-browserify.js: Module is not an ECMAScript module",
+              "ModuleConcatenation bailout: Cannot concat with ../../node_modules/react-dom/index.js: Module is not an ECMAScript module",
+              "ModuleConcatenation bailout: Cannot concat with ../../node_modules/react/index.js: Module is not an ECMAScript module"
+            ],
+            "depth": 0
+          }
+        ],
+        "origins": [
+          {
+            "module": "",
+            "moduleIdentifier": "",
+            "moduleName": "",
+            "loc": "page1",
+            "request": "./page1.js"
+          }
+        ]
+      },
+      {
+        "rendered": true,
+        "initial": true,
+        "entry": false,
+        "recorded": false,
+        "size": 138490,
+        "sizes": {
+          "javascript": 138490
+        },
+        "names": [
+          "react-vendors"
+        ],
+        "idHints": [],
+        "runtime": [
+          "runtime"
+        ],
+        "files": [
+          "react-vendors.js"
+        ],
+        "auxiliaryFiles": [],
+        "hash": "f8fdd081d0d4863891c3",
+        "childrenByOrder": {},
+        "id": "react-vendors",
+        "siblings": [
+          "runtime"
+        ],
+        "parents": [],
+        "children": [
+          "page1"
+        ],
+        "modules": [
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 2108,
+            "sizes": {
+              "javascript": 2108
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/node_modules/object-assign/index.js",
+            "name": "../../node_modules/object-assign/index.js",
+            "nameForCondition": "/home/coder/webpack/node_modules/object-assign/index.js",
+            "index": 2,
+            "preOrderIndex": 2,
+            "index2": 0,
+            "postOrderIndex": 0,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": true,
+            "issuer": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "issuerName": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "issuerPath": [
+              {
+                "identifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+                "name": "../../node_modules/react-dom/index.js",
+                "id": 316
+              },
+              {
+                "identifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+                "name": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "id": 967
+              }
+            ],
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 320,
+            "issuerId": 967,
+            "chunks": [
+              "react-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/object-assign/index.js",
+                "module": "../../node_modules/object-assign/index.js",
+                "moduleName": "../../node_modules/object-assign/index.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/object-assign/index.js",
+                "resolvedModule": "../../node_modules/object-assign/index.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "65:0-14",
+                "moduleId": 320,
+                "resolvedModuleId": 320
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+                "module": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "moduleName": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+                "resolvedModule": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "type": "cjs require",
+                "active": true,
+                "explanation": "",
+                "userRequest": "object-assign",
+                "loc": "12:39-63",
+                "moduleId": 967,
+                "resolvedModuleId": 967
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/react/cjs/react.production.min.js",
+                "module": "../../node_modules/react/cjs/react.production.min.js",
+                "moduleName": "../../node_modules/react/cjs/react.production.min.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react/cjs/react.production.min.js",
+                "resolvedModule": "../../node_modules/react/cjs/react.production.min.js",
+                "type": "cjs require",
+                "active": true,
+                "explanation": "",
+                "userRequest": "object-assign",
+                "loc": "9:19-43",
+                "moduleId": 426,
+                "resolvedModuleId": 426
+              }
+            ],
+            "usedExports": null,
+            "providedExports": null,
+            "optimizationBailout": [
+              "CommonJS bailout: module.exports is used directly at 65:0-14",
+              "Statement (VariableDeclaration) with side effects in source code at 9:0-57",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 2
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 120688,
+            "sizes": {
+              "javascript": 120688
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "name": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "nameForCondition": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "index": 4,
+            "preOrderIndex": 4,
+            "index2": 5,
+            "postOrderIndex": 5,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": true,
+            "issuer": "/home/coder/webpack/node_modules/react-dom/index.js",
+            "issuerName": "../../node_modules/react-dom/index.js",
+            "issuerPath": [
+              {
+                "identifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+                "name": "../../node_modules/react-dom/index.js",
+                "id": 316
+              }
+            ],
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 967,
+            "issuerId": 316,
+            "chunks": [
+              "react-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+                "module": "../../node_modules/react-dom/index.js",
+                "moduleName": "../../node_modules/react-dom/index.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+                "resolvedModule": "../../node_modules/react-dom/index.js",
+                "type": "cjs export require",
+                "active": true,
+                "explanation": "",
+                "userRequest": "./cjs/react-dom.production.min.js",
+                "loc": "35:2-63",
+                "moduleId": 316,
+                "resolvedModuleId": 316
+              }
+            ],
+            "usedExports": true,
+            "providedExports": [
+              "__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+              "createPortal",
+              "findDOMNode",
+              "flushSync",
+              "hydrate",
+              "render",
+              "unmountComponentAtNode",
+              "unstable_batchedUpdates",
+              "unstable_createPortal",
+              "unstable_renderSubtreeIntoContainer",
+              "version"
+            ],
+            "optimizationBailout": [
+              "Statement (VariableDeclaration) with side effects in source code at 12:13-87",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 1
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 1363,
+            "sizes": {
+              "javascript": 1363
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+            "name": "../../node_modules/react-dom/index.js",
+            "nameForCondition": "/home/coder/webpack/node_modules/react-dom/index.js",
+            "index": 3,
+            "preOrderIndex": 3,
+            "index2": 6,
+            "postOrderIndex": 6,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "issuer": null,
+            "issuerName": null,
+            "issuerPath": null,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 316,
+            "issuerId": null,
+            "chunks": [
+              "react-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "module": "./page1.js",
+                "moduleName": "./page1.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "resolvedModule": "./page1.js",
+                "type": "harmony side effect evaluation",
+                "active": true,
+                "explanation": "",
+                "userRequest": "react-dom",
+                "loc": "3:0-33",
+                "moduleId": 832,
+                "resolvedModuleId": 832
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "module": "./page1.js",
+                "moduleName": "./page1.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "resolvedModule": "./page1.js",
+                "type": "harmony import specifier",
+                "active": true,
+                "explanation": "",
+                "userRequest": "react-dom",
+                "loc": "5:36-44",
+                "moduleId": 832,
+                "resolvedModuleId": 832
+              },
+              {
+                "moduleIdentifier": null,
+                "module": null,
+                "moduleName": null,
+                "resolvedModuleIdentifier": null,
+                "resolvedModule": null,
+                "type": "entry",
+                "active": true,
+                "explanation": "",
+                "userRequest": "react-dom",
+                "loc": "react-vendors",
+                "moduleId": null,
+                "resolvedModuleId": null
+              }
+            ],
+            "usedExports": true,
+            "providedExports": [
+              "__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+              "createPortal",
+              "findDOMNode",
+              "flushSync",
+              "hydrate",
+              "render",
+              "unmountComponentAtNode",
+              "unstable_batchedUpdates",
+              "unstable_createPortal",
+              "unstable_renderSubtreeIntoContainer",
+              "version"
+            ],
+            "optimizationBailout": [
+              "Statement (ExpressionStatement) with side effects in source code at 34:2-13",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 0
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 6450,
+            "sizes": {
+              "javascript": 6450
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/node_modules/react/cjs/react.production.min.js",
+            "name": "../../node_modules/react/cjs/react.production.min.js",
+            "nameForCondition": "/home/coder/webpack/node_modules/react/cjs/react.production.min.js",
+            "index": 1,
+            "preOrderIndex": 1,
+            "index2": 1,
+            "postOrderIndex": 1,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": true,
+            "issuer": "/home/coder/webpack/node_modules/react/index.js",
+            "issuerName": "../../node_modules/react/index.js",
+            "issuerPath": [
+              {
+                "identifier": "/home/coder/webpack/node_modules/react/index.js",
+                "name": "../../node_modules/react/index.js",
+                "id": 784
+              }
+            ],
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 426,
+            "issuerId": 784,
+            "chunks": [
+              "react-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/react/index.js",
+                "module": "../../node_modules/react/index.js",
+                "moduleName": "../../node_modules/react/index.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react/index.js",
+                "resolvedModule": "../../node_modules/react/index.js",
+                "type": "cjs export require",
+                "active": true,
+                "explanation": "",
+                "userRequest": "./cjs/react.production.min.js",
+                "loc": "4:2-59",
+                "moduleId": 784,
+                "resolvedModuleId": 784
+              }
+            ],
+            "usedExports": true,
+            "providedExports": [
+              "Children",
+              "Component",
+              "Fragment",
+              "Profiler",
+              "PureComponent",
+              "StrictMode",
+              "Suspense",
+              "__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+              "cloneElement",
+              "createContext",
+              "createElement",
+              "createFactory",
+              "createRef",
+              "forwardRef",
+              "isValidElement",
+              "lazy",
+              "memo",
+              "useCallback",
+              "useContext",
+              "useDebugValue",
+              "useEffect",
+              "useImperativeHandle",
+              "useLayoutEffect",
+              "useMemo",
+              "useReducer",
+              "useRef",
+              "useState",
+              "version"
+            ],
+            "optimizationBailout": [
+              "Statement (VariableDeclaration) with side effects in source code at 9:13-60",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 1
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 190,
+            "sizes": {
+              "javascript": 190
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/node_modules/react/index.js",
+            "name": "../../node_modules/react/index.js",
+            "nameForCondition": "/home/coder/webpack/node_modules/react/index.js",
+            "index": 0,
+            "preOrderIndex": 0,
+            "index2": 2,
+            "postOrderIndex": 2,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": true,
+            "issuer": null,
+            "issuerName": null,
+            "issuerPath": null,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 784,
+            "issuerId": null,
+            "chunks": [
+              "react-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "module": "./page1.js",
+                "moduleName": "./page1.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "resolvedModule": "./page1.js",
+                "type": "harmony side effect evaluation",
+                "active": true,
+                "explanation": "",
+                "userRequest": "react",
+                "loc": "2:0-26",
+                "moduleId": 832,
+                "resolvedModuleId": 832
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "module": "./page1.js",
+                "moduleName": "./page1.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+                "resolvedModule": "./page1.js",
+                "type": "harmony import specifier",
+                "active": true,
+                "explanation": "",
+                "userRequest": "react",
+                "loc": "5:29-34",
+                "moduleId": 832,
+                "resolvedModuleId": 832
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+                "module": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "moduleName": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+                "resolvedModule": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "type": "cjs require",
+                "active": true,
+                "explanation": "",
+                "userRequest": "react",
+                "loc": "12:20-36",
+                "moduleId": 967,
+                "resolvedModuleId": 967
+              },
+              {
+                "moduleIdentifier": null,
+                "module": null,
+                "moduleName": null,
+                "resolvedModuleIdentifier": null,
+                "resolvedModule": null,
+                "type": "entry",
+                "active": true,
+                "explanation": "",
+                "userRequest": "react",
+                "loc": "react-vendors",
+                "moduleId": null,
+                "resolvedModuleId": null
+              }
+            ],
+            "usedExports": true,
+            "providedExports": [
+              "Children",
+              "Component",
+              "Fragment",
+              "Profiler",
+              "PureComponent",
+              "StrictMode",
+              "Suspense",
+              "__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+              "cloneElement",
+              "createContext",
+              "createElement",
+              "createFactory",
+              "createRef",
+              "forwardRef",
+              "isValidElement",
+              "lazy",
+              "memo",
+              "useCallback",
+              "useContext",
+              "useDebugValue",
+              "useEffect",
+              "useImperativeHandle",
+              "useLayoutEffect",
+              "useMemo",
+              "useReducer",
+              "useRef",
+              "useState",
+              "version"
+            ],
+            "optimizationBailout": [
+              "Statement (ExpressionStatement) with side effects in source code at 4:2-60",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 0
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 4830,
+            "sizes": {
+              "javascript": 4830
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "name": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "nameForCondition": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "index": 6,
+            "preOrderIndex": 6,
+            "index2": 3,
+            "postOrderIndex": 3,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": true,
+            "issuer": "/home/coder/webpack/node_modules/scheduler/index.js",
+            "issuerName": "../../node_modules/scheduler/index.js",
+            "issuerPath": [
+              {
+                "identifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+                "name": "../../node_modules/react-dom/index.js",
+                "id": 316
+              },
+              {
+                "identifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+                "name": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "id": 967
+              },
+              {
+                "identifier": "/home/coder/webpack/node_modules/scheduler/index.js",
+                "name": "../../node_modules/scheduler/index.js",
+                "id": 616
+              }
+            ],
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 475,
+            "issuerId": 616,
+            "chunks": [
+              "react-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "10:121-141",
+                "moduleId": 475,
+                "resolvedModuleId": 475
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "11:504-524",
+                "moduleId": 475,
+                "resolvedModuleId": 475
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "12:312-332",
+                "moduleId": 475,
+                "resolvedModuleId": 475
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "13:15-35",
+                "moduleId": 475,
+                "resolvedModuleId": 475
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "16:106-134",
+                "moduleId": 475,
+                "resolvedModuleId": 475
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "16:248-268",
+                "moduleId": 475,
+                "resolvedModuleId": 475
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+                "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "19:56-76",
+                "moduleId": 475,
+                "resolvedModuleId": 475
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/index.js",
+                "module": "../../node_modules/scheduler/index.js",
+                "moduleName": "../../node_modules/scheduler/index.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/index.js",
+                "resolvedModule": "../../node_modules/scheduler/index.js",
+                "type": "cjs export require",
+                "active": true,
+                "explanation": "",
+                "userRequest": "./cjs/scheduler.production.min.js",
+                "loc": "4:2-63",
+                "moduleId": 616,
+                "resolvedModuleId": 616
+              }
+            ],
+            "usedExports": true,
+            "providedExports": [
+              "unstable_IdlePriority",
+              "unstable_ImmediatePriority",
+              "unstable_LowPriority",
+              "unstable_NormalPriority",
+              "unstable_Profiling",
+              "unstable_UserBlockingPriority",
+              "unstable_cancelCallback",
+              "unstable_continueExecution",
+              "unstable_forceFrameRate",
+              "unstable_getCurrentPriorityLevel",
+              "unstable_getFirstCallbackNode",
+              "unstable_next",
+              "unstable_now",
+              "unstable_pauseExecution",
+              "unstable_requestPaint",
+              "unstable_runWithPriority",
+              "unstable_scheduleCallback",
+              "unstable_shouldYield",
+              "unstable_wrapCallback"
+            ],
+            "optimizationBailout": [
+              "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 10:121-141",
+              "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 11:504-524",
+              "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 12:312-332",
+              "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 13:15-35",
+              "CommonJS bailout: exports.unstable_shouldYield(...) prevents optimization as exports is passed as call context at 16:106-134",
+              "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 16:248-268",
+              "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 19:56-76",
+              "Statement (IfStatement) with side effects in source code at 9:25-238",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 3
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 198,
+            "sizes": {
+              "javascript": 198
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/node_modules/scheduler/index.js",
+            "name": "../../node_modules/scheduler/index.js",
+            "nameForCondition": "/home/coder/webpack/node_modules/scheduler/index.js",
+            "index": 5,
+            "preOrderIndex": 5,
+            "index2": 4,
+            "postOrderIndex": 4,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": true,
+            "issuer": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "issuerName": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "issuerPath": [
+              {
+                "identifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+                "name": "../../node_modules/react-dom/index.js",
+                "id": 316
+              },
+              {
+                "identifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+                "name": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "id": 967
+              }
+            ],
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 616,
+            "issuerId": 967,
+            "chunks": [
+              "react-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+                "module": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "moduleName": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+                "resolvedModule": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+                "type": "cjs require",
+                "active": true,
+                "explanation": "",
+                "userRequest": "scheduler",
+                "loc": "12:66-86",
+                "moduleId": 967,
+                "resolvedModuleId": 967
+              }
+            ],
+            "usedExports": true,
+            "providedExports": [
+              "unstable_IdlePriority",
+              "unstable_ImmediatePriority",
+              "unstable_LowPriority",
+              "unstable_NormalPriority",
+              "unstable_Profiling",
+              "unstable_UserBlockingPriority",
+              "unstable_cancelCallback",
+              "unstable_continueExecution",
+              "unstable_forceFrameRate",
+              "unstable_getCurrentPriorityLevel",
+              "unstable_getFirstCallbackNode",
+              "unstable_next",
+              "unstable_now",
+              "unstable_pauseExecution",
+              "unstable_requestPaint",
+              "unstable_runWithPriority",
+              "unstable_scheduleCallback",
+              "unstable_shouldYield",
+              "unstable_wrapCallback"
+            ],
+            "optimizationBailout": [
+              "Statement (ExpressionStatement) with side effects in source code at 4:2-64",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 2
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 1639,
+            "sizes": {
+              "javascript": 1639
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+            "name": "./node_modules/prop-types/factoryWithThrowingShims.js",
+            "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+            "index": 8,
+            "preOrderIndex": 8,
+            "index2": 8,
+            "postOrderIndex": 8,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": true,
+            "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+            "issuerName": "./node_modules/prop-types/index.js",
+            "issuerPath": [
+              {
+                "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+                "name": "./node_modules/prop-types/index.js",
+                "id": 697
+              }
+            ],
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 703,
+            "issuerId": 697,
+            "chunks": [
+              "react-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+                "module": "./node_modules/prop-types/factoryWithThrowingShims.js",
+                "moduleName": "./node_modules/prop-types/factoryWithThrowingShims.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+                "resolvedModule": "./node_modules/prop-types/factoryWithThrowingShims.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "16:0-14",
+                "moduleId": 703,
+                "resolvedModuleId": 703
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+                "module": "./node_modules/prop-types/index.js",
+                "moduleName": "./node_modules/prop-types/index.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+                "resolvedModule": "./node_modules/prop-types/index.js",
+                "type": "cjs require",
+                "active": true,
+                "explanation": "",
+                "userRequest": "./factoryWithThrowingShims",
+                "loc": "18:19-56",
+                "moduleId": 697,
+                "resolvedModuleId": 697
+              }
+            ],
+            "usedExports": null,
+            "providedExports": null,
+            "optimizationBailout": [
+              "CommonJS bailout: module.exports is used directly at 16:0-14",
+              "Statement (VariableDeclaration) with side effects in source code at 10:0-65",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 1
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 710,
+            "sizes": {
+              "javascript": 710
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+            "name": "./node_modules/prop-types/index.js",
+            "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+            "index": 7,
+            "preOrderIndex": 7,
+            "index2": 9,
+            "postOrderIndex": 9,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "issuer": null,
+            "issuerName": null,
+            "issuerPath": null,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 697,
+            "issuerId": null,
+            "chunks": [
+              "react-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+                "module": "./lazy.js",
+                "moduleName": "./lazy.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+                "resolvedModule": "./lazy.js",
+                "type": "harmony side effect evaluation",
+                "active": false,
+                "explanation": "",
+                "userRequest": "prop-types",
+                "loc": "2:0-35",
+                "moduleId": 401,
+                "resolvedModuleId": 401
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+                "module": "./lazy.js",
+                "moduleName": "./lazy.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+                "resolvedModule": "./lazy.js",
+                "type": "harmony import specifier",
+                "active": true,
+                "explanation": "",
+                "userRequest": "prop-types",
+                "loc": "4:20-29",
+                "moduleId": 401,
+                "resolvedModuleId": 401
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+                "module": "./node_modules/prop-types/index.js",
+                "moduleName": "./node_modules/prop-types/index.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+                "resolvedModule": "./node_modules/prop-types/index.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "18:2-16",
+                "moduleId": 697,
+                "resolvedModuleId": 697
+              },
+              {
+                "moduleIdentifier": null,
+                "module": null,
+                "moduleName": null,
+                "resolvedModuleIdentifier": null,
+                "resolvedModule": null,
+                "type": "entry",
+                "active": true,
+                "explanation": "",
+                "userRequest": "prop-types",
+                "loc": "react-vendors",
+                "moduleId": null,
+                "resolvedModuleId": null
+              }
+            ],
+            "usedExports": null,
+            "providedExports": null,
+            "optimizationBailout": [
+              "CommonJS bailout: module.exports is used directly at 18:2-16",
+              "Statement (ExpressionStatement) with side effects in source code at 18:2-59",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 0
+          },
+          {
+            "type": "module",
+            "moduleType": "javascript/auto",
+            "layer": null,
+            "size": 314,
+            "sizes": {
+              "javascript": 314
+            },
+            "built": true,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/lib/ReactPropTypesSecret.js",
+            "name": "./node_modules/prop-types/lib/ReactPropTypesSecret.js",
+            "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/lib/ReactPropTypesSecret.js",
+            "index": 9,
+            "preOrderIndex": 9,
+            "index2": 7,
+            "postOrderIndex": 7,
+            "cacheable": true,
+            "optional": false,
+            "orphan": false,
+            "dependent": true,
+            "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+            "issuerName": "./node_modules/prop-types/factoryWithThrowingShims.js",
+            "issuerPath": [
+              {
+                "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+                "name": "./node_modules/prop-types/index.js",
+                "id": 697
+              },
+              {
+                "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+                "name": "./node_modules/prop-types/factoryWithThrowingShims.js",
+                "id": 703
+              }
+            ],
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": 414,
+            "issuerId": 703,
+            "chunks": [
+              "react-vendors"
+            ],
+            "assets": [],
+            "reasons": [
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+                "module": "./node_modules/prop-types/factoryWithThrowingShims.js",
+                "moduleName": "./node_modules/prop-types/factoryWithThrowingShims.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+                "resolvedModule": "./node_modules/prop-types/factoryWithThrowingShims.js",
+                "type": "cjs require",
+                "active": true,
+                "explanation": "",
+                "userRequest": "./lib/ReactPropTypesSecret",
+                "loc": "10:27-64",
+                "moduleId": 703,
+                "resolvedModuleId": 703
+              },
+              {
+                "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/lib/ReactPropTypesSecret.js",
+                "module": "./node_modules/prop-types/lib/ReactPropTypesSecret.js",
+                "moduleName": "./node_modules/prop-types/lib/ReactPropTypesSecret.js",
+                "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/lib/ReactPropTypesSecret.js",
+                "resolvedModule": "./node_modules/prop-types/lib/ReactPropTypesSecret.js",
+                "type": "cjs self exports reference",
+                "active": true,
+                "explanation": "",
+                "userRequest": null,
+                "loc": "12:0-14",
+                "moduleId": 414,
+                "resolvedModuleId": 414
+              }
+            ],
+            "usedExports": null,
+            "providedExports": null,
+            "optimizationBailout": [
+              "CommonJS bailout: module.exports is used directly at 12:0-14",
+              "Statement (ExpressionStatement) with side effects in source code at 12:0-38",
+              "ModuleConcatenation bailout: Module is not an ECMAScript module"
+            ],
+            "depth": 2
+          }
+        ],
+        "origins": [
+          {
+            "module": "",
+            "moduleIdentifier": "",
+            "moduleName": "",
+            "loc": "react-vendors",
+            "request": "prop-types"
+          },
+          {
+            "module": "",
+            "moduleIdentifier": "",
+            "moduleName": "",
+            "loc": "react-vendors",
+            "request": "react"
+          },
+          {
+            "module": "",
+            "moduleIdentifier": "",
+            "moduleName": "",
+            "loc": "react-vendors",
+            "request": "react-dom"
+          }
+        ]
+      },
+      {
+        "rendered": true,
+        "initial": true,
+        "entry": true,
+        "recorded": false,
+        "size": 8284,
+        "sizes": {
+          "runtime": 8284
+        },
+        "names": [
+          "runtime"
+        ],
+        "idHints": [],
+        "runtime": [
+          "runtime"
+        ],
+        "files": [
+          "runtime.js"
+        ],
+        "auxiliaryFiles": [],
+        "hash": "f56bf390b59d43c091e4",
+        "childrenByOrder": {},
+        "id": "runtime",
+        "siblings": [
+          "other-vendors",
+          "react-vendors"
+        ],
+        "parents": [],
+        "children": [
+          "app",
+          "page1"
+        ],
+        "modules": [
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 886,
+            "sizes": {
+              "runtime": 886
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/chunk loaded",
+            "name": "webpack/runtime/chunk loaded",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          },
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 267,
+            "sizes": {
+              "runtime": 267
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/compat get default export",
+            "name": "webpack/runtime/compat get default export",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          },
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 308,
+            "sizes": {
+              "runtime": 308
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/define property getters",
+            "name": "webpack/runtime/define property getters",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          },
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 326,
+            "sizes": {
+              "runtime": 326
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/ensure chunk",
+            "name": "webpack/runtime/ensure chunk",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          },
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 167,
+            "sizes": {
+              "runtime": 167
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/get javascript chunk filename",
+            "name": "webpack/runtime/get javascript chunk filename",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          },
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 221,
+            "sizes": {
+              "runtime": 221
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/global",
+            "name": "webpack/runtime/global",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          },
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 88,
+            "sizes": {
+              "runtime": 88
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/hasOwnProperty shorthand",
+            "name": "webpack/runtime/hasOwnProperty shorthand",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          },
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 3227,
+            "sizes": {
+              "runtime": 3227
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/jsonp chunk loading",
+            "name": "webpack/runtime/jsonp chunk loading",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          },
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 1530,
+            "sizes": {
+              "runtime": 1530
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/load script",
+            "name": "webpack/runtime/load script",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          },
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 274,
+            "sizes": {
+              "runtime": 274
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/make namespace object",
+            "name": "webpack/runtime/make namespace object",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          },
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 123,
+            "sizes": {
+              "runtime": 123
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/node module decorator",
+            "name": "webpack/runtime/node module decorator",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          },
+          {
+            "type": "module",
+            "moduleType": "runtime",
+            "layer": null,
+            "size": 867,
+            "sizes": {
+              "runtime": 867
+            },
+            "built": false,
+            "codeGenerated": true,
+            "buildTimeExecuted": false,
+            "cached": false,
+            "identifier": "webpack/runtime/publicPath",
+            "name": "webpack/runtime/publicPath",
+            "nameForCondition": null,
+            "index": null,
+            "preOrderIndex": null,
+            "index2": null,
+            "postOrderIndex": null,
+            "optional": false,
+            "orphan": false,
+            "dependent": false,
+            "failed": false,
+            "errors": 0,
+            "warnings": 0,
+            "id": "",
+            "chunks": [
+              "runtime"
+            ],
+            "assets": [],
+            "reasons": [],
+            "usedExports": null,
+            "providedExports": [],
+            "optimizationBailout": [],
+            "depth": null
+          }
+        ],
+        "origins": [
+          {
+            "module": "",
+            "moduleIdentifier": "",
+            "moduleName": "",
+            "loc": "other-vendors",
+            "request": "./other-vendors"
+          },
+          {
+            "module": "",
+            "moduleIdentifier": "",
+            "moduleName": "",
+            "loc": "react-vendors",
+            "request": "prop-types"
+          },
+          {
+            "module": "",
+            "moduleIdentifier": "",
+            "moduleName": "",
+            "loc": "react-vendors",
+            "request": "react"
+          },
+          {
+            "module": "",
+            "moduleIdentifier": "",
+            "moduleName": "",
+            "loc": "react-vendors",
+            "request": "react-dom"
+          }
+        ]
+      }
+    ],
+    "modules": [
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 190,
+        "sizes": {
+          "javascript": 190
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/node_modules/react/index.js",
+        "name": "../../node_modules/react/index.js",
+        "nameForCondition": "/home/coder/webpack/node_modules/react/index.js",
+        "index": 0,
+        "preOrderIndex": 0,
+        "index2": 2,
+        "postOrderIndex": 2,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": null,
+        "issuerName": null,
+        "issuerPath": null,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 784,
+        "issuerId": null,
+        "chunks": [
+          "react-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "module": "./page1.js",
+            "moduleName": "./page1.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "resolvedModule": "./page1.js",
+            "type": "harmony side effect evaluation",
+            "active": true,
+            "explanation": "",
+            "userRequest": "react",
+            "loc": "2:0-26",
+            "moduleId": 832,
+            "resolvedModuleId": 832
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "module": "./page1.js",
+            "moduleName": "./page1.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "resolvedModule": "./page1.js",
+            "type": "harmony import specifier",
+            "active": true,
+            "explanation": "",
+            "userRequest": "react",
+            "loc": "5:29-34",
+            "moduleId": 832,
+            "resolvedModuleId": 832
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "module": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "moduleName": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "resolvedModule": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "type": "cjs require",
+            "active": true,
+            "explanation": "",
+            "userRequest": "react",
+            "loc": "12:20-36",
+            "moduleId": 967,
+            "resolvedModuleId": 967
+          },
+          {
+            "moduleIdentifier": null,
+            "module": null,
+            "moduleName": null,
+            "resolvedModuleIdentifier": null,
+            "resolvedModule": null,
+            "type": "entry",
+            "active": true,
+            "explanation": "",
+            "userRequest": "react",
+            "loc": "react-vendors",
+            "moduleId": null,
+            "resolvedModuleId": null
+          }
+        ],
+        "usedExports": true,
+        "providedExports": [
+          "Children",
+          "Component",
+          "Fragment",
+          "Profiler",
+          "PureComponent",
+          "StrictMode",
+          "Suspense",
+          "__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+          "cloneElement",
+          "createContext",
+          "createElement",
+          "createFactory",
+          "createRef",
+          "forwardRef",
+          "isValidElement",
+          "lazy",
+          "memo",
+          "useCallback",
+          "useContext",
+          "useDebugValue",
+          "useEffect",
+          "useImperativeHandle",
+          "useLayoutEffect",
+          "useMemo",
+          "useReducer",
+          "useRef",
+          "useState",
+          "version"
+        ],
+        "optimizationBailout": [
+          "Statement (ExpressionStatement) with side effects in source code at 4:2-60",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 0
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 1363,
+        "sizes": {
+          "javascript": 1363
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+        "name": "../../node_modules/react-dom/index.js",
+        "nameForCondition": "/home/coder/webpack/node_modules/react-dom/index.js",
+        "index": 3,
+        "preOrderIndex": 3,
+        "index2": 6,
+        "postOrderIndex": 6,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": null,
+        "issuerName": null,
+        "issuerPath": null,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 316,
+        "issuerId": null,
+        "chunks": [
+          "react-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "module": "./page1.js",
+            "moduleName": "./page1.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "resolvedModule": "./page1.js",
+            "type": "harmony side effect evaluation",
+            "active": true,
+            "explanation": "",
+            "userRequest": "react-dom",
+            "loc": "3:0-33",
+            "moduleId": 832,
+            "resolvedModuleId": 832
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "module": "./page1.js",
+            "moduleName": "./page1.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "resolvedModule": "./page1.js",
+            "type": "harmony import specifier",
+            "active": true,
+            "explanation": "",
+            "userRequest": "react-dom",
+            "loc": "5:36-44",
+            "moduleId": 832,
+            "resolvedModuleId": 832
+          },
+          {
+            "moduleIdentifier": null,
+            "module": null,
+            "moduleName": null,
+            "resolvedModuleIdentifier": null,
+            "resolvedModule": null,
+            "type": "entry",
+            "active": true,
+            "explanation": "",
+            "userRequest": "react-dom",
+            "loc": "react-vendors",
+            "moduleId": null,
+            "resolvedModuleId": null
+          }
+        ],
+        "usedExports": true,
+        "providedExports": [
+          "__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+          "createPortal",
+          "findDOMNode",
+          "flushSync",
+          "hydrate",
+          "render",
+          "unmountComponentAtNode",
+          "unstable_batchedUpdates",
+          "unstable_createPortal",
+          "unstable_renderSubtreeIntoContainer",
+          "version"
+        ],
+        "optimizationBailout": [
+          "Statement (ExpressionStatement) with side effects in source code at 34:2-13",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 0
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 710,
+        "sizes": {
+          "javascript": 710
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+        "name": "./node_modules/prop-types/index.js",
+        "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+        "index": 7,
+        "preOrderIndex": 7,
+        "index2": 9,
+        "postOrderIndex": 9,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": null,
+        "issuerName": null,
+        "issuerPath": null,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 697,
+        "issuerId": null,
+        "chunks": [
+          "react-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+            "module": "./lazy.js",
+            "moduleName": "./lazy.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+            "resolvedModule": "./lazy.js",
+            "type": "harmony side effect evaluation",
+            "active": false,
+            "explanation": "",
+            "userRequest": "prop-types",
+            "loc": "2:0-35",
+            "moduleId": 401,
+            "resolvedModuleId": 401
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+            "module": "./lazy.js",
+            "moduleName": "./lazy.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+            "resolvedModule": "./lazy.js",
+            "type": "harmony import specifier",
+            "active": true,
+            "explanation": "",
+            "userRequest": "prop-types",
+            "loc": "4:20-29",
+            "moduleId": 401,
+            "resolvedModuleId": 401
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+            "module": "./node_modules/prop-types/index.js",
+            "moduleName": "./node_modules/prop-types/index.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+            "resolvedModule": "./node_modules/prop-types/index.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "18:2-16",
+            "moduleId": 697,
+            "resolvedModuleId": 697
+          },
+          {
+            "moduleIdentifier": null,
+            "module": null,
+            "moduleName": null,
+            "resolvedModuleIdentifier": null,
+            "resolvedModule": null,
+            "type": "entry",
+            "active": true,
+            "explanation": "",
+            "userRequest": "prop-types",
+            "loc": "react-vendors",
+            "moduleId": null,
+            "resolvedModuleId": null
+          }
+        ],
+        "usedExports": null,
+        "providedExports": null,
+        "optimizationBailout": [
+          "CommonJS bailout: module.exports is used directly at 18:2-16",
+          "Statement (ExpressionStatement) with side effects in source code at 18:2-59",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 0
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 146,
+        "sizes": {
+          "javascript": 146
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+        "name": "./other-vendors.js",
+        "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+        "index": 10,
+        "preOrderIndex": 10,
+        "index2": 13,
+        "postOrderIndex": 13,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": null,
+        "issuerName": null,
+        "issuerPath": null,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 830,
+        "issuerId": null,
+        "chunks": [
+          "other-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": null,
+            "module": null,
+            "moduleName": null,
+            "resolvedModuleIdentifier": null,
+            "resolvedModule": null,
+            "type": "entry",
+            "active": true,
+            "explanation": "",
+            "userRequest": "./other-vendors",
+            "loc": "other-vendors",
+            "moduleId": null,
+            "resolvedModuleId": null
+          }
+        ],
+        "usedExports": [],
+        "providedExports": [],
+        "optimizationBailout": [
+          "Statement (ExpressionStatement) with side effects in source code at 5:0-37",
+          "ModuleConcatenation bailout: Cannot concat with ./node_modules/isomorphic-fetch/fetch-npm-browserify.js: Module is not an ECMAScript module",
+          "ModuleConcatenation bailout: Cannot concat with ./node_modules/lodash/lodash.js: Module is not an ECMAScript module"
+        ],
+        "depth": 0
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 116,
+        "sizes": {
+          "javascript": 116
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+        "name": "./app.js",
+        "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+        "index": 14,
+        "preOrderIndex": 14,
+        "index2": 14,
+        "postOrderIndex": 14,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": null,
+        "issuerName": null,
+        "issuerPath": null,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 389,
+        "issuerId": null,
+        "chunks": [
+          "app"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": null,
+            "module": null,
+            "moduleName": null,
+            "resolvedModuleIdentifier": null,
+            "resolvedModule": null,
+            "type": "entry",
+            "active": true,
+            "explanation": "",
+            "userRequest": "./app.js",
+            "loc": "app",
+            "moduleId": null,
+            "resolvedModuleId": null
+          }
+        ],
+        "usedExports": [],
+        "providedExports": [],
+        "optimizationBailout": [
+          "Statement (ExpressionStatement) with side effects in source code at 4:0-37",
+          "ModuleConcatenation bailout: Cannot concat with ./node_modules/isomorphic-fetch/fetch-npm-browserify.js: Module is not an ECMAScript module",
+          "ModuleConcatenation bailout: Cannot concat with ./node_modules/lodash/lodash.js: Module is not an ECMAScript module"
+        ],
+        "depth": 0
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 176,
+        "sizes": {
+          "javascript": 176
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+        "name": "./page1.js",
+        "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+        "index": 15,
+        "preOrderIndex": 15,
+        "index2": 15,
+        "postOrderIndex": 15,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": null,
+        "issuerName": null,
+        "issuerPath": null,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 832,
+        "issuerId": null,
+        "chunks": [
+          "page1"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": null,
+            "module": null,
+            "moduleName": null,
+            "resolvedModuleIdentifier": null,
+            "resolvedModule": null,
+            "type": "entry",
+            "active": true,
+            "explanation": "",
+            "userRequest": "./page1.js",
+            "loc": "page1",
+            "moduleId": null,
+            "resolvedModuleId": null
+          }
+        ],
+        "usedExports": [],
+        "providedExports": [],
+        "optimizationBailout": [
+          "Statement (ExpressionStatement) with side effects in source code at 5:0-46",
+          "ModuleConcatenation bailout: Cannot concat with ./node_modules/isomorphic-fetch/fetch-npm-browserify.js: Module is not an ECMAScript module",
+          "ModuleConcatenation bailout: Cannot concat with ../../node_modules/react-dom/index.js: Module is not an ECMAScript module",
+          "ModuleConcatenation bailout: Cannot concat with ../../node_modules/react/index.js: Module is not an ECMAScript module"
+        ],
+        "depth": 0
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 6450,
+        "sizes": {
+          "javascript": 6450
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/node_modules/react/cjs/react.production.min.js",
+        "name": "../../node_modules/react/cjs/react.production.min.js",
+        "nameForCondition": "/home/coder/webpack/node_modules/react/cjs/react.production.min.js",
+        "index": 1,
+        "preOrderIndex": 1,
+        "index2": 1,
+        "postOrderIndex": 1,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": "/home/coder/webpack/node_modules/react/index.js",
+        "issuerName": "../../node_modules/react/index.js",
+        "issuerPath": [
+          {
+            "identifier": "/home/coder/webpack/node_modules/react/index.js",
+            "name": "../../node_modules/react/index.js",
+            "id": 784
+          }
+        ],
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 426,
+        "issuerId": 784,
+        "chunks": [
+          "react-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/react/index.js",
+            "module": "../../node_modules/react/index.js",
+            "moduleName": "../../node_modules/react/index.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react/index.js",
+            "resolvedModule": "../../node_modules/react/index.js",
+            "type": "cjs export require",
+            "active": true,
+            "explanation": "",
+            "userRequest": "./cjs/react.production.min.js",
+            "loc": "4:2-59",
+            "moduleId": 784,
+            "resolvedModuleId": 784
+          }
+        ],
+        "usedExports": true,
+        "providedExports": [
+          "Children",
+          "Component",
+          "Fragment",
+          "Profiler",
+          "PureComponent",
+          "StrictMode",
+          "Suspense",
+          "__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+          "cloneElement",
+          "createContext",
+          "createElement",
+          "createFactory",
+          "createRef",
+          "forwardRef",
+          "isValidElement",
+          "lazy",
+          "memo",
+          "useCallback",
+          "useContext",
+          "useDebugValue",
+          "useEffect",
+          "useImperativeHandle",
+          "useLayoutEffect",
+          "useMemo",
+          "useReducer",
+          "useRef",
+          "useState",
+          "version"
+        ],
+        "optimizationBailout": [
+          "Statement (VariableDeclaration) with side effects in source code at 9:13-60",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 1
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 120688,
+        "sizes": {
+          "javascript": 120688
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+        "name": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+        "nameForCondition": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+        "index": 4,
+        "preOrderIndex": 4,
+        "index2": 5,
+        "postOrderIndex": 5,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": "/home/coder/webpack/node_modules/react-dom/index.js",
+        "issuerName": "../../node_modules/react-dom/index.js",
+        "issuerPath": [
+          {
+            "identifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+            "name": "../../node_modules/react-dom/index.js",
+            "id": 316
+          }
+        ],
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 967,
+        "issuerId": 316,
+        "chunks": [
+          "react-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+            "module": "../../node_modules/react-dom/index.js",
+            "moduleName": "../../node_modules/react-dom/index.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+            "resolvedModule": "../../node_modules/react-dom/index.js",
+            "type": "cjs export require",
+            "active": true,
+            "explanation": "",
+            "userRequest": "./cjs/react-dom.production.min.js",
+            "loc": "35:2-63",
+            "moduleId": 316,
+            "resolvedModuleId": 316
+          }
+        ],
+        "usedExports": true,
+        "providedExports": [
+          "__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED",
+          "createPortal",
+          "findDOMNode",
+          "flushSync",
+          "hydrate",
+          "render",
+          "unmountComponentAtNode",
+          "unstable_batchedUpdates",
+          "unstable_createPortal",
+          "unstable_renderSubtreeIntoContainer",
+          "version"
+        ],
+        "optimizationBailout": [
+          "Statement (VariableDeclaration) with side effects in source code at 12:13-87",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 1
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 1639,
+        "sizes": {
+          "javascript": 1639
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+        "name": "./node_modules/prop-types/factoryWithThrowingShims.js",
+        "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+        "index": 8,
+        "preOrderIndex": 8,
+        "index2": 8,
+        "postOrderIndex": 8,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+        "issuerName": "./node_modules/prop-types/index.js",
+        "issuerPath": [
+          {
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+            "name": "./node_modules/prop-types/index.js",
+            "id": 697
+          }
+        ],
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 703,
+        "issuerId": 697,
+        "chunks": [
+          "react-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+            "module": "./node_modules/prop-types/factoryWithThrowingShims.js",
+            "moduleName": "./node_modules/prop-types/factoryWithThrowingShims.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+            "resolvedModule": "./node_modules/prop-types/factoryWithThrowingShims.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "16:0-14",
+            "moduleId": 703,
+            "resolvedModuleId": 703
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+            "module": "./node_modules/prop-types/index.js",
+            "moduleName": "./node_modules/prop-types/index.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+            "resolvedModule": "./node_modules/prop-types/index.js",
+            "type": "cjs require",
+            "active": true,
+            "explanation": "",
+            "userRequest": "./factoryWithThrowingShims",
+            "loc": "18:19-56",
+            "moduleId": 697,
+            "resolvedModuleId": 697
+          }
+        ],
+        "usedExports": null,
+        "providedExports": null,
+        "optimizationBailout": [
+          "CommonJS bailout: module.exports is used directly at 16:0-14",
+          "Statement (VariableDeclaration) with side effects in source code at 10:0-65",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 1
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 544098,
+        "sizes": {
+          "javascript": 544098
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+        "name": "./node_modules/lodash/lodash.js",
+        "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+        "index": 11,
+        "preOrderIndex": 11,
+        "index2": 10,
+        "postOrderIndex": 10,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+        "issuerName": "./app.js",
+        "issuerPath": [
+          {
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "name": "./app.js",
+            "id": 389
+          }
+        ],
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 486,
+        "issuerId": 389,
+        "chunks": [
+          "other-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "module": "./app.js",
+            "moduleName": "./app.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "resolvedModule": "./app.js",
+            "type": "harmony side effect evaluation",
+            "active": true,
+            "explanation": "",
+            "userRequest": "lodash",
+            "loc": "2:0-28",
+            "moduleId": 389,
+            "resolvedModuleId": 389
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "module": "./app.js",
+            "moduleName": "./app.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "resolvedModule": "./app.js",
+            "type": "harmony import specifier",
+            "active": true,
+            "explanation": "",
+            "userRequest": "lodash",
+            "loc": "4:29-35",
+            "moduleId": 389,
+            "resolvedModuleId": 389
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+            "module": "./lazy.js",
+            "moduleName": "./lazy.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+            "resolvedModule": "./lazy.js",
+            "type": "harmony side effect evaluation",
+            "active": true,
+            "explanation": "",
+            "userRequest": "lodash",
+            "loc": "1:0-28",
+            "moduleId": 401,
+            "resolvedModuleId": 401
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+            "module": "./lazy.js",
+            "moduleName": "./lazy.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+            "resolvedModule": "./lazy.js",
+            "type": "harmony import specifier",
+            "active": true,
+            "explanation": "",
+            "userRequest": "lodash",
+            "loc": "4:12-18",
+            "moduleId": 401,
+            "resolvedModuleId": 401
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "module": "./node_modules/lodash/lodash.js",
+            "moduleName": "./node_modules/lodash/lodash.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "resolvedModule": "./node_modules/lodash/lodash.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "439:50-57",
+            "moduleId": 486,
+            "resolvedModuleId": 486
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "module": "./node_modules/lodash/lodash.js",
+            "moduleName": "./node_modules/lodash/lodash.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "resolvedModule": "./node_modules/lodash/lodash.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "439:62-78",
+            "moduleId": 486,
+            "resolvedModuleId": 486
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "module": "./node_modules/lodash/lodash.js",
+            "moduleName": "./node_modules/lodash/lodash.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "resolvedModule": "./node_modules/lodash/lodash.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "439:82-89",
+            "moduleId": 486,
+            "resolvedModuleId": 486
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "module": "./node_modules/lodash/lodash.js",
+            "moduleName": "./node_modules/lodash/lodash.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "resolvedModule": "./node_modules/lodash/lodash.js",
+            "type": "module decorator",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "442:63-69",
+            "moduleId": 486,
+            "resolvedModuleId": 486
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "module": "./node_modules/lodash/lodash.js",
+            "moduleName": "./node_modules/lodash/lodash.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "resolvedModule": "./node_modules/lodash/lodash.js",
+            "type": "module decorator",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "442:74-80",
+            "moduleId": 486,
+            "resolvedModuleId": 486
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "module": "./node_modules/lodash/lodash.js",
+            "moduleName": "./node_modules/lodash/lodash.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "resolvedModule": "./node_modules/lodash/lodash.js",
+            "type": "module decorator",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "442:93-99",
+            "moduleId": 486,
+            "resolvedModuleId": 486
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "module": "./node_modules/lodash/lodash.js",
+            "moduleName": "./node_modules/lodash/lodash.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/lodash/lodash.js",
+            "resolvedModule": "./node_modules/lodash/lodash.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "17209:7-11",
+            "moduleId": 486,
+            "resolvedModuleId": 486
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+            "module": "./other-vendors.js",
+            "moduleName": "./other-vendors.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+            "resolvedModule": "./other-vendors.js",
+            "type": "harmony side effect evaluation",
+            "active": true,
+            "explanation": "",
+            "userRequest": "lodash",
+            "loc": "1:0-28",
+            "moduleId": 830,
+            "resolvedModuleId": 830
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+            "module": "./other-vendors.js",
+            "moduleName": "./other-vendors.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+            "resolvedModule": "./other-vendors.js",
+            "type": "harmony import specifier",
+            "active": true,
+            "explanation": "",
+            "userRequest": "lodash",
+            "loc": "5:12-18",
+            "moduleId": 830,
+            "resolvedModuleId": 830
+          }
+        ],
+        "usedExports": null,
+        "providedExports": null,
+        "optimizationBailout": [
+          "CommonJS bailout: this is used directly at 17209:7-11",
+          "CommonJS bailout: exports is used directly at 439:50-57",
+          "CommonJS bailout: exports is used directly at 439:82-89",
+          "Statement (ExpressionStatement) with side effects in source code at 9:1-17209:14",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 1
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 233,
+        "sizes": {
+          "javascript": 233
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+        "name": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+        "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+        "index": 12,
+        "preOrderIndex": 12,
+        "index2": 12,
+        "postOrderIndex": 12,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+        "issuerName": "./app.js",
+        "issuerPath": [
+          {
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "name": "./app.js",
+            "id": 389
+          }
+        ],
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 301,
+        "issuerId": 389,
+        "chunks": [
+          "other-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "module": "./app.js",
+            "moduleName": "./app.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "resolvedModule": "./app.js",
+            "type": "harmony side effect evaluation",
+            "active": true,
+            "explanation": "",
+            "userRequest": "isomorphic-fetch",
+            "loc": "1:0-47",
+            "moduleId": 389,
+            "resolvedModuleId": 389
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "module": "./app.js",
+            "moduleName": "./app.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "resolvedModule": "./app.js",
+            "type": "harmony import specifier",
+            "active": true,
+            "explanation": "",
+            "userRequest": "isomorphic-fetch",
+            "loc": "4:12-27",
+            "moduleId": 389,
+            "resolvedModuleId": 389
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "module": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "moduleName": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "resolvedModule": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "6:0-14",
+            "moduleId": 301,
+            "resolvedModuleId": 301
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+            "module": "./other-vendors.js",
+            "moduleName": "./other-vendors.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+            "resolvedModule": "./other-vendors.js",
+            "type": "harmony side effect evaluation",
+            "active": true,
+            "explanation": "",
+            "userRequest": "isomorphic-fetch",
+            "loc": "2:0-47",
+            "moduleId": 830,
+            "resolvedModuleId": 830
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+            "module": "./other-vendors.js",
+            "moduleName": "./other-vendors.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/other-vendors.js",
+            "resolvedModule": "./other-vendors.js",
+            "type": "harmony import specifier",
+            "active": true,
+            "explanation": "",
+            "userRequest": "isomorphic-fetch",
+            "loc": "5:20-35",
+            "moduleId": 830,
+            "resolvedModuleId": 830
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "module": "./page1.js",
+            "moduleName": "./page1.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "resolvedModule": "./page1.js",
+            "type": "harmony side effect evaluation",
+            "active": true,
+            "explanation": "",
+            "userRequest": "isomorphic-fetch",
+            "loc": "1:0-47",
+            "moduleId": 832,
+            "resolvedModuleId": 832
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "module": "./page1.js",
+            "moduleName": "./page1.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "resolvedModule": "./page1.js",
+            "type": "harmony import specifier",
+            "active": true,
+            "explanation": "",
+            "userRequest": "isomorphic-fetch",
+            "loc": "5:12-27",
+            "moduleId": 832,
+            "resolvedModuleId": 832
+          }
+        ],
+        "usedExports": null,
+        "providedExports": null,
+        "optimizationBailout": [
+          "CommonJS bailout: module.exports is used directly at 6:0-14",
+          "Statement (ExpressionStatement) with side effects in source code at 5:0-24",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 1
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 98,
+        "sizes": {
+          "javascript": 98
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+        "name": "./lazy.js",
+        "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/lazy.js",
+        "index": 16,
+        "preOrderIndex": 16,
+        "index2": 16,
+        "postOrderIndex": 16,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+        "issuerName": "./page1.js",
+        "issuerPath": [
+          {
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "name": "./page1.js",
+            "id": 832
+          }
+        ],
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 401,
+        "issuerId": 832,
+        "chunks": [
+          "lazy_js"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "module": "./page1.js",
+            "moduleName": "./page1.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/page1.js",
+            "resolvedModule": "./page1.js",
+            "type": "import()",
+            "active": true,
+            "explanation": "",
+            "userRequest": "./lazy",
+            "loc": "7:0-16",
+            "moduleId": 832,
+            "resolvedModuleId": 832
+          }
+        ],
+        "usedExports": true,
+        "providedExports": [],
+        "optimizationBailout": [
+          "Statement (ExpressionStatement) with side effects in source code at 4:0-31",
+          "ModuleConcatenation bailout: Cannot concat with ./node_modules/lodash/lodash.js: Module is not an ECMAScript module",
+          "ModuleConcatenation bailout: Cannot concat with ./node_modules/prop-types/index.js: Module is not an ECMAScript module"
+        ],
+        "depth": 1
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 2108,
+        "sizes": {
+          "javascript": 2108
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/node_modules/object-assign/index.js",
+        "name": "../../node_modules/object-assign/index.js",
+        "nameForCondition": "/home/coder/webpack/node_modules/object-assign/index.js",
+        "index": 2,
+        "preOrderIndex": 2,
+        "index2": 0,
+        "postOrderIndex": 0,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+        "issuerName": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+        "issuerPath": [
+          {
+            "identifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+            "name": "../../node_modules/react-dom/index.js",
+            "id": 316
+          },
+          {
+            "identifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "name": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "id": 967
+          }
+        ],
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 320,
+        "issuerId": 967,
+        "chunks": [
+          "react-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/object-assign/index.js",
+            "module": "../../node_modules/object-assign/index.js",
+            "moduleName": "../../node_modules/object-assign/index.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/object-assign/index.js",
+            "resolvedModule": "../../node_modules/object-assign/index.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "65:0-14",
+            "moduleId": 320,
+            "resolvedModuleId": 320
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "module": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "moduleName": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "resolvedModule": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "type": "cjs require",
+            "active": true,
+            "explanation": "",
+            "userRequest": "object-assign",
+            "loc": "12:39-63",
+            "moduleId": 967,
+            "resolvedModuleId": 967
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/react/cjs/react.production.min.js",
+            "module": "../../node_modules/react/cjs/react.production.min.js",
+            "moduleName": "../../node_modules/react/cjs/react.production.min.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react/cjs/react.production.min.js",
+            "resolvedModule": "../../node_modules/react/cjs/react.production.min.js",
+            "type": "cjs require",
+            "active": true,
+            "explanation": "",
+            "userRequest": "object-assign",
+            "loc": "9:19-43",
+            "moduleId": 426,
+            "resolvedModuleId": 426
+          }
+        ],
+        "usedExports": null,
+        "providedExports": null,
+        "optimizationBailout": [
+          "CommonJS bailout: module.exports is used directly at 65:0-14",
+          "Statement (VariableDeclaration) with side effects in source code at 9:0-57",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 2
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 198,
+        "sizes": {
+          "javascript": 198
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/node_modules/scheduler/index.js",
+        "name": "../../node_modules/scheduler/index.js",
+        "nameForCondition": "/home/coder/webpack/node_modules/scheduler/index.js",
+        "index": 5,
+        "preOrderIndex": 5,
+        "index2": 4,
+        "postOrderIndex": 4,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+        "issuerName": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+        "issuerPath": [
+          {
+            "identifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+            "name": "../../node_modules/react-dom/index.js",
+            "id": 316
+          },
+          {
+            "identifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "name": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "id": 967
+          }
+        ],
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 616,
+        "issuerId": 967,
+        "chunks": [
+          "react-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "module": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "moduleName": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "resolvedModule": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "type": "cjs require",
+            "active": true,
+            "explanation": "",
+            "userRequest": "scheduler",
+            "loc": "12:66-86",
+            "moduleId": 967,
+            "resolvedModuleId": 967
+          }
+        ],
+        "usedExports": true,
+        "providedExports": [
+          "unstable_IdlePriority",
+          "unstable_ImmediatePriority",
+          "unstable_LowPriority",
+          "unstable_NormalPriority",
+          "unstable_Profiling",
+          "unstable_UserBlockingPriority",
+          "unstable_cancelCallback",
+          "unstable_continueExecution",
+          "unstable_forceFrameRate",
+          "unstable_getCurrentPriorityLevel",
+          "unstable_getFirstCallbackNode",
+          "unstable_next",
+          "unstable_now",
+          "unstable_pauseExecution",
+          "unstable_requestPaint",
+          "unstable_runWithPriority",
+          "unstable_scheduleCallback",
+          "unstable_shouldYield",
+          "unstable_wrapCallback"
+        ],
+        "optimizationBailout": [
+          "Statement (ExpressionStatement) with side effects in source code at 4:2-64",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 2
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 314,
+        "sizes": {
+          "javascript": 314
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/lib/ReactPropTypesSecret.js",
+        "name": "./node_modules/prop-types/lib/ReactPropTypesSecret.js",
+        "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/lib/ReactPropTypesSecret.js",
+        "index": 9,
+        "preOrderIndex": 9,
+        "index2": 7,
+        "postOrderIndex": 7,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+        "issuerName": "./node_modules/prop-types/factoryWithThrowingShims.js",
+        "issuerPath": [
+          {
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/index.js",
+            "name": "./node_modules/prop-types/index.js",
+            "id": 697
+          },
+          {
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+            "name": "./node_modules/prop-types/factoryWithThrowingShims.js",
+            "id": 703
+          }
+        ],
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 414,
+        "issuerId": 703,
+        "chunks": [
+          "react-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+            "module": "./node_modules/prop-types/factoryWithThrowingShims.js",
+            "moduleName": "./node_modules/prop-types/factoryWithThrowingShims.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/factoryWithThrowingShims.js",
+            "resolvedModule": "./node_modules/prop-types/factoryWithThrowingShims.js",
+            "type": "cjs require",
+            "active": true,
+            "explanation": "",
+            "userRequest": "./lib/ReactPropTypesSecret",
+            "loc": "10:27-64",
+            "moduleId": 703,
+            "resolvedModuleId": 703
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/lib/ReactPropTypesSecret.js",
+            "module": "./node_modules/prop-types/lib/ReactPropTypesSecret.js",
+            "moduleName": "./node_modules/prop-types/lib/ReactPropTypesSecret.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/prop-types/lib/ReactPropTypesSecret.js",
+            "resolvedModule": "./node_modules/prop-types/lib/ReactPropTypesSecret.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "12:0-14",
+            "moduleId": 414,
+            "resolvedModuleId": 414
+          }
+        ],
+        "usedExports": null,
+        "providedExports": null,
+        "optimizationBailout": [
+          "CommonJS bailout: module.exports is used directly at 12:0-14",
+          "Statement (ExpressionStatement) with side effects in source code at 12:0-38",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 2
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 16658,
+        "sizes": {
+          "javascript": 16658
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/whatwg-fetch/fetch.js",
+        "name": "./node_modules/whatwg-fetch/fetch.js",
+        "nameForCondition": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/whatwg-fetch/fetch.js",
+        "index": 13,
+        "preOrderIndex": 13,
+        "index2": 11,
+        "postOrderIndex": 11,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+        "issuerName": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+        "issuerPath": [
+          {
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/app.js",
+            "name": "./app.js",
+            "id": 389
+          },
+          {
+            "identifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "name": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "id": 301
+          }
+        ],
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 147,
+        "issuerId": 301,
+        "chunks": [
+          "other-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "module": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "moduleName": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/examples/code-splitting-depend-on-advanced/node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "resolvedModule": "./node_modules/isomorphic-fetch/fetch-npm-browserify.js",
+            "type": "cjs require",
+            "active": true,
+            "explanation": "",
+            "userRequest": "whatwg-fetch",
+            "loc": "5:0-23",
+            "moduleId": 301,
+            "resolvedModuleId": 301
+          }
+        ],
+        "usedExports": true,
+        "providedExports": [
+          "DOMException",
+          "Headers",
+          "Request",
+          "Response",
+          "fetch"
+        ],
+        "optimizationBailout": [
+          "Statement (VariableDeclaration) with side effects in source code at 1:0-4:43"
+        ],
+        "depth": 2
+      },
+      {
+        "type": "module",
+        "moduleType": "javascript/auto",
+        "layer": null,
+        "size": 4830,
+        "sizes": {
+          "javascript": 4830
+        },
+        "built": true,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+        "name": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+        "nameForCondition": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+        "index": 6,
+        "preOrderIndex": 6,
+        "index2": 3,
+        "postOrderIndex": 3,
+        "cacheable": true,
+        "optional": false,
+        "orphan": false,
+        "issuer": "/home/coder/webpack/node_modules/scheduler/index.js",
+        "issuerName": "../../node_modules/scheduler/index.js",
+        "issuerPath": [
+          {
+            "identifier": "/home/coder/webpack/node_modules/react-dom/index.js",
+            "name": "../../node_modules/react-dom/index.js",
+            "id": 316
+          },
+          {
+            "identifier": "/home/coder/webpack/node_modules/react-dom/cjs/react-dom.production.min.js",
+            "name": "../../node_modules/react-dom/cjs/react-dom.production.min.js",
+            "id": 967
+          },
+          {
+            "identifier": "/home/coder/webpack/node_modules/scheduler/index.js",
+            "name": "../../node_modules/scheduler/index.js",
+            "id": 616
+          }
+        ],
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": 475,
+        "issuerId": 616,
+        "chunks": [
+          "react-vendors"
+        ],
+        "assets": [],
+        "reasons": [
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "10:121-141",
+            "moduleId": 475,
+            "resolvedModuleId": 475
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "11:504-524",
+            "moduleId": 475,
+            "resolvedModuleId": 475
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "12:312-332",
+            "moduleId": 475,
+            "resolvedModuleId": 475
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "13:15-35",
+            "moduleId": 475,
+            "resolvedModuleId": 475
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "16:106-134",
+            "moduleId": 475,
+            "resolvedModuleId": 475
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "16:248-268",
+            "moduleId": 475,
+            "resolvedModuleId": 475
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "module": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "moduleName": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/cjs/scheduler.production.min.js",
+            "resolvedModule": "../../node_modules/scheduler/cjs/scheduler.production.min.js",
+            "type": "cjs self exports reference",
+            "active": true,
+            "explanation": "",
+            "userRequest": null,
+            "loc": "19:56-76",
+            "moduleId": 475,
+            "resolvedModuleId": 475
+          },
+          {
+            "moduleIdentifier": "/home/coder/webpack/node_modules/scheduler/index.js",
+            "module": "../../node_modules/scheduler/index.js",
+            "moduleName": "../../node_modules/scheduler/index.js",
+            "resolvedModuleIdentifier": "/home/coder/webpack/node_modules/scheduler/index.js",
+            "resolvedModule": "../../node_modules/scheduler/index.js",
+            "type": "cjs export require",
+            "active": true,
+            "explanation": "",
+            "userRequest": "./cjs/scheduler.production.min.js",
+            "loc": "4:2-63",
+            "moduleId": 616,
+            "resolvedModuleId": 616
+          }
+        ],
+        "usedExports": true,
+        "providedExports": [
+          "unstable_IdlePriority",
+          "unstable_ImmediatePriority",
+          "unstable_LowPriority",
+          "unstable_NormalPriority",
+          "unstable_Profiling",
+          "unstable_UserBlockingPriority",
+          "unstable_cancelCallback",
+          "unstable_continueExecution",
+          "unstable_forceFrameRate",
+          "unstable_getCurrentPriorityLevel",
+          "unstable_getFirstCallbackNode",
+          "unstable_next",
+          "unstable_now",
+          "unstable_pauseExecution",
+          "unstable_requestPaint",
+          "unstable_runWithPriority",
+          "unstable_scheduleCallback",
+          "unstable_shouldYield",
+          "unstable_wrapCallback"
+        ],
+        "optimizationBailout": [
+          "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 10:121-141",
+          "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 11:504-524",
+          "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 12:312-332",
+          "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 13:15-35",
+          "CommonJS bailout: exports.unstable_shouldYield(...) prevents optimization as exports is passed as call context at 16:106-134",
+          "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 16:248-268",
+          "CommonJS bailout: exports.unstable_now(...) prevents optimization as exports is passed as call context at 19:56-76",
+          "Statement (IfStatement) with side effects in source code at 9:25-238",
+          "ModuleConcatenation bailout: Module is not an ECMAScript module"
+        ],
+        "depth": 3
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 886,
+        "sizes": {
+          "runtime": 886
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/chunk loaded",
+        "name": "webpack/runtime/chunk loaded",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 267,
+        "sizes": {
+          "runtime": 267
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/compat get default export",
+        "name": "webpack/runtime/compat get default export",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 308,
+        "sizes": {
+          "runtime": 308
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/define property getters",
+        "name": "webpack/runtime/define property getters",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 326,
+        "sizes": {
+          "runtime": 326
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/ensure chunk",
+        "name": "webpack/runtime/ensure chunk",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 167,
+        "sizes": {
+          "runtime": 167
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/get javascript chunk filename",
+        "name": "webpack/runtime/get javascript chunk filename",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 221,
+        "sizes": {
+          "runtime": 221
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/global",
+        "name": "webpack/runtime/global",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 88,
+        "sizes": {
+          "runtime": 88
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/hasOwnProperty shorthand",
+        "name": "webpack/runtime/hasOwnProperty shorthand",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 3227,
+        "sizes": {
+          "runtime": 3227
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/jsonp chunk loading",
+        "name": "webpack/runtime/jsonp chunk loading",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 1530,
+        "sizes": {
+          "runtime": 1530
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/load script",
+        "name": "webpack/runtime/load script",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 274,
+        "sizes": {
+          "runtime": 274
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/make namespace object",
+        "name": "webpack/runtime/make namespace object",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 123,
+        "sizes": {
+          "runtime": 123
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/node module decorator",
+        "name": "webpack/runtime/node module decorator",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      },
+      {
+        "type": "module",
+        "moduleType": "runtime",
+        "layer": null,
+        "size": 867,
+        "sizes": {
+          "runtime": 867
+        },
+        "built": false,
+        "codeGenerated": true,
+        "buildTimeExecuted": false,
+        "cached": false,
+        "identifier": "webpack/runtime/publicPath",
+        "name": "webpack/runtime/publicPath",
+        "nameForCondition": null,
+        "index": null,
+        "preOrderIndex": null,
+        "index2": null,
+        "postOrderIndex": null,
+        "optional": false,
+        "orphan": false,
+        "failed": false,
+        "errors": 0,
+        "warnings": 0,
+        "id": "",
+        "chunks": [
+          "runtime"
+        ],
+        "assets": [],
+        "reasons": [],
+        "usedExports": null,
+        "providedExports": [],
+        "optimizationBailout": [],
+        "depth": null
+      }
+    ],
+    "entrypoints": {
+      "app": {
+        "name": "app",
+        "chunks": [
+          "app"
+        ],
+        "assets": [
+          {
+            "name": "app.js",
+            "size": 274
+          }
+        ],
+        "filteredAssets": 0,
+        "assetsSize": 274,
+        "auxiliaryAssets": [],
+        "filteredAuxiliaryAssets": 0,
+        "auxiliaryAssetsSize": 0,
+        "children": {},
+        "childAssets": {},
+        "isOverSizeLimit": false
+      },
+      "page1": {
+        "name": "page1",
+        "chunks": [
+          "page1"
+        ],
+        "assets": [
+          {
+            "name": "page1.js",
+            "size": 333
+          }
+        ],
+        "filteredAssets": 0,
+        "assetsSize": 333,
+        "auxiliaryAssets": [],
+        "filteredAuxiliaryAssets": 0,
+        "auxiliaryAssetsSize": 0,
+        "children": {},
+        "childAssets": {},
+        "isOverSizeLimit": false
+      },
+      "react-vendors": {
+        "name": "react-vendors",
+        "chunks": [
+          "runtime",
+          "react-vendors"
+        ],
+        "assets": [
+          {
+            "name": "runtime.js",
+            "size": 3205
+          },
+          {
+            "name": "react-vendors.js",
+            "size": 130522
+          }
+        ],
+        "filteredAssets": 0,
+        "assetsSize": 133727,
+        "auxiliaryAssets": [],
+        "filteredAuxiliaryAssets": 0,
+        "auxiliaryAssetsSize": 0,
+        "children": {},
+        "childAssets": {},
+        "isOverSizeLimit": false
+      },
+      "other-vendors": {
+        "name": "other-vendors",
+        "chunks": [
+          "runtime",
+          "other-vendors"
+        ],
+        "assets": [
+          {
+            "name": "runtime.js",
+            "size": 3205
+          },
+          {
+            "name": "other-vendors.js",
+            "size": 79779
+          }
+        ],
+        "filteredAssets": 0,
+        "assetsSize": 82984,
+        "auxiliaryAssets": [],
+        "filteredAuxiliaryAssets": 0,
+        "auxiliaryAssetsSize": 0,
+        "children": {},
+        "childAssets": {},
+        "isOverSizeLimit": false
+      }
+    },
+    "namedChunkGroups": {
+      "app": {
+        "name": "app",
+        "chunks": [
+          "app"
+        ],
+        "assets": [
+          {
+            "name": "app.js",
+            "size": 274
+          }
+        ],
+        "filteredAssets": 0,
+        "assetsSize": 274,
+        "auxiliaryAssets": [],
+        "filteredAuxiliaryAssets": 0,
+        "auxiliaryAssetsSize": 0,
+        "children": {},
+        "childAssets": {},
+        "isOverSizeLimit": false
+      },
+      "page1": {
+        "name": "page1",
+        "chunks": [
+          "page1"
+        ],
+        "assets": [
+          {
+            "name": "page1.js",
+            "size": 333
+          }
+        ],
+        "filteredAssets": 0,
+        "assetsSize": 333,
+        "auxiliaryAssets": [],
+        "filteredAuxiliaryAssets": 0,
+        "auxiliaryAssetsSize": 0,
+        "children": {},
+        "childAssets": {},
+        "isOverSizeLimit": false
+      },
+      "react-vendors": {
+        "name": "react-vendors",
+        "chunks": [
+          "runtime",
+          "react-vendors"
+        ],
+        "assets": [
+          {
+            "name": "runtime.js",
+            "size": 3205
+          },
+          {
+            "name": "react-vendors.js",
+            "size": 130522
+          }
+        ],
+        "filteredAssets": 0,
+        "assetsSize": 133727,
+        "auxiliaryAssets": [],
+        "filteredAuxiliaryAssets": 0,
+        "auxiliaryAssetsSize": 0,
+        "children": {},
+        "childAssets": {},
+        "isOverSizeLimit": false
+      },
+      "other-vendors": {
+        "name": "other-vendors",
+        "chunks": [
+          "runtime",
+          "other-vendors"
+        ],
+        "assets": [
+          {
+            "name": "runtime.js",
+            "size": 3205
+          },
+          {
+            "name": "other-vendors.js",
+            "size": 79779
+          }
+        ],
+        "filteredAssets": 0,
+        "assetsSize": 82984,
+        "auxiliaryAssets": [],
+        "filteredAuxiliaryAssets": 0,
+        "auxiliaryAssetsSize": 0,
+        "children": {},
+        "childAssets": {},
+        "isOverSizeLimit": false
+      }
+    },
+    "errors": [],
+    "errorsCount": 0,
+    "warnings": [
+      {
+        "message": "configuration\nThe 'mode' option has not been set, webpack will fallback to 'production' for this value.\nSet 'mode' option to 'development' or 'production' to enable defaults for each environment.\nYou can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/",
+        "stack": "NoModeWarning: configuration\nThe 'mode' option has not been set, webpack will fallback to 'production' for this value.\nSet 'mode' option to 'development' or 'production' to enable defaults for each environment.\nYou can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/\n    at /home/coder/webpack/node_modules/webpack/lib/WarnNoModeSetPlugin.js:20:30\n    at Hook.eval [as call] (eval at create (/home/coder/webpack/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:19:1)\n    at Hook.CALL_DELEGATE [as _call] (/home/coder/webpack/node_modules/tapable/lib/Hook.js:14:14)\n    at Compiler.newCompilation (/home/coder/webpack/node_modules/webpack/lib/Compiler.js:1121:30)\n    at /home/coder/webpack/node_modules/webpack/lib/Compiler.js:1166:29\n    at Hook.eval [as callAsync] (eval at create (/home/coder/webpack/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:4:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/home/coder/webpack/node_modules/tapable/lib/Hook.js:18:14)\n    at Compiler.compile (/home/coder/webpack/node_modules/webpack/lib/Compiler.js:1161:28)\n    at /home/coder/webpack/node_modules/webpack/lib/Compiler.js:524:12\n    at Compiler.readRecords (/home/coder/webpack/node_modules/webpack/lib/Compiler.js:986:5)"
+      }
+    ],
+    "warningsCount": 1,
+    "children": []
+  }

@@ -17,12 +17,15 @@ import s from './ModulesTreemap.css';
 import Search from './Search';
 import {store} from '../store';
 import ModulesList from './ModulesList';
+import Dropdown from './Dropdown';
 
 const SIZE_SWITCH_ITEMS = [
   {label: 'Stat', prop: 'statSize'},
   {label: 'Parsed', prop: 'parsedSize'},
   {label: 'Gzipped', prop: 'gzipSize'}
 ];
+
+const DEFAULT_DROPDOWN_SELECTION = 'Select an entrypoint';
 
 @observer
 export default class ModulesTreemap extends Component {
@@ -77,6 +80,12 @@ export default class ModulesTreemap extends Component {
                 </Checkbox>
               </div>
             }
+          </div>
+          <div className={s.sidebarGroup}>
+            <Dropdown label="Filter to initial chunks"
+              defaultOption={DEFAULT_DROPDOWN_SELECTION}
+              options={store.entrypoints}
+              onSelectionChange={this.handleSelectionChange}/>
           </div>
           <div className={s.sidebarGroup}>
             <Search label="Search modules"
@@ -204,6 +213,17 @@ export default class ModulesTreemap extends Component {
     } else {
       return 'Nothing found' + (store.allChunksSelected ? '' : ' in selected chunks');
     }
+  }
+
+  handleSelectionChange = (event) => {
+    const selected = event.target.value;
+
+    if (selected === DEFAULT_DROPDOWN_SELECTION) {
+      store.selectedChunks = store.allChunks;
+      return;
+    }
+
+    store.selectedChunks = store.allChunks.filter(chunk => chunk.isInitialByEntrypoint[selected] ?? false);
   }
 
   handleConcatenatedModulesContentToggle = flag => {

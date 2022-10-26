@@ -39,7 +39,7 @@ function getScript(filename, mode) {
   }
 }
 
-function renderViewer({title, enableWebSocket, chartData, defaultSizes, mode} = {}) {
+function renderViewer({title, enableWebSocket, chartData, entrypoints, defaultSizes, mode} = {}) {
   return html`<!DOCTYPE html>
 <html>
   <head>
@@ -58,6 +58,7 @@ function renderViewer({title, enableWebSocket, chartData, defaultSizes, mode} = 
     <div id="app"></div>
     <script>
       window.chartData = ${escapeJson(chartData)};
+      window.entrypoints = ${escapeJson(entrypoints)};
       window.defaultSizes = ${escapeJson(defaultSizes)};
     </script>
   </body>
