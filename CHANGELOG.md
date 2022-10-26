@@ -12,6 +12,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+## 4.7.0
+
  * **New Feature**
    * Add the ability to filter to displaying only initial chunks per entrypoint ([#519](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/519) by [@pas-trop-de-zele](https://github.com/pas-trop-de-zele))
 
