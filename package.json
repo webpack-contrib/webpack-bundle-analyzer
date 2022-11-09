@@ -84,7 +84,7 @@
     "url-loader": "4.1.1",
     "webpack": "5.37.1",
     "webpack-cli": "3.3.12",
-    "webpack-dev-server": "3.11.2"
+    "webpack-dev-server": "3.11.3"
   },
   "keywords": [
     "webpack",
