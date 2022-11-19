@@ -2,24 +2,21 @@ name: main
 on:
   push:
     branches:
-    - master
+      - master
   pull_request:
 jobs:
   build-and-test:
     strategy:
       matrix:
-        node:
-          - '10'
-          - '12'
-          - '14'
+        node: [12.x, 14.x, 16.x, 18.x, 19.x]
     runs-on: ubuntu-latest
     name: Tests on Node.js v${{ matrix.node }}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
 
@@ -36,12 +33,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '14.x'
+          node-version: "14.x"
 
       - name: Download deps
         uses: bahmutov/npm-install@v1
