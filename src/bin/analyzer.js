@@ -4,6 +4,7 @@ const {resolve, dirname} = require('path');
 
 const commander = require('commander');
 const {magenta} = require('chalk');
+const fs = require('fs');
 
 const analyzer = require('../analyzer');
 const viewer = require('../viewer');
@@ -139,14 +140,16 @@ if (mode === 'server') {
     defaultSizes,
     bundleDir,
     excludeAssets,
-    logger: new Logger(logLevel)
+    logger: new Logger(logLevel),
+    fs
   });
 } else if (mode === 'json') {
   viewer.generateJSONReport(bundleStats, {
     reportFilename: resolve(reportFilename || 'report.json'),
     bundleDir,
     excludeAssets,
-    logger: new Logger(logLevel)
+    logger: new Logger(logLevel),
+    fs
   });
 }
 

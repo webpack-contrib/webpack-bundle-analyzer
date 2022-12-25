@@ -1,6 +1,7 @@
 const {inspect, types} = require('util');
 const _ = require('lodash');
 const opener = require('opener');
+const path = require('path');
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -67,4 +68,11 @@ exports.open = function (uri, logger) {
   } catch (err) {
     logger.debug(`Opener failed to open "${uri}":\n${err}`);
   }
+};
+
+exports.mkdirpSync = function mkdirpSync(fs, dest) {
+  // older version webpack uses memory-fs whose mkdirSync does not support {recursive: true}
+  fs.mkdirpSync
+    ? fs.mkdirpSync(path.dirname(dest))
+    : fs.mkdirSync(path.dirname(dest), {recursive: true});
 };

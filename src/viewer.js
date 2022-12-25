@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const http = require('http');
 
 const WebSocket = require('ws');
@@ -9,7 +8,7 @@ const {bold} = require('chalk');
 
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
-const {open} = require('./utils');
+const {open, mkdirpSync} = require('./utils');
 const {renderViewer} = require('./template');
 
 const projectRoot = path.resolve(__dirname, '..');
@@ -137,7 +136,8 @@ async function generateReport(bundleStats, opts) {
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
-    excludeAssets = null
+    excludeAssets = null,
+    fs
   } = opts || {};
 
   const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
@@ -155,7 +155,7 @@ async function generateReport(bundleStats, opts) {
   });
   const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
 
-  fs.mkdirSync(path.dirname(reportFilepath), {recursive: true});
+  mkdirpSync(fs, reportFilepath, reportHtml);
   fs.writeFileSync(reportFilepath, reportHtml);
 
   logger.info(`${bold('Webpack Bundle Analyzer')} saved report to ${bold(reportFilepath)}`);
@@ -166,14 +166,14 @@ async function generateReport(bundleStats, opts) {
 }
 
 async function generateJSONReport(bundleStats, opts) {
-  const {reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null} = opts || {};
+  const {reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null, fs} = opts || {};
 
   const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
 
   if (!chartData) return;
 
-  await fs.promises.mkdir(path.dirname(reportFilename), {recursive: true});
-  await fs.promises.writeFile(reportFilename, JSON.stringify(chartData));
+  mkdirpSync(fs, reportFilename);
+  fs.writeFileSync(reportFilename, JSON.stringify(chartData));
 
   logger.info(`${bold('Webpack Bundle Analyzer')} saved JSON report to ${bold(reportFilename)}`);
 }
