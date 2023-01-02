@@ -53,7 +53,7 @@
     "@carrotsearch/foamtree": "3.5.0",
     "autoprefixer": "10.2.5",
     "babel-eslint": "10.1.0",
-    "babel-loader": "8.2.2",
+    "babel-loader": "8.3.0",
     "babel-plugin-lodash": "3.3.4",
     "chai": "4.3.4",
     "chai-subset": "1.6.0",
@@ -83,7 +83,7 @@
     "terser-webpack-plugin": "5.1.2",
     "url-loader": "4.1.1",
     "webpack": "5.37.1",
-    "webpack-cli": "3.3.12",
+    "webpack-cli": "5.0.1",
     "webpack-dev-server": "3.11.3"
   },
   "keywords": [
