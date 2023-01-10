@@ -41,7 +41,8 @@ async function startServer(bundleStats, opts) {
     defaultSizes = 'parsed',
     excludeAssets = null,
     reportTitle,
-    analyzerUrl
+    analyzerUrl,
+    strictPort = true
   } = opts || {};
 
   const analyzerOpts = {logger, excludeAssets};
@@ -73,7 +74,25 @@ async function startServer(bundleStats, opts) {
     }
   });
 
-  await new Promise(resolve => {
+  await new Promise((resolve, reject) => {
+    let curPort = port;
+    const onError = (e) => {
+      if (e.code === 'EADDRINUSE') {
+        if (strictPort) {
+          server.removeListener('error', onError);
+          reject(e);
+        } else {
+          logger.info(`Port ${curPort} is in use, trying another one...`);
+          server.listen(++curPort, host);
+        }
+      } else {
+        server.removeListener('error', onError);
+        reject(e);
+      }
+    };
+
+    server.on('error', onError);
+
     server.listen(port, host, () => {
       resolve();
 

@@ -109,6 +109,7 @@ class BundleAnalyzerPlugin {
         logger: this.logger,
         defaultSizes: this.opts.defaultSizes,
         excludeAssets: this.opts.excludeAssets,
+        strictPort: this.opts.strictPort,
         analyzerUrl: this.opts.analyzerUrl
       });
     }
