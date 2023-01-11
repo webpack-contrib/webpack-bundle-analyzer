@@ -57,7 +57,7 @@ new BundleAnalyzerPlugin(options?: object)
 |:--:|:--:|:----------|
 |**`analyzerMode`**|One of: `server`, `static`, `json`, `disabled`|Default: `server`. In `server` mode analyzer will start HTTP server to show bundle report. In `static` mode single HTML file with bundle report will be generated. In `json` mode single JSON file with bundle report will be generated. In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`. |
 |**`analyzerHost`**|`{String}`|Default: `127.0.0.1`. Host that will be used in `server` mode to start HTTP server.|
-|**`analyzerPort`**|`{Number}` or `auto`|Default: `8888`. Port that will be used in `server` mode to start HTTP server.|
+|**`analyzerPort`**|`{Number}` or `auto`|Default: `8888`. Port that will be used in `server` mode to start HTTP server. If `analyzerPort` is `auto`, the operating system will assign an arbitrary unused port |
 |**`analyzerUrl`**|`{Function}` called with `{ listenHost: string, listenHost: string, boundAddress: server.address}`. [server.address comes from Node.js](https://nodejs.org/api/net.html#serveraddress)| Default: `http://${listenHost}:${boundAddress.port}`. The URL printed to console with server mode.|
 |**`reportFilename`**|`{String}`|Default: `report.html`. Path to bundle report file that will be generated in `static` mode. It can be either an absolute path or a path relative to a bundle output directory (which is output.path in webpack config).|
 |**`reportTitle`**|`{String\|function}`|Default: function that returns pretty printed current date and time. Content of the HTML `title` element; or a function of the form `() => string` that provides the content.|
