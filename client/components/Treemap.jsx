@@ -22,11 +22,7 @@ export default class Treemap extends Component {
         dataObject: this.getTreemapDataObject(nextProps.data)
       });
     } else if (nextProps.highlightGroups !== this.props.highlightGroups) {
-      const groupsToRedraw = [
-        ...nextProps.highlightGroups,
-        ...this.props.highlightGroups
-      ];
-      setTimeout(() => this.treemap.redraw(false, groupsToRedraw));
+      setTimeout(() => this.treemap.redraw());
     }
   }
 
@@ -102,6 +98,11 @@ export default class Treemap extends Component {
             b: 0,
             a: 0.8
           };
+        } else if (highlightGroups && highlightGroups.size > 0) {
+          // this means a search (e.g.) is active, but this module
+          // does not match; gray it out
+          // https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/553
+          variables.groupColor.s = 10;
         }
       },
       /**
