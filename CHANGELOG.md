@@ -12,6 +12,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+ * **Improvement**
+   * Support reading large (>500MB) stats.json files ([#423](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/423) by [@henry-alakazhang](https://github.com/henry-alakazhang))
+
 ## 4.7.0
 
  * **New Feature**
