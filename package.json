@@ -32,6 +32,7 @@
     "lib"
   ],
   "dependencies": {
+    "@discoveryjs/json-ext": "0.5.7",
     "acorn": "^8.0.4",
     "acorn-walk": "^8.0.0",
     "chalk": "^4.1.0",
@@ -51,7 +52,6 @@
     "@babel/preset-react": "7.13.13",
     "@babel/runtime": "7.14.0",
     "@carrotsearch/foamtree": "3.5.0",
-    "@discoveryjs/json-ext": "0.5.7",
     "autoprefixer": "10.2.5",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.2.2",
