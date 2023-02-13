@@ -3,6 +3,7 @@ const path = require('path');
 
 const _ = require('lodash');
 const gzipSize = require('gzip-size');
+const {parseChunked} = require('@discoveryjs/json-ext');
 
 const Logger = require('./Logger');
 const Folder = require('./tree/Folder').default;
@@ -164,8 +165,8 @@ function getViewerData(bundleStats, bundleDir, opts) {
 }
 
 function readStatsFromFile(filename) {
-  return JSON.parse(
-    fs.readFileSync(filename, 'utf8')
+  return parseChunked(
+    fs.createReadStream(filename, {encoding: 'utf8'})
   );
 }
 

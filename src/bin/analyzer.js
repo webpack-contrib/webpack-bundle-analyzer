@@ -110,44 +110,46 @@ bundleStatsFile = resolve(bundleStatsFile);
 
 if (!bundleDir) bundleDir = dirname(bundleStatsFile);
 
-let bundleStats;
-try {
-  bundleStats = analyzer.readStatsFromFile(bundleStatsFile);
-} catch (err) {
-  logger.error(`Couldn't read webpack bundle stats from "${bundleStatsFile}":\n${err}`);
-  logger.debug(err.stack);
-  process.exit(1);
-}
+parseAndAnalyse(bundleStatsFile);
 
-if (mode === 'server') {
-  viewer.startServer(bundleStats, {
-    openBrowser,
-    port,
-    host,
-    defaultSizes,
-    reportTitle,
-    bundleDir,
-    excludeAssets,
-    logger: new Logger(logLevel),
-    analyzerUrl: utils.defaultAnalyzerUrl
-  });
-} else if (mode === 'static') {
-  viewer.generateReport(bundleStats, {
-    openBrowser,
-    reportFilename: resolve(reportFilename || 'report.html'),
-    reportTitle,
-    defaultSizes,
-    bundleDir,
-    excludeAssets,
-    logger: new Logger(logLevel)
-  });
-} else if (mode === 'json') {
-  viewer.generateJSONReport(bundleStats, {
-    reportFilename: resolve(reportFilename || 'report.json'),
-    bundleDir,
-    excludeAssets,
-    logger: new Logger(logLevel)
-  });
+async function parseAndAnalyse(bundleStatsFile) {
+  try {
+    const bundleStats = await analyzer.readStatsFromFile(bundleStatsFile);
+    if (mode === 'server') {
+      viewer.startServer(bundleStats, {
+        openBrowser,
+        port,
+        host,
+        defaultSizes,
+        reportTitle,
+        bundleDir,
+        excludeAssets,
+        logger: new Logger(logLevel),
+        analyzerUrl: utils.defaultAnalyzerUrl
+      });
+    } else if (mode === 'static') {
+      viewer.generateReport(bundleStats, {
+        openBrowser,
+        reportFilename: resolve(reportFilename || 'report.html'),
+        reportTitle,
+        defaultSizes,
+        bundleDir,
+        excludeAssets,
+        logger: new Logger(logLevel)
+      });
+    } else if (mode === 'json') {
+      viewer.generateJSONReport(bundleStats, {
+        reportFilename: resolve(reportFilename || 'report.json'),
+        bundleDir,
+        excludeAssets,
+        logger: new Logger(logLevel)
+      });
+    }
+  } catch (err) {
+    logger.error(`Couldn't read webpack bundle stats from "${bundleStatsFile}":\n${err}`);
+    logger.debug(err.stack);
+    process.exit(1);
+  }
 }
 
 function showHelp(error) {
