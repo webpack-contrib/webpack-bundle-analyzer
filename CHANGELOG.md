@@ -16,6 +16,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
    * Support reading large (>500MB) stats.json files ([#423](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/423) by [@henry-alakazhang](https://github.com/henry-alakazhang))
    * Improve search UX by graying out non-matches ([#554](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/554) by [@starpit](https://github.com/starpit))
 
+ * **Internal**
+   * Add Node.js v16.x to CI and update GitHub actions ([#539](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/539) by [@amareshsm](https://github.com/amareshsm))
+
 ## 4.7.0
 
  * **New Feature**
