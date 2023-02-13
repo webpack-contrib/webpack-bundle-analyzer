@@ -12,6 +12,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+## 4.8.0
+
  * **Improvement**
    * Support reading large (>500MB) stats.json files ([#423](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/423) by [@henry-alakazhang](https://github.com/henry-alakazhang))
    * Improve search UX by graying out non-matches ([#554](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/554) by [@starpit](https://github.com/starpit))
