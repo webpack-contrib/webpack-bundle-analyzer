@@ -210,9 +210,6 @@ To get more information about it you can read [issue #147](https://github.com/we
 [node]: https://img.shields.io/node/v/webpack-bundle-analyzer.svg
 [node-url]: https://nodejs.org
 
-[tests]: http://img.shields.io/travis/webpack-contrib/webpack-bundle-analyzer.svg
-[tests-url]: https://travis-ci.org/webpack-contrib/webpack-bundle-analyzer
-
 [downloads]: https://img.shields.io/npm/dt/webpack-bundle-analyzer.svg
 [downloads-url]: https://npmjs.com/package/webpack-bundle-analyzer
 
