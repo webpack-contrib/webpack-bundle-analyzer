@@ -38,7 +38,8 @@ export default class ConcatenatedModule extends Module {
       currentFolder = childFolder;
     });
 
-    const module = new ContentModule(fileName, moduleData, this);
+    const ModuleConstructor = moduleData.modules ? ConcatenatedModule : ContentModule;
+    const module = new ModuleConstructor(fileName, moduleData, this);
     currentFolder.addChildModule(module);
   }
 
