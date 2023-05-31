@@ -15,14 +15,14 @@ export default class ConcatenatedModule extends Module {
   }
 
   get parsedSize() {
-    return this.getSize('parsedSize');
+    return this.getParsedSize() ?? this.getEstimatedSize('parsedSize');
   }
 
   get gzipSize() {
-    return this.getSize('gzipSize');
+    return this.getGzipSize() ?? this.getEstimatedSize('gzipSize');
   }
 
-  getSize(sizeType) {
+  getEstimatedSize(sizeType) {
     const parentModuleSize = this.parent[sizeType];
 
     if (parentModuleSize !== undefined) {
