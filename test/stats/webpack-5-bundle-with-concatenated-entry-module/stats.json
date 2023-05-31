@@ -1,8 +1,8 @@
 {
-  "hash": "e87bb8f507e11c4ee73b",
+  "hash": "9b3a9bf7f15684e8eb22",
   "version": "5.72.1",
-  "time": 119,
-  "builtAt": 1685511543507,
+  "time": 116,
+  "builtAt": 1685518072786,
   "publicPath": "auto",
   "outputPath": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/build",
   "assetsByChunkName": {
@@ -14,14 +14,14 @@
     {
       "type": "asset",
       "name": "app.js",
-      "size": 104,
+      "size": 89,
       "emitted": true,
       "comparedForEmit": false,
       "cached": false,
       "info": {
         "javascriptModule": false,
         "minimized": true,
-        "size": 104
+        "size": 89
       },
       "chunkNames": [
         "app"
@@ -43,9 +43,9 @@
       "initial": true,
       "entry": true,
       "recorded": false,
-      "size": 216,
+      "size": 201,
       "sizes": {
-        "javascript": 216
+        "javascript": 201
       },
       "names": [
         "app"
@@ -58,7 +58,7 @@
         "app.js"
       ],
       "auxiliaryFiles": [],
-      "hash": "b7e42c56bd367f79da2b",
+      "hash": "f27a9d9e4859c54b46bf",
       "childrenByOrder": {},
       "id": 143,
       "siblings": [],
@@ -69,9 +69,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 28,
+          "size": 23,
           "sizes": {
-            "javascript": 28
+            "javascript": 23
           },
           "built": true,
           "codeGenerated": true,
@@ -119,7 +119,7 @@
           "usedExports": [],
           "providedExports": null,
           "optimizationBailout": [
-            "Statement (ExpressionStatement) with side effects in source code at 1:0-27",
+            "Statement (ExpressionStatement) with side effects in source code at 1:0-22",
             "ModuleConcatenation bailout: Module is not an ECMAScript module"
           ],
           "depth": 0
@@ -128,9 +128,9 @@
           "type": "module",
           "moduleType": "javascript/esm",
           "layer": null,
-          "size": 188,
+          "size": 178,
           "sizes": {
-            "javascript": 188
+            "javascript": 178
           },
           "built": true,
           "codeGenerated": true,
@@ -283,9 +283,9 @@
               "type": "module",
               "moduleType": "javascript/auto",
               "layer": null,
-              "size": 71,
+              "size": 66,
               "sizes": {
-                "javascript": 71
+                "javascript": 66
               },
               "built": true,
               "codeGenerated": false,
@@ -344,7 +344,7 @@
                 "foo"
               ],
               "optimizationBailout": [
-                "Statement (ExpressionStatement) with side effects in source code at 5:0-27"
+                "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
               ],
               "depth": 2
             },
@@ -352,9 +352,9 @@
               "type": "module",
               "moduleType": "javascript/auto",
               "layer": null,
-              "size": 71,
+              "size": 66,
               "sizes": {
-                "javascript": 71
+                "javascript": 66
               },
               "built": true,
               "codeGenerated": false,
@@ -413,7 +413,7 @@
                 "bar"
               ],
               "optimizationBailout": [
-                "Statement (ExpressionStatement) with side effects in source code at 5:0-27"
+                "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
               ],
               "depth": 2
             }
@@ -443,9 +443,9 @@
       "type": "module",
       "moduleType": "javascript/esm",
       "layer": null,
-      "size": 188,
+      "size": 178,
       "sizes": {
-        "javascript": 188
+        "javascript": 178
       },
       "built": true,
       "codeGenerated": true,
@@ -595,9 +595,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 71,
+          "size": 66,
           "sizes": {
-            "javascript": 71
+            "javascript": 66
           },
           "built": true,
           "codeGenerated": false,
@@ -655,7 +655,7 @@
             "foo"
           ],
           "optimizationBailout": [
-            "Statement (ExpressionStatement) with side effects in source code at 5:0-27"
+            "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
           ],
           "depth": 2
         },
@@ -663,9 +663,9 @@
           "type": "module",
           "moduleType": "javascript/auto",
           "layer": null,
-          "size": 71,
+          "size": 66,
           "sizes": {
-            "javascript": 71
+            "javascript": 66
           },
           "built": true,
           "codeGenerated": false,
@@ -723,7 +723,7 @@
             "bar"
           ],
           "optimizationBailout": [
-            "Statement (ExpressionStatement) with side effects in source code at 5:0-27"
+            "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
           ],
           "depth": 2
         }
@@ -733,9 +733,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 28,
+      "size": 23,
       "sizes": {
-        "javascript": 28
+        "javascript": 23
       },
       "built": true,
       "codeGenerated": true,
@@ -782,7 +782,7 @@
       "usedExports": [],
       "providedExports": null,
       "optimizationBailout": [
-        "Statement (ExpressionStatement) with side effects in source code at 1:0-27",
+        "Statement (ExpressionStatement) with side effects in source code at 1:0-22",
         "ModuleConcatenation bailout: Module is not an ECMAScript module"
       ],
       "depth": 0
@@ -852,9 +852,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 71,
+      "size": 66,
       "sizes": {
-        "javascript": 71
+        "javascript": 66
       },
       "built": true,
       "codeGenerated": false,
@@ -912,7 +912,7 @@
         "foo"
       ],
       "optimizationBailout": [
-        "Statement (ExpressionStatement) with side effects in source code at 5:0-27"
+        "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
       ],
       "depth": 2
     },
@@ -920,9 +920,9 @@
       "type": "module",
       "moduleType": "javascript/auto",
       "layer": null,
-      "size": 71,
+      "size": 66,
       "sizes": {
-        "javascript": 71
+        "javascript": 66
       },
       "built": true,
       "codeGenerated": false,
@@ -980,7 +980,7 @@
         "bar"
       ],
       "optimizationBailout": [
-        "Statement (ExpressionStatement) with side effects in source code at 5:0-27"
+        "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
       ],
       "depth": 2
     }
@@ -994,11 +994,11 @@
       "assets": [
         {
           "name": "app.js",
-          "size": 104
+          "size": 89
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 104,
+      "assetsSize": 89,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
@@ -1016,11 +1016,11 @@
       "assets": [
         {
           "name": "app.js",
-          "size": 104
+          "size": 89
         }
       ],
       "filteredAssets": 0,
-      "assetsSize": 104,
+      "assetsSize": 89,
       "auxiliaryAssets": [],
       "filteredAuxiliaryAssets": 0,
       "auxiliaryAssetsSize": 0,
