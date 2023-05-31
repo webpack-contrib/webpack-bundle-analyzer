@@ -1,0 +1,1037 @@
+{
+  "hash": "9b3a9bf7f15684e8eb22",
+  "version": "5.72.1",
+  "time": 116,
+  "builtAt": 1685518072786,
+  "publicPath": "auto",
+  "outputPath": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/build",
+  "assetsByChunkName": {
+    "app": [
+      "app.js"
+    ]
+  },
+  "assets": [
+    {
+      "type": "asset",
+      "name": "app.js",
+      "size": 89,
+      "emitted": true,
+      "comparedForEmit": false,
+      "cached": false,
+      "info": {
+        "javascriptModule": false,
+        "minimized": true,
+        "size": 89
+      },
+      "chunkNames": [
+        "app"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "related": {},
+      "chunks": [
+        143
+      ],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": false
+    }
+  ],
+  "chunks": [
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 201,
+      "sizes": {
+        "javascript": 201
+      },
+      "names": [
+        "app"
+      ],
+      "idHints": [],
+      "runtime": [
+        "app"
+      ],
+      "files": [
+        "app.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "f27a9d9e4859c54b46bf",
+      "childrenByOrder": {},
+      "id": 143,
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "modules": [
+        {
+          "type": "module",
+          "moduleType": "javascript/auto",
+          "layer": null,
+          "size": 23,
+          "sizes": {
+            "javascript": 23
+          },
+          "built": true,
+          "codeGenerated": true,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/baz.js",
+          "name": "./baz.js",
+          "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/baz.js",
+          "index": 4,
+          "preOrderIndex": 4,
+          "index2": 4,
+          "postOrderIndex": 4,
+          "cacheable": true,
+          "optional": false,
+          "orphan": false,
+          "dependent": false,
+          "issuer": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": 613,
+          "issuerId": null,
+          "chunks": [
+            143
+          ],
+          "assets": [],
+          "reasons": [
+            {
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "resolvedModuleIdentifier": null,
+              "resolvedModule": null,
+              "type": "entry",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./baz.js",
+              "loc": "app",
+              "moduleId": null,
+              "resolvedModuleId": null
+            }
+          ],
+          "usedExports": [],
+          "providedExports": null,
+          "optimizationBailout": [
+            "Statement (ExpressionStatement) with side effects in source code at 1:0-22",
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 0
+        },
+        {
+          "type": "module",
+          "moduleType": "javascript/esm",
+          "layer": null,
+          "size": 178,
+          "sizes": {
+            "javascript": 178
+          },
+          "built": true,
+          "codeGenerated": true,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js|7d6b74ccf4470678a84315f5e2796055",
+          "name": "./index.js + 3 modules",
+          "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+          "index": 0,
+          "preOrderIndex": 0,
+          "index2": 3,
+          "postOrderIndex": 3,
+          "cacheable": true,
+          "optional": false,
+          "orphan": false,
+          "dependent": false,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": 469,
+          "chunks": [
+            143
+          ],
+          "assets": [],
+          "reasons": [
+            {
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "resolvedModuleIdentifier": null,
+              "resolvedModule": null,
+              "type": "entry",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./index.js",
+              "loc": "app",
+              "moduleId": null,
+              "resolvedModuleId": null
+            }
+          ],
+          "usedExports": [],
+          "providedExports": [],
+          "optimizationBailout": [],
+          "depth": 0,
+          "modules": [
+            {
+              "type": "module",
+              "moduleType": "javascript/auto",
+              "layer": null,
+              "size": 14,
+              "sizes": {
+                "javascript": 14
+              },
+              "built": true,
+              "codeGenerated": false,
+              "buildTimeExecuted": false,
+              "cached": false,
+              "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+              "name": "./index.js",
+              "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+              "index": 0,
+              "preOrderIndex": 0,
+              "index2": 3,
+              "postOrderIndex": 3,
+              "cacheable": true,
+              "optional": false,
+              "orphan": false,
+              "dependent": true,
+              "issuer": null,
+              "issuerName": null,
+              "issuerPath": null,
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "id": null,
+              "issuerId": null,
+              "chunks": [],
+              "assets": [],
+              "reasons": [],
+              "usedExports": [],
+              "providedExports": [],
+              "optimizationBailout": [
+                "Dependency (harmony side effect evaluation) with side effects at 1:0-13"
+              ],
+              "depth": 0
+            },
+            {
+              "type": "module",
+              "moduleType": "javascript/auto",
+              "layer": null,
+              "size": 32,
+              "sizes": {
+                "javascript": 32
+              },
+              "built": true,
+              "codeGenerated": false,
+              "buildTimeExecuted": false,
+              "cached": false,
+              "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+              "name": "../dep/index.js",
+              "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+              "index": 1,
+              "preOrderIndex": 1,
+              "index2": 2,
+              "postOrderIndex": 2,
+              "cacheable": true,
+              "optional": false,
+              "orphan": false,
+              "dependent": true,
+              "issuer": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+              "issuerName": "./index.js",
+              "issuerPath": [
+                {
+                  "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+                  "name": "./index.js",
+                  "id": null
+                }
+              ],
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "id": null,
+              "issuerId": null,
+              "chunks": [],
+              "assets": [],
+              "reasons": [
+                {
+                  "moduleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+                  "module": "./index.js",
+                  "moduleName": "./index.js",
+                  "resolvedModuleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+                  "resolvedModule": "./index.js",
+                  "type": "harmony side effect evaluation",
+                  "active": true,
+                  "explanation": "",
+                  "userRequest": "dep",
+                  "loc": "1:0-13",
+                  "moduleId": null,
+                  "resolvedModuleId": null
+                }
+              ],
+              "usedExports": [],
+              "providedExports": [],
+              "optimizationBailout": [
+                "Dependency (harmony side effect evaluation) with side effects at 1:0-15"
+              ],
+              "depth": 1
+            },
+            {
+              "type": "module",
+              "moduleType": "javascript/auto",
+              "layer": null,
+              "size": 66,
+              "sizes": {
+                "javascript": 66
+              },
+              "built": true,
+              "codeGenerated": false,
+              "buildTimeExecuted": false,
+              "cached": false,
+              "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/foo.js",
+              "name": "../dep/foo.js",
+              "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/foo.js",
+              "index": 2,
+              "preOrderIndex": 2,
+              "index2": 0,
+              "postOrderIndex": 0,
+              "cacheable": true,
+              "optional": false,
+              "orphan": false,
+              "dependent": true,
+              "issuer": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+              "issuerName": "../dep/index.js",
+              "issuerPath": [
+                {
+                  "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+                  "name": "./index.js",
+                  "id": null
+                },
+                {
+                  "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+                  "name": "../dep/index.js",
+                  "id": null
+                }
+              ],
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "id": null,
+              "issuerId": null,
+              "chunks": [],
+              "assets": [],
+              "reasons": [
+                {
+                  "moduleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+                  "module": "../dep/index.js",
+                  "moduleName": "../dep/index.js",
+                  "resolvedModuleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+                  "resolvedModule": "../dep/index.js",
+                  "type": "harmony side effect evaluation",
+                  "active": true,
+                  "explanation": "",
+                  "userRequest": "./foo",
+                  "loc": "1:0-15",
+                  "moduleId": null,
+                  "resolvedModuleId": null
+                }
+              ],
+              "usedExports": [],
+              "providedExports": [
+                "foo"
+              ],
+              "optimizationBailout": [
+                "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
+              ],
+              "depth": 2
+            },
+            {
+              "type": "module",
+              "moduleType": "javascript/auto",
+              "layer": null,
+              "size": 66,
+              "sizes": {
+                "javascript": 66
+              },
+              "built": true,
+              "codeGenerated": false,
+              "buildTimeExecuted": false,
+              "cached": false,
+              "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/bar.js",
+              "name": "../dep/bar.js",
+              "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/bar.js",
+              "index": 3,
+              "preOrderIndex": 3,
+              "index2": 1,
+              "postOrderIndex": 1,
+              "cacheable": true,
+              "optional": false,
+              "orphan": false,
+              "dependent": true,
+              "issuer": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+              "issuerName": "../dep/index.js",
+              "issuerPath": [
+                {
+                  "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+                  "name": "./index.js",
+                  "id": null
+                },
+                {
+                  "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+                  "name": "../dep/index.js",
+                  "id": null
+                }
+              ],
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "id": null,
+              "issuerId": null,
+              "chunks": [],
+              "assets": [],
+              "reasons": [
+                {
+                  "moduleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+                  "module": "../dep/index.js",
+                  "moduleName": "../dep/index.js",
+                  "resolvedModuleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+                  "resolvedModule": "../dep/index.js",
+                  "type": "harmony side effect evaluation",
+                  "active": true,
+                  "explanation": "",
+                  "userRequest": "./bar",
+                  "loc": "2:0-15",
+                  "moduleId": null,
+                  "resolvedModuleId": null
+                }
+              ],
+              "usedExports": [],
+              "providedExports": [
+                "bar"
+              ],
+              "optimizationBailout": [
+                "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
+              ],
+              "depth": 2
+            }
+          ]
+        }
+      ],
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "app",
+          "request": "./baz.js"
+        },
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "app",
+          "request": "./index.js"
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "type": "module",
+      "moduleType": "javascript/esm",
+      "layer": null,
+      "size": 178,
+      "sizes": {
+        "javascript": 178
+      },
+      "built": true,
+      "codeGenerated": true,
+      "buildTimeExecuted": false,
+      "cached": false,
+      "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js|7d6b74ccf4470678a84315f5e2796055",
+      "name": "./index.js + 3 modules",
+      "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+      "index": 0,
+      "preOrderIndex": 0,
+      "index2": 3,
+      "postOrderIndex": 3,
+      "cacheable": true,
+      "optional": false,
+      "orphan": false,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": 469,
+      "chunks": [
+        143
+      ],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "resolvedModuleIdentifier": null,
+          "resolvedModule": null,
+          "type": "entry",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./index.js",
+          "loc": "app",
+          "moduleId": null,
+          "resolvedModuleId": null
+        }
+      ],
+      "usedExports": [],
+      "providedExports": [],
+      "optimizationBailout": [],
+      "depth": 0,
+      "modules": [
+        {
+          "type": "module",
+          "moduleType": "javascript/auto",
+          "layer": null,
+          "size": 14,
+          "sizes": {
+            "javascript": 14
+          },
+          "built": true,
+          "codeGenerated": false,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+          "name": "./index.js",
+          "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+          "index": 0,
+          "preOrderIndex": 0,
+          "index2": 3,
+          "postOrderIndex": 3,
+          "cacheable": true,
+          "optional": false,
+          "orphan": false,
+          "issuer": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": null,
+          "issuerId": null,
+          "chunks": [],
+          "assets": [],
+          "reasons": [],
+          "usedExports": [],
+          "providedExports": [],
+          "optimizationBailout": [
+            "Dependency (harmony side effect evaluation) with side effects at 1:0-13"
+          ],
+          "depth": 0
+        },
+        {
+          "type": "module",
+          "moduleType": "javascript/auto",
+          "layer": null,
+          "size": 32,
+          "sizes": {
+            "javascript": 32
+          },
+          "built": true,
+          "codeGenerated": false,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+          "name": "../dep/index.js",
+          "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+          "index": 1,
+          "preOrderIndex": 1,
+          "index2": 2,
+          "postOrderIndex": 2,
+          "cacheable": true,
+          "optional": false,
+          "orphan": false,
+          "issuer": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+          "issuerName": "./index.js",
+          "issuerPath": [
+            {
+              "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+              "name": "./index.js",
+              "id": null
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": null,
+          "issuerId": null,
+          "chunks": [],
+          "assets": [],
+          "reasons": [
+            {
+              "moduleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+              "module": "./index.js",
+              "moduleName": "./index.js",
+              "resolvedModuleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+              "resolvedModule": "./index.js",
+              "type": "harmony side effect evaluation",
+              "active": true,
+              "explanation": "",
+              "userRequest": "dep",
+              "loc": "1:0-13",
+              "moduleId": null,
+              "resolvedModuleId": null
+            }
+          ],
+          "usedExports": [],
+          "providedExports": [],
+          "optimizationBailout": [
+            "Dependency (harmony side effect evaluation) with side effects at 1:0-15"
+          ],
+          "depth": 1
+        },
+        {
+          "type": "module",
+          "moduleType": "javascript/auto",
+          "layer": null,
+          "size": 66,
+          "sizes": {
+            "javascript": 66
+          },
+          "built": true,
+          "codeGenerated": false,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/foo.js",
+          "name": "../dep/foo.js",
+          "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/foo.js",
+          "index": 2,
+          "preOrderIndex": 2,
+          "index2": 0,
+          "postOrderIndex": 0,
+          "cacheable": true,
+          "optional": false,
+          "orphan": false,
+          "issuer": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+          "issuerName": "../dep/index.js",
+          "issuerPath": [
+            {
+              "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+              "name": "./index.js",
+              "id": null
+            },
+            {
+              "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+              "name": "../dep/index.js",
+              "id": null
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": null,
+          "issuerId": null,
+          "chunks": [],
+          "assets": [],
+          "reasons": [
+            {
+              "moduleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+              "module": "../dep/index.js",
+              "moduleName": "../dep/index.js",
+              "resolvedModuleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+              "resolvedModule": "../dep/index.js",
+              "type": "harmony side effect evaluation",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./foo",
+              "loc": "1:0-15",
+              "moduleId": null,
+              "resolvedModuleId": null
+            }
+          ],
+          "usedExports": [],
+          "providedExports": [
+            "foo"
+          ],
+          "optimizationBailout": [
+            "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
+          ],
+          "depth": 2
+        },
+        {
+          "type": "module",
+          "moduleType": "javascript/auto",
+          "layer": null,
+          "size": 66,
+          "sizes": {
+            "javascript": 66
+          },
+          "built": true,
+          "codeGenerated": false,
+          "buildTimeExecuted": false,
+          "cached": false,
+          "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/bar.js",
+          "name": "../dep/bar.js",
+          "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/bar.js",
+          "index": 3,
+          "preOrderIndex": 3,
+          "index2": 1,
+          "postOrderIndex": 1,
+          "cacheable": true,
+          "optional": false,
+          "orphan": false,
+          "issuer": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+          "issuerName": "../dep/index.js",
+          "issuerPath": [
+            {
+              "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+              "name": "./index.js",
+              "id": null
+            },
+            {
+              "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+              "name": "../dep/index.js",
+              "id": null
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "id": null,
+          "issuerId": null,
+          "chunks": [],
+          "assets": [],
+          "reasons": [
+            {
+              "moduleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+              "module": "../dep/index.js",
+              "moduleName": "../dep/index.js",
+              "resolvedModuleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+              "resolvedModule": "../dep/index.js",
+              "type": "harmony side effect evaluation",
+              "active": true,
+              "explanation": "",
+              "userRequest": "./bar",
+              "loc": "2:0-15",
+              "moduleId": null,
+              "resolvedModuleId": null
+            }
+          ],
+          "usedExports": [],
+          "providedExports": [
+            "bar"
+          ],
+          "optimizationBailout": [
+            "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
+          ],
+          "depth": 2
+        }
+      ]
+    },
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "layer": null,
+      "size": 23,
+      "sizes": {
+        "javascript": 23
+      },
+      "built": true,
+      "codeGenerated": true,
+      "buildTimeExecuted": false,
+      "cached": false,
+      "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/baz.js",
+      "name": "./baz.js",
+      "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/baz.js",
+      "index": 4,
+      "preOrderIndex": 4,
+      "index2": 4,
+      "postOrderIndex": 4,
+      "cacheable": true,
+      "optional": false,
+      "orphan": false,
+      "issuer": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": 613,
+      "issuerId": null,
+      "chunks": [
+        143
+      ],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "resolvedModuleIdentifier": null,
+          "resolvedModule": null,
+          "type": "entry",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./baz.js",
+          "loc": "app",
+          "moduleId": null,
+          "resolvedModuleId": null
+        }
+      ],
+      "usedExports": [],
+      "providedExports": null,
+      "optimizationBailout": [
+        "Statement (ExpressionStatement) with side effects in source code at 1:0-22",
+        "ModuleConcatenation bailout: Module is not an ECMAScript module"
+      ],
+      "depth": 0
+    },
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "layer": null,
+      "size": 32,
+      "sizes": {
+        "javascript": 32
+      },
+      "built": true,
+      "codeGenerated": false,
+      "buildTimeExecuted": false,
+      "cached": false,
+      "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+      "name": "../dep/index.js",
+      "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+      "index": 1,
+      "preOrderIndex": 1,
+      "index2": 2,
+      "postOrderIndex": 2,
+      "cacheable": true,
+      "optional": false,
+      "orphan": true,
+      "issuer": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+      "issuerName": "./index.js",
+      "issuerPath": [
+        {
+          "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+          "name": "./index.js",
+          "id": null
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": null,
+      "issuerId": null,
+      "chunks": [],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+          "module": "./index.js",
+          "moduleName": "./index.js",
+          "resolvedModuleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+          "resolvedModule": "./index.js",
+          "type": "harmony side effect evaluation",
+          "active": true,
+          "explanation": "",
+          "userRequest": "dep",
+          "loc": "1:0-13",
+          "moduleId": null,
+          "resolvedModuleId": null
+        }
+      ],
+      "usedExports": [],
+      "providedExports": [],
+      "optimizationBailout": [
+        "Dependency (harmony side effect evaluation) with side effects at 1:0-15"
+      ],
+      "depth": 1
+    },
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "layer": null,
+      "size": 66,
+      "sizes": {
+        "javascript": 66
+      },
+      "built": true,
+      "codeGenerated": false,
+      "buildTimeExecuted": false,
+      "cached": false,
+      "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/foo.js",
+      "name": "../dep/foo.js",
+      "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/foo.js",
+      "index": 2,
+      "preOrderIndex": 2,
+      "index2": 0,
+      "postOrderIndex": 0,
+      "cacheable": true,
+      "optional": false,
+      "orphan": true,
+      "issuer": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+      "issuerName": "../dep/index.js",
+      "issuerPath": [
+        {
+          "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+          "name": "./index.js",
+          "id": null
+        },
+        {
+          "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+          "name": "../dep/index.js",
+          "id": null
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": null,
+      "issuerId": null,
+      "chunks": [],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+          "module": "../dep/index.js",
+          "moduleName": "../dep/index.js",
+          "resolvedModuleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+          "resolvedModule": "../dep/index.js",
+          "type": "harmony side effect evaluation",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./foo",
+          "loc": "1:0-15",
+          "moduleId": null,
+          "resolvedModuleId": null
+        }
+      ],
+      "usedExports": [],
+      "providedExports": [
+        "foo"
+      ],
+      "optimizationBailout": [
+        "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
+      ],
+      "depth": 2
+    },
+    {
+      "type": "module",
+      "moduleType": "javascript/auto",
+      "layer": null,
+      "size": 66,
+      "sizes": {
+        "javascript": 66
+      },
+      "built": true,
+      "codeGenerated": false,
+      "buildTimeExecuted": false,
+      "cached": false,
+      "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/bar.js",
+      "name": "../dep/bar.js",
+      "nameForCondition": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/bar.js",
+      "index": 3,
+      "preOrderIndex": 3,
+      "index2": 1,
+      "postOrderIndex": 1,
+      "cacheable": true,
+      "optional": false,
+      "orphan": true,
+      "issuer": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+      "issuerName": "../dep/index.js",
+      "issuerPath": [
+        {
+          "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/app/index.js",
+          "name": "./index.js",
+          "id": null
+        },
+        {
+          "identifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+          "name": "../dep/index.js",
+          "id": null
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "id": null,
+      "issuerId": null,
+      "chunks": [],
+      "assets": [],
+      "reasons": [
+        {
+          "moduleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+          "module": "../dep/index.js",
+          "moduleName": "../dep/index.js",
+          "resolvedModuleIdentifier": "/Volumes/git/webpack-bundle-analyzer-entry-modules/packages/dep/index.js",
+          "resolvedModule": "../dep/index.js",
+          "type": "harmony side effect evaluation",
+          "active": true,
+          "explanation": "",
+          "userRequest": "./bar",
+          "loc": "2:0-15",
+          "moduleId": null,
+          "resolvedModuleId": null
+        }
+      ],
+      "usedExports": [],
+      "providedExports": [
+        "bar"
+      ],
+      "optimizationBailout": [
+        "Statement (ExpressionStatement) with side effects in source code at 5:0-22"
+      ],
+      "depth": 2
+    }
+  ],
+  "entrypoints": {
+    "app": {
+      "name": "app",
+      "chunks": [
+        143
+      ],
+      "assets": [
+        {
+          "name": "app.js",
+          "size": 89
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": 89,
+      "auxiliaryAssets": [],
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {},
+      "childAssets": {},
+      "isOverSizeLimit": false
+    }
+  },
+  "namedChunkGroups": {
+    "app": {
+      "name": "app",
+      "chunks": [
+        143
+      ],
+      "assets": [
+        {
+          "name": "app.js",
+          "size": 89
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": 89,
+      "auxiliaryAssets": [],
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {},
+      "childAssets": {},
+      "isOverSizeLimit": false
+    }
+  },
+  "errors": [],
+  "errorsCount": 0,
+  "warnings": [],
+  "warningsCount": 0,
+  "children": []
+}

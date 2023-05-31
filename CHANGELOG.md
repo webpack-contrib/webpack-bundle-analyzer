@@ -12,6 +12,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+* **Improvement**
+  * Display modules included in concatenated entry modules on Webpack 5 when "Show content of concatenated modules" is checked ([#602](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/602) by [@pgoldberg](https://github.com/pgoldberg))
+
 ## 4.8.0
 
  * **Improvement**

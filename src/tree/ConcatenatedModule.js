@@ -14,6 +14,22 @@ export default class ConcatenatedModule extends Module {
     this.fillContentModules();
   }
 
+  get parsedSize() {
+    return this.getParsedSize() ?? this.getEstimatedSize('parsedSize');
+  }
+
+  get gzipSize() {
+    return this.getGzipSize() ?? this.getEstimatedSize('gzipSize');
+  }
+
+  getEstimatedSize(sizeType) {
+    const parentModuleSize = this.parent[sizeType];
+
+    if (parentModuleSize !== undefined) {
+      return Math.floor((this.size / this.parent.size) * parentModuleSize);
+    }
+  }
+
   fillContentModules() {
     this.data.modules.forEach(moduleData => this.addContentModule(moduleData));
   }
@@ -38,7 +54,8 @@ export default class ConcatenatedModule extends Module {
       currentFolder = childFolder;
     });
 
-    const module = new ContentModule(fileName, moduleData, this);
+    const ModuleConstructor = moduleData.modules ? ConcatenatedModule : ContentModule;
+    const module = new ModuleConstructor(fileName, moduleData, this);
     currentFolder.addChildModule(module);
   }
 

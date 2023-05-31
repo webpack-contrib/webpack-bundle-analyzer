@@ -28,10 +28,18 @@ export default class Module extends Node {
   }
 
   get parsedSize() {
-    return this.src ? this.src.length : undefined;
+    return this.getParsedSize();
   }
 
   get gzipSize() {
+    return this.getGzipSize();
+  }
+
+  getParsedSize() {
+    return this.src ? this.src.length : undefined;
+  }
+
+  getGzipSize() {
     if (!_.has(this, '_gzipSize')) {
       this._gzipSize = this.src ? gzipSize.sync(this.src) : undefined;
     }
