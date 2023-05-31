@@ -14,6 +14,22 @@ export default class ConcatenatedModule extends Module {
     this.fillContentModules();
   }
 
+  get parsedSize() {
+    return this.getSize('parsedSize');
+  }
+
+  get gzipSize() {
+    return this.getSize('gzipSize');
+  }
+
+  getSize(sizeType) {
+    const parentModuleSize = this.parent[sizeType];
+
+    if (parentModuleSize !== undefined) {
+      return Math.floor((this.size / this.parent.size) * parentModuleSize);
+    }
+  }
+
   fillContentModules() {
     this.data.modules.forEach(moduleData => this.addContentModule(moduleData));
   }
