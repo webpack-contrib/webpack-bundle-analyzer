@@ -183,6 +183,14 @@ describe('Analyzer', function () {
     );
   });
 
+  it('should properly parse webpack 5 bundle with an entry module that is a concatenated module', async function () {
+    generateReportFrom('webpack-5-bundle-with-concatenated-entry-module/stats.json');
+    const chartData = await getChartData();
+    expect(chartData).to.containSubset(
+      require('./stats/webpack-5-bundle-with-concatenated-entry-module/expected-chart-data')
+    );
+  });
+
   it('should support generating JSON output for the report', async function () {
     generateJSONReportFrom('with-modules-in-chunks/stats.json');
 
