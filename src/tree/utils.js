@@ -6,6 +6,7 @@ export function getModulePathParts(moduleData) {
   }
 
   const loaders = moduleData.name.split('!');
+  // Removing loaders from module path: they're joined by `!` and the last part is a raw module path
   const parsedPath = loaders[loaders.length - 1]
     .split('/')
     .slice(1)
