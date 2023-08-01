@@ -190,7 +190,7 @@ function getChartData(analyzerOpts, ...args) {
     chartData = null;
   }
 
-  if (_.isPlainObject(chartData) && Object.keys(chartData) === 0) {
+  if (_.isPlainObject(chartData) && Object.keys(chartData).length === 0) {
     logger.error("Could't find any javascript bundles in provided stats file");
     chartData = null;
   }
