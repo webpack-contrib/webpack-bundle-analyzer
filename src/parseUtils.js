@@ -1,6 +1,7 @@
 const fs = require('fs');
 const acorn = require('acorn');
 const walk = require('acorn-walk');
+const _ = require('lodash');
 
 module.exports = {
   parseBundle
@@ -139,12 +140,12 @@ function parseBundle(bundlePath) {
     }
   );
 
-  let modules;
+  const modules = {};
 
   if (walkState.locations) {
-    modules = walkState.locations.map(loc => content.slice(loc.start, loc.end));
-  } else {
-    modules = {};
+    Object.entries(walkState.locations).forEach(([id, loc]) => {
+      modules[id] = content.slice(loc.start, loc.end);
+    });
   }
 
   return {

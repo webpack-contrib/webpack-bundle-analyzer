@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Module from './Module';
 import ContentModule from './ContentModule';
 import ContentFolder from './ContentFolder';
@@ -73,14 +74,14 @@ export default class ConcatenatedModule extends Module {
   }
 
   mergeNestedFolders() {
-    this.children.forEach(child => child.mergeNestedFolders());
+    _.invokeMap(this.children, 'mergeNestedFolders');
   }
 
   toChartData() {
     return {
       ...super.toChartData(),
       concatenated: true,
-      groups: this.children.map(i => i.toChartData())
+      groups: _.invokeMap(this.children, 'toChartData')
     };
   }
 

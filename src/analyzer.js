@@ -27,7 +27,10 @@ function getViewerData(bundleStats, bundleDir, opts) {
   const isAssetIncluded = createAssetsFilter(excludeAssets);
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
-  if (bundleStats.assets.length === 0 && bundleStats.children.length > 0) {
+  if (
+    (bundleStats.assets == null || bundleStats.assets.length === 0)
+    && bundleStats.children.length > 0
+  ) {
     const {children} = bundleStats;
     bundleStats = bundleStats.children[0];
     // Sometimes if there are additional child chunks produced add them as child assets,
@@ -164,7 +167,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     statSize: asset.tree.size || asset.size,
     parsedSize: asset.parsedSize,
     gzipSize: asset.gzipSize,
-    groups: asset.tree.children.map(i => i.toChartData()),
+    groups: _.invokeMap(asset.tree.children, 'toChartData'),
     isInitialByEntrypoint: chunkToInitialByEntrypoint[filename] ?? {}
   }));
 }
