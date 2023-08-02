@@ -1,4 +1,4 @@
-import escapeRegExp from 'lodash.escaperegexp';
+import escapeRegExp from 'escape-string-regexp';
 import escape from 'lodash.escape';
 import filesize from 'filesize';
 import cls from 'classnames';
