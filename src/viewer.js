@@ -5,7 +5,7 @@ const http = require('http');
 const WebSocket = require('ws');
 const sirv = require('sirv');
 const _ = require('lodash');
-const {bold} = require('chalk');
+const {bold} = require('picocolors');
 
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');

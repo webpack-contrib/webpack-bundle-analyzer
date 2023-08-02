@@ -3,7 +3,7 @@
 const {resolve, dirname} = require('path');
 
 const commander = require('commander');
-const {magenta} = require('chalk');
+const {magenta} = require('picocolors');
 
 const analyzer = require('../analyzer');
 const viewer = require('../viewer');
