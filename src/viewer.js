@@ -4,7 +4,7 @@ const http = require('http');
 
 const WebSocket = require('ws');
 const sirv = require('sirv');
-const _ = require('lodash');
+const {isPlainObject} = require('is-plain-object');
 const {bold} = require('picocolors');
 
 const Logger = require('./Logger');
@@ -190,7 +190,7 @@ function getChartData(analyzerOpts, ...args) {
     chartData = null;
   }
 
-  if (_.isPlainObject(chartData) && Object.keys(chartData).length === 0) {
+  if (isPlainObject(chartData) && Object.keys(chartData).length === 0) {
     logger.error("Could't find any javascript bundles in provided stats file");
     chartData = null;
   }
