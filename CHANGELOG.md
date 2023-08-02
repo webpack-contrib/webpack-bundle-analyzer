@@ -12,6 +12,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+* **Internal**
+  * Replace some lodash usages with JavaScript native API ([#505](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/505)) by [@sukkaw](https://github.com/sukkaw).
+
 ## 4.9.0
 
 * **Improvement**

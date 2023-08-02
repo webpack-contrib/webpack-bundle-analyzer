@@ -10,7 +10,7 @@ export default class BaseFolder extends Node {
   }
 
   get src() {
-    if (!_.has(this, '_src')) {
+    if (!Object.prototype.hasOwnProperty.call(this, '_src')) {
       this._src = this.walk((node, src) => (src += node.src || ''), '', false);
     }
 
@@ -18,7 +18,7 @@ export default class BaseFolder extends Node {
   }
 
   get size() {
-    if (!_.has(this, '_size')) {
+    if (!Object.prototype.hasOwnProperty.call(this, '_size')) {
       this._size = this.walk((node, size) => (size + node.size), 0, false);
     }
 

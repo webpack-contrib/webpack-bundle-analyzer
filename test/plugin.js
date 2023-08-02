@@ -3,7 +3,6 @@ chai.use(require('chai-subset'));
 const {expect} = chai;
 const fs = require('fs');
 const del = require('del');
-const _ = require('lodash');
 const path = require('path');
 const puppeteer = require('puppeteer');
 const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
@@ -113,7 +112,7 @@ describe('Plugin', function () {
           await webpackCompile(config);
 
           const chartData = await getChartDataFromReport();
-          expect(_.map(chartData, 'label'))
+          expect(chartData.map(i => i.label))
             .to
             .deep
             .equal(['bundle.js']);

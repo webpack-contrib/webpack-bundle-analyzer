@@ -73,7 +73,8 @@ export default class ModuleItem extends PureComponent {
   }
 
   get invisibleHint() {
-    return `${_.upperFirst(this.itemType)} is not rendered in the treemap because it's too small.`;
+    const itemType = this.itemType.charAt(0).toUpperCase() + this.itemType.slice(1);
+    return `${itemType} is not rendered in the treemap because it's too small.`;
   }
 
   get isVisible() {

@@ -1,5 +1,4 @@
 const fs = require('fs');
-const _ = require('lodash');
 const acorn = require('acorn');
 const walk = require('acorn-walk');
 
@@ -140,14 +139,12 @@ function parseBundle(bundlePath) {
     }
   );
 
-  let modules;
+  const modules = {};
 
   if (walkState.locations) {
-    modules = _.mapValues(walkState.locations,
-      loc => content.slice(loc.start, loc.end)
-    );
-  } else {
-    modules = {};
+    Object.entries(walkState.locations).forEach(([id, loc]) => {
+      modules[id] = content.slice(loc.start, loc.end);
+    });
   }
 
   return {

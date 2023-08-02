@@ -17,7 +17,7 @@ const getAvailableWebpackVersions = _.memoize(() =>
 function forEachWebpackVersion(versions, cb) {
   const availableVersions = getAvailableWebpackVersions();
 
-  if (_.isFunction(versions)) {
+  if (typeof versions === 'function') {
     cb = versions;
     versions = availableVersions;
   } else {
