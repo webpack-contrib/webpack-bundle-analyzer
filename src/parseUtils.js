@@ -1,7 +1,6 @@
 const fs = require('fs');
 const acorn = require('acorn');
 const walk = require('acorn-walk');
-const _ = require('lodash');
 
 module.exports = {
   parseBundle
