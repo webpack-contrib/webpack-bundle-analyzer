@@ -29,7 +29,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
   if (
     (bundleStats.assets == null || bundleStats.assets.length === 0)
-    && bundleStats.children.length > 0
+    && bundleStats.children && bundleStats.children.length > 0
   ) {
     const {children} = bundleStats;
     bundleStats = bundleStats.children[0];
@@ -41,7 +41,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
         bundleStats.assets.push(asset);
       });
     }
-  } else if (bundleStats.children.length > 0) {
+  } else if (bundleStats.children && bundleStats.children.length > 0) {
     // Sometimes if there are additional child chunks produced add them as child assets
     bundleStats.children.forEach((child) => {
       child.assets.forEach((asset) => {
