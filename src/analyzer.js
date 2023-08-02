@@ -4,6 +4,7 @@ const path = require('path');
 const pullAll = require('lodash.pullall');
 const invokeMap = require('lodash.invokemap');
 const uniqBy = require('lodash.uniqby');
+const flatten = require('lodash.flatten');
 
 const gzipSize = require('gzip-size');
 const {parseChunked} = require('@discoveryjs/json-ext');
@@ -182,17 +183,20 @@ function readStatsFromFile(filename) {
 }
 
 function getChildAssetBundles(bundleStats, assetName) {
-  return (bundleStats.children || []).find((c) => Object.values(c.assetsByChunkName)
-    .flat()
-    .includes(assetName));
+  return flatten(
+    (bundleStats.children || [])
+      .find((c) => Object.values(c.assetsByChunkName))
+  )
+    .includes(assetName);
 }
 
 function getBundleModules(bundleStats) {
   return uniqBy(
-    ((bundleStats.chunks?.map(chunk => chunk.modules)) || [])
-      .concat(bundleStats.modules)
-      .filter(Boolean)
-      .flat(),
+    flatten(
+      ((bundleStats.chunks?.map(chunk => chunk.modules)) || [])
+        .concat(bundleStats.modules)
+        .filter(Boolean)
+    ),
     'id'
   ).filter(m => !isRuntimeModule(m));
 }

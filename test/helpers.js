@@ -1,6 +1,5 @@
 const {readdirSync} = require('fs');
 const webpack = require('webpack');
-const {placeholder: _} = require('lodash.curry');
 const memoize = require('lodash.memoize');
 const partial = require('lodash.partial');
 const merge = require('lodash.merge');
@@ -46,7 +45,7 @@ function forEachWebpackVersion(versions, cb) {
     cb({
       it: itFn,
       version,
-      webpackCompile: partial(webpackCompile, _, version)
+      webpackCompile: partial(webpackCompile, partial.placeholder, version)
     });
   }
 }
