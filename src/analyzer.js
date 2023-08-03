@@ -198,6 +198,7 @@ function getBundleModules(bundleStats) {
         .filter(Boolean)
     ),
     'id'
+  // Filtering out Webpack's runtime modules as they don't have ids and can't be parsed (introduced in Webpack 5)
   ).filter(m => !isRuntimeModule(m));
 }
 
