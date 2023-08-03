@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import invokeMap from 'lodash.invokemap';
 
 import Node from './Node';
 
@@ -111,7 +111,7 @@ export default class BaseFolder extends Node {
       label: this.name,
       path: this.path,
       statSize: this.size,
-      groups: _.invokeMap(this.children, 'toChartData')
+      groups: invokeMap(this.children, 'toChartData')
     };
   }
 

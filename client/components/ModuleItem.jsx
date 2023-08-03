@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import escapeRegExp from 'escape-string-regexp';
+import escape from 'lodash.escape';
 import filesize from 'filesize';
 import cls from 'classnames';
 
@@ -47,7 +48,7 @@ export default class ModuleItem extends PureComponent {
     if (term) {
       const regexp = (term instanceof RegExp) ?
         new RegExp(term.source, 'igu') :
-        new RegExp(`(?:${_.escapeRegExp(term)})+`, 'iu');
+        new RegExp(`(?:${escapeRegExp(term)})+`, 'iu');
       let match;
       let lastMatch;
 
@@ -58,15 +59,15 @@ export default class ModuleItem extends PureComponent {
 
       if (lastMatch) {
         html = (
-          _.escape(title.slice(0, lastMatch.index)) +
-          `<strong>${_.escape(lastMatch[0])}</strong>` +
-          _.escape(title.slice(lastMatch.index + lastMatch[0].length))
+          escape(title.slice(0, lastMatch.index)) +
+          `<strong>${escape(lastMatch[0])}</strong>` +
+          escape(title.slice(lastMatch.index + lastMatch[0].length))
         );
       }
     }
 
     if (!html) {
-      html = _.escape(title);
+      html = escape(title);
     }
 
     return html;

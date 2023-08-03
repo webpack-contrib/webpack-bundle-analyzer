@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import debounce from 'lodash.debounce';
 
 import s from './Search.css';
 import Button from './Button';
@@ -39,7 +39,7 @@ export default class Search extends PureComponent {
     );
   }
 
-  handleValueChange = _.debounce((event) => {
+  handleValueChange = debounce((event) => {
     this.informChange(event.target.value);
   }, 400)
 

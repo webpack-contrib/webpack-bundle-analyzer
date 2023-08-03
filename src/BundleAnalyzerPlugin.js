@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const {bold} = require('chalk');
+const {bold} = require('picocolors');
 
 const Logger = require('./Logger');
 const viewer = require('./viewer');
