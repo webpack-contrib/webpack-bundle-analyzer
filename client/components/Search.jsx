@@ -1,4 +1,4 @@
-import debounce from 'lodash.debounce';
+import debounce from 'debounce';
 
 import s from './Search.css';
 import Button from './Button';
