@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 
 const invokeMap = require('lodash.invokemap');
-const uniqBy = require('lodash.uniqby');
 
 const gzipSize = require('gzip-size');
 const {parseChunked} = require('@discoveryjs/json-ext');
@@ -189,15 +188,23 @@ function getChildAssetBundles(bundleStats, assetName) {
 }
 
 function getBundleModules(bundleStats) {
-  return uniqBy(
-    flatten(
-      ((bundleStats.chunks?.map(chunk => chunk.modules)) || [])
-        .concat(bundleStats.modules)
-        .filter(Boolean)
-    ),
-    'id'
-  // Filtering out Webpack's runtime modules as they don't have ids and can't be parsed (introduced in Webpack 5)
-  ).filter(m => !isRuntimeModule(m));
+  const seenIds = new Set();
+
+  return flatten(
+    ((bundleStats.chunks?.map(chunk => chunk.modules)) || [])
+      .concat(bundleStats.modules)
+      .filter(Boolean)
+  ).filter(mod => {
+    // Filtering out Webpack's runtime modules as they don't have ids and can't be parsed (introduced in Webpack 5)
+    if (isRuntimeModule(mod)) {
+      return false;
+    }
+    if (seenIds.has(mod.id)) {
+      return false;
+    }
+    seenIds.add(mod.id);
+    return true;
+  });
 }
 
 function assetHasModule(statAsset, statModule) {
