@@ -18,6 +18,7 @@
   "engines": {
     "node": ">= 10.13.0"
   },
+  "packageManager": "npm@6.14.8",
   "scripts": {
     "start": "gulp watch",
     "build": "gulp build",
@@ -38,9 +39,9 @@
     "commander": "^7.2.0",
     "escape-string-regexp": "^4.0.0",
     "gzip-size": "^6.0.0",
+    "html-escaper": "^2.0.2",
     "is-plain-object": "^5.0.0",
     "lodash.debounce": "^4.0.8",
-    "lodash.escape": "^4.0.1",
     "lodash.flatten": "^4.4.0",
     "lodash.invokemap": "^4.6.0",
     "lodash.pullall": "^4.2.0",
