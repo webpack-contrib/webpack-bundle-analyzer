@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const pullAll = require('lodash.pullall');
 const invokeMap = require('lodash.invokemap');
 const uniqBy = require('lodash.uniqby');
 
@@ -118,7 +117,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     }
 
     // Picking modules from current bundle script
-    const assetModules = modules.filter(statModule => assetHasModule(statAsset, statModule));
+    let assetModules = modules.filter(statModule => assetHasModule(statAsset, statModule));
 
     // Adding parsed sources
     if (parsedModules) {
@@ -142,7 +141,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
           unparsedEntryModules[0].parsedSrc = assetSources.runtimeSrc;
         } else {
           // If there are multiple entry points we move all of them under synthetic concatenated module.
-          pullAll(assetModules, unparsedEntryModules);
+          assetModules = assetModules.filter(mod => !unparsedEntryModules.includes(mod));
           assetModules.unshift({
             identifier: './entry modules',
             name: './entry modules',
