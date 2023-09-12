@@ -74,7 +74,9 @@ export default class ConcatenatedModule extends Module {
 
   mergeNestedFolders() {
     Object.values(this.children).forEach(child => {
-      child.mergeNestedFolders();
+      if (child.mergeNestedFolders) {
+        child.mergeNestedFolders();
+      }
     });
   }
 
