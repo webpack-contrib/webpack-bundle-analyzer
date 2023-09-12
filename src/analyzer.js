@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const invokeMap = require('lodash.invokemap');
-
 const gzipSize = require('gzip-size');
 const {parseChunked} = require('@discoveryjs/json-ext');
 
@@ -168,7 +166,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     statSize: asset.tree.size || asset.size,
     parsedSize: asset.parsedSize,
     gzipSize: asset.gzipSize,
-    groups: invokeMap(asset.tree.children, 'toChartData'),
+    groups: Object.values(asset.tree.children).map(i => i.toChartData()),
     isInitialByEntrypoint: chunkToInitialByEntrypoint[filename] ?? {}
   }));
 }
