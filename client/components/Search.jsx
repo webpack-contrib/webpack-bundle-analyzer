@@ -1,3 +1,4 @@
+// TODO: switch to a more modern debounce package once we drop Node.js 10 support
 import debounce from 'debounce';
 
 import s from './Search.css';
