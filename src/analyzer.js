@@ -1,11 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const pullAll = require('lodash.pullall');
-const invokeMap = require('lodash.invokemap');
-const uniqBy = require('lodash.uniqby');
-const flatten = require('lodash.flatten');
-
 const gzipSize = require('gzip-size');
 const {parseChunked} = require('@discoveryjs/json-ext');
 
@@ -119,7 +114,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     }
 
     // Picking modules from current bundle script
-    const assetModules = modules.filter(statModule => assetHasModule(statAsset, statModule));
+    let assetModules = modules.filter(statModule => assetHasModule(statAsset, statModule));
 
     // Adding parsed sources
     if (parsedModules) {
@@ -143,7 +138,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
           unparsedEntryModules[0].parsedSrc = assetSources.runtimeSrc;
         } else {
           // If there are multiple entry points we move all of them under synthetic concatenated module.
-          pullAll(assetModules, unparsedEntryModules);
+          assetModules = assetModules.filter(mod => !unparsedEntryModules.includes(mod));
           assetModules.unshift({
             identifier: './entry modules',
             name: './entry modules',
@@ -171,7 +166,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     statSize: asset.tree.size || asset.size,
     parsedSize: asset.parsedSize,
     gzipSize: asset.gzipSize,
-    groups: invokeMap(asset.tree.children, 'toChartData'),
+    groups: Object.values(asset.tree.children).map(i => i.toChartData()),
     isInitialByEntrypoint: chunkToInitialByEntrypoint[filename] ?? {}
   }));
 }
@@ -191,15 +186,23 @@ function getChildAssetBundles(bundleStats, assetName) {
 }
 
 function getBundleModules(bundleStats) {
-  return uniqBy(
-    flatten(
-      ((bundleStats.chunks?.map(chunk => chunk.modules)) || [])
-        .concat(bundleStats.modules)
-        .filter(Boolean)
-    ),
-    'id'
-  // Filtering out Webpack's runtime modules as they don't have ids and can't be parsed (introduced in Webpack 5)
-  ).filter(m => !isRuntimeModule(m));
+  const seenIds = new Set();
+
+  return flatten(
+    ((bundleStats.chunks?.map(chunk => chunk.modules)) || [])
+      .concat(bundleStats.modules)
+      .filter(Boolean)
+  ).filter(mod => {
+    // Filtering out Webpack's runtime modules as they don't have ids and can't be parsed (introduced in Webpack 5)
+    if (isRuntimeModule(mod)) {
+      return false;
+    }
+    if (seenIds.has(mod.id)) {
+      return false;
+    }
+    seenIds.add(mod.id);
+    return true;
+  });
 }
 
 function assetHasModule(statAsset, statModule) {
@@ -239,3 +242,34 @@ function getChunkToInitialByEntrypoint(bundleStats) {
   });
   return chunkToEntrypointInititalMap;
 };
+
+/**
+ * arr-flatten <https://github.com/jonschlinkert/arr-flatten>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ *
+ * Modified by Sukka <https://skk.moe>
+ *
+ * Replace recursively flatten with one-level deep flatten to match lodash.flatten
+ *
+ * TODO: replace with Array.prototype.flat once Node.js 10 support is dropped
+ */
+function flatten(arr) {
+  if (!arr) return [];
+  const len = arr.length;
+  if (!len) return [];
+
+  let cur;
+
+  const res = [];
+  for (let i = 0; i < len; i++) {
+    cur = arr[i];
+    if (Array.isArray(cur)) {
+      res.push(...cur);
+    } else {
+      res.push(cur);
+    }
+  }
+  return res;
+}

@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const escape = require('lodash.escape');
+const {escape} = require('html-escaper');
 
 const projectRoot = path.resolve(__dirname, '..');
 const assetsRoot = path.join(projectRoot, 'public');
