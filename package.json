@@ -81,7 +81,7 @@
     "lodash.partial": "^4.2.1",
     "mobx": "5.15.7",
     "mobx-react": "6.3.1",
-    "postcss": "8.3.0",
+    "postcss": "8.4.31",
     "postcss-icss-values": "2.0.2",
     "postcss-loader": "5.3.0",
     "preact": "10.5.13",
