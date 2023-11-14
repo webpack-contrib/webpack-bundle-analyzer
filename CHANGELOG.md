@@ -12,6 +12,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+* **Improvement**
+   * Allows filtering the list of entrypoints ([#624](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/624) by [@chriskrogh](https://github.com/chriskrogh))
+
 * **Internal**
   * Make module much slimmer by replacing all `lodash.*` packages ([#612](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/612)) by [@sukkaw](https://github.com/sukkaw).
 

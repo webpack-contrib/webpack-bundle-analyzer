@@ -3,7 +3,13 @@
   white-space: nowrap;
 }
 
-.select {
+.label {
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+.input {
   border: 1px solid #aaa;
   border-radius: 4px;
   display: block;
@@ -12,8 +18,7 @@
   height: 27px;
 }
 
-.label {
-  font-size: 11px;
-  font-weight: bold;
-  margin-bottom: 7px;
+.option {
+  padding: 4px 0;
+  cursor: pointer;
 }

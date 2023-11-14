@@ -25,8 +25,6 @@ const SIZE_SWITCH_ITEMS = [
   {label: 'Gzipped', prop: 'gzipSize'}
 ];
 
-const DEFAULT_DROPDOWN_SELECTION = 'Select an entrypoint';
-
 @observer
 export default class ModulesTreemap extends Component {
   mouseCoords = {
@@ -83,7 +81,6 @@ export default class ModulesTreemap extends Component {
           </div>
           <div className={s.sidebarGroup}>
             <Dropdown label="Filter to initial chunks"
-              defaultOption={DEFAULT_DROPDOWN_SELECTION}
               options={store.entrypoints}
               onSelectionChange={this.handleSelectionChange}/>
           </div>
@@ -215,10 +212,8 @@ export default class ModulesTreemap extends Component {
     }
   }
 
-  handleSelectionChange = (event) => {
-    const selected = event.target.value;
-
-    if (selected === DEFAULT_DROPDOWN_SELECTION) {
+  handleSelectionChange = (selected) => {
+    if (!selected) {
       store.selectedChunks = store.allChunks;
       return;
     }
