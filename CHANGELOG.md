@@ -12,6 +12,8 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+## 4.10.1
+
 * **Bug Fix**
   * fix `this.handleValueChange.cancel()` is not a function ([#611](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/625) by [@life2015](https://github.com/life2015))
 
