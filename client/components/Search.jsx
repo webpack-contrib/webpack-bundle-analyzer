@@ -14,7 +14,7 @@ export default class Search extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.handleValueChange.cancel();
+    this.handleValueChange.clear();
   }
 
   render() {
@@ -79,7 +79,7 @@ export default class Search extends PureComponent {
   }
 
   clear() {
-    this.handleValueChange.cancel();
+    this.handleValueChange.clear();
     this.informChange('');
     this.input.value = '';
   }
