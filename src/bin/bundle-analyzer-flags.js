@@ -20,7 +20,8 @@ module.exports = {
         type: "enum",
         values: ["server", "static", "json"],
         multiple: false,
-        description: "The mode to run the analyzer in: server, static, or json.",
+        description:
+          "The mode to run the analyzer in: server, static, or json.",
         path: "mode",
         defaultValue: "server",
       },
@@ -34,12 +35,14 @@ module.exports = {
       {
         type: "string",
         multiple: false,
-        description: 'Path to bundle report file that will be generated in "static" mode.',
+        description:
+          'Path to bundle report file that will be generated in "static" mode.',
         path: "report",
         defaultValue: "report.html",
       },
     ],
-    description: 'Path to bundle report file that will be generated in "static" mode.',
+    description:
+      'Path to bundle report file that will be generated in "static" mode.',
     simpleType: "string",
     multiple: false,
   },
@@ -91,7 +94,8 @@ module.exports = {
       {
         type: "number",
         multiple: false,
-        description: "Port that will be used in `server` mode, default is 8888.",
+        description:
+          "Port that will be used in `server` mode, default is 8888.",
         path: "port",
         defaultValue: 8888,
       },
@@ -105,12 +109,14 @@ module.exports = {
       {
         type: "string",
         multiple: false,
-        description: "Host that will be used in `server` mode, default is 127.0.0.1.",
+        description:
+          "Host that will be used in `server` mode, default is 127.0.0.1.",
         path: "host",
         defaultValue: "127.0.0.1",
       },
     ],
-    description: "Host that will be used in `server` mode, default is 127.0.0.1.",
+    description:
+      "Host that will be used in `server` mode, default is 127.0.0.1.",
     simpleType: "string",
     multiple: false,
   },

@@ -10,7 +10,7 @@ const viewer = require("../viewer");
 const Logger = require("../Logger");
 const utils = require("../utils");
 
-const { options } = require("./bundle-analyzer-flags.js");
+const options = require("./bundle-analyzer-flags.js");
 const { cli } = require("webpack");
 
 const SIZES = new Set(["stat", "parsed", "gzip"]);
@@ -106,8 +106,10 @@ try {
   process.exit(1);
 }
 
-options.forEach((option) => {
-  cli.option(option.path, option.description, option.defaultValue);
+Object.entries(options).forEach(([key, optionConfig]) => {
+  optionConfig.configs.forEach((config) => {
+    cli.option(config.path, config.description, config.defaultValue);
+  });
 });
 
 if (typeof reportTitle === "undefined") {
