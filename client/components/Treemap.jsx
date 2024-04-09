@@ -7,6 +7,7 @@ export default class Treemap extends Component {
     super(props);
     this.treemap = null;
     this.zoomOutDisabled = false;
+    this.findChunkNamePartIndex();
   }
 
   componentDidMount() {
@@ -16,15 +17,12 @@ export default class Treemap extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data) {
+      this.findChunkNamePartIndex();
       this.treemap.set({
         dataObject: this.getTreemapDataObject(nextProps.data)
       });
     } else if (nextProps.highlightGroups !== this.props.highlightGroups) {
-      const groupsToRedraw = [
-        ...nextProps.highlightGroups,
-        ...this.props.highlightGroups
-      ];
-      setTimeout(() => this.treemap.redraw(false, groupsToRedraw));
+      setTimeout(() => this.treemap.redraw());
     }
   }
 
@@ -76,6 +74,19 @@ export default class Treemap extends Component {
         vars.titleBarShown = false;
       },
       groupColorDecorator(options, properties, variables) {
+        const root = component.getGroupRoot(properties.group);
+        const chunkName = component.getChunkNamePart(root.label);
+        const hash = /[^0-9]/u.test(chunkName)
+          ? hashCode(chunkName)
+          : (parseInt(chunkName) / 1000) * 360;
+        variables.groupColor = {
+          model: 'hsla',
+          h: Math.round(Math.abs(hash) % 360),
+          s: 60,
+          l: 50,
+          a: 0.9
+        };
+
         const {highlightGroups} = component.props;
         const module = properties.group;
 
@@ -87,6 +98,11 @@ export default class Treemap extends Component {
             b: 0,
             a: 0.8
           };
+        } else if (highlightGroups && highlightGroups.size > 0) {
+          // this means a search (e.g.) is active, but this module
+          // does not match; gray it out
+          // https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/553
+          variables.groupColor.s = 10;
         }
       },
       /**
@@ -136,6 +152,14 @@ export default class Treemap extends Component {
     });
   }
 
+  getGroupRoot(group) {
+    let nextParent;
+    while (!group.isAsset && (nextParent = this.treemap.get('hierarchy', group).parent)) {
+      group = nextParent;
+    }
+    return group;
+  }
+
   zoomToGroup(group) {
     this.zoomOutDisabled = false;
 
@@ -164,9 +188,62 @@ export default class Treemap extends Component {
     if (props.onResize) {
       props.onResize();
     }
+  };
+
+  /**
+   * Finds patterns across all chunk names to identify the unique "name" part.
+   */
+  findChunkNamePartIndex() {
+    const splitChunkNames = this.props.data.map((chunk) => chunk.label.split(/[^a-z0-9]/iu));
+    const longestSplitName = Math.max(...splitChunkNames.map((parts) => parts.length));
+    const namePart = {
+      index: 0,
+      votes: 0
+    };
+    for (let i = longestSplitName - 1; i >= 0; i--) {
+      const identifierVotes = {
+        name: 0,
+        hash: 0,
+        ext: 0
+      };
+      let lastChunkPart = '';
+      for (const splitChunkName of splitChunkNames) {
+        const part = splitChunkName[i];
+        if (part === undefined || part === '') {
+          continue;
+        }
+        if (part === lastChunkPart) {
+          identifierVotes.ext++;
+        } else if (/[a-z]/u.test(part) && /[0-9]/u.test(part) && part.length === lastChunkPart.length) {
+          identifierVotes.hash++;
+        } else if (/^[a-z]+$/iu.test(part) || /^[0-9]+$/u.test(part)) {
+          identifierVotes.name++;
+        }
+        lastChunkPart = part;
+      }
+      if (identifierVotes.name >= namePart.votes) {
+        namePart.index = i;
+        namePart.votes = identifierVotes.name;
+      }
+    }
+    this.chunkNamePartIndex = namePart.index;
+  }
+
+  getChunkNamePart(chunkLabel) {
+    return chunkLabel.split(/[^a-z0-9]/iu)[this.chunkNamePartIndex] || chunkLabel;
   }
 }
 
 function preventDefault(event) {
   event.preventDefault();
+}
+
+function hashCode(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i);
+    hash = (hash << 5) - hash + code;
+    hash = hash & hash;
+  }
+  return hash;
 }

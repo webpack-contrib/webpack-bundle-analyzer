@@ -66,12 +66,7 @@ module.exports = opts => {
 
                 modules: false,
                 useBuiltIns: 'usage',
-                corejs: 2,
-                exclude: [
-                  // Excluding unused polyfills to completely get rid of `core.js` in the resulting bundle
-                  'web.dom.iterable',
-                  'es7.symbol.async-iterator'
-                ],
+                corejs: require('./package.json').devDependencies['core-js'],
                 debug: true
               }],
               ['@babel/preset-react', {
@@ -83,6 +78,7 @@ module.exports = opts => {
               'lodash',
               ['@babel/plugin-proposal-decorators', {legacy: true}],
               ['@babel/plugin-proposal-class-properties', {loose: true}],
+              ['@babel/plugin-proposal-private-methods', {loose: true}],
               ['@babel/plugin-transform-runtime', {
                 useESModules: true
               }]
@@ -119,14 +115,6 @@ module.exports = opts => {
         {
           test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/u,
           loader: 'url-loader'
-        },
-        {
-          test: /carrotsearch\.foamtree/u,
-          loader: 'exports-loader',
-          options: {
-            type: 'commonjs',
-            exports: 'single window.CarrotSearchFoamTree'
-          }
         }
       ]
     },

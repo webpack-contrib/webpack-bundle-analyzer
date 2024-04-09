@@ -20,7 +20,7 @@ try {
 window.addEventListener('load', () => {
   store.defaultSize = `${window.defaultSizes}Size`;
   store.setModules(window.chartData);
-
+  store.setEntrypoints(window.entrypoints);
   render(
     <ModulesTreemap/>,
     document.getElementById('app')

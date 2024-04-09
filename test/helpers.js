@@ -1,18 +1,16 @@
 const {readdirSync} = require('fs');
-const chai = require('chai');
 const webpack = require('webpack');
-const _ = require('lodash');
+const memoize = require('lodash.memoize');
+const partial = require('lodash.partial');
+const merge = require('lodash.merge');
 
-chai.use(require('chai-subset'));
-
-global.expect = chai.expect;
 global.webpackCompile = webpackCompile;
 global.makeWebpackConfig = makeWebpackConfig;
 global.forEachWebpackVersion = forEachWebpackVersion;
 
 const BundleAnalyzerPlugin = require('../lib/BundleAnalyzerPlugin');
 
-const getAvailableWebpackVersions = _.memoize(() =>
+const getAvailableWebpackVersions = memoize(() =>
   readdirSync(`${__dirname}/webpack-versions`, {withFileTypes: true})
     .filter(entry => entry.isDirectory())
     .map(dir => dir.name)
@@ -21,7 +19,7 @@ const getAvailableWebpackVersions = _.memoize(() =>
 function forEachWebpackVersion(versions, cb) {
   const availableVersions = getAvailableWebpackVersions();
 
-  if (_.isFunction(versions)) {
+  if (typeof versions === 'function') {
     cb = versions;
     versions = availableVersions;
   } else {
@@ -47,7 +45,7 @@ function forEachWebpackVersion(versions, cb) {
     cb({
       it: itFn,
       version,
-      webpackCompile: _.partial(webpackCompile, _, version)
+      webpackCompile: partial(webpackCompile, partial.placeholder, version)
     });
   }
 }
@@ -90,7 +88,7 @@ async function webpackCompile(config, version) {
 }
 
 function makeWebpackConfig(opts) {
-  opts = _.merge({
+  opts = merge({
     analyzerOpts: {
       analyzerMode: 'static',
       openAnalyzer: false,

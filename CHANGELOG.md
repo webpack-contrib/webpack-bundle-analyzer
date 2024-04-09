@@ -12,19 +12,93 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+## 4.10.1
+
+* **Bug Fix**
+  * fix `this.handleValueChange.cancel()` is not a function ([#611](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/625) by [@life2015](https://github.com/life2015))
+
+## 4.10.0
+
+* **Improvement**
+  * Allows filtering the list of entrypoints ([#624](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/624) by [@chriskrogh](https://github.com/chriskrogh))
+
+* **Internal**
+  * Make module much slimmer by replacing all `lodash.*` packages ([#612](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/612)) by [@sukkaw](https://github.com/sukkaw).
+
+## 4.9.1
+
+* **Internal**
+  * Replace some lodash usages with JavaScript native API ([#505](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/505)) by [@sukkaw](https://github.com/sukkaw).
+  * Make module much slimmer ([#609](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/609)) by [@sukkaw](https://github.com/sukkaw).
+
+* **Bug Fix**
+  * fix `analyzerMode: 'server'` on certain machines ([#611](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/611) by [@panbenson](https://github.com/panbenson))
+
+## 4.9.0
+
+* **Improvement**
+  * Display modules included in concatenated entry modules on Webpack 5 when "Show content of concatenated modules" is checked ([#602](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/602) by [@pgoldberg](https://github.com/pgoldberg))
+
+## 4.8.0
+
+ * **Improvement**
+   * Support reading large (>500MB) stats.json files ([#423](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/423) by [@henry-alakazhang](https://github.com/henry-alakazhang))
+   * Improve search UX by graying out non-matches ([#554](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/554) by [@starpit](https://github.com/starpit))
+
+ * **Internal**
+   * Add Node.js v16.x to CI and update GitHub actions ([#539](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/539) by [@amareshsm](https://github.com/amareshsm))
+
+## 4.7.0
+
+ * **New Feature**
+   * Add the ability to filter to displaying only initial chunks per entrypoint ([#519](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/519) by [@pas-trop-de-zele](https://github.com/pas-trop-de-zele))
+
+## 4.6.1
+
+* **Bug Fix**
+  * fix outputting different URL in cli mode ([#524](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/524) by [@southorange1228](https://github.com/southorange1228))
+
+## 4.6.0
+
+* **New Feature** 
+  * Support outputting different URL in server mode ([#520](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/520) by [@southorange1228](https://github.com/southorange1228))
+  * Use deterministic chunk colors (#[501](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/501) by [@CreativeTechGuy](https://github.com/CreativeTechGuy))
+
+## 4.5.0
+
+ * **Improvement**
+   * Stop publishing src folder to npm ([#478](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/478) by [@wood1986](https://github.com/wood1986))
+
+* **Internal**
+  * Update some dependencies ([#448](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/448))
+  * Replace nightmare with Puppeteer ([#469](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/469) by [@valscion](https://github.com/valscion))
+  * Replace Mocha with Jest ([#470](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/470) by [@valscion](https://github.com/valscion))
+
+## 4.4.2
+
+ * **Bug Fix**
+   * Fix failure with `compiler.outputFileSystem.constructor` being `undefined` ([#447](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/447) by [@kedarv](https://github.com/kedarv) and [@alexander-akait](https://github.com/alexander-akait))
+     * **NOTE:** This fix doesn't have added test coverage so the fix might break in future versions unless test coverage is added later.
+
+## 4.4.1
+
+ * **Bug Fix**
+   * Fix missing module chunks ([#433](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/433) by [@deanshub](https://github.com/deanshub))
+
+ * **Internal**
+   * Fix tests timing out in CI ([#435](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/435) by [@deanshub](https://github.com/deanshub))
+   * Fix command in issue template ([#428](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/428) by [@cncolder](https://github.com/cncolder))
+
 ## 4.4.0
 
  * **Improvement**
-   * Keep treemap labels visible during zooming animations for better user experience ([#414](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/414) by [@
-     stanislawosinski](https://github.com/stanislawosinski))
+   * Keep treemap labels visible during zooming animations for better user experience ([#414](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/414) by [@stanislawosinski](https://github.com/stanislawosinski))
      
  * **Bug Fix**
-   * Don't show an empty tooltip when hovering over the FoamTree attribution group or between top-level groups ([#413](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/413) by [@
-     stanislawosinski](https://github.com/stanislawosinski))
+   * Don't show an empty tooltip when hovering over the FoamTree attribution group or between top-level groups ([#413](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/413) by [@stanislawosinski](https://github.com/stanislawosinski))
  
  * **Internal**
-   * Upgrade FoamTree to version 3.5.0, replace vendor dependency with an NPM package ([#412](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/412) by [@
-     stanislawosinski](https://github.com/stanislawosinski))
+   * Upgrade FoamTree to version 3.5.0, replace vendor dependency with an NPM package ([#412](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/412) by [@stanislawosinski](https://github.com/stanislawosinski))
     
 ## 4.3.0
 

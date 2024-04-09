@@ -1,4 +1,5 @@
-import _ from 'lodash';
+// TODO: switch to a more modern debounce package once we drop Node.js 10 support
+import debounce from 'debounce';
 
 import s from './Search.css';
 import Button from './Button';
@@ -13,7 +14,7 @@ export default class Search extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.handleValueChange.cancel();
+    this.handleValueChange.clear();
   }
 
   render() {
@@ -39,7 +40,7 @@ export default class Search extends PureComponent {
     );
   }
 
-  handleValueChange = _.debounce((event) => {
+  handleValueChange = debounce((event) => {
     this.informChange(event.target.value);
   }, 400)
 
@@ -78,7 +79,7 @@ export default class Search extends PureComponent {
   }
 
   clear() {
-    this.handleValueChange.cancel();
+    this.handleValueChange.clear();
     this.informChange('');
     this.input.value = '';
   }

@@ -17,6 +17,7 @@ import s from './ModulesTreemap.css';
 import Search from './Search';
 import {store} from '../store';
 import ModulesList from './ModulesList';
+import Dropdown from './Dropdown';
 
 const SIZE_SWITCH_ITEMS = [
   {label: 'Stat', prop: 'statSize'},
@@ -77,6 +78,11 @@ export default class ModulesTreemap extends Component {
                 </Checkbox>
               </div>
             }
+          </div>
+          <div className={s.sidebarGroup}>
+            <Dropdown label="Filter to initial chunks"
+              options={store.entrypoints}
+              onSelectionChange={this.handleSelectionChange}/>
           </div>
           <div className={s.sidebarGroup}>
             <Search label="Search modules"
@@ -204,6 +210,15 @@ export default class ModulesTreemap extends Component {
     } else {
       return 'Nothing found' + (store.allChunksSelected ? '' : ' in selected chunks');
     }
+  }
+
+  handleSelectionChange = (selected) => {
+    if (!selected) {
+      store.selectedChunks = store.allChunks;
+      return;
+    }
+
+    store.selectedChunks = store.allChunks.filter(chunk => chunk.isInitialByEntrypoint[selected] ?? false);
   }
 
   handleConcatenatedModulesContentToggle = flag => {

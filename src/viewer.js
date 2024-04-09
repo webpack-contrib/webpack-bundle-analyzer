@@ -4,8 +4,7 @@ const http = require('http');
 
 const WebSocket = require('ws');
 const sirv = require('sirv');
-const _ = require('lodash');
-const {bold} = require('chalk');
+const {bold} = require('picocolors');
 
 const Logger = require('./Logger');
 const analyzer = require('./analyzer');
@@ -26,6 +25,7 @@ module.exports = {
   startServer,
   generateReport,
   generateJSONReport,
+  getEntrypoints,
   // deprecated
   start: startServer
 };
@@ -39,12 +39,14 @@ async function startServer(bundleStats, opts) {
     logger = new Logger(),
     defaultSizes = 'parsed',
     excludeAssets = null,
-    reportTitle
+    reportTitle,
+    analyzerUrl
   } = opts || {};
 
   const analyzerOpts = {logger, excludeAssets};
 
   let chartData = getChartData(analyzerOpts, bundleStats, bundleDir);
+  const entrypoints = getEntrypoints(bundleStats);
 
   if (!chartData) return;
 
@@ -59,6 +61,7 @@ async function startServer(bundleStats, opts) {
         mode: 'server',
         title: resolveTitle(reportTitle),
         chartData,
+        entrypoints,
         defaultSizes,
         enableWebSocket: true
       });
@@ -73,7 +76,11 @@ async function startServer(bundleStats, opts) {
     server.listen(port, host, () => {
       resolve();
 
-      const url = `http://${host}:${server.address().port}`;
+      const url = analyzerUrl({
+        listenPort: port,
+        listenHost: host,
+        boundAddress: server.address()
+      });
 
       logger.info(
         `${bold('Webpack Bundle Analyzer')} is started at ${bold(url)}\n` +
@@ -133,6 +140,7 @@ async function generateReport(bundleStats, opts) {
   } = opts || {};
 
   const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
+  const entrypoints = getEntrypoints(bundleStats);
 
   if (!chartData) return;
 
@@ -140,6 +148,7 @@ async function generateReport(bundleStats, opts) {
     mode: 'static',
     title: resolveTitle(reportTitle),
     chartData,
+    entrypoints,
     defaultSizes,
     enableWebSocket: false
   });
@@ -180,10 +189,22 @@ function getChartData(analyzerOpts, ...args) {
     chartData = null;
   }
 
-  if (_.isPlainObject(chartData) && _.isEmpty(chartData)) {
+  // chartData can either be an array (bundleInfo[]) or null. It can't be an plain object anyway
+  if (
+    // analyzer.getViewerData() doesn't failed in the previous step
+    chartData
+    && !Array.isArray(chartData)
+  ) {
     logger.error("Could't find any javascript bundles in provided stats file");
     chartData = null;
   }
 
   return chartData;
+}
+
+function getEntrypoints(bundleStats) {
+  if (bundleStats === null || bundleStats === undefined || !bundleStats.entrypoints) {
+    return [];
+  }
+  return Object.values(bundleStats.entrypoints).map(entrypoint => entrypoint.name);
 }

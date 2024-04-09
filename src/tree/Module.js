@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import gzipSize from 'gzip-size';
 
 import Node from './Node';
@@ -28,11 +27,19 @@ export default class Module extends Node {
   }
 
   get parsedSize() {
-    return this.src ? this.src.length : undefined;
+    return this.getParsedSize();
   }
 
   get gzipSize() {
-    if (!_.has(this, '_gzipSize')) {
+    return this.getGzipSize();
+  }
+
+  getParsedSize() {
+    return this.src ? this.src.length : undefined;
+  }
+
+  getGzipSize() {
+    if (!('_gzipSize' in this)) {
       this._gzipSize = this.src ? gzipSize.sync(this.src) : undefined;
     }
 

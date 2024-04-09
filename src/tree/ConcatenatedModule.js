@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import Module from './Module';
 import ContentModule from './ContentModule';
 import ContentFolder from './ContentFolder';
@@ -14,6 +12,22 @@ export default class ConcatenatedModule extends Module {
     this.fillContentModules();
   }
 
+  get parsedSize() {
+    return this.getParsedSize() ?? this.getEstimatedSize('parsedSize');
+  }
+
+  get gzipSize() {
+    return this.getGzipSize() ?? this.getEstimatedSize('gzipSize');
+  }
+
+  getEstimatedSize(sizeType) {
+    const parentModuleSize = this.parent[sizeType];
+
+    if (parentModuleSize !== undefined) {
+      return Math.floor((this.size / this.parent.size) * parentModuleSize);
+    }
+  }
+
   fillContentModules() {
     this.data.modules.forEach(moduleData => this.addContentModule(moduleData));
   }
@@ -25,7 +39,7 @@ export default class ConcatenatedModule extends Module {
       return;
     }
 
-    const [folders, fileName] = [pathParts.slice(0, -1), _.last(pathParts)];
+    const [folders, fileName] = [pathParts.slice(0, -1), pathParts[pathParts.length - 1]];
     let currentFolder = this;
 
     folders.forEach(folderName => {
@@ -38,7 +52,8 @@ export default class ConcatenatedModule extends Module {
       currentFolder = childFolder;
     });
 
-    const module = new ContentModule(fileName, moduleData, this);
+    const ModuleConstructor = moduleData.modules ? ConcatenatedModule : ContentModule;
+    const module = new ModuleConstructor(fileName, moduleData, this);
     currentFolder.addChildModule(module);
   }
 
@@ -58,14 +73,18 @@ export default class ConcatenatedModule extends Module {
   }
 
   mergeNestedFolders() {
-    _.invokeMap(this.children, 'mergeNestedFolders');
+    Object.values(this.children).forEach(child => {
+      if (child.mergeNestedFolders) {
+        child.mergeNestedFolders();
+      }
+    });
   }
 
   toChartData() {
     return {
       ...super.toChartData(),
       concatenated: true,
-      groups: _.invokeMap(this.children, 'toChartData')
+      groups: Object.values(this.children).map(child => child.toChartData())
     };
   }
 

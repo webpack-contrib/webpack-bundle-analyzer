@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const _ = require('lodash');
 const gzipSize = require('gzip-size');
+const {parseChunked} = require('@discoveryjs/json-ext');
 
 const Logger = require('./Logger');
 const Folder = require('./tree/Folder').default;
@@ -26,7 +26,10 @@ function getViewerData(bundleStats, bundleDir, opts) {
   const isAssetIncluded = createAssetsFilter(excludeAssets);
 
   // Sometimes all the information is located in `children` array (e.g. problem in #10)
-  if (_.isEmpty(bundleStats.assets) && !_.isEmpty(bundleStats.children)) {
+  if (
+    (bundleStats.assets == null || bundleStats.assets.length === 0)
+    && bundleStats.children && bundleStats.children.length > 0
+  ) {
     const {children} = bundleStats;
     bundleStats = bundleStats.children[0];
     // Sometimes if there are additional child chunks produced add them as child assets,
@@ -37,7 +40,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
         bundleStats.assets.push(asset);
       });
     }
-  } else if (!_.isEmpty(bundleStats.children)) {
+  } else if (bundleStats.children && bundleStats.children.length > 0) {
     // Sometimes if there are additional child chunks produced add them as child assets
     bundleStats.children.forEach((child) => {
       child.assets.forEach((asset) => {
@@ -58,7 +61,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     // See #22
     asset.name = asset.name.replace(FILENAME_QUERY_REGEXP, '');
 
-    return FILENAME_EXTENSIONS.test(asset.name) && !_.isEmpty(asset.chunks) && isAssetIncluded(asset.name);
+    return FILENAME_EXTENSIONS.test(asset.name) && asset.chunks.length > 0 && isAssetIncluded(asset.name);
   });
 
   // Trying to parse bundle assets and get real module sizes if `bundleDir` is provided
@@ -81,11 +84,14 @@ function getViewerData(bundleStats, bundleDir, opts) {
         continue;
       }
 
-      bundlesSources[statAsset.name] = _.pick(bundleInfo, 'src', 'runtimeSrc');
+      bundlesSources[statAsset.name] = {
+        src: bundleInfo.src,
+        runtimeSrc: bundleInfo.runtimeSrc
+      };
       Object.assign(parsedModules, bundleInfo.modules);
     }
 
-    if (_.isEmpty(bundlesSources)) {
+    if (Object.keys(bundlesSources).length === 0) {
       bundlesSources = null;
       parsedModules = null;
       logger.warn('\nNo bundles were parsed. Analyzer will show only original module sizes from stats file.\n');
@@ -96,8 +102,10 @@ function getViewerData(bundleStats, bundleDir, opts) {
     // If asset is a childAsset, then calculate appropriate bundle modules by looking through stats.children
     const assetBundles = statAsset.isChild ? getChildAssetBundles(bundleStats, statAsset.name) : bundleStats;
     const modules = assetBundles ? getBundleModules(assetBundles) : [];
-    const asset = result[statAsset.name] = _.pick(statAsset, 'size');
-    const assetSources = bundlesSources && _.has(bundlesSources, statAsset.name) ?
+    const asset = result[statAsset.name] = {
+      size: statAsset.size
+    };
+    const assetSources = bundlesSources && Object.prototype.hasOwnProperty.call(bundlesSources, statAsset.name) ?
       bundlesSources[statAsset.name] : null;
 
     if (assetSources) {
@@ -106,7 +114,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     }
 
     // Picking modules from current bundle script
-    const assetModules = modules.filter(statModule => assetHasModule(statAsset, statModule));
+    let assetModules = modules.filter(statModule => assetHasModule(statAsset, statModule));
 
     // Adding parsed sources
     if (parsedModules) {
@@ -130,7 +138,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
           unparsedEntryModules[0].parsedSrc = assetSources.runtimeSrc;
         } else {
           // If there are multiple entry points we move all of them under synthetic concatenated module.
-          _.pullAll(assetModules, unparsedEntryModules);
+          assetModules = assetModules.filter(mod => !unparsedEntryModules.includes(mod));
           assetModules.unshift({
             identifier: './entry modules',
             name: './entry modules',
@@ -147,6 +155,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     return result;
   }, {});
 
+  const chunkToInitialByEntrypoint = getChunkToInitialByEntrypoint(bundleStats);
   return Object.entries(assets).map(([filename, asset]) => ({
     label: filename,
     isAsset: true,
@@ -157,35 +166,43 @@ function getViewerData(bundleStats, bundleDir, opts) {
     statSize: asset.tree.size || asset.size,
     parsedSize: asset.parsedSize,
     gzipSize: asset.gzipSize,
-    groups: _.invokeMap(asset.tree.children, 'toChartData')
+    groups: Object.values(asset.tree.children).map(i => i.toChartData()),
+    isInitialByEntrypoint: chunkToInitialByEntrypoint[filename] ?? {}
   }));
 }
 
 function readStatsFromFile(filename) {
-  return JSON.parse(
-    fs.readFileSync(filename, 'utf8')
+  return parseChunked(
+    fs.createReadStream(filename, {encoding: 'utf8'})
   );
 }
 
 function getChildAssetBundles(bundleStats, assetName) {
-  return (bundleStats.children || []).find((c) =>
-    _(c.assetsByChunkName)
-      .values()
-      .flatten()
-      .includes(assetName)
-  );
+  return flatten(
+    (bundleStats.children || [])
+      .find((c) => Object.values(c.assetsByChunkName))
+  )
+    .includes(assetName);
 }
 
 function getBundleModules(bundleStats) {
-  return _(bundleStats.chunks)
-    .map('modules')
-    .concat(bundleStats.modules)
-    .compact()
-    .flatten()
-    .uniqBy('id')
+  const seenIds = new Set();
+
+  return flatten(
+    ((bundleStats.chunks?.map(chunk => chunk.modules)) || [])
+      .concat(bundleStats.modules)
+      .filter(Boolean)
+  ).filter(mod => {
     // Filtering out Webpack's runtime modules as they don't have ids and can't be parsed (introduced in Webpack 5)
-    .reject(isRuntimeModule)
-    .value();
+    if (isRuntimeModule(mod)) {
+      return false;
+    }
+    if (seenIds.has(mod.id)) {
+      return false;
+    }
+    seenIds.add(mod.id);
+    return true;
+  });
 }
 
 function assetHasModule(statAsset, statModule) {
@@ -210,4 +227,49 @@ function createModulesTree(modules) {
   root.mergeNestedFolders();
 
   return root;
+}
+
+function getChunkToInitialByEntrypoint(bundleStats) {
+  if (bundleStats == null) {
+    return {};
+  }
+  const chunkToEntrypointInititalMap = {};
+  Object.values(bundleStats.entrypoints || {}).forEach((entrypoint) => {
+    for (const asset of entrypoint.assets) {
+      chunkToEntrypointInititalMap[asset.name] = chunkToEntrypointInititalMap[asset.name] ?? {};
+      chunkToEntrypointInititalMap[asset.name][entrypoint.name] = true;
+    }
+  });
+  return chunkToEntrypointInititalMap;
+};
+
+/**
+ * arr-flatten <https://github.com/jonschlinkert/arr-flatten>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ *
+ * Modified by Sukka <https://skk.moe>
+ *
+ * Replace recursively flatten with one-level deep flatten to match lodash.flatten
+ *
+ * TODO: replace with Array.prototype.flat once Node.js 10 support is dropped
+ */
+function flatten(arr) {
+  if (!arr) return [];
+  const len = arr.length;
+  if (!len) return [];
+
+  let cur;
+
+  const res = [];
+  for (let i = 0; i < len; i++) {
+    cur = arr[i];
+    if (Array.isArray(cur)) {
+      res.push(...cur);
+    } else {
+      res.push(cur);
+    }
+  }
+  return res;
 }
