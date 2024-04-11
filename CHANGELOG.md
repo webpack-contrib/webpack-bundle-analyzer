@@ -12,6 +12,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+* **Bug Fix**
+  * fix `.cjs` files not being handled ([#512](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/512) by [@Rush](https://github.com/Rush))
+
 ## 4.10.1
 
 * **Bug Fix**

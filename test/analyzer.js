@@ -158,6 +158,11 @@ describe('Analyzer', function () {
     await expectValidReport({bundleLabel: 'bundle.mjs'});
   });
 
+  it('should support stats files with cjs chunk', async function () {
+    generateReportFrom('with-cjs-chunk.json');
+    await expectValidReport({bundleLabel: 'bundle.cjs'});
+  });
+
   it('should properly parse extremely optimized bundle from webpack 5', async function () {
     generateReportFrom('extremely-optimized-webpack-5-bundle/stats.json');
     const chartData = await getChartData();
