@@ -12,6 +12,11 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+## 4.10.3
+
+* **New Feature**
+  * Allows flags to support webpack-cli. ([#628](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/628) by [@info-arnav](https://github.com/info-arnav))
+
 ## 4.10.2
 
 * **Bug Fix**
