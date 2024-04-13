@@ -96,6 +96,7 @@ webpack-bundle-analyzer bundle/output/path/stats.json
 
 ```bash
 webpack-bundle-analyzer <bundleStatsFile> [bundleDir] [options]
+webpack build --analyze --analyze-[options]
 ```
 
 Arguments are documented below:
