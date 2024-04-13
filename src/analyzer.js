@@ -10,7 +10,7 @@ const {parseBundle} = require('./parseUtils');
 const {createAssetsFilter} = require('./utils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/u;
-const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
+const FILENAME_EXTENSIONS = /\.(js|mjs|cjs)$/iu;
 
 module.exports = {
   getViewerData,
@@ -50,7 +50,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
     });
   }
 
-  // Picking only `*.js or *.mjs` assets from bundle that has non-empty `chunks` array
+  // Picking only `*.js, *.cjs or *.mjs` assets from bundle that has non-empty `chunks` array
   bundleStats.assets = bundleStats.assets.filter(asset => {
     // Filter out non 'asset' type asset if type is provided (Webpack 5 add a type to indicate asset types)
     if (asset.type && asset.type !== 'asset') {
