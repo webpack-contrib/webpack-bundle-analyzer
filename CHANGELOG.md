@@ -12,6 +12,14 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+## 4.10.2
+
+* **Bug Fix**
+  * fix `.cjs` files not being handled ([#512](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/512) by [@Rush](https://github.com/Rush))
+
+* **Internal**
+  * Remove `is-plain-object` ([#627](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/627) by [@SukkaW](https://github.com/SukkaW))
+
 ## 4.10.1
 
 * **Bug Fix**

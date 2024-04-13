@@ -4,7 +4,6 @@ const http = require('http');
 
 const WebSocket = require('ws');
 const sirv = require('sirv');
-const {isPlainObject} = require('is-plain-object');
 const {bold} = require('picocolors');
 
 const Logger = require('./Logger');
@@ -190,7 +189,12 @@ function getChartData(analyzerOpts, ...args) {
     chartData = null;
   }
 
-  if (isPlainObject(chartData) && Object.keys(chartData).length === 0) {
+  // chartData can either be an array (bundleInfo[]) or null. It can't be an plain object anyway
+  if (
+    // analyzer.getViewerData() doesn't failed in the previous step
+    chartData
+    && !Array.isArray(chartData)
+  ) {
     logger.error("Could't find any javascript bundles in provided stats file");
     chartData = null;
   }
@@ -199,8 +203,8 @@ function getChartData(analyzerOpts, ...args) {
 }
 
 function getEntrypoints(bundleStats) {
-  if (bundleStats === null || bundleStats === undefined) {
+  if (bundleStats === null || bundleStats === undefined || !bundleStats.entrypoints) {
     return [];
   }
-  return Object.values(bundleStats.entrypoints || {}).map(entrypoint => entrypoint.name);
+  return Object.values(bundleStats.entrypoints).map(entrypoint => entrypoint.name);
 }

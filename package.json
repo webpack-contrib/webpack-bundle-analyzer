@@ -1,6 +1,6 @@
 {
   "name": "webpack-bundle-analyzer",
-  "version": "4.10.1",
+  "version": "4.10.2",
   "description": "Webpack plugin and CLI utility that represents bundle content as convenient interactive zoomable treemap",
   "author": "Yury Grunin <grunin.ya@ya.ru>",
   "license": "MIT",
@@ -41,7 +41,6 @@
     "escape-string-regexp": "^4.0.0",
     "gzip-size": "^6.0.0",
     "html-escaper": "^2.0.2",
-    "is-plain-object": "^5.0.0",
     "opener": "^1.5.2",
     "picocolors": "^1.0.0",
     "sirv": "^2.0.3",
