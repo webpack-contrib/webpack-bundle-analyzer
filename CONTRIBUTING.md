@@ -42,7 +42,7 @@ npm link webpack-bundle-analyzer
 
 Now when you call `require('webpack-bundle-analyzer')` in your own project, you will actually be using the local copy of the `webpack-bundle-analyzer` project.
 
-If your own project's Webpack config has `BundleAnalyzerPlugin` configured with `analyzerMode: 'server'`, the changes you do inside `client` folder within your local copy of `webpack-bundle-analyzer` should now be immediately visible after you refresh your browser page. Hack away!
+If your own project's Webpack config has `BundleAnalyzerPlugin` configured with `analyzerMode: 'server'`, the changes you do inside `client` folder within your local copy of `webpack-bundle-analyzer` should now be immediately visible after you refresh your browser page. Hack away!!!!
 
 ## Send your changes back to us! :revolving_hearts:
 
