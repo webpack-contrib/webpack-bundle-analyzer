@@ -39,7 +39,7 @@ function getScript(filename, mode) {
   }
 }
 
-function renderViewer({title, enableWebSocket, chartData, entrypoints, defaultSizes, mode} = {}) {
+function renderViewer({title, enableWebSocket, chartData, entrypoints, defaultSizes, mode, theme} = {}) {
   return html`<!DOCTYPE html>
 <html>
   <head>
@@ -54,7 +54,7 @@ function renderViewer({title, enableWebSocket, chartData, entrypoints, defaultSi
     ${getScript('viewer.js', mode)}
   </head>
 
-  <body>
+  <body${theme === 'dark' && ' style="background: black"'}>
     <div id="app"></div>
     <script>
       window.chartData = ${escapeJson(chartData)};

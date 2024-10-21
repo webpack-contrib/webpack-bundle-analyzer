@@ -74,6 +74,12 @@ const program = commander
     br(`Possible values: ${[...Logger.levels].join(', ')}`),
     Logger.defaultLevel
   )
+  .option(
+    '-T, --theme <theme>',
+    'Theme.' +
+    br('Possible values: dark, light'),
+    'light'
+  )
   .parse(process.argv);
 
 let [bundleStatsFile, bundleDir] = program.args;
@@ -86,7 +92,8 @@ let {
   defaultSizes,
   logLevel,
   open: openBrowser,
-  exclude: excludeAssets
+  exclude: excludeAssets,
+  theme
 } = program.opts();
 const logger = new Logger(logLevel);
 
@@ -125,7 +132,8 @@ async function parseAndAnalyse(bundleStatsFile) {
         bundleDir,
         excludeAssets,
         logger: new Logger(logLevel),
-        analyzerUrl: utils.defaultAnalyzerUrl
+        analyzerUrl: utils.defaultAnalyzerUrl,
+        theme
       });
     } else if (mode === 'static') {
       viewer.generateReport(bundleStats, {
@@ -135,7 +143,8 @@ async function parseAndAnalyse(bundleStatsFile) {
         defaultSizes,
         bundleDir,
         excludeAssets,
-        logger: new Logger(logLevel)
+        logger: new Logger(logLevel),
+        theme
       });
     } else if (mode === 'json') {
       viewer.generateJSONReport(bundleStats, {

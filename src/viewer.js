@@ -40,7 +40,8 @@ async function startServer(bundleStats, opts) {
     defaultSizes = 'parsed',
     excludeAssets = null,
     reportTitle,
-    analyzerUrl
+    analyzerUrl,
+    theme = 'light'
   } = opts || {};
 
   const analyzerOpts = {logger, excludeAssets};
@@ -63,7 +64,8 @@ async function startServer(bundleStats, opts) {
         chartData,
         entrypoints,
         defaultSizes,
-        enableWebSocket: true
+        enableWebSocket: true,
+        theme
       });
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(html);
@@ -136,7 +138,8 @@ async function generateReport(bundleStats, opts) {
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
-    excludeAssets = null
+    excludeAssets = null,
+    theme = 'light'
   } = opts || {};
 
   const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
@@ -150,7 +153,8 @@ async function generateReport(bundleStats, opts) {
     chartData,
     entrypoints,
     defaultSizes,
-    enableWebSocket: false
+    enableWebSocket: false,
+    theme
   });
   const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
 

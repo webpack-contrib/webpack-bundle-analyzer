@@ -24,6 +24,7 @@ class BundleAnalyzerPlugin {
       // deprecated
       startAnalyzer: true,
       analyzerUrl: utils.defaultAnalyzerUrl,
+      theme: 'light',
       ...opts,
       analyzerPort: 'analyzerPort' in opts ? (opts.analyzerPort === 'auto' ? 0 : opts.analyzerPort) : 8888
     };
@@ -109,7 +110,8 @@ class BundleAnalyzerPlugin {
         logger: this.logger,
         defaultSizes: this.opts.defaultSizes,
         excludeAssets: this.opts.excludeAssets,
-        analyzerUrl: this.opts.analyzerUrl
+        analyzerUrl: this.opts.analyzerUrl,
+        theme: this.opts.theme
       });
     }
   }
@@ -131,7 +133,8 @@ class BundleAnalyzerPlugin {
       bundleDir: this.getBundleDirFromCompiler(),
       logger: this.logger,
       defaultSizes: this.opts.defaultSizes,
-      excludeAssets: this.opts.excludeAssets
+      excludeAssets: this.opts.excludeAssets,
+      theme: this.opts.theme
     });
   }
 
