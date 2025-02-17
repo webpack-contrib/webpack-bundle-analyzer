@@ -12,6 +12,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## UNRELEASED
 
+* **Improvement**
+  * Parse bundles as ES modules based on stats JSON information
+
 ## 4.10.2
 
 * **Bug Fix**
