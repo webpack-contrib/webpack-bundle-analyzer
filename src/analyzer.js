@@ -77,7 +77,7 @@ function getViewerData(bundleStats, bundleDir, opts) {
       let bundleInfo;
 
       try {
-        bundleInfo = parseBundle(assetFile);
+        bundleInfo = parseBundle(assetFile, {sourceType: statAsset.info.javascriptModule ? 'module' : 'script'});
       } catch (err) {
         const msg = (err.code === 'ENOENT') ? 'no such file' : err.message;
         logger.warn(`Error parsing bundle asset "${assetFile}": ${msg}`);
