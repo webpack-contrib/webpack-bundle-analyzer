@@ -4,14 +4,14 @@ module.exports = [
     'isAsset': true,
     'statSize': 204,
     'parsedSize': 488,
-    'gzipSize': 296,
+    'gzipSize': 297,
     'groups': [
       {
         'label': 'entry modules (concatenated)',
         'path': './entry modules (concatenated)',
         'statSize': 124,
         'parsedSize': 396,
-        'gzipSize': 266,
+        'gzipSize': 265,
         'concatenated': true,
         'groups': [
           {
@@ -25,7 +25,7 @@ module.exports = [
                 'path': './entry modules (concatenated)/src/index.js',
                 'statSize': 62,
                 'parsedSize': 198,
-                'gzipSize': 133,
+                'gzipSize': 132,
                 'inaccurateSizes': true
               }, {
                 'id': 51,
@@ -33,12 +33,12 @@ module.exports = [
                 'path': './entry modules (concatenated)/src/index2.js',
                 'statSize': 62,
                 'parsedSize': 198,
-                'gzipSize': 133,
+                'gzipSize': 132,
                 'inaccurateSizes': true
               }
             ],
             'parsedSize': 396,
-            'gzipSize': 266,
+            'gzipSize': 265,
             'inaccurateSizes': true
           }
         ]
@@ -53,18 +53,18 @@ module.exports = [
             'path': './src/a.js',
             'statSize': 40,
             'parsedSize': 46,
-            'gzipSize': 64
+            'gzipSize': 66
           }, {
             'id': 326,
             'label': 'b.js',
             'path': './src/b.js',
             'statSize': 40,
             'parsedSize': 46,
-            'gzipSize': 64
+            'gzipSize': 66
           }
         ],
         'parsedSize': 92,
-        'gzipSize': 71
+        'gzipSize': 72
       }
     ]
   }

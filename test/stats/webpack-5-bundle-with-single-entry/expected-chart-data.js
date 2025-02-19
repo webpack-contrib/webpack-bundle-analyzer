@@ -31,7 +31,7 @@ module.exports = [
             'path': './src/index.js',
             'statSize': 62,
             'parsedSize': 195,
-            'gzipSize': 158
+            'gzipSize': 159
           }
         ],
         'parsedSize': 253,
