@@ -11,8 +11,8 @@ jobs:
       matrix:
         node:
           - version: 16.x
-          # - version: 18.x
-          #   env: NODE_OPTIONS=--openssl-legacy-provider
+          - version: 18.x
+            env: NODE_OPTIONS=--openssl-legacy-provider
           - version: 20.x
             env: NODE_OPTIONS=--openssl-legacy-provider
           - version: 22.x
