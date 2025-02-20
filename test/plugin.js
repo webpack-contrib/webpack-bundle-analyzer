@@ -19,16 +19,13 @@ describe('Plugin', function () {
   let browser;
   jest.setTimeout(15000);
 
-  beforeAll(async function () {
+  beforeEach(async function () {
     browser = await puppeteer.launch();
     del.sync(`${__dirname}/output`);
   });
 
-  afterEach(function () {
+  afterEach(async function () {
     del.sync(`${__dirname}/output`);
-  });
-
-  afterAll(async function () {
     await browser.close();
   });
 
@@ -45,7 +42,9 @@ describe('Plugin', function () {
 
       await expectValidReport({
         parsedSize: 1343,
-        gzipSize: 360
+        // On node.js v16 and lower, the calculated gzip is one byte larger. Nice.
+        gzipSize:
+          parseInt(process.versions.node.split('.')[0]) <= 16 ? 360 : 359
       });
     });
   });
