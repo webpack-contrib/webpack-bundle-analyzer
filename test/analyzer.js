@@ -94,7 +94,7 @@ describe('Analyzer', function () {
     );
   });
 
-  it.skip("should not filter out modules that we could't find during parsing", async function () {
+  it.skip("should not filter out modules that we couldn't find during parsing", async function () {
     generateReportFrom('with-missing-parsed-module/stats.json');
     const chartData = await getChartData();
     let unparsedModules = 0;

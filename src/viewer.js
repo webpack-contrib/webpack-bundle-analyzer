@@ -184,7 +184,7 @@ function getChartData(analyzerOpts, ...args) {
   try {
     chartData = analyzer.getViewerData(...args, analyzerOpts);
   } catch (err) {
-    logger.error(`Could't analyze webpack bundle:\n${err}`);
+    logger.error(`Couldn't analyze webpack bundle:\n${err}`);
     logger.debug(err.stack);
     chartData = null;
   }
@@ -195,7 +195,7 @@ function getChartData(analyzerOpts, ...args) {
     chartData
     && !Array.isArray(chartData)
   ) {
-    logger.error("Could't find any javascript bundles in provided stats file");
+    logger.error("Couldn't find any javascript bundles in provided stats file");
     chartData = null;
   }
 
