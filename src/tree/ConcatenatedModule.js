@@ -5,8 +5,8 @@ import {getModulePathParts} from './utils';
 
 export default class ConcatenatedModule extends Module {
 
-  constructor(name, data, parent) {
-    super(name, data, parent);
+  constructor(name, data, parent, opts) {
+    super(name, data, parent, opts);
     this.name += ' (concatenated)';
     this.children = Object.create(null);
     this.fillContentModules();
@@ -18,6 +18,10 @@ export default class ConcatenatedModule extends Module {
 
   get gzipSize() {
     return this.getGzipSize() ?? this.getEstimatedSize('gzipSize');
+  }
+
+  get brotliSize() {
+    return this.getBrotliSize() ?? this.getEstimatedSize('brotliSize');
   }
 
   getEstimatedSize(sizeType) {
@@ -53,7 +57,7 @@ export default class ConcatenatedModule extends Module {
     });
 
     const ModuleConstructor = moduleData.modules ? ConcatenatedModule : ContentModule;
-    const module = new ModuleConstructor(fileName, moduleData, this);
+    const module = new ModuleConstructor(fileName, moduleData, this, this.opts);
     currentFolder.addChildModule(module);
   }
 
