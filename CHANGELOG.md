@@ -15,6 +15,9 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 * **Improvement**
   * Parse bundles as ES modules based on stats JSON information ([#649](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/649) by [@eamodio](https://github.com/eamodio))
 
+* **New Feature**
+  * Add support for Brotli compression ([#663](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/663) by [@dcsaszar](https://github.com/dcsaszar))
+
 ## 4.10.2
 
 * **Bug Fix**
@@ -71,7 +74,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 ## 4.6.0
 
-* **New Feature** 
+* **New Feature**
   * Support outputting different URL in server mode ([#520](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/520) by [@southorange1228](https://github.com/southorange1228))
   * Use deterministic chunk colors (#[501](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/501) by [@CreativeTechGuy](https://github.com/CreativeTechGuy))
 
@@ -104,19 +107,19 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
  * **Improvement**
    * Keep treemap labels visible during zooming animations for better user experience ([#414](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/414) by [@stanislawosinski](https://github.com/stanislawosinski))
-     
+
  * **Bug Fix**
    * Don't show an empty tooltip when hovering over the FoamTree attribution group or between top-level groups ([#413](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/413) by [@stanislawosinski](https://github.com/stanislawosinski))
- 
+
  * **Internal**
    * Upgrade FoamTree to version 3.5.0, replace vendor dependency with an NPM package ([#412](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/412) by [@stanislawosinski](https://github.com/stanislawosinski))
-    
+
 ## 4.3.0
 
  * **Improvement**
    * Replace express with builtin node server, reducing number of dependencies ([#398](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/398) by [@TrySound](https://github.com/TrySound))
    * Move `filesize` to dev dependencies, reducing number of dependencies ([#401](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/401) by [@realityking](https://github.com/realityking))
-   
+
  * **Internal**
    * Replace Travis with GitHub actions ([#402](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/402) by [@valscion](https://github.com/valscion))
 
@@ -141,10 +144,10 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
  * **Improvement**
    * Support for Webpack 5
- 
+
  * **Bug Fix**
    * Prevent crashes when `openAnalyzer` was set to true in environments where there's no program to handle opening. ([#382](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/382) by [@wbobeirne](https://github.com/wbobeirne))
-  
+
  * **Internal**
    * Updated dependencies
    * Added support for multiple Webpack versions in tests
@@ -153,7 +156,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
  * **New Feature**
    * Adds option `reportTitle` to set title in HTML reports; default remains date of report generation ([#354](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/354) by [@eoingroat](https://github.com/eoingroat))
-   
+
  * **Improvement**
     * Added capability to parse bundles that have child assets generated ([#376](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/376) by [@masterkidan](https://github.com/masterkidan) and [#378](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/378) by [@https://github.com/dabbott](https://github.com/https://github.com/dabbott))
 
@@ -180,7 +183,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
  * **Bug Fix**
    * Add leading zero to hour & minute on `<title />` when needed ([#314](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/314) by [@mhxbe](https://github.com/mhxbe))
-   
+
  * **Internal**
    * Update some dependencies to get rid of vulnerability warnings ([#339](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/339))
 
@@ -293,7 +296,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
  * **Improvements**
    * Nested folders that contain only one child folder are now visually merged i.e. `folder1 => folder2 => file1` is now shown like `folder1/folder2 => file1` (thanks to [@varun-singh-1](https://github.com/varun-singh-1) for the idea)
-   
+
  * **Internal**
    * Dropped support for Node.js v4
    * Using MobX for state management
@@ -303,10 +306,10 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
  * **Improvement**
    * Pretty-format the generated stats.json ([#180](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/180)) [@edmorley](https://github.com/edmorley))
-   
+
  * **Bug Fix**
    * Properly parse Webpack 4 async chunk with `Array.concat` optimization ([#184](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/184), fixes [#183](https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/183))
-  
+
  * **Internal**
    * Refactor bundle parsing logic ([#184](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/184))
 
