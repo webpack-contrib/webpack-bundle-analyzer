@@ -21,6 +21,11 @@ function resolveTitle(reportTitle) {
   }
 }
 
+function resolveDefaultSizes(defaultSizes, compressionAlgorithm) {
+  if (['gzip', 'brotli'].includes(defaultSizes)) return compressionAlgorithm;
+  return defaultSizes;
+}
+
 module.exports = {
   startServer,
   generateReport,
@@ -38,12 +43,13 @@ async function startServer(bundleStats, opts) {
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
+    compressionAlgorithm,
     excludeAssets = null,
     reportTitle,
     analyzerUrl
   } = opts || {};
 
-  const analyzerOpts = {logger, excludeAssets};
+  const analyzerOpts = {logger, excludeAssets, compressionAlgorithm};
 
   let chartData = getChartData(analyzerOpts, bundleStats, bundleDir);
   const entrypoints = getEntrypoints(bundleStats);
@@ -62,7 +68,8 @@ async function startServer(bundleStats, opts) {
         title: resolveTitle(reportTitle),
         chartData,
         entrypoints,
-        defaultSizes,
+        defaultSizes: resolveDefaultSizes(defaultSizes, compressionAlgorithm),
+        compressionAlgorithm,
         enableWebSocket: true
       });
       res.writeHead(200, {'Content-Type': 'text/html'});
@@ -136,10 +143,11 @@ async function generateReport(bundleStats, opts) {
     bundleDir = null,
     logger = new Logger(),
     defaultSizes = 'parsed',
+    compressionAlgorithm,
     excludeAssets = null
   } = opts || {};
 
-  const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
+  const chartData = getChartData({logger, excludeAssets, compressionAlgorithm}, bundleStats, bundleDir);
   const entrypoints = getEntrypoints(bundleStats);
 
   if (!chartData) return;
@@ -149,7 +157,8 @@ async function generateReport(bundleStats, opts) {
     title: resolveTitle(reportTitle),
     chartData,
     entrypoints,
-    defaultSizes,
+    defaultSizes: resolveDefaultSizes(defaultSizes, compressionAlgorithm),
+    compressionAlgorithm,
     enableWebSocket: false
   });
   const reportFilepath = path.resolve(bundleDir || process.cwd(), reportFilename);
@@ -165,9 +174,15 @@ async function generateReport(bundleStats, opts) {
 }
 
 async function generateJSONReport(bundleStats, opts) {
-  const {reportFilename, bundleDir = null, logger = new Logger(), excludeAssets = null} = opts || {};
+  const {
+    reportFilename,
+    bundleDir = null,
+    logger = new Logger(),
+    excludeAssets = null,
+    compressionAlgorithm
+  } = opts || {};
 
-  const chartData = getChartData({logger, excludeAssets}, bundleStats, bundleDir);
+  const chartData = getChartData({logger, excludeAssets, compressionAlgorithm}, bundleStats, bundleDir);
 
   if (!chartData) return;
 
