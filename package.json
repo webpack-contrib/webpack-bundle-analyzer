@@ -39,7 +39,6 @@
     "commander": "^7.2.0",
     "debounce": "^1.2.1",
     "escape-string-regexp": "^4.0.0",
-    "gzip-size": "^6.0.0",
     "html-escaper": "^2.0.2",
     "opener": "^1.5.2",
     "picocolors": "^1.0.0",
