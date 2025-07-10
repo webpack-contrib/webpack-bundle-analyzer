@@ -10,7 +10,7 @@ const {createAssetsFilter} = require('./utils');
 const {getCompressedSize} = require('./sizeUtils');
 
 const FILENAME_QUERY_REGEXP = /\?.*$/u;
-const FILENAME_EXTENSIONS = /\.(js|mjs|cjs)$/iu;
+const FILENAME_EXTENSIONS = /\.(js|mjs|cjs|bundle)$/iu;
 
 module.exports = {
   getViewerData,

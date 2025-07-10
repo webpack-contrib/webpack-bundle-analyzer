@@ -21,6 +21,7 @@ _Note: Gaps between patch versions are faulty, broken or test releases._
 
 * **New Feature**
   * Add support for Brotli compression ([#663](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/663) by [@dcsaszar](https://github.com/dcsaszar))
+  * Add support for React Native ([666](https://github.com/webpack-contrib/webpack-bundle-analyzer/pull/666) by [@ilteoood](https://github.com/ilteoood))
 
 ## 4.10.2
 
