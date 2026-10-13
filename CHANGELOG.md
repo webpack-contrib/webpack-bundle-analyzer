@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.4.1
+
+### Patch Changes
+
+- Fix `TypeError: Cannot read property 'forEach' of undefined` when child compilations or entrypoints have undefined or missing assets. (by [@ronakmaheshwari](https://github.com/ronakmaheshwari) in [#741](https://github.com/webpack/webpack-bundle-analyzer/pull/741))
+
 ## 5.4.0
 
 ### Minor Changes
