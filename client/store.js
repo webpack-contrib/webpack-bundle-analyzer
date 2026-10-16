@@ -230,8 +230,17 @@ export class Store {
   }
 
   get foundModulesSize() {
-    return this.foundModules.reduce(
-      (summ, module) => summ + module[this.activeSize],
+    const foundModules = new Set(this.foundModules);
+    const { activeSize } = this;
+    // Modules inside a found directory are already included in its size.
+    const sumFound = (modules) =>
+      modules.reduce((summ, module) => {
+        if (foundModules.has(module)) return summ + module[activeSize];
+        return module.groups ? summ + sumFound(module.groups) : summ;
+      }, 0);
+
+    return this.foundModulesByChunk.reduce(
+      (summ, { chunk }) => summ + sumFound(chunk.groups),
       0,
     );
   }
