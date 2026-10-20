@@ -25,6 +25,14 @@ describe("createAssetsFilter", () => {
     expect(filter("bar-foo")).toBe(true);
   });
 
+  it("should consistently filter assets with global RegExp patterns", () => {
+    const filter = createAssetsFilter(/\.js/g);
+
+    expect(filter("main.js")).toBe(false);
+    expect(filter("main.js")).toBe(false);
+    expect(filter("main.js")).toBe(false);
+  });
+
   it("should allow a filter function as a pattern", () => {
     const filter = createAssetsFilter((asset) => asset.startsWith("foo"));
     expect(filter("foo")).toBe(false);
